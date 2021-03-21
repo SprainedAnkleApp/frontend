@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# Projekt IO - Informatyka 2020/2021
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Team
+
+- team name: *Sprained Ankle*
+- class: Monday 16:15-17:45
++ team members:
+    - Konrad Dębiec
+    - Bartosz Kaszuba
+    - Aleksandra Mazur
+    - Andrzej Podobiński
+    - Piotr Połeć
+    - Dmytro Zhylko
+
 
 ## Available Scripts
 
