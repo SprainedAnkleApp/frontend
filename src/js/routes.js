@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import Example from './views/Example/Example';
 import Main from './views/Main';
 
-
 const Routes = () => {
   return (
     <Switch>
@@ -15,6 +14,6 @@ const Routes = () => {
       </Route>
     </Switch>
   );
-}
+};
 
 export default Routes;

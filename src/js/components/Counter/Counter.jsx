@@ -1,7 +1,7 @@
-import React from "react";
-import useCounter from "./useCounter";
+import React from 'react';
+import useCounter from './useCounter';
 
-import styles from "./Counter.module.css";
+import styles from './Counter.module.css';
 
 const Counter = ({ initialCount }) => {
   const { count, increment } = useCounter(initialCount);

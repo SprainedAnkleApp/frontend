@@ -8,7 +8,7 @@ const Example = (mockProp) => {
       <div className={styles.header}>Example</div>
       <Counter initialCount={10} />
     </div>
-  )
-}
+  );
+};
 
 export default Example;
