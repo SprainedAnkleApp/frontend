@@ -1,0 +1,39 @@
+.card{
+    display:grid;
+    grid-template-rows:40vh auto;
+    overflow:hidden;
+    position:relative;
+    box-shadow: 8px 4px 16px -2px rgba(90,70,69,0.5);
+    background-color:rgb(238, 235, 235);
+    border-radius:20px;
+    margin-top:5%;
+    margin-bottom: 5%;
+}
+
+.photo{
+    position: relative;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position: center;
+}
+
+.card:hover .showMoreButton{
+    display:block;
+}
+
+.showMoreButton{
+    position:absolute;
+    height:100%;
+    width:100%;
+    display:none;
+    background: rgba(225,225,225,0.2);
+    text-align:center;
+    cursor:pointer;
+    color:white;
+    font-size:20px;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    font-family: "Calibri";
+    padding-bottom: 80%;
+    z-index:3;
+}
