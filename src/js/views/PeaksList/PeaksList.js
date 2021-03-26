@@ -6,25 +6,14 @@ import { GiMountains } from 'react-icons/gi';
 import usePeaks from './usePeaks';
 
 const PeaksList = () => {
-  const { peaks, getPeaks } = usePeaks();
+  const { peaks: peaksData, getPeaks } = usePeaks();
 
   useEffect(() => {
     getPeaks();
   }, []);
 
-  const currentPeaks = peaks ?? [];
-  const peaksToRender = currentPeaks.map((peak) => {
-    return (
-      <Peak
-        peakName={peak.name}
-        height={peak.height}
-        region={peak.region}
-        about={peak.about}
-        mountainRange={peak.mountainRange}
-        photo={peak.photo}
-        link={peak._links.self.href}
-      />
-    );
+  const peaks = (peaksData ?? []).map((peak) => {
+    return <Peak peak={peak} key={peak.name} />;
   });
 
   return (
@@ -33,7 +22,7 @@ const PeaksList = () => {
         <GiMountains></GiMountains>
         Korona Gór Polski
       </div>
-      <div className={styles.peaksList}>{peaksToRender}</div>
+      <div className={styles.peaksList}>{peaks}</div>
     </div>
   );
 };

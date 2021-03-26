@@ -2,15 +2,13 @@ import { Link } from 'react-router-dom';
 
 import styles from './Peak.module.css';
 
-const Peak = ({ peakName, height, region, about, mountainRange, photo, link }) => {
+const Peak = ({ peak }) => {
   return (
     <div className={styles.card}>
       {/* TODO - change /exampleRoute to one peak's view */}
       <Link className={styles.showMoreButton} to="/exampleRoute" />
-      <img className={styles.photo} src={photo} alt="mountain" />
-      <div>
-        <h1>{peakName}</h1>
-      </div>
+      <img className={styles.photo} src={peak.photo} alt="mountain" />
+      <div className={styles.peakName}>{peak.name}</div>
     </div>
   );
 };
