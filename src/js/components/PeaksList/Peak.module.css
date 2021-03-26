@@ -8,6 +8,13 @@
     border-radius:20px;
     margin-top:5%;
     margin-bottom: 5%;
+    cursor:pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.card:hover{
+    opacity: 80%;
 }
 
 .photo{
@@ -16,21 +23,6 @@
     height:100%;
     object-fit:cover;
     object-position: center;
-}
-
-.card:hover .showMoreButton{
-    display:block;
-}
-
-.showMoreButton{
-    position:absolute;
-    height:100%;
-    width:100%;
-    display:none;
-    background: rgba(225,225,225,0.2);
-    text-align:center;
-    cursor:pointer;
-    z-index:3;
 }
 
 .peakName{
