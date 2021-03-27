@@ -1,18 +1,12 @@
-import { SubmitButton } from '../../ui/atoms';
-import styles from './LoginForm.module.css';
+import { SubmitButton } from '../common';
+import { InputWithLabel } from '../common';
 
 const LoginForm = () => {
   const onClick = () => console.log('Submit button clicked');
   return (
     <>
-      <label className={styles.label} for="login">
-        Nazwa użytkownika
-      </label>
-      <input type="text" id="login" />
-      <label className={styles.label} for="password">
-        Hasło
-      </label>
-      <input type="password" id="password" />
+      <InputWithLabel type={'text'} id={'login'} text={'Nazwa użytkownika'} />
+      <InputWithLabel type={'password'} id={'password'} text={'Hasło'} />
       <SubmitButton onClick={onClick} text={'Login'} />
     </>
   );

@@ -1,4 +1,5 @@
 // @create-index
 
-export { default as ExternalLoginButton } from './ExternalLoginButton.jsx';
-export { default as SubmitButton } from './SubmitButton.jsx';
+export { default as ExternalLoginButton } from './ExternalLoginButton';
+export { default as SubmitButton } from './SubmitButton';
+export { default as InputWithLabel } from './InputWithLabel';

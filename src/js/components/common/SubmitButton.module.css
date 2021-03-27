@@ -1,4 +1,18 @@
 .button {
   width: 100%;
-  border: 1px solid black;
+  border: none;
+  background-color: #18F0FF;
+  border-radius: 10px;
+  font-size: 1.2em;
+  text-align: center;
+  color: white;
+  height: 45px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.button:hover {
+  opacity: 0.8;
 }

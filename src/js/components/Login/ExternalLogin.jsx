@@ -1,4 +1,4 @@
-import { ExternalLoginButton } from '../../ui/atoms';
+import { ExternalLoginButton } from '../common';
 import { useEffect } from 'react';
 
 const ExternalLogin = () => {
