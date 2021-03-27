@@ -6,10 +6,12 @@ const ExternalLoginButton = ({ className, onClick, disabled, text, icon }) => {
   console.log(text, onClick);
 
   return (
-    <button className={buttonStyles} type="submit" onClick={onClick} disabled={disabled}>
-      <img src={icon} alt="icon" />
-      {text}
-    </button>
+    <div className={styles.container}>
+      <div className={styles.icon}>{icon}</div>
+      <button className={buttonStyles} type="submit" onClick={onClick} disabled={disabled}>
+        {text}
+      </button>
+    </div>
   );
 };
 

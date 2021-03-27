@@ -1,17 +1,37 @@
 .button {
+  font-size: 1.2em;
+  background-color: inherit;
+  border: none;
+  grid-area: button;
+  cursor: pointer;
+}
+
+.icon {
+  grid-area: icon;
+  font-size: 1.6em;
+  cursor: pointer;
+
+}
+
+.container {
+  display: grid;
+  grid-template-areas: 
+            "icon button .";
   width: 100%;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
   background-color: white;
-  font-size: 1.2em;
   text-align: center;
   height: 45px;
   font-weight: bold;
   cursor: pointer;
   margin-bottom: 10px;
   margin-top: 20px;
+  place-items: center center;
+
+
 }
 
-.button:hover {
-  opacity: 0.8;
+.container:hover {
+  opacity: 0.75;
 }
