@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+    height: 40vh;
+    text-align: center;
+    position: relative;
+  }
+
+.header {
+    font-size:65px;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    margin-top: 5%;
+}
+
+.peaksList{
+    margin: 5%;
+    margin-top: 6%;
+    padding-bottom: 5%;
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    text-align:center;
+    column-gap:6%;
+}
+
+@media only screen and (max-width: 767px){
+    .peaksList{
+      grid-template-columns: 1fr;
+      grid-gap:0;
+    }
+}
