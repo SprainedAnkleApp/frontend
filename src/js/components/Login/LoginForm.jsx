@@ -1,5 +1,4 @@
-import { SubmitButton } from '../common';
-import { InputWithLabel } from '../common';
+import { SubmitButton, InputWithLabel } from '../common';
 
 const LoginForm = () => {
   const onClick = () => console.log('Submit button clicked');

@@ -1,7 +1,12 @@
 import styles from './Login.module.css';
 import loginImage from '../../../images/loginMountain.jpg';
 
-import { LoginForm, RegisterRedirect, ExternalLogin } from '../../components/Login';
+import {
+  LoginForm,
+  RegisterRedirect,
+  ExternalLogin,
+  SectionSeparator,
+} from '../../components/Login';
 
 const Login = () => {
   return (
@@ -11,6 +16,7 @@ const Login = () => {
         <h1 className={styles.title}>Logowanie</h1>
         <LoginForm />
         <RegisterRedirect />
+        <SectionSeparator text={'or'} />
         <ExternalLogin />
       </div>
     </div>
