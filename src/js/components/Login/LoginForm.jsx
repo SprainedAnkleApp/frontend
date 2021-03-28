@@ -1,7 +1,13 @@
 import { SubmitButton, InputWithLabel } from '../common';
+import { useLocation, useHistory } from 'react-router';
 
 const LoginForm = () => {
-  const onClick = () => console.log('Submit button clicked');
+  const location = useLocation();
+  const history = useHistory();
+  const onClick = () => {
+    history.push(location?.state?.from || '/');
+  };
+
   return (
     <>
       <InputWithLabel type={'text'} id={'login'} text={'Nazwa użytkownika'} />

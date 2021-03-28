@@ -3,7 +3,6 @@ import styles from './ExternalLoginButton.module.css';
 
 const ExternalLoginButton = ({ className, onClick, disabled, text, icon }) => {
   const buttonStyles = cx(styles.button, className);
-  console.log(text, onClick);
 
   return (
     <div className={styles.container}>
