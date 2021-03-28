@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Example from './views/Example/Example';
-import Main from './views/Main';
+import { Example } from './views/Example';
+import { Main } from './views';
+import { Login } from './views/Login';
 import { PeaksList } from './views/PeaksList';
 
 const Routes = () => {
@@ -12,6 +13,9 @@ const Routes = () => {
       </Route>
       <Route path="/exampleRoute">
         <Example />
+      </Route>
+      <Route path="/login">
+        <Login />
       </Route>
       <Route path="/">
         <Main />
