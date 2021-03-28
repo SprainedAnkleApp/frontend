@@ -6,12 +6,12 @@ import { getLoginUrl } from './urls';
 export const login = (login, password) => {
   return axios
     .post(getLoginUrl(), {
-      login,
-      password,
+      username: login,
+      password: password,
     })
     .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem('userInfo', JSON.stringify(response.data));
+      if (response.headers.authorization) {
+        localStorage.setItem('userInfo', JSON.stringify(response.headers.authorization));
       }
 
       return response.data;
@@ -23,17 +23,16 @@ export const logout = () => {
 };
 
 export default function authHeader() {
-  const userInfo = JSON.parse(localStorage.getItem('user'));
-
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   if (userInfo && userInfo.accessToken) {
-    return { Authorization: 'Bearer ' + userInfo.accessToken };
+    return { Authorization: userInfo.accessToken };
   } else {
     return {};
   }
 }
 
 export const isAuthenticated = () => {
-  const userInfo = JSON.parse(localStorage.getItem('user'));
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-  return userInfo && userInfo.accessToken;
+  return userInfo;
 };

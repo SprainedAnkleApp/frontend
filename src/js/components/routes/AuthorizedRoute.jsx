@@ -2,7 +2,7 @@ import { Route, Redirect } from 'react-router';
 import { isAuthenticated } from '../../API/auth/methods';
 
 const AuthorizedRoute = ({ component: Component, ...rest }) => {
-  if (isAuthenticated() !== true) {
+  if (!isAuthenticated()) {
     return (
       <Redirect
         to={{
