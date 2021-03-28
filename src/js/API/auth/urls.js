@@ -1,1 +1,1 @@
-export const getLoginUrl = () => `${process.env.API_URL}auth/login`;
+export const getLoginUrl = () => `${process.env.REACT_APP_API_URL}login`;
