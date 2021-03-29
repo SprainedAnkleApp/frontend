@@ -13,6 +13,13 @@
   margin-top: 20px;
 }
 
+.button:focus {
+  outline: none;
+}
+
 .button:hover {
   opacity: 0.8;
+}
+.error {
+  background-color: #B00020;
 }

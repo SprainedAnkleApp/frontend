@@ -4,13 +4,14 @@ import { Example } from './views/Example';
 import { Main } from './views';
 import { Login } from './views/Login';
 import { PeaksList } from './views/PeaksList';
+import AuthorizedRoute from './components/routes/AuthorizedRoute';
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/peaks">
+      <AuthorizedRoute path="/peaks">
         <PeaksList />
-      </Route>
+      </AuthorizedRoute>
       <Route path="/exampleRoute">
         <Example />
       </Route>

@@ -16,5 +16,11 @@
   height: 45px;
   padding: 0.1em;
   margin-top: 5px;
-  
+}
+.input:focus {
+  outline: none;
+}
+
+.error {
+  border: 1px solid #B00020;;
 }
