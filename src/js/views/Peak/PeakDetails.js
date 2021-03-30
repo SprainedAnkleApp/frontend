@@ -13,8 +13,6 @@ const PeakDetails = () => {
     getPeakDetails();
   }, []);
 
-  // const peakDetails = peakDetailsData ?? [];
-
   return (
     <div className={styles.container}>
       <img className={styles.photo} src={peakDetails.photo} alt="peak" />
