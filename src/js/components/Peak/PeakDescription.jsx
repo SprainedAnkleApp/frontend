@@ -7,7 +7,7 @@ const PeakDescription = ({ peak }) => {
   return (
     <div>
       <p>
-        <AiOutlineArrowUp /> Wysokość: {peak.height} m n.p.m
+        <AiOutlineArrowUp /> Wysokość: {peak.height} m n.p.m.
       </p>
       <p>
         <MdMyLocation /> Województwo: {peak.region}

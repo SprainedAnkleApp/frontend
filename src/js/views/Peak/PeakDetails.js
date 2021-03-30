@@ -3,17 +3,17 @@ import { useParams } from 'react-router';
 
 import styles from './PeakDetails.module.css';
 import usePeakDetails from './usePeakDetails';
-import PeakDescription from '../../../components/PeaksList/PeakDetails/PeakDescription';
+import PeakDescription from '../../components/Peak/PeakDescription';
 
 const PeakDetails = () => {
   const { id } = useParams();
-  const { peakDetails: peakDetailsData, getPeakDetails } = usePeakDetails({ id: id });
+  const { peakDetails, getPeakDetails } = usePeakDetails({ id: id });
 
   useEffect(() => {
     getPeakDetails();
   }, []);
 
-  const peakDetails = peakDetailsData ?? [];
+  // const peakDetails = peakDetailsData ?? [];
 
   return (
     <div className={styles.container}>

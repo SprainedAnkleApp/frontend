@@ -5,7 +5,7 @@ import { Main } from './views';
 import { Login } from './views/Login';
 import { PeaksList } from './views/PeaksList';
 import AuthorizedRoute from './components/routes/AuthorizedRoute';
-import { PeakDetails } from './views/PeaksList/PeakDetails';
+import { PeakDetails } from './views/Peak';
 
 const Routes = () => {
   return (
