@@ -1,4 +1,4 @@
-import { SubmitButton, InputWithLabel } from '../common';
+import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useLocation, useHistory } from 'react-router';
 import { login } from '../../API/auth/methods';
 import { useForm } from 'react-hook-form';
@@ -27,24 +27,24 @@ const LoginForm = () => {
         name={'login'}
         text={'Nazwa użytkownika'}
         register={register({
-          required: 'this is a required',
+          required: 'Pole wymagane',
         })}
         error={errors.login}
       />
-      {errors.login && <p>Pole wymagane</p>}
 
       <InputWithLabel
         type={'text'}
         name={'password'}
         text={'Hasło'}
         register={register({
-          required: 'this is a required',
+          required: 'Pole wymagane',
         })}
         error={errors.password}
       />
-      {errors.password && <p>Pole wymagane</p>}
 
-      <SubmitButton text={submitError || 'Login'} progress={submitError ? 'error' : 'success'} />
+      {submitError && <Error text={submitError} />}
+
+      <SubmitButton text={'Login'} progress={'success'} />
     </form>
   );
 };

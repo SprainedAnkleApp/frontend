@@ -1,5 +1,6 @@
 import styles from './InputWithLabel.module.css';
 import cx from 'classnames';
+import Error from './Error';
 
 const InputWithLabel = ({ className, text, type, name, register, error }) => {
   return (
@@ -13,6 +14,7 @@ const InputWithLabel = ({ className, text, type, name, register, error }) => {
         name={name}
         ref={register}
       />
+      {error && <Error text={error.message} />}
     </div>
   );
 };
