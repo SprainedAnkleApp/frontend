@@ -26,6 +26,7 @@ const LoginForm = () => {
         type={'text'}
         name={'login'}
         text={'Nazwa użytkownika'}
+        placeholder={'Wprowadź nazwę użytkownika'}
         register={register({
           required: 'Pole wymagane',
         })}
@@ -36,6 +37,7 @@ const LoginForm = () => {
         type={'text'}
         name={'password'}
         text={'Hasło'}
+        placeholder={'Wprowadź hasło'}
         register={register({
           required: 'Pole wymagane',
         })}
