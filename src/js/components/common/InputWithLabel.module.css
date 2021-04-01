@@ -1,26 +1,35 @@
 .label {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
+  font-size: var(--s-font-size);
+  color: var(--darkest-gray);
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .input {
-  border: none;
-  border-radius: 10px;
-  font-size: 1.4em;
+  border: var(--l-border-width) solid var(--border-gray);  
+  border-radius: var(--xl-border-radius);
+
   background-color: #F1F1F1;
+  font-weight: var(--normal-font-weight);
+  font-size: var(--s-font-size);
+  color: var(--darkest-gray);
   height: 45px;
-  padding: 0.1em;
-  margin-top: 5px;
+  padding: 2px 20px;
+  margin-top: 2px;
 }
 .input:focus {
   outline: none;
 }
 
+.input::placeholder {
+  color: var(--light-gray);
+}
+
 .error {
-  border: 1px solid #B00020;;
+  border: var(--l-border-width) solid var(--border-red);  
 }

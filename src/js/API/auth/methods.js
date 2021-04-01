@@ -24,8 +24,8 @@ export const logout = () => {
 
 export default function authHeader() {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  if (userInfo && userInfo.accessToken) {
-    return { Authorization: userInfo.accessToken };
+  if (userInfo) {
+    return { Authorization: userInfo };
   } else {
     return {};
   }
@@ -33,6 +33,5 @@ export default function authHeader() {
 
 export const isAuthenticated = () => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-
   return userInfo;
 };

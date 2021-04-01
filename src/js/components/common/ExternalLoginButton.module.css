@@ -1,5 +1,7 @@
 .button {
-  font-size: 1.2em;
+  font-weight: var(--bold-font-weight);
+  font-size: var(--s-font-size);
+  color: var(--darkest-gray);
   background-color: inherit;
   border: none;
   grid-area: button;
@@ -19,14 +21,13 @@
             "icon button .";
   width: 100%;
   border: 1px solid #d1d1d1;
-  border-radius: 10px;
+  border-radius: var(--xl-border-radius);
   background-color: white;
   text-align: center;
-  height: 45px;
+  height: 60px;
   font-weight: bold;
   cursor: pointer;
-  margin-bottom: 10px;
-  margin-top: 20px;
+  margin-top: 16px;
   place-items: center center;
 
 
