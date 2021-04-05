@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Example } from './views/Example';
 import { Main } from './views';
-import { Login } from './views/Login';
+import { Login, SignUp } from './views/Auth';
 import { PeaksList } from './views/PeaksList';
 import AuthorizedRoute from './components/routes/AuthorizedRoute';
 import { PeakDetails } from './views/Peak';
@@ -21,6 +21,9 @@ const Routes = () => {
       </Route>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/signup">
+        <SignUp />
       </Route>
       <Route path="/">
         <Main />

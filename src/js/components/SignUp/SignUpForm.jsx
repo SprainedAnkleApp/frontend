@@ -1,24 +1,23 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
-import { useLocation, useHistory } from 'react-router';
-import { login } from '../../API/auth/methods';
+import { useHistory } from 'react-router';
+import { signUp } from '../../API/auth/methods';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
-const LoginForm = () => {
+const SignUpForm = () => {
   // TODO enhance validation and form submit error handling
   const [submitError, setSubmitError] = useState(null);
   const { register, errors, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const promise = login(data.login, data.password);
+    const promise = signUp(data.login, data.password);
     promise
       .then(() => {
-        history.push(location?.state?.from || '/');
+        history.push('/');
       })
       .catch(() => {
-        setSubmitError('Błędny login lub hasło');
+        setSubmitError('Błąd rejestracji');
       });
   };
-  const location = useLocation();
   const history = useHistory();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -44,11 +43,22 @@ const LoginForm = () => {
         error={errors.password}
       />
 
+      <InputWithLabel
+        type={'password'}
+        name={'repeatPassword'}
+        text={'Powtórz hasło'}
+        placeholder={'Powtórz hasło'}
+        register={register({
+          required: 'Pole wymagane',
+        })}
+        error={errors.repeatPassword}
+      />
+
       {submitError && <Error text={submitError} />}
 
-      <SubmitButton text={'Zaloguj'} progress={'success'} />
+      <SubmitButton text={'Zarejestruj'} progress={'success'} />
     </form>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

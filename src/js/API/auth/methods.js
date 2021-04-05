@@ -35,3 +35,7 @@ export const isAuthenticated = () => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   return userInfo;
 };
+
+export const signUp = (login, password) => {
+  console.log(login, password);
+};
