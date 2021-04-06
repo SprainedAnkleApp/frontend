@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Peak from '../../components/PeaksList/Peak';
 
 import styles from './PeaksList.module.css';
 import { GiMountains } from 'react-icons/gi';
-import usePeaks from './usePeaks';
+import { getPeaks } from '../../API/peaks/methods';
 
 const PeaksList = () => {
-  const { peaks: peaksData, getPeaks } = usePeaks();
+  const [peaksData, setPeaksData] = useState([]);
 
   useEffect(() => {
-    getPeaks();
+    getPeaks().then((value) => setPeaksData(value));
   }, []);
 
   const peaks = (peaksData ?? []).map((peak) => {

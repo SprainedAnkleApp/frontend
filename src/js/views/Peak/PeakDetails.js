@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import styles from './PeakDetails.module.css';
-import usePeakDetails from './usePeakDetails';
+import { getPeak } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
 
 const PeakDetails = () => {
   const { id } = useParams();
-  const { peakDetails, getPeakDetails } = usePeakDetails({ id: id });
+  const [peakDetails, setPeakDetails] = useState({});
 
   useEffect(() => {
-    getPeakDetails();
+    getPeak(id).then((value) => setPeakDetails(value));
   }, []);
 
   return (
