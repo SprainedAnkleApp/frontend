@@ -1,0 +1,17 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+  background-color: var(--lighter-gray);
+  border-radius: var(--xl-border-radius);
+}
+
+.icon {
+  padding: 15.5px;
+  margin: 6.5px;
+  border-radius: var(--l-border-radius);
+}
+
+.selected {
+  background-color: var(--light-green);
+}

@@ -1,4 +1,11 @@
 .header {
   height: 70px;
   padding: 10px 12px 35px 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: stretch;
+  position: sticky;
+  top: 0;
+  background-color: var(--lightest-gray);
 }

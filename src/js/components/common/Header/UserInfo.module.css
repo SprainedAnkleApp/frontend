@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--s-font-size);
+}
+
+.userName {
+  color: var(--darkest-gray);
+  padding-left: 16px;
+  padding-right: 19px;
+}
