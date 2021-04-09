@@ -1,3 +1,7 @@
-.main {
-  width: 1360px;
+.home {
+  display: grid;
+  grid-area: 
+    "friends newPost currentAchievement"
+    "friends posts achievements"
+    "friends posts chat";
 }
