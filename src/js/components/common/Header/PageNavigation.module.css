@@ -10,8 +10,10 @@
   padding: 15.5px;
   margin: 6.5px;
   border-radius: var(--l-border-radius);
+  color: var(--light-gray);
 }
 
 .selected {
   background-color: var(--light-green);
+  color: var(--darkest-gray);
 }

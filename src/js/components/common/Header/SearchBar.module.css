@@ -11,6 +11,7 @@
 .icon {
   font-size: 34px;
   padding: 3px 2px;
+  color: var(--light-gray);
 }
 
 .input {
@@ -23,6 +24,7 @@
 
 .input::placeholder {
   color: var(--light-gray);
+  font-weight: var(--normal-font-weight);
 }
 
 .input:focus {

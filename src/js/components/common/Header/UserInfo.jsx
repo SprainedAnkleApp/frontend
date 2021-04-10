@@ -1,13 +1,12 @@
 import { KebabMenu, Avatar } from '../';
-import Image from '../../../../images/mountain.jpg';
 
 import styles from './UserInfo.module.css';
 
-const UserInfo = () => {
+const UserInfo = ({ user }) => {
   return (
     <div className={styles.wrapper}>
-      <Avatar url={Image} />
-      <div className={styles.userName}>Bartosz Kaszuba</div>
+      <Avatar url={user.photoUrl} />
+      <div className={styles.userName}>{user.userName}</div>
       <KebabMenu />
     </div>
   );

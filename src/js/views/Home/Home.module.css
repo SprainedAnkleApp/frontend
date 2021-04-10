@@ -1,7 +1,15 @@
 .home {
+  padding-right: 20px;
+padding-left: 20px;
   display: grid;
-  grid-area: 
-    "friends newPost currentAchievement"
-    "friends posts achievements"
-    "friends posts chat";
+  grid-template-columns: 1fr 1.5fr 1fr;
+  column-gap: 100px;
+  grid-template-areas: 
+  "friends newPost currentAchievement"
+  "friends posts achievements"
+  "friends posts chat";
+}
+
+.main {
+  background-color: #E5E5E5;
 }

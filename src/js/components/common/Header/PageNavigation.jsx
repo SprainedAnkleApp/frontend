@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { RiLandscapeFill } from 'react-icons/ri';
-import { GrChatOption } from 'react-icons/gr';
+import { IoMdChatboxes } from 'react-icons/io';
 import { MdMap } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import cx from 'classnames';
@@ -17,7 +16,7 @@ const PageNavigation = ({ selected }) => {
         <MdMap />
       </div>
       <div className={cx(styles.icon, { [styles.selected]: selected === 'chat' })}>
-        <GrChatOption />
+        <IoMdChatboxes />
       </div>
       <div className={cx(styles.icon, { [styles.selected]: selected === 'landscape' })}>
         <RiLandscapeFill />

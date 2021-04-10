@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.name {
+  padding-left: 16px;
+  font-size: var(--xs-font-size);
+  color: var(--gray);
+}
+
+.status {
+  margin-left: auto;
+}
