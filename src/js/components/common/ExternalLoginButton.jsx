@@ -1,16 +1,12 @@
 import cx from 'classnames';
 import styles from './ExternalLoginButton.module.css';
 
-const ExternalLoginButton = ({ className, onClick, disabled, text, icon }) => {
-  const buttonStyles = cx(styles.button, className);
-
+const ExternalLoginButton = ({ className, url, text, icon }) => {
   return (
-    <div className={styles.container}>
+    <a className={styles.container} href={url}>
       <div className={styles.icon}>{icon}</div>
-      <button className={buttonStyles} type="submit" onClick={onClick} disabled={disabled}>
-        {text}
-      </button>
-    </div>
+      <span className={cx(styles.button, className)}>{text}</span>
+    </a>
   );
 };
 
