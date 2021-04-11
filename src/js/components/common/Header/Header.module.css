@@ -7,4 +7,5 @@
   position: sticky;
   top: 0;
   background-color: var(--lightest-green);
+  z-index: 3;
 }

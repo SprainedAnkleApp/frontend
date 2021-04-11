@@ -22,7 +22,7 @@ const Post = ({
       case 'photo':
         return <img src={content} alt="post content" className={styles.photo} />;
       default:
-        <div>empty</div>;
+        return <div>empty</div>;
     }
   };
   return (

@@ -1,24 +1,25 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
-import { useHistory } from 'react-router';
-import { signUp } from '../../API/auth/methods';
+// import { useHistory } from 'react-router';
+// import { signUp } from '../../API/auth/methods';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 const SignUpForm = () => {
   // TODO enhance validation and form submit error handling
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError] = useState(null);
   const { register, errors, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const promise = signUp(data.login, data.password);
-    promise
-      .then(() => {
-        history.push('/');
-      })
-      .catch(() => {
-        setSubmitError('Błąd rejestracji');
-      });
+    console.log(data);
+    // const promise = signUp(data.login, data.password);
+    // promise
+    //   .then(() => {
+    //     history.push('/');
+    //   })
+    //   .catch(() => {
+    //     setSubmitError('Błąd rejestracji');
+    //   });
   };
-  const history = useHistory();
+  // const history = useHistory();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputWithLabel
