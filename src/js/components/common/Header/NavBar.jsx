@@ -4,9 +4,9 @@ import { MdMap } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import cx from 'classnames';
 
-import styles from './PageNavigation.module.css';
+import styles from './NavBar.module.css';
 
-const PageNavigation = ({ selected }) => {
+const NavBar = ({ selected }) => {
   return (
     <div className={styles.navigation}>
       <div className={cx(styles.icon, { [styles.selected]: selected === 'home' })}>
@@ -25,4 +25,4 @@ const PageNavigation = ({ selected }) => {
   );
 };
 
-export default PageNavigation;
+export default NavBar;

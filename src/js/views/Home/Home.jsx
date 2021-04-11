@@ -1,7 +1,8 @@
 import { Header } from '../../components/common/Header';
-import styles from './Home.module.css';
 import { Friends, NewPost } from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
+
+import styles from './Home.module.css';
 
 const Home = () => {
   const text = [...Array(70).keys()].map((number) => <p>number</p>);
