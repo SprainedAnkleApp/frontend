@@ -1,9 +1,9 @@
 name: React-Build-Test
 on:
   push:
-    branches: [ master, deploy ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master, deploy ]
+    branches: [ master, develop ]
 
 jobs:
   buildAndTest:
