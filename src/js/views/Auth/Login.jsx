@@ -1,21 +1,16 @@
 import { LoginForm, ExternalLogin, SectionSeparator } from '../../components/Login';
-import { Redirect as RedirectButton } from '../../components/common';
+import { Redirect } from '../../components/common';
 import GenericAuthView from './GenericAuthView';
 import { isAuthenticated } from '../../API/auth/methods';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   const redirect = (
-    <RedirectButton href={'/signup'} text={'Nie masz konta?'} linkText={'Zarejestruj się teraz'} />
+    <Redirect href={'/signup'} text={'Nie masz konta?'} linkText={'Zarejestruj się teraz'} />
   );
   if (isAuthenticated()) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/',
-        }}
-      />
-    );
+    history.push('/');
   }
   return (
     <GenericAuthView redirect={redirect} title={'Logowanie'}>
