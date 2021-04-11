@@ -1,0 +1,16 @@
+.wrapper {
+  grid-area: friends;
+  width: 100%;
+  max-width: 320px;
+}
+
+.title {
+  font-size: var(--m-font-size);
+  font-weight: var(--bold-font-weight);
+  color: var(--darkest-gray);
+  margin-bottom: 12px;
+}
+
+.friend {
+  margin-bottom: 23px;
+}

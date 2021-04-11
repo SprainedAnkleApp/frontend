@@ -1,0 +1,22 @@
+
+.photo {
+  border-radius: var(--l-border-radius);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sSize {
+  width: 35px;
+  height: 35px;
+}
+
+.mSize {
+  width: 45px;
+  height: 45px;
+}
+
+.lSize {
+  width: 55px;
+  height: 55px;
+}

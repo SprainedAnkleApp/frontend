@@ -1,0 +1,13 @@
+.wrapper {
+  grid-area: posts;
+  display: flex;
+  flex-direction: column;
+}
+
+.post {
+  margin-top: 30px;
+}
+
+.post:first-child {
+  margin-top: 0;
+}

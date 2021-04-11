@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Example } from './views/Example';
-import { Main } from './views';
+import { Home } from './views/Home';
 import { Login, SignUp } from './views/Auth';
 import { PeaksList } from './views/PeaksList';
 import AuthorizedRoute from './components/routes/AuthorizedRoute';
@@ -25,9 +25,9 @@ const Routes = () => {
       <Route path="/signup">
         <SignUp />
       </Route>
-      <Route path="/">
-        <Main />
-      </Route>
+      <AuthorizedRoute path="/">
+        <Home />
+      </AuthorizedRoute>
     </Switch>
   );
 };

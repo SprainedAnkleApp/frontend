@@ -1,7 +1,7 @@
 .button {
   width: 100%;
   border: none;
-  background-color: var(--light-green);
+  background-color: var(--green);
   border-radius: var(--xl-border-radius);
   font-size: var(--m-font-size);
   text-align: center;
