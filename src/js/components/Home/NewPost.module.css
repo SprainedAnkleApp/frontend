@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  padding: 15px 18px;
 }
 
 .input {
@@ -16,6 +15,7 @@
 .input::placeholder {
   color: var(--gray);
   font-size: var(--xs-font-size);
+  opacity: 1;
 }
 
 .input:focus {

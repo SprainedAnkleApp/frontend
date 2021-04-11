@@ -25,6 +25,7 @@
 .input::placeholder {
   color: var(--light-gray);
   font-weight: var(--normal-font-weight);
+  opacity: 1;
 }
 
 .input:focus {

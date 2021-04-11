@@ -1,5 +1,5 @@
 import { Header } from '../../components/common/Header';
-import { Friends, NewPost } from '../../components/Home';
+import { Friends, NewPost, Posts } from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
 
 import styles from './Home.module.css';
@@ -11,11 +11,12 @@ const Home = () => {
     photoUrl: Image,
   };
   return (
-    <div classname={styles.main}>
+    <div className={styles.main}>
       <Header selected={'home'} user={user} />
       <div className={styles.home}>
         <Friends />
         <NewPost user={user} />
+        <Posts user={user} />
       </div>
       <div>{text}</div>
     </div>

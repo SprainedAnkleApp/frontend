@@ -28,6 +28,7 @@
 
 .input::placeholder {
   color: var(--light-gray);
+  opacity: 1;
 }
 
 .error {
