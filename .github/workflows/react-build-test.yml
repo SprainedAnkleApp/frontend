@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: yarn      
+        run: npm      
         
       - name: Build
-        run: yarn build
+        run: npm build
         
       - name: Test
-        run: yarn test --watchAll=false
+        run: npm test
