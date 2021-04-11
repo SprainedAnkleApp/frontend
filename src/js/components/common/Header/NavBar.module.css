@@ -4,6 +4,9 @@
   font-size: 24px;
   background-color: var(--lighter-gray);
   border-radius: var(--xl-border-radius);
+  grid-area: NavBar;
+  width: min-content;
+  justify-self: center;
 }
 
 .icon {

@@ -8,6 +8,10 @@
   padding: 14px 14px;
 }
 
+.searchBar {
+  grid-area: SearchBar;
+}
+
 .icon {
   font-size: 34px;
   padding: 3px 2px;

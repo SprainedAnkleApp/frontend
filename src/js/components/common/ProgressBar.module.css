@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 50px;
+  position: relative;
+  min-height: calc(1em + 4px);
+}
+
+.filler {
+  height: 100%;
+  border-radius: inherit;
+  text-align: right;
+  min-height: calc(1em + 4px);
+}
+
+.label {
+  position: absolute;
+  padding: 2px 0;
+  font-weight: var(--bold-font-weight);
+  top: calc(50% - 0.5em - 2px);
+  left: 0;
+  text-align: center;
+  width: 100%;
+};

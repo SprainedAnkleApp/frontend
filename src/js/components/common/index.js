@@ -8,3 +8,4 @@ export { default as Redirect } from './Redirect';
 export { default as KebabMenu } from './KebabMenu';
 export { default as Icon } from './Icon';
 export { default as Card } from './Card';
+export { default as ProgressBar } from './ProgressBar';
