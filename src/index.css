@@ -1,10 +1,18 @@
+@import-normalize;
+@import './css/tokens/colors.css';
+@import './css/tokens/fonts.css';
+@import './css/tokens/borders.css';
+
+
 body {
+  background-color: var(--lightest-gray);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: var(--normal-font-weight);
 }
 
 code {

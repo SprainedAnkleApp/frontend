@@ -1,0 +1,24 @@
+.button {
+  width: 100%;
+  border: none;
+  background-color: var(--green);
+  border-radius: var(--xl-border-radius);
+  font-size: var(--m-font-size);
+  text-align: center;
+  color: white;
+  height: 70px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+.error {
+  background-color: var(--red);
+}

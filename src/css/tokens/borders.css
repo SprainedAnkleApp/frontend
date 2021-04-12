@@ -1,0 +1,9 @@
+:root {
+  --border-red: #B00020;
+  --border-gray: #F4F4F4;
+
+  --l-border-width: 3px;
+
+  --l-border-radius: 20px;
+  --xl-border-radius: 25px;
+}

@@ -1,0 +1,15 @@
+.line {
+  width: 100%; 
+  max-width: 202px;
+  text-align: center; 
+  border-bottom: 1px solid var(--light-gray);
+  line-height: 0.1em;
+  font-size: 1em;
+  margin: 40px auto 30px; 
+} 
+
+.text { 
+   padding:0 10px; 
+   color: var(--light-gray);
+   background-color: var(--lightest-gray);
+}

@@ -1,0 +1,14 @@
+.link {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.text {
+  font-weight: var(--bold-font-weight);
+  font-size: var(--xs-font-size);
+  color: var(--darkest-gray);
+}
