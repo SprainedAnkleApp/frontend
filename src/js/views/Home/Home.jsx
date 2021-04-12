@@ -20,7 +20,6 @@ const Home = () => {
   if (!user) return <div>Loading</div>;
   return (
     <div className={styles.main}>
-      <div>"Moje imie" {user.userName}</div>
       <Header selected={'home'} user={user} />
       <div className={styles.home}>
         <Friends />
