@@ -1,8 +1,11 @@
 import styles from './Posts.module.css';
 import { Post } from '.';
+import { useState, useEffect } from 'react';
+import Image from '../../../images/mountain.jpg';
+import { getPosts } from '../../API/wall/methods';
 
 const Posts = ({ user }) => {
-  const posts = [
+  const mockPosts = [
     {
       url: user.photoUrl,
       userName: user.userName,
@@ -15,34 +18,26 @@ const Posts = ({ user }) => {
     {
       url: user.photoUrl,
       userName: user.userName,
-      content: 'post2',
-      timestamp: 'mock',
-      liked: 10,
-      comments: 10,
-      watch: 10,
-    },
-    {
-      url: user.photoUrl,
-      userName: user.userName,
-      content: 'post3',
-      timestamp: 'mock',
-      liked: 10,
-      comments: 10,
-      watch: 10,
-    },
-    {
-      url: user.photoUrl,
-      userName: user.userName,
       type: 'photo',
-      content: user.photoUrl,
+      content: Image,
       timestamp: 'mock',
       liked: 10,
       comments: 10,
       watch: 10,
     },
-  ].map((post) => <Post {...post} className={styles.post} />);
+  ];
+  const [posts, setPosts] = useState(mockPosts);
 
-  return <div className={styles.wrapper}>{posts}</div>;
+  useEffect(() => {
+    const posts = getPosts();
+    posts.then((data) => {
+      setPosts(mockPosts.concat(data));
+    });
+  }, []);
+
+  const renderPosts = () => posts.map((post) => <Post {...post} className={styles.post} />);
+
+  return <div className={styles.wrapper}>{renderPosts()}</div>;
 };
 
 export default Posts;
