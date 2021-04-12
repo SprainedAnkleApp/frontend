@@ -12,7 +12,6 @@
   grid-area: icon;
   font-size: 1.6em;
   cursor: pointer;
-
 }
 
 .container {
@@ -29,10 +28,16 @@
   cursor: pointer;
   margin-top: 16px;
   place-items: center center;
-
+  text-decoration: none;
+  color: var(--darkest-gray);
 
 }
 
 .container:hover {
   opacity: 0.75;
+}
+
+.container:visited {
+  text-decoration: none;
+  color: var(--darkest-gray);
 }
