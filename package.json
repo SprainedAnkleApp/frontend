@@ -23,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "index": "create-index"
+    "index": "create-index",
+    "lint": "eslint"
+
   },
   "eslintConfig": {
     "extends": [
