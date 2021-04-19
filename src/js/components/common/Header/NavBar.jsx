@@ -5,27 +5,65 @@ import { AiFillHome } from 'react-icons/ai';
 import cx from 'classnames';
 
 import styles from './NavBar.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const NavBar = ({ selected }) => {
+const states = {
+  home: 1,
+  map: 2,
+  chat: 3,
+  peaks: 4,
+};
+
+const NavBar = () => {
+  const location = useLocation();
+
+  const getNavBarState = () => {
+    const params = location.pathname.split('/');
+    return states[params[1]] ?? states.home;
+  };
   return (
     <div className={styles.navigation}>
       <Link to={'/'}>
-        <div className={cx(styles.icon, { [styles.selected]: selected === 'home' })}>
+        <div
+          className={cx(styles.icon, {
+            [styles.selected]: getNavBarState() === states.home,
+          })}
+        >
           <AiFillHome />
         </div>
       </Link>
-      <div className={cx(styles.icon, { [styles.selected]: selected === 'map' })}>
-        <MdMap />
-      </div>
-      <div className={cx(styles.icon, { [styles.selected]: selected === 'chat' })}>
-        <IoMdChatboxes />
-      </div>
+
+      <Link to={'/map'}>
+        <div
+          className={cx(styles.icon, {
+            [styles.selected]: getNavBarState() === states.map,
+          })}
+        >
+          <MdMap />
+        </div>
+      </Link>
+
+      <Link to={'/chat'}>
+        <div
+          className={cx(styles.icon, {
+            [styles.selected]: getNavBarState() === states.chat,
+          })}
+        >
+          <IoMdChatboxes />
+        </div>
+      </Link>
+
       <Link to={'/peaks'}>
-        <div className={cx(styles.icon, { [styles.selected]: selected === 'landscape' })}>
+        <div
+          className={cx(styles.icon, {
+            [styles.selected]: getNavBarState() === states.peaks,
+          })}
+        >
           <RiLandscapeFill />
         </div>
       </Link>
+
+      <div className={cx(styles.slide, styles[`slide${getNavBarState()}`])}></div>
     </div>
   );
 };

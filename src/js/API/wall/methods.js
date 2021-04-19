@@ -23,6 +23,7 @@ export const getCurrentUser = () => {
     },
     (error) => {
       console.log(error);
+      throw error;
     }
   );
 };
