@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth/methods';
-import { getPeaksUrl, getReachPeakUrl } from './urls';
+import { getPeaksUrl, getConquerPeakUrl } from './urls';
 
 export const getPeaks = async () => {
   return axios.get(getPeaksUrl(), { headers: authHeader() }).then(
@@ -22,7 +22,7 @@ export const getPeak = async (id) => {
 export const conquerThePeak = (peakId, time) => {
   return axios
     .post(
-      getReachPeakUrl(),
+      getConquerPeakUrl(),
       {
         peakId: peakId,
         time: time,
