@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import styles from './PeakDetails.module.css';
-import { getPeak, conquerThePeak } from '../../API/peaks/methods';
+import { getPeak, completeThePeak } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
 import { SubmitButton } from '../../components/common';
 
@@ -15,7 +15,7 @@ const PeakDetails = () => {
   }, []);
 
   const onClick = () => {
-    conquerThePeak(id, 3000).then((peakCompletion) => console.log(peakCompletion));
+    completeThePeak(id, 3000).then((peakCompletion) => console.log(peakCompletion));
   };
 
   return (
