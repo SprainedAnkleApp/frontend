@@ -4,7 +4,7 @@ import Image from '../../../images/mountain.jpg';
 
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
-import { getCurrentUser } from '../../API/wall/methods';
+import { getCurrentUser } from '../../API/user/methods';
 import { Switch, Route } from 'react-router';
 import { PeaksList } from '../PeaksList';
 

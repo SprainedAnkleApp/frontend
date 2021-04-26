@@ -6,11 +6,9 @@ import { getPosts } from '../../API/wall/methods';
 const Posts = ({ user }) => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const posts = getPosts();
-    posts.then((data) => {
-      setPosts(data);
-    });
+  useEffect(async () => {
+    const posts = await getPosts();
+    setPosts(posts);
   }, []);
 
   const renderPosts = () => posts.map((post) => <Post {...post} className={styles.post} />);

@@ -1,4 +1,5 @@
 export const getLoginUrl = () => `${process.env.REACT_APP_API_URL}login`;
+export const getSignUpUrl = () => `${process.env.REACT_APP_API_URL}signup`;
 
 export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
 
