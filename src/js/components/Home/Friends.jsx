@@ -1,24 +1,33 @@
-import Image from '../../../images/mountain.jpg';
-
 import styles from './Friends.module.css';
 import FriendInfo from './FriendInfo';
+import { useEffect, useState } from 'react';
+import { getFriends } from '../../API/friends/methods';
 
-const Friends = () => {
-  const friends = [
-    { name: 'Bartosz Kaszuba', url: Image },
-    { name: 'Konrad Dębiec', url: Image },
-  ].map((friend) => (
-    <FriendInfo
-      key={`friend_name_${friend.name}`}
-      name={friend.name}
-      url={friend.url}
-      className={styles.friend}
-    />
-  ));
+const Friends = ({ searchTerm }) => {
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    const result = getFriends()
+      .filter(
+        (friend) =>
+          friend.firstName.toLowerCase().includes(searchTerm) ||
+          friend.lastName.toLowerCase().includes(searchTerm)
+      )
+      .map((friend) => (
+        <FriendInfo
+          key={`friend_${friend.id}`}
+          name={friend.firstName + ' ' + friend.lastName}
+          url={friend.profilePhoto}
+          className={styles.friend}
+        />
+      ));
+    setSearchResult(result);
+  });
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Friends</div>
-      {friends}
+      {searchResult}
     </div>
   );
 };
