@@ -5,7 +5,6 @@ import { getFriends } from '../../API/friends/methods';
 
 const Friends = ({ searchTerm }) => {
   const [searchResult, setSearchResult] = useState([]);
-  const [pickedFriend, setPickedFriend] = useState(-1);
 
   useEffect(() => {
     const result = getFriends()
@@ -21,7 +20,7 @@ const Friends = ({ searchTerm }) => {
           name={friend.firstName + ' ' + friend.lastName}
           url={friend.profilePhoto}
           className={styles.friend}
-          onClick={() => setPickedFriend(friend.id)}
+          onClick={() => console.log(friend.id)}
         />
       ));
     setSearchResult(result);
