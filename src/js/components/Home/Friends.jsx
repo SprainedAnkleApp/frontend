@@ -7,23 +7,25 @@ const Friends = ({ searchTerm }) => {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
-    const result = getFriends()
-      .filter(
-        (friend) =>
-          friend.firstName.toLowerCase().includes(searchTerm) ||
-          friend.lastName.toLowerCase().includes(searchTerm)
-      )
-      .map((friend) => (
-        <FriendInfo
-          key={`friend_${friend.id}`}
-          id={friend.id}
-          name={friend.firstName + ' ' + friend.lastName}
-          url={friend.profilePhoto}
-          className={styles.friend}
-          onClick={() => console.log(friend.id)}
-        />
-      ));
-    setSearchResult(result);
+    getFriends().then((friends) => {
+      const result = friends
+        .filter(
+          (friend) =>
+            friend.firstName.toLowerCase().includes(searchTerm) ||
+            friend.lastName.toLowerCase().includes(searchTerm)
+        )
+        .map((friend) => (
+          <FriendInfo
+            key={`friend_${friend.id}`}
+            id={friend.id}
+            name={friend.firstName + ' ' + friend.lastName}
+            url={friend.profilePhoto}
+            className={styles.friend}
+            onClick={() => console.log(friend.id)}
+          />
+        ));
+      setSearchResult(result);
+    });
   }, [searchTerm]);
 
   return (
