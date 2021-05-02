@@ -9,7 +9,7 @@ const FriendInfo = ({ url, name, status = 'online', className }) => {
     <div className={cx(styles.wrapper, className)}>
       <Icon url={url} />
       <span className={styles.name}>{name}</span>
-      <UserStatus status={status} className={styles.status} />
+      <UserStatus status={Math.random() > 0.5 ? 'online' : 'offline'} className={styles.status} />
     </div>
   );
 };

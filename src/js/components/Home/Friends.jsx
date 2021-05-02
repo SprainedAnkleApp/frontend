@@ -22,7 +22,7 @@ const Friends = ({ searchTerm }) => {
         />
       ));
     setSearchResult(result);
-  });
+  }, []);
 
   return (
     <div className={styles.wrapper}>
