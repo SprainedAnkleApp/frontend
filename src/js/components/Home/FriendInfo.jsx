@@ -4,9 +4,9 @@ import UserStatus from './UserStatus';
 
 import cx from 'classnames';
 
-const FriendInfo = ({ url, name, status = 'online', className }) => {
+const FriendInfo = ({ id, url, name, status = 'online', className, onClick }) => {
   return (
-    <div className={cx(styles.wrapper, className)}>
+    <div className={cx(styles.wrapper, className)} onClick={onClick}>
       <Icon url={url} />
       <span className={styles.name}>{name}</span>
       <UserStatus status={Math.random() > 0.5 ? 'online' : 'offline'} className={styles.status} />
