@@ -5,8 +5,8 @@ import cx from 'classnames';
 import styles from './Post.module.css';
 
 const Post = ({
-  url,
-  userName,
+  photoPath,
+  user,
   content,
   type = 'text',
   timestamp,
@@ -16,21 +16,15 @@ const Post = ({
   className,
 }) => {
   const getContent = () => {
-    switch (type) {
-      case 'text':
-        return <span>{content}</span>;
-      case 'photo':
-        return <img src={content} alt="post content" className={styles.photo} />;
-      default:
-        return <div>empty</div>;
-    }
+    if (photoPath) return <img src={photoPath} alt="post content" className={styles.photo} />;
+    return <span>{content}</span>;
   };
   return (
     <Card className={className}>
       <div className={styles.header}>
-        <Icon url={url} variant="s" />
+        <Icon url={user?.profilePhoto} variant="s" />
         <div className={styles.nameWithTime}>
-          <span className={styles.userName}>{userName}</span>
+          <span className={styles.userName}>{user?.firstName}</span>
           <span className={styles.time}>{timestamp}</span>
         </div>
         <KebabMenu className={styles.kebab} />

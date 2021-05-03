@@ -2,11 +2,11 @@ import { SearchBar, NavBar, UserInfo } from '.';
 
 import styles from './Header.module.css';
 
-const Header = ({ selected, user, searchTerm, onChangeSearchTerm }) => {
+const Header = ({ user, searchTerm, onChangeSearchTerm }) => {
   return (
     <div className={styles.header}>
       <SearchBar value={searchTerm} onChange={onChangeSearchTerm} />
-      <NavBar selected={selected} />
+      <NavBar />
       <UserInfo user={user} />
     </div>
   );
