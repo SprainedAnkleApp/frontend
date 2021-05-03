@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.wrapper:hover {
+  cursor: pointer;
+}
+
 .name {
   padding-left: 16px;
   font-size: var(--xs-font-size);

@@ -10,6 +10,7 @@ import { PeaksList } from '../PeaksList';
 
 const Home = () => {
   const [user, setUser] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const userData = getCurrentUser();
@@ -26,9 +27,13 @@ const Home = () => {
   if (!user) return <div>Loading</div>;
   return (
     <div className={styles.main}>
-      <Header user={user} />
+      <Header
+        user={user}
+        searchTerm={searchTerm}
+        onChangeSearchTerm={(event) => setSearchTerm(event.target.value)}
+      />
       <div className={styles.home}>
-        <Friends />
+        <Friends searchTerm={searchTerm} />
         <Switch>
           <Route path="/peaks">
             <PeaksList />
