@@ -21,7 +21,6 @@ const Friends = ({ searchTerm }) => {
             name={friend.firstName + ' ' + friend.lastName}
             url={friend.profilePhoto}
             className={styles.friend}
-            onClick={() => console.log(friend.id)}
           />
         ));
       setSearchResult(result);
