@@ -7,14 +7,17 @@ import { useState } from 'react';
 const SignUpForm = () => {
   // TODO enhance validation and form submit error handling
   const [submitError, setSubmitError] = useState(null);
-  const { register, errors, handleSubmit } = useForm();
+  const { register, errors, handleSubmit } = useForm({});
+
   const history = useHistory();
+
   const onSubmit = (data) => {
     const promise = signUp({
       username: data.login,
       password: data.password,
       matchingPassword: data.repeatPassword,
     });
+
     promise
       .then(() => {
         history.push({
@@ -26,8 +29,9 @@ const SignUpForm = () => {
         setSubmitError('Wystąpił błąd');
       });
   };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={(e) => e.preventDefault()}>
       <InputWithLabel
         type={'text'}
         name={'login'}
@@ -35,6 +39,7 @@ const SignUpForm = () => {
         placeholder={'Wprowadź nazwę użytkownika'}
         register={register({
           required: 'Pole wymagane',
+          maxLength: 30,
         })}
         error={errors.login}
       />
@@ -46,9 +51,17 @@ const SignUpForm = () => {
         placeholder={'Wprowadź hasło'}
         register={register({
           required: 'Pole wymagane',
+          minLength: {
+            value: 8,
+            message: 'Hasło musi zawierać co najmniej 8 znaków',
+          },
+          pattern: {
+            value: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])/,
+            message: 'Hasło musi zawierać wielką literę, znak specjalny oraz cyfrę',
+          },
         })}
-        error={errors.password}
       />
+      {errors.password && <p>{errors.password.message}</p>}
 
       <InputWithLabel
         type={'password'}
@@ -58,12 +71,11 @@ const SignUpForm = () => {
         register={register({
           required: 'Pole wymagane',
         })}
-        error={errors.repeatPassword}
       />
-
+      {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
       {submitError && <Error text={submitError} />}
 
-      <SubmitButton text={'Zarejestruj'} progress={'success'} />
+      <SubmitButton text={'Zarejestruj'} onClick={handleSubmit(onSubmit)} progress={'success'} />
     </form>
   );
 };
