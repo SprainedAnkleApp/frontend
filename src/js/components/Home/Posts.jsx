@@ -6,8 +6,8 @@ import { getPosts } from '../../API/wall/methods';
 const Posts = ({ user }) => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(async () => {
-    const posts = await getPosts();
+  useEffect(() => {
+    const posts = getPosts();
     setPosts(posts);
   }, []);
 
