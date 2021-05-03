@@ -1,6 +1,6 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useHistory } from 'react-router';
-import { signUp } from '../../API/signup/methods';
+import { signUp } from '../../API/auth/methods';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 

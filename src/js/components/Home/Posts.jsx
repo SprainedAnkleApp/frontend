@@ -1,48 +1,19 @@
 import styles from './Posts.module.css';
 import { Post } from '.';
+import { useState, useEffect } from 'react';
+import { getPosts } from '../../API/wall/methods';
 
 const Posts = ({ user }) => {
-  const posts = [
-    {
-      url: user.photoUrl,
-      userName: user.userName,
-      content: 'post1',
-      timestamp: 'mock',
-      liked: 10,
-      comments: 10,
-      watch: 10,
-    },
-    {
-      url: user.photoUrl,
-      userName: user.userName,
-      content: 'post2',
-      timestamp: 'mock',
-      liked: 10,
-      comments: 10,
-      watch: 10,
-    },
-    {
-      url: user.photoUrl,
-      userName: user.userName,
-      content: 'post3',
-      timestamp: 'mock',
-      liked: 10,
-      comments: 10,
-      watch: 10,
-    },
-    {
-      url: user.photoUrl,
-      userName: user.userName,
-      type: 'photo',
-      content: user.photoUrl,
-      timestamp: 'mock',
-      liked: 10,
-      comments: 10,
-      watch: 10,
-    },
-  ].map((post) => <Post {...post} className={styles.post} />);
+  const [posts, setPosts] = useState([]);
 
-  return <div className={styles.wrapper}>{posts}</div>;
+  useEffect(() => {
+    const posts = getPosts();
+    setPosts(posts);
+  }, []);
+
+  const renderPosts = () => posts.map((post) => <Post {...post} className={styles.post} />);
+
+  return <div className={styles.wrapper}>{renderPosts()}</div>;
 };
 
 export default Posts;

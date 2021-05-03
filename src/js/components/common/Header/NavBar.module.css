@@ -7,16 +7,45 @@
   grid-area: NavBar;
   width: min-content;
   justify-self: center;
+  position: relative;
 }
 
 .icon {
+  position: relative;
+  z-index: 2;
   padding: 15.5px;
   margin: 6.5px;
-  border-radius: var(--l-border-radius);
   color: var(--light-gray);
 }
 
 .selected {
-  background-color: var(--light-green);
   color: var(--darkest-gray);
+}
+
+.slide {
+  z-index: 1;
+  width:55px;
+  height: 60px;
+  margin: 6.5px;
+  border-radius: var(--l-border-radius);
+  position: absolute;
+  transition: all ease-out 500ms;
+  background-color: var(--light-green);
+}
+
+.slide1 {
+  margin-left: calc(0% + 6.5px);
+}
+
+.slide2 {
+  margin-left: calc(25% + 6.5px);
+}
+
+.slide3 {
+  margin-left: calc(50% + 6.5px);
+}
+
+
+.slide4 {
+  margin-left: calc(75% + 6.5px);
 }
