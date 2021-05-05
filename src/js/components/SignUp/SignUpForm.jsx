@@ -2,12 +2,14 @@ import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useHistory } from 'react-router';
 import { signUp } from '../../API/signup/methods';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const SignUpForm = () => {
   // TODO enhance validation and form submit error handling
   const [submitError, setSubmitError] = useState(null);
-  const { register, errors, handleSubmit } = useForm({});
+  const { register, errors, handleSubmit, watch } = useForm({});
+  const password = useRef({});
+  password.current = watch('password', '');
 
   const history = useHistory();
 
@@ -70,9 +72,12 @@ const SignUpForm = () => {
         placeholder={'Powtórz hasło'}
         register={register({
           required: 'Pole wymagane',
+          validate: {
+            repeatPassword: (value) => value === password.current || 'Hasła muszą być takie same',
+          },
         })}
       />
-      {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+      {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
       {submitError && <Error text={submitError} />}
 
       <SubmitButton text={'Zarejestruj'} onClick={handleSubmit(onSubmit)} progress={'success'} />
