@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth/methods';
-import { getPeaksUrl, getPeakCompletionUrl } from './urls';
+import { getPeaksUrl, getPeakUrl, getPeakCompletionUrl } from './urls';
 
 export const getPeaks = async () => {
   try {
@@ -13,8 +13,13 @@ export const getPeaks = async () => {
 };
 
 export const getPeak = async (id) => {
-  const peaks = await getPeaks();
-  return Object.values(peaks).find((peak) => parseInt(id) === parseInt(peak.id));
+  try {
+    const response = await axios.get(getPeakUrl(id), { headers: authHeader() });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };
 
 export const completeThePeak = async (peakId, time) => {

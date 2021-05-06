@@ -1,4 +1,4 @@
-import { getCurrentUserUrl } from './urls';
+import { getCurrentUserUrl, getUserWithIdUrl } from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
 
@@ -13,5 +13,15 @@ export const getCurrentUser = async () => {
   } catch (error) {
     console.log(error);
     return {};
+  }
+};
+
+export const getUserWithId = async (id) => {
+  try {
+    const response = await axios.get(getUserWithIdUrl(id), { headers: authHeader() });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 };
