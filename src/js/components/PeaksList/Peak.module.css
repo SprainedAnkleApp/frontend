@@ -25,6 +25,11 @@
     object-position: center;
 }
 
+.peakInformation{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
 .peakName {
     font-size: var(--m-font-size);
     color: var(--darkest-gray);
@@ -41,4 +46,25 @@
     margin-left: 20px;
     color: lightgray;
     margin-bottom: 20px;
+}
+
+.rating {
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-left: 50%;
+}
+
+.star {
+    color: gold;
+    width: 18px;
+    height: 18px;
+    text-align: right;
+    margin: 0;
+}
+
+.ratingText {
+    font-size: var(--xxs-font-size);
+    margin: 2px 0 0 5px;
+    text-align: left;
 }
