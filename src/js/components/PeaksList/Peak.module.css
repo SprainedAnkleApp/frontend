@@ -51,7 +51,7 @@
     margin-top: 10%;
     display: grid;
     grid-template-columns: 1fr 4fr;
-    margin-left: 60%;
+    margin-left: 50%;
 }
 
 .star {
@@ -59,7 +59,6 @@
     width: 18px;
     height: 18px;
     text-align: right;
-    margin: 0;
 }
 
 .ratingText {
