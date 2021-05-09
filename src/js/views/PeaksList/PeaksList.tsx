@@ -4,12 +4,17 @@ import Peak from '../../components/PeaksList/Peak';
 import styles from './PeaksList.module.css';
 import { GiMountains } from 'react-icons/gi';
 import { getPeaks } from '../../API/peaks/methods';
+import { Peak as PeakType } from '../../models/interfaces';
 
 const PeaksList = () => {
-  const [peaksData, setPeaksData] = useState([]);
+  const [peaksData, setPeaksData] = useState<PeakType[]>([]);
 
   useEffect(() => {
-    getPeaks().then((value) => setPeaksData(value));
+    const fetchPeaks = async () => {
+      const peaks = await getPeaks();
+      setPeaksData(Array.isArray(peaks) ? peaks : []);
+    };
+    fetchPeaks();
   }, []);
 
   const peaks = (peaksData ?? []).map((peak) => {

@@ -7,20 +7,23 @@ import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../../API/user/methods';
 import { Switch, Route } from 'react-router';
 import { PeaksList } from '../PeaksList';
+import React from 'react';
+import { User } from '../../models/interfaces';
 
 const Home = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const userData = getCurrentUser();
-    userData.then((data) => {
-      if (!data) {
+    const fetchUser = async () => {
+      const userData = await getCurrentUser();
+      if (!userData) {
         setUser(null);
         return;
       }
-      data.photoUrl = data.photoUrl || Image;
-      setUser(data);
-    });
+      userData.profilePhoto = userData.profilePhoto || Image;
+      setUser(userData);
+    };
+    fetchUser();
   }, []);
 
   if (!user) return <div>Loading</div>;

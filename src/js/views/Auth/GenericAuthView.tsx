@@ -2,7 +2,17 @@ import React from 'react';
 import styles from './GenericAuthView.module.css';
 import Image from '../../../images/mountain.jpg';
 
-const GenericAuthView = ({ redirect, title, children }) => {
+export type GenericAuthViewProps = {
+  redirect: React.ReactElement;
+  title: string;
+  children: React.ReactNode;
+};
+
+const GenericAuthView = ({
+  redirect,
+  title,
+  children,
+}: GenericAuthViewProps) => {
   return (
     <div className={styles.container}>
       <img className={styles.photo} src={Image} alt="big mountain" />

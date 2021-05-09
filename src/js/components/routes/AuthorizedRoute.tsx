@@ -2,14 +2,9 @@ import { Route, Redirect, RouteProps } from 'react-router';
 import { isAuthenticated } from '../../API/auth/methods';
 import React from 'react';
 
-export type AuthorizedRouteProps = RouteProps & {
-  component: React.Component;
-};
+export type AuthorizedRouteProps = RouteProps;
 
-const AuthorizedRoute = ({
-  component: Component,
-  ...rest
-}: AuthorizedRouteProps) => {
+const AuthorizedRoute = ({ ...rest }: AuthorizedRouteProps) => {
   if (!isAuthenticated()) {
     return (
       <Redirect
@@ -20,7 +15,7 @@ const AuthorizedRoute = ({
       />
     );
   }
-  return <Route {...rest} render={(props) => <Component {...props} />} />;
+  return <Route {...rest} />;
 };
 
 export default AuthorizedRoute;

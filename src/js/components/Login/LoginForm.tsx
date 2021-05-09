@@ -30,7 +30,6 @@ const LoginForm = () => {
     const promise = login(data);
     promise
       .then(() => {
-        console.log('hello');
         history.push(location?.state?.from || '/');
       })
       .catch(() => {

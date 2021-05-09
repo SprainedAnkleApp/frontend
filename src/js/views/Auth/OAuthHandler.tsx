@@ -4,11 +4,13 @@ import { Redirect, useLocation } from 'react-router-dom';
 const OAuthHandler = () => {
   const location = useLocation();
 
-  const getUrlParam = (name) => {
+  const getUrlParam = (name: string) => {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null
+      ? ''
+      : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
 
   const token = getUrlParam('token');
@@ -19,7 +21,10 @@ const OAuthHandler = () => {
 
   return (
     <Redirect
-      to={{ pathname: token ? '/Home' : '/login', state: { from: location, error: error } }}
+      to={{
+        pathname: token ? '/Home' : '/login',
+        state: { from: location, error: error },
+      }}
     />
   );
 };

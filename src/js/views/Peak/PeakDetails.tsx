@@ -5,18 +5,27 @@ import styles from './PeakDetails.module.css';
 import { getPeak, completeThePeak } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
 import { SubmitButton } from '../../components/common';
+import { Peak } from '../../models/interfaces';
 
 const PeakDetails = () => {
-  const { id } = useParams();
-  const [peakDetails, setPeakDetails] = useState({});
+  const { id } = useParams<{ id: string }>();
+  const [peakDetails, setPeakDetails] = useState<Peak | undefined>(undefined);
 
   useEffect(() => {
-    getPeak(id).then((value) => setPeakDetails(value));
+    const fetchPeak = async () => {
+      const value = await getPeak(id);
+      setPeakDetails(value);
+    };
+    fetchPeak();
   }, []);
 
   const onClick = () => {
-    completeThePeak(id, 3000).then((peakCompletion) => console.log(peakCompletion));
+    completeThePeak(id, 3000).then((peakCompletion) =>
+      console.log(peakCompletion)
+    );
   };
+
+  if (!peakDetails) return null;
 
   return (
     <div className={styles.container}>

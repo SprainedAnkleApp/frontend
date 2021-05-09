@@ -10,7 +10,9 @@ const Posts = ({ user }: { user: User }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setPosts(await getPosts());
+      const fetchedPosts = await getPosts();
+
+      setPosts(Array.isArray(fetchedPosts) ? fetchedPosts : []);
     };
     fetchPosts();
   }, []);

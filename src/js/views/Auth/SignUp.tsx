@@ -3,11 +3,16 @@ import GenericAuthView from './GenericAuthView';
 import SignUpForm from '../../components/SignUp/SignUpForm';
 import { isAuthenticated } from '../../API/auth/methods';
 import { useHistory } from 'react-router';
+import React from 'react';
 
 const SignUp = () => {
   const history = useHistory();
   const redirect = (
-    <Redirect href={'/login'} text={'Posiadasz konto?'} linkText={'Zaloguj się teraz'} />
+    <Redirect
+      href={'/login'}
+      text={'Posiadasz konto?'}
+      linkText={'Zaloguj się teraz'}
+    />
   );
   if (isAuthenticated()) {
     history.push('/');

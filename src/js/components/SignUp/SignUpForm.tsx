@@ -29,7 +29,7 @@ const SignUpForm = () => {
           state: { from: '/signup' },
         });
       })
-      .catch((error) => {
+      .catch(() => {
         setSubmitError('Wystąpił błąd');
       });
   };
