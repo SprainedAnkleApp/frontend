@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Peak from '../../components/PeaksList/Peak';
 
 import styles from './PeaksList.module.css';
-import { GiMountains } from 'react-icons/gi';
 import { getPeaks } from '../../API/peaks/methods';
+import PeakWarning from '../../components/PeaksList/PeakWarning';
 
 const PeaksList = () => {
   const [peaksData, setPeaksData] = useState([]);
@@ -18,11 +18,11 @@ const PeaksList = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <GiMountains></GiMountains>
-        Korona Gór Polski
+      <div className={styles.peaksList}>{peaks.filter((_, index) => index % 2 === 0)}</div>
+      <div className={styles.peaksList}>
+        <PeakWarning warningText={'Remember to always be careful in the mountains. Stay safe.'} />
+        {peaks.filter((_, index) => index % 2 === 1)}
       </div>
-      <div className={styles.peaksList}>{peaks}</div>
     </div>
   );
 };
