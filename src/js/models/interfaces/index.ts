@@ -5,6 +5,12 @@ export type Credentials = {
 
 export type Peak = {
   id: string;
+  height: number;
+  mountainRange: string;
+  region: string;
+  about: string;
+  photo: string;
+  name: string;
 };
 
 export type User = {

@@ -1,15 +1,22 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useHistory } from 'react-router';
 import { signUp } from '../../API/auth/methods';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
+import React from 'react';
+
+type FormValues = {
+  login: string;
+  password: string;
+  repeatPassword: string;
+};
 
 const SignUpForm = () => {
   // TODO enhance validation and form submit error handling
-  const [submitError, setSubmitError] = useState(null);
-  const { register, errors, handleSubmit } = useForm();
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const { register, errors, handleSubmit } = useForm<FormValues>();
   const history = useHistory();
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     const promise = signUp({
       username: data.login,
       password: data.password,
@@ -31,9 +38,9 @@ const SignUpForm = () => {
       <InputWithLabel
         type={'text'}
         name={'login'}
-        text={'Nazwa użytkownika'}
+        label={'Nazwa użytkownika'}
         placeholder={'Wprowadź nazwę użytkownika'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
         })}
         error={errors.login}
@@ -42,9 +49,9 @@ const SignUpForm = () => {
       <InputWithLabel
         type={'password'}
         name={'password'}
-        text={'Hasło'}
+        label={'Hasło'}
         placeholder={'Wprowadź hasło'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
         })}
         error={errors.password}
@@ -53,9 +60,9 @@ const SignUpForm = () => {
       <InputWithLabel
         type={'password'}
         name={'repeatPassword'}
-        text={'Powtórz hasło'}
+        label={'Powtórz hasło'}
         placeholder={'Powtórz hasło'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
         })}
         error={errors.repeatPassword}

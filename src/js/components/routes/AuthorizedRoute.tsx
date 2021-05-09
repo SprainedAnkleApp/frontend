@@ -1,7 +1,15 @@
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, RouteProps } from 'react-router';
 import { isAuthenticated } from '../../API/auth/methods';
+import React from 'react';
 
-const AuthorizedRoute = ({ component: Component, ...rest }) => {
+export type AuthorizedRouteProps = RouteProps & {
+  component: React.Component;
+};
+
+const AuthorizedRoute = ({
+  component: Component,
+  ...rest
+}: AuthorizedRouteProps) => {
   if (!isAuthenticated()) {
     return (
       <Redirect

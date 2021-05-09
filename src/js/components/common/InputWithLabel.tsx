@@ -1,24 +1,26 @@
 import styles from './InputWithLabel.module.css';
 import cx from 'classnames';
 import Error from './Error';
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, RefObject } from 'react';
 import React from 'react';
 
 type ErrorType = {
-  message: string;
+  message?: string | undefined;
 };
 
 export type InputWithLabelProps = InputHTMLAttributes<HTMLInputElement> & {
-  error: ErrorType;
-  register: string;
+  error?: ErrorType;
   label: string;
+  // TODO change it to the safe type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: any;
 };
 
 const InputWithLabel = ({
   className,
   label,
-  register,
   error,
+  ref,
   ...props
 }: InputWithLabelProps) => {
   return (
@@ -28,10 +30,10 @@ const InputWithLabel = ({
       </label>
       <input
         className={cx(styles.input, { [styles.error]: error })}
-        ref={register}
+        ref={ref}
         {...props}
       />
-      {error && <Error text={error.message} />}
+      {error && error.message && <Error text={error.message} />}
     </div>
   );
 };

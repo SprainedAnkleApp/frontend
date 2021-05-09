@@ -1,22 +1,33 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useLocation, useHistory } from 'react-router';
 import { login } from '../../API/auth/methods';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState, useEffect } from 'react';
+import React from 'react';
+
+type FormValues = {
+  login: string;
+  password: string;
+};
+
+type Location = {
+  from: string;
+};
 
 const LoginForm = () => {
   // TODO enhance validation and form submit error handling
-  const [submitError, setSubmitError] = useState(null);
-  const [registered, setRegistered] = useState(null);
-  const location = useLocation();
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [registered, setRegistered] = useState<string | null>(null);
+  const location = useLocation<Location>();
   const history = useHistory();
 
   useEffect(() => {
-    if (location.state?.from === '/signup') setRegistered('Rejestracja pomyślna. Zaloguj się.');
+    if (location.state?.from === '/signup')
+      setRegistered('Rejestracja pomyślna. Zaloguj się.');
   }, []);
-  const { register, errors, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    const promise = login(data.login, data.password);
+  const { register, errors, handleSubmit } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const promise = login(data);
     promise
       .then(() => {
         console.log('hello');
@@ -32,9 +43,9 @@ const LoginForm = () => {
       <InputWithLabel
         type={'text'}
         name={'login'}
-        text={'Nazwa użytkownika'}
+        label={'Nazwa użytkownika'}
         placeholder={'Wprowadź nazwę użytkownika'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
         })}
         error={errors.login}
@@ -43,9 +54,9 @@ const LoginForm = () => {
       <InputWithLabel
         type={'password'}
         name={'password'}
-        text={'Hasło'}
+        label={'Hasło'}
         placeholder={'Wprowadź hasło'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
         })}
         error={errors.password}

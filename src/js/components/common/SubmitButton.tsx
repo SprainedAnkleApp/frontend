@@ -5,7 +5,7 @@ import { HTMLProps } from 'react';
 import React from 'react';
 
 export type SubmitButtonProps = HTMLProps<HTMLButtonElement> & {
-  progress?: 'error' | 'default';
+  progress?: 'error' | 'default' | 'success';
   text: string;
 };
 

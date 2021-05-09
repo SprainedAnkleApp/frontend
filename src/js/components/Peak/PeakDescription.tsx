@@ -2,8 +2,14 @@ import styles from './PeakDescription.module.css';
 import { FaMapSigns } from 'react-icons/fa';
 import { MdMyLocation } from 'react-icons/md';
 import { AiOutlineArrowUp } from 'react-icons/ai';
+import React from 'react';
+import { Peak } from '../../models/interfaces';
 
-const PeakDescription = ({ peak }) => {
+export type PeakDescriptionProps = {
+  peak: Peak;
+};
+
+const PeakDescription = ({ peak }: PeakDescriptionProps) => {
   return (
     <div>
       <p>
