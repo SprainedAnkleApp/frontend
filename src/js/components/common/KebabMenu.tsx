@@ -1,7 +1,11 @@
 import React from 'react';
 import { GoKebabVertical } from 'react-icons/go';
 
-const KebabMenu = ({ className }) => {
+export type KebabMenuProps = {
+  className?: string;
+};
+
+const KebabMenu = ({ className }: KebabMenuProps) => {
   return (
     <div className={className}>
       <GoKebabVertical />

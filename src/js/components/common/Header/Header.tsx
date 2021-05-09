@@ -1,8 +1,14 @@
 import { SearchBar, NavBar, UserInfo } from '.';
 
 import styles from './Header.module.css';
+import React from 'react';
+import { User } from '../../../models/interfaces';
 
-const Header = ({ user }) => {
+export type HeaderProps = {
+  user: User;
+};
+
+const Header = ({ user }: HeaderProps) => {
   return (
     <div className={styles.header}>
       <SearchBar />

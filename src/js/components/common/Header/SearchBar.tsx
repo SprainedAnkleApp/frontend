@@ -1,5 +1,6 @@
 import styles from './SearchBar.module.css';
 import { RiUserSearchLine } from 'react-icons/ri';
+import React from 'react';
 
 const SearchBar = () => {
   return (

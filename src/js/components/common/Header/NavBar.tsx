@@ -6,8 +6,13 @@ import cx from 'classnames';
 
 import styles from './NavBar.module.css';
 import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
 
-const states = {
+type statesType = {
+  [name: string]: number;
+};
+
+const states: statesType = {
   home: 1,
   map: 2,
   chat: 3,
@@ -63,7 +68,9 @@ const NavBar = () => {
         </div>
       </Link>
 
-      <div className={cx(styles.slide, styles[`slide${getNavBarState()}`])}></div>
+      <div
+        className={cx(styles.slide, styles[`slide${getNavBarState()}`])}
+      ></div>
     </div>
   );
 };
