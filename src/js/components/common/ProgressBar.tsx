@@ -1,8 +1,21 @@
 import styles from './ProgressBar.module.css';
 
 import cx from 'classnames';
+import React from 'react';
 
-const ProgressBar = ({ className, backgroundColor, percentage, completed }) => {
+export type ProgressBarProps = {
+  className?: string;
+  backgroundColor: string;
+  percentage: number;
+  completed?: boolean;
+};
+
+const ProgressBar = ({
+  className,
+  backgroundColor,
+  percentage,
+  completed,
+}: ProgressBarProps) => {
   const containerStyles = {
     border: `2px solid ${backgroundColor}`,
   };
@@ -14,7 +27,9 @@ const ProgressBar = ({ className, backgroundColor, percentage, completed }) => {
   return (
     <div className={cx(styles.wrapper, className)} style={containerStyles}>
       <div className={styles.filler} style={fillerStyles}></div>
-      <span className={styles.label}>{completed ? 'Ukończone' : `${percentage}%`}</span>
+      <span className={styles.label}>
+        {completed ? 'Ukończone' : `${percentage}%`}
+      </span>
     </div>
   );
 };

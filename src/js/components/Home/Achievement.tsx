@@ -2,8 +2,16 @@ import styles from './Achievement.module.css';
 import { Icon, ProgressBar } from '../common';
 
 import cx from 'classnames';
+import React from 'react';
 
-const Achievement = ({ className, url, name, progress }) => {
+export type AchievementProps = {
+  className: string;
+  url: string;
+  name: string;
+  progress: number;
+};
+
+const Achievement = ({ className, url, name, progress }: AchievementProps) => {
   return (
     <div className={cx(styles.wrapper, className)}>
       <Icon className={styles.icon} url={url} variant="l" />

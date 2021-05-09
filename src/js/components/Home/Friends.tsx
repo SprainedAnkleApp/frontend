@@ -2,6 +2,7 @@ import Image from '../../../images/mountain.jpg';
 
 import styles from './Friends.module.css';
 import FriendInfo from './FriendInfo';
+import React from 'react';
 
 const Friends = () => {
   const friends = [
