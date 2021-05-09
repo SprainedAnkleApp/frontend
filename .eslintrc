@@ -1,19 +1,26 @@
 {
   "extends": [
-    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true
+  },
   "rules": {
-    "react-hooks/exhaustive-deps": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "semi": true,
-        "printWidth": 100,
-        "endOfLine": "auto"
-      }
-    ]
-  } 
+    "eslint@typescript-eslint/explicit-module-boundary-types": "off",
+    "prettier/prettier": ["error", { "singleQuote": true }]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser"
 }

@@ -10,7 +10,10 @@ export const login = async (login, password) => {
       password: password,
     });
     if (response.headers.authorization) {
-      localStorage.setItem('userInfo', JSON.stringify(response.headers.authorization));
+      localStorage.setItem(
+        'userInfo',
+        JSON.stringify(response.headers.authorization)
+      );
     }
     return response.data;
   } catch (error) {

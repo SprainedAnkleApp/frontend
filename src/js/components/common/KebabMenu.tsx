@@ -1,3 +1,4 @@
+import React from 'react';
 import { GoKebabVertical } from 'react-icons/go';
 
 const KebabMenu = ({ className }) => {
