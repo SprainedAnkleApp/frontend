@@ -47,10 +47,32 @@
   .container {
     grid-template-columns: 1fr;
     grid-template-areas:
-    "redirect"
-    "section";
+    "section"
+    "redirect";
   }
   .photo {
     display: none;
+  }
+  .section {
+    margin-top: 5vh;
+  }
+  .redirect {
+    place-self: start center;
+    margin: 40px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--l-font-size);
+  }
+  .section {
+    min-width: 45vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .section{
+    min-width: 40vh;
   }
 }
