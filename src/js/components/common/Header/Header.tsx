@@ -10,7 +10,7 @@ export type HeaderProps = {
   onChangeSearchTerm: (term: string) => void;
 };
 
-const Header = ({ user, searchTerm, onChangeSearchTerm }) => {
+const Header = ({ user, searchTerm, onChangeSearchTerm }: HeaderProps) => {
   return (
     <div className={styles.header}>
       <SearchBar value={searchTerm} onChange={onChangeSearchTerm} />

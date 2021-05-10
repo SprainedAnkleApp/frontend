@@ -11,7 +11,7 @@ export type FriendInfoProps = {
   name: string;
   status?: 'online' | 'offline';
   className: string;
-  startChat: () => void;
+  startChat?: () => void;
 };
 
 const FriendInfo = ({

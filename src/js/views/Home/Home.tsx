@@ -33,7 +33,7 @@ const Home = () => {
       <Header
         user={user}
         searchTerm={searchTerm}
-        onChangeSearchTerm={(event) => setSearchTerm(event.target.value)}
+        onChangeSearchTerm={(value) => setSearchTerm(value)}
       />
       <div className={styles.home}>
         <Friends searchTerm={searchTerm} />

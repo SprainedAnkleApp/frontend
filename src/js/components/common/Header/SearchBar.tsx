@@ -2,7 +2,12 @@ import styles from './SearchBar.module.css';
 import { RiUserSearchLine } from 'react-icons/ri';
 import React from 'react';
 
-const SearchBar = ({ value, onChange }) => {
+export type SearchBarProps = {
+  value: string;
+  onChange: (newValue: string) => void;
+};
+
+const SearchBar = ({ value, onChange }: SearchBarProps) => {
   return (
     <div className={styles.searchBar}>
       <div className={styles.icon}>
@@ -12,7 +17,7 @@ const SearchBar = ({ value, onChange }) => {
         type="text"
         placeholder={'Szukaj'}
         value={value}
-        onChange={onChange}
+        onChange={(event) => onChange(event.target.value)}
         className={styles.input}
       />
     </div>
