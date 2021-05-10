@@ -8,7 +8,6 @@ const toFriendInfoComponent = (friend: Friend) => {
   return (
     <FriendInfo
       key={`friend_${friend.id}`}
-      id={friend.id}
       name={friend.firstName + ' ' + friend.lastName}
       url={friend.profilePhoto}
       className={styles.friend}
