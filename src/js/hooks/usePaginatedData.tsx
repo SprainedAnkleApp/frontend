@@ -6,16 +6,12 @@ export type Fetcher<T> = (
 
 const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  //TODO add checking if posts were all loaded
+  const [hasMore] = useState(true);
   const [data, setData] = useState<T[]>([]);
 
   const nextPage = async () => {
     setCurrentPage((currentPage) => currentPage + 1);
-    // try {
-    //   const result = await fetcher(currentPage + 1);
-    //   setData((data) => data.concat(result.data));
-    //   // eslint-disable-next-line no-empty
-    // } catch (e) {}
   };
 
   useEffect(() => {
