@@ -6,22 +6,13 @@ import cx from 'classnames';
 import React from 'react';
 
 export type FriendInfoProps = {
-  id: number;
   url: string;
   name: string;
-  status?: 'online' | 'offline';
   className: string;
   startChat?: () => void;
 };
 
-const FriendInfo = ({
-  id,
-  url,
-  name,
-  status = 'online',
-  className,
-  startChat,
-}: FriendInfoProps) => {
+const FriendInfo = ({ url, name, className, startChat }: FriendInfoProps) => {
   return (
     <div className={cx(styles.wrapper, className)} onClick={startChat}>
       <Icon url={url} />

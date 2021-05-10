@@ -46,7 +46,7 @@ const Home = () => {
             <Posts user={user} />
           </Route>
         </Switch>
-        <Achievements user={user} />
+        <Achievements />
       </div>
     </div>
   );

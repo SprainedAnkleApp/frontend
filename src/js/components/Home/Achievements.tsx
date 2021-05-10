@@ -1,5 +1,5 @@
 import { Achievement } from '.';
-import { User, Achievement as AchievementType } from '../../models/interfaces';
+import { Achievement as AchievementType } from '../../models/interfaces';
 
 import styles from './Achievements.module.css';
 import React, { useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ const toAchievementComponent = (achievement: AchievementType) => {
 };
 
 // TODO finish achievements
-const Achievements = ({ user }: { user: User }) => {
+const Achievements = () => {
   const [achievements, setAchievements] = useState<AchievementType[]>([]);
 
   useEffect(() => {
