@@ -1,7 +1,5 @@
 .wrapper {
   grid-area: posts;
-  display: flex;
-  flex-direction: column;
 }
 
 .post {
