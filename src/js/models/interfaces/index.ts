@@ -30,3 +30,10 @@ export type Post = {
   comments: Comment[];
   watch: number;
 };
+
+export type Friend = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  profilePhoto: string;
+};

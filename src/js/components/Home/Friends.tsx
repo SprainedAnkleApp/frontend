@@ -1,25 +1,56 @@
-import Image from '../../../images/mountain.jpg';
-
 import styles from './Friends.module.css';
 import FriendInfo from './FriendInfo';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getFriends } from '../../API/friends/methods';
+import { Friend } from '../../models/interfaces';
 
-const Friends = () => {
-  const friends = [
-    { name: 'Bartosz Kaszuba', url: Image },
-    { name: 'Konrad Dębiec', url: Image },
-  ].map((friend) => (
+const toFriendInfoComponent = (friend: Friend) => {
+  return (
     <FriendInfo
-      key={`friend_name_${friend.name}`}
-      name={friend.name}
-      url={friend.url}
+      key={`friend_${friend.id}`}
+      id={friend.id}
+      name={friend.firstName + ' ' + friend.lastName}
+      url={friend.profilePhoto}
       className={styles.friend}
     />
-  ));
+  );
+};
+
+export type FriendsProps = {
+  searchTerm: string;
+};
+
+const Friends = ({ searchTerm }: FriendsProps) => {
+  const [filteredFriends, setFilteredFriends] = useState<Friend[]>([]);
+  const [friends, setFriends] = useState<Friend[]>([]);
+
+  useEffect(() => {
+    const fetchFriends = async () => {
+      try {
+        const result = await getFriends();
+        setFriends(result);
+        setFilteredFriends(result);
+        // TODO error handling
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchFriends();
+  }, []);
+
+  useEffect(() => {
+    const result = friends.filter(
+      (friend) =>
+        friend.firstName.toLowerCase().includes(searchTerm) ||
+        friend.lastName.toLowerCase().includes(searchTerm)
+    );
+    setFilteredFriends(result);
+  }, [searchTerm]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Friends</div>
-      {friends}
+      {filteredFriends.map(toFriendInfoComponent)}
     </div>
   );
 };

@@ -2,8 +2,7 @@ import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useHistory } from 'react-router';
 import { signUp } from '../../API/auth/methods';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 type FormValues = {
   login: string;
@@ -14,7 +13,10 @@ type FormValues = {
 const SignUpForm = () => {
   // TODO enhance validation and form submit error handling
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const { register, errors, handleSubmit } = useForm<FormValues>();
+  const { register, errors, handleSubmit, watch } = useForm<FormValues>();
+  const password = useRef({});
+  password.current = watch('password', '');
+
   const history = useHistory();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const promise = signUp({
@@ -22,6 +24,7 @@ const SignUpForm = () => {
       password: data.password,
       matchingPassword: data.repeatPassword,
     });
+
     promise
       .then(() => {
         history.push({
@@ -33,8 +36,9 @@ const SignUpForm = () => {
         setSubmitError('Wystąpił błąd');
       });
   };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={(e) => e.preventDefault()}>
       <InputWithLabel
         type={'text'}
         name={'login'}
@@ -42,6 +46,7 @@ const SignUpForm = () => {
         placeholder={'Wprowadź nazwę użytkownika'}
         ref={register({
           required: 'Pole wymagane',
+          maxLength: 30,
         })}
         error={errors.login}
       />
@@ -53,9 +58,18 @@ const SignUpForm = () => {
         placeholder={'Wprowadź hasło'}
         ref={register({
           required: 'Pole wymagane',
+          minLength: {
+            value: 8,
+            message: 'Hasło musi zawierać co najmniej 8 znaków',
+          },
+          pattern: {
+            value: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])/,
+            message:
+              'Hasło musi zawierać wielką literę, znak specjalny oraz cyfrę',
+          },
         })}
-        error={errors.password}
       />
+      {errors.password && <p>{errors.password.message}</p>}
 
       <InputWithLabel
         type={'password'}
@@ -64,13 +78,20 @@ const SignUpForm = () => {
         placeholder={'Powtórz hasło'}
         ref={register({
           required: 'Pole wymagane',
+          validate: {
+            repeatPassword: (value) =>
+              value === password.current || 'Hasła muszą być takie same',
+          },
         })}
-        error={errors.repeatPassword}
       />
-
+      {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
       {submitError && <Error text={submitError} />}
 
-      <SubmitButton text={'Zarejestruj'} progress={'success'} />
+      <SubmitButton
+        text={'Zarejestruj'}
+        onClick={handleSubmit(onSubmit)}
+        progress={'success'}
+      />
     </form>
   );
 };

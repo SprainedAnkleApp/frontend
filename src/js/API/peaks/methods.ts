@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from '../auth/methods';
-import { getPeaksUrl, getPeakCompletionUrl } from './urls';
+import { getPeaksUrl, getPeakUrl, getPeakCompletionUrl } from './urls';
 import { Peak } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
@@ -15,10 +15,13 @@ export const getPeaks = async (): Promise<Peak[]> => {
 };
 
 export const getPeak = async (id: string): Promise<Peak | undefined> => {
-  const peaks = await getPeaks();
-  return Object.values(peaks).find(
-    (peak) => parseInt(id) === parseInt(peak.id)
-  );
+  try {
+    const response = await axios.get(getPeakUrl(id), { headers: authHeader() });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
 };
 
 // TODO finish typing this function

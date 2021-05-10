@@ -6,12 +6,14 @@ import { User } from '../../../models/interfaces';
 
 export type HeaderProps = {
   user: User;
+  searchTerm: string;
+  onChangeSearchTerm: (term: string) => void;
 };
 
-const Header = ({ user }: HeaderProps) => {
+const Header = ({ user, searchTerm, onChangeSearchTerm }) => {
   return (
     <div className={styles.header}>
-      <SearchBar />
+      <SearchBar value={searchTerm} onChange={onChangeSearchTerm} />
       <NavBar />
       <UserInfo user={user} />
     </div>
