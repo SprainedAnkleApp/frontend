@@ -5,7 +5,7 @@
   column-gap: 100px;
   row-gap: 30px;
   grid-template-areas: 
-  "friends newPost currentAchievement"
+  "friends newPost achievements"
   "friends posts achievements"
   "friends posts chat";
   background-color: var(--lightest-green);

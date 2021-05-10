@@ -1,34 +1,47 @@
 import { Achievement } from '.';
-import { User } from '../../models/interfaces';
+import { User, Achievement as AchievementType } from '../../models/interfaces';
 
 import styles from './Achievements.module.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAchievements } from '../../API/achievements/methods';
 
-// TODO finish achievements
-const Achievements = ({ user }: { user: User }) => {
-  const achievements = [
-    { url: user.profilePhoto, name: 'Mock_list_1', progress: 33 / 99 },
-    { url: user.profilePhoto, name: 'Mock_list_2', progress: 79 / 99 },
-  ].map((achievement) => (
+const toAchievementComponent = (achievement: AchievementType) => {
+  return (
     <Achievement
       key={achievement.name}
       {...achievement}
       className={styles.achievement}
     />
-  ));
+  );
+};
+
+// TODO finish achievements
+const Achievements = ({ user }: { user: User }) => {
+  const [achievements, setAchievements] = useState<AchievementType[]>([]);
+
+  useEffect(() => {
+    const fetchAchievements = async () => {
+      try {
+        const data = await getAchievements();
+        setAchievements(data);
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    };
+    fetchAchievements();
+  }, []);
+
   return (
-    <>
+    <div className={styles.wrapper}>
       <Achievement
-        url={user.profilePhoto}
         name="highlighted"
         progress={1 / 3}
         className={styles.achievement}
       />
-      <div className={styles.wrapper}>
-        <div className={styles.title}>Achievements</div>
-        <div className={styles.achievements}>{achievements}</div>
+      <div className={styles.title}>Achievements</div>
+      <div className={styles.achievements}>
+        {achievements.map(toAchievementComponent)}
       </div>
-    </>
+    </div>
   );
 };
 

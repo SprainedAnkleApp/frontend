@@ -37,3 +37,8 @@ export type Friend = {
   lastName: string;
   profilePhoto: string;
 };
+
+export type Achievement = {
+  name: string;
+  progress: number;
+};
