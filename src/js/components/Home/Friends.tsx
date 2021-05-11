@@ -11,6 +11,7 @@ const toFriendInfoComponent = (friend: Friend) => {
       name={friend.firstName + ' ' + friend.lastName}
       url={friend.profilePhoto}
       className={styles.friend}
+      status={friend.id % 3 === 0 ? 'online' : 'offline'}
     />
   );
 };
@@ -38,10 +39,12 @@ const Friends = ({ searchTerm }: FriendsProps) => {
   }, []);
 
   useEffect(() => {
-    const result = friends.filter(
-      (friend) =>
-        friend.firstName.toLowerCase().includes(searchTerm) ||
-        friend.lastName.toLowerCase().includes(searchTerm)
+    const result = friends.filter((friend) =>
+      (
+        friend.firstName.toLowerCase() +
+        ' ' +
+        friend.lastName.toLowerCase()
+      ).includes(searchTerm.toLowerCase())
     );
     setFilteredFriends(result);
   }, [searchTerm]);
