@@ -11,7 +11,7 @@ export type PeakDescriptionProps = {
 
 const PeakDescription = ({ peak }: PeakDescriptionProps) => {
   return (
-    <div>
+    <div className={styles.peakDescription}>
       <p>
         <AiOutlineArrowUp /> Wysokość: {peak.height} m n.p.m.
       </p>

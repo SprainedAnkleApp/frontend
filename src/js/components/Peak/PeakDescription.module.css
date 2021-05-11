@@ -1,4 +1,8 @@
-.about{
+.about {
     margin-top: 10%;
     text-align: justify;
+}
+
+.peakDescription {
+    padding: 3% 5%;
 }
