@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     height: 100vh;
+    margin-bottom: 15vh;
   }
   
 .card {
@@ -38,6 +39,7 @@
   background-color:white;
   border-radius: 20px;
   margin: 20px auto;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 980px) {

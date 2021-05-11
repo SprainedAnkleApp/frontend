@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Switch, Route } from 'react-router';
 import styles from './PeakDetails.module.css';
-import { getPeak, completeThePeak } from '../../API/peaks/methods';
+import { getPeak } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
-import { SubmitButton } from '../../components/common';
 import { Peak as PeakType } from '../../models/interfaces';
 import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
@@ -22,12 +21,6 @@ const PeakDetails = () => {
     };
     fetchPeak();
   }, []);
-
-  const onClick = () => {
-    completeThePeak(id, 3000).then((peakCompletion) =>
-      console.log(peakCompletion)
-    );
-  };
 
   if (!peakDetails) return null;
 
@@ -47,7 +40,6 @@ const PeakDetails = () => {
             <PeakDescription peak={peakDetails} key={peakDetails.name} />
           </Route>
         </Switch>
-        <SubmitButton onClick={onClick} text="Zaznacz jako zdobyty" />
       </div>
     </div>
   );
