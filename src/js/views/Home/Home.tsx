@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router';
 import { PeaksList } from '../PeaksList';
 import React from 'react';
 import { User } from '../../models/interfaces';
+import { PeakDetails } from '../Peak';
 
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -38,6 +39,9 @@ const Home = () => {
       <div className={styles.home}>
         <Friends searchTerm={searchTerm} />
         <Switch>
+          <Route path="/peaks/:id">
+            <PeakDetails />
+          </Route>
           <Route path="/peaks">
             <PeaksList />
           </Route>

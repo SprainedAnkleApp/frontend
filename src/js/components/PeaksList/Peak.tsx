@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom';
-
+import cx from 'classnames';
 import styles from './Peak.module.css';
 import { Peak as PeakType } from '../../models/interfaces';
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 
-const Peak = ({ peak }: { peak: PeakType }) => {
+export type PeakProps = {
+  peak: PeakType;
+  redirectTo: string;
+  className?: string;
+};
+
+const Peak = ({ peak, redirectTo, className }: PeakProps) => {
   return (
-    <Link className={styles.card} to={`/peaks/${peak.id}`}>
+    <Link className={cx(styles.card, className)} to={redirectTo}>
       <img className={styles.photo} src={peak.photo} alt="mountain" />
       <div className={styles.peakInformation}>
         <div>
