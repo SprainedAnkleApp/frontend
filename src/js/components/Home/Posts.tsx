@@ -1,24 +1,18 @@
 import styles from './Posts.module.css';
 import { Post } from '.';
-import { useState, useEffect } from 'react';
-import { getPosts } from '../../API/wall/methods';
+import { getPostsPaginated } from '../../API/wall/methods';
 import { User, Post as PostType } from '../../models/interfaces';
 import React from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import usePaginatedData from '../../hooks/usePaginatedData';
 
 const Posts = ({ user }: { user: User }) => {
-  const [posts, setPosts] = useState<PostType[]>([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const fetchedPosts = await getPosts();
-
-      setPosts(Array.isArray(fetchedPosts) ? fetchedPosts : []);
-    };
-    fetchPosts();
-  }, []);
+  const { data, nextPage, hasMore } = usePaginatedData<PostType>(
+    getPostsPaginated(60)
+  );
 
   const renderPosts = () =>
-    posts.map((post) => (
+    data.map((post) => (
       <Post
         key={post.timestamp}
         {...post}
@@ -27,7 +21,18 @@ const Posts = ({ user }: { user: User }) => {
       />
     ));
 
-  return <div className={styles.wrapper}>{renderPosts()}</div>;
+  return (
+    <div className={styles.wrapper}>
+      <InfiniteScroll
+        dataLength={data.length}
+        next={nextPage}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+      >
+        {renderPosts()}
+      </InfiniteScroll>
+    </div>
+  );
 };
 
 export default Posts;
