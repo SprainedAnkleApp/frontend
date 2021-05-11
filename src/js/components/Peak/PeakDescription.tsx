@@ -9,10 +9,10 @@ export type PeakDescriptionProps = {
 };
 
 const PeakDescription = ({ peak }: PeakDescriptionProps) => {
-  const onClick = () => {
-    completeThePeak(peak.id, 3000).then((peakCompletion) =>
-      console.log(peakCompletion)
-    );
+  // TODO add form to reach peak
+  const reachPeak = async (time: number) => {
+    const peakCompletionResponse = await completeThePeak(peak.id, time);
+    console.log(peakCompletionResponse);
   };
 
   return (
@@ -24,7 +24,7 @@ const PeakDescription = ({ peak }: PeakDescriptionProps) => {
       <p>Pasmo górskie: {peak.mountainRange}</p>
       <div className={styles.buttonBox}>
         <SubmitButton
-          onClick={onClick}
+          onClick={() => reachPeak(3000)}
           text="Zaznacz jako zdobyty"
           className={styles.reachPeakButton}
         />

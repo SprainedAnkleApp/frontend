@@ -42,3 +42,11 @@ export type Achievement = {
   name: string;
   progress: number;
 };
+
+export type PeakCompletion = {
+  id: {
+    userId: number;
+    peakId: number;
+  };
+  completionTime: string;
+};
