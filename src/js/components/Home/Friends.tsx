@@ -38,10 +38,12 @@ const Friends = ({ searchTerm }: FriendsProps) => {
   }, []);
 
   useEffect(() => {
-    const result = friends.filter(
-      (friend) =>
-        friend.firstName.toLowerCase().includes(searchTerm) ||
-        friend.lastName.toLowerCase().includes(searchTerm)
+    const result = friends.filter((friend) =>
+      (
+        friend.firstName.toLowerCase() +
+        ' ' +
+        friend.lastName.toLowerCase()
+      ).includes(searchTerm.toLowerCase())
     );
     setFilteredFriends(result);
   }, [searchTerm]);
