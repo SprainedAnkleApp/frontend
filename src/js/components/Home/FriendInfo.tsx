@@ -9,18 +9,22 @@ export type FriendInfoProps = {
   url: string;
   name: string;
   className: string;
+  status: 'online' | 'offline';
   startChat?: () => void;
 };
 
-const FriendInfo = ({ url, name, className, startChat }: FriendInfoProps) => {
+const FriendInfo = ({
+  url,
+  name,
+  className,
+  status,
+  startChat,
+}: FriendInfoProps) => {
   return (
     <div className={cx(styles.wrapper, className)} onClick={startChat}>
       <Icon url={url} />
       <span className={styles.name}>{name}</span>
-      <UserStatus
-        status={Math.random() > 0.5 ? 'online' : 'offline'}
-        className={styles.status}
-      />
+      <UserStatus status={status} className={styles.status} />
     </div>
   );
 };

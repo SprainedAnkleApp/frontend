@@ -11,6 +11,7 @@ const toFriendInfoComponent = (friend: Friend) => {
       name={friend.firstName + ' ' + friend.lastName}
       url={friend.profilePhoto}
       className={styles.friend}
+      status={friend.id % 3 === 0 ? 'online' : 'offline'}
     />
   );
 };
