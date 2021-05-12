@@ -2,7 +2,6 @@ import { SearchBar, NavBar, UserInfo } from '.';
 
 import styles from './Header.module.css';
 import React from 'react';
-import { User } from '../../../models/interfaces';
 
 export type HeaderProps = {
   searchTerm: string;

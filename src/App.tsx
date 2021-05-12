@@ -1,8 +1,8 @@
-import Routes from './js/routes';
-import { userContext } from './js/contexts/CurrentUser';
 import React, { useState, useEffect } from 'react';
 import { getCurrentUser } from './js/API/user/methods';
 import { logout, isAuthenticated } from './js/API/auth/methods';
+import { userContext } from './js/contexts/CurrentUser';
+import Routes from './js/routes';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
