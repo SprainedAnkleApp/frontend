@@ -47,6 +47,7 @@ const PeakDetails = () => {
           <PeakDescription peak={peakDetails} key={peakDetails.name} />
         )}
         {state === peakInformations.map && (
+          // TODO - change if peak location will be in backend model
           <PeakMap center={[49.13905, 20.220381]} />
         )}
         {state === peakInformations.posts && <p>Posts</p>}
