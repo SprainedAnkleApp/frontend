@@ -1,9 +1,10 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useLocation, useHistory } from 'react-router';
-import { login } from '../../API/auth/methods';
+import { login, logout } from '../../API/auth/methods';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import React from 'react';
+import { userContext } from '../../contexts/CurrentUser';
 
 type FormValues = {
   login: string;
@@ -20,22 +21,23 @@ const LoginForm = () => {
   const [registered, setRegistered] = useState<string | null>(null);
   const location = useLocation<Location>();
   const history = useHistory();
+  const { loginUser } = useContext(userContext);
 
   useEffect(() => {
     if (location.state?.from === '/signup')
       setRegistered('Rejestracja pomyślna. Zaloguj się.');
   }, []);
   const { register, errors, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const promise = login(data);
-    promise
-      .then(() => {
-        history.push(location?.state?.from || '/');
-      })
-      .catch(() => {
-        setRegistered(null);
-        setSubmitError('Błędny login lub hasło');
-      });
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await login(data);
+      loginUser();
+      history.push(location?.state?.from || '/');
+    } catch (e) {
+      logout();
+      setRegistered(null);
+      setSubmitError('Błędny login lub hasło');
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

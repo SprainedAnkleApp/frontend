@@ -1,10 +1,11 @@
 import { Icon, Card } from '../common';
 
 import styles from './NewPost.module.css';
-import { User } from '../../models/interfaces';
-import React from 'react';
+import React, { useContext } from 'react';
+import { userContext } from '../../contexts/CurrentUser';
 
-const NewPost = ({ user }: { user: User }) => {
+const NewPost = () => {
+  const { user } = useContext(userContext);
   return (
     <Card>
       <div className={styles.wrapper}>

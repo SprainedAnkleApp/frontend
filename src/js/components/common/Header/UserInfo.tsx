@@ -1,14 +1,12 @@
 import { KebabMenu, Icon } from '..';
 
 import styles from './UserInfo.module.css';
-import { User } from '../../../models/interfaces';
-import React from 'react';
+import React, { useContext } from 'react';
+import { userContext } from '../../../contexts/CurrentUser';
 
-export type UserInfoProps = {
-  user: User;
-};
-
-const UserInfo = ({ user }: UserInfoProps) => {
+const UserInfo = () => {
+  const { user } = useContext(userContext);
+  if (!user) return null;
   return (
     <div className={styles.wrapper}>
       <Icon url={user.profilePhoto} />

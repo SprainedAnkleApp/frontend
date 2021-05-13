@@ -3,17 +3,16 @@ import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
-import React from 'react';
-import { User, Post as PostType } from '../../models/interfaces';
+import React, { useContext } from 'react';
+import { Post as PostType } from '../../models/interfaces';
+import { userContext } from '../../contexts/CurrentUser';
 
 export type PostProps = PostType & {
-  user: User;
   className?: string;
 };
 
 const Post = ({
   photoPath,
-  user,
   content,
   timestamp,
   liked,
@@ -21,6 +20,7 @@ const Post = ({
   watch,
   className,
 }: PostProps) => {
+  const { user } = useContext(userContext);
   const getContent = () => {
     if (photoPath)
       return (

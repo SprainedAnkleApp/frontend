@@ -31,7 +31,6 @@ const Home = () => {
   return (
     <div className={styles.main}>
       <Header
-        user={user}
         searchTerm={searchTerm}
         onChangeSearchTerm={(value) => setSearchTerm(value)}
       />
@@ -42,8 +41,8 @@ const Home = () => {
             <PeaksList />
           </Route>
           <Route path="/">
-            <NewPost user={user} />
-            <Posts user={user} />
+            <NewPost />
+            <Posts />
           </Route>
         </Switch>
         <Achievements />
