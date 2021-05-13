@@ -7,6 +7,7 @@ import PeakDescription from '../../components/Peak/PeakDescription';
 import { Peak as PeakType } from '../../models/interfaces';
 import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
+import PeakMap from '../../components/Peak/PeakMap';
 
 const PeakDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,7 +32,7 @@ const PeakDetails = () => {
       <div className={styles.peakInformation}>
         <Switch>
           <Route path="/peaks/:id/map">
-            <p>Map</p>
+            <PeakMap center={[49.13905, 20.220381]} />
           </Route>
           <Route path="/peaks/:id/posts">
             <p>Posts</p>
