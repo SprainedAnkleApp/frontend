@@ -36,12 +36,7 @@ const PeakDetails = () => {
   return (
     <div className={styles.container}>
       <Peak peak={peakDetails} redirectTo={'/peaks'} className={styles.card} />
-      <PeakNavBar
-        state={state}
-        onDescriptionChoice={() => setState(peakInformations.description)}
-        onMapChoice={() => setState(peakInformations.map)}
-        onPostsChoice={() => setState(peakInformations.posts)}
-      />
+      <PeakNavBar state={state} setState={setState} />
       <div className={styles.peakInformation}>
         {state === peakInformations.description && (
           <PeakDescription peak={peakDetails} key={peakDetails.name} />

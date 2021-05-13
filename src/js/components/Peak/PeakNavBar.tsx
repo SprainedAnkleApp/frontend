@@ -6,24 +6,17 @@ import { peakInformations } from '../../views/Peak/PeakDetails';
 
 export type PeakNavbarProps = {
   state: peakInformations;
-  onDescriptionChoice: () => void;
-  onMapChoice: () => void;
-  onPostsChoice: () => void;
+  setState: (choice: peakInformations) => void;
 };
 
-const PeakNavBar = ({
-  state,
-  onDescriptionChoice,
-  onMapChoice,
-  onPostsChoice,
-}: PeakNavbarProps) => {
+const PeakNavBar = ({ state, setState }: PeakNavbarProps) => {
   return (
     <div className={styles.navigation}>
       <div
         className={cx(styles.icon, {
           [styles.selected]: state === peakInformations.description,
         })}
-        onClick={onDescriptionChoice}
+        onClick={() => setState(peakInformations.description)}
       >
         Description
       </div>
@@ -32,7 +25,7 @@ const PeakNavBar = ({
         className={cx(styles.icon, {
           [styles.selected]: state === peakInformations.map,
         })}
-        onClick={onMapChoice}
+        onClick={() => setState(peakInformations.map)}
       >
         Map
       </div>
@@ -41,7 +34,7 @@ const PeakNavBar = ({
         className={cx(styles.icon, {
           [styles.selected]: state == peakInformations.posts,
         })}
-        onClick={onPostsChoice}
+        onClick={() => setState(peakInformations.posts)}
       >
         Posts
       </div>
