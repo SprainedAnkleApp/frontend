@@ -1,0 +1,35 @@
+.navigation {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-decoration: none;
+  font-size: var(--s-font-size);
+  background-color: white;
+  border-radius: var(--xl-border-radius);
+  box-shadow: 8px 4px 16px -2px rgba(90,70,69,0.2);
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+  
+.icon {  
+  position: relative;
+  z-index: 2;
+  padding: 15.5px;
+  margin: 6.5px;
+  color: var(--light-gray);
+}
+  
+.selected {
+  color: var(--darkest-gray);
+}
+
+.navbarItem {
+    text-decoration: none;
+}
+
+@media (max-width: 980px) {
+  .navigation {
+    width: 100%;
+    font-size: var(--xs-font-size);
+  }
+}

@@ -18,7 +18,9 @@ const PeaksList = () => {
   }, []);
 
   const peaks = (peaksData ?? []).map((peak) => {
-    return <Peak peak={peak} key={peak.name} />;
+    return (
+      <Peak peak={peak} redirectTo={`/peaks/${peak.id}`} key={peak.name} />
+    );
   });
 
   return (
