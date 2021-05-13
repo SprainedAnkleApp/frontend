@@ -1,6 +1,6 @@
 .navigation {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   text-decoration: none;
   font-size: var(--s-font-size);
   background-color: white;
@@ -17,6 +17,7 @@
   padding: 15.5px;
   margin: 6.5px;
   color: var(--light-gray);
+  cursor: pointer;
 }
   
 .selected {
