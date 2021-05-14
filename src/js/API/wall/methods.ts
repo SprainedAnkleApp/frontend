@@ -29,8 +29,13 @@ export const getPostsPaginated = (pageSize: number) => async (
 };
 
 export const createNewPost = async (content: string): Promise<void> => {
-  await axios.post(createNewPostUrl(), {
-    headers: authHeader(),
-    body: { content },
-  });
+  await axios.post(
+    createNewPostUrl(),
+    {
+      body: { content },
+    },
+    {
+      headers: authHeader(),
+    }
+  );
 };
