@@ -1,6 +1,5 @@
 import { RiLandscapeFill } from 'react-icons/ri';
 import { IoMdChatboxes } from 'react-icons/io';
-import { MdMap } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import cx from 'classnames';
 
