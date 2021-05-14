@@ -1,4 +1,4 @@
-import { getPostsUrl } from './urls';
+import { getPostsUrl, createNewPostUrl } from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
 import { Post } from '../../models/interfaces';
@@ -26,4 +26,11 @@ export const getPostsPaginated = (pageSize: number) => async (
     console.log(error);
     throw error;
   }
+};
+
+export const createNewPost = async (content: string): Promise<void> => {
+  await axios.post(createNewPostUrl(), {
+    headers: authHeader(),
+    body: { content },
+  });
 };

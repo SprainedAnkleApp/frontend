@@ -19,6 +19,16 @@
 .button:hover {
   opacity: 0.8;
 }
+
+.button:disabled {
+  background-color: var(--darkest-gray);
+  cursor: auto;
+}
+
+.button:disabled:hover {
+  opacity: 1;
+}
+
 .error {
   background-color: var(--red);
 }

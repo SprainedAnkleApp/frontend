@@ -4,3 +4,6 @@
 // TODO add real paginated post api from backend
 export const getPostsUrl = (): string =>
   'https://api.instantwebtools.net/v1/passenger';
+
+export const createNewPostUrl = (): string =>
+  `${process.env.REACT_APP_API_URL}api/public/posts/post`;

@@ -16,7 +16,14 @@ const SubmitButton = ({
   className,
   text,
 }: SubmitButtonProps) => {
-  const buttonStyles = cx(styles.button, styles[progress], className);
+  const buttonStyles = cx(
+    styles.button,
+    styles[progress],
+    {
+      [styles.disabled]: disabled,
+    },
+    className
+  );
 
   return (
     <button

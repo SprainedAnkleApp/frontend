@@ -4,8 +4,44 @@
 }
 
 .modal {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 
+  "icon textarea"
+  ". textarea"
+  "button button";
+}
+
+.textarea {
+  grid-area: textarea;
+  min-height: 180px;
+  padding-left: 15px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  font-size: var(--xs-font-size);
+  color: var(--gray);
+}
+
+.textarea::placeholder {
+  color: var(--gray);
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.submitButton {
+  grid-area: button;
+  font-size: var(--xs-font-size);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: auto;
+}
+
+.icon {
+  grid-area: icon;
 }
 
 
