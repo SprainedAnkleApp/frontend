@@ -3,6 +3,12 @@
   flex-direction: row;
 }
 
+.modal {
+  display: flex;
+  flex-direction: column;
+}
+
+
 .input {
   background-color: transparent;
   color: var(--darkest-gray);

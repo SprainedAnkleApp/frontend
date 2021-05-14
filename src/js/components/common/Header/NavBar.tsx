@@ -14,9 +14,8 @@ type statesType = {
 
 const states: statesType = {
   home: 1,
-  map: 2,
-  chat: 3,
-  peaks: 4,
+  chat: 2,
+  peaks: 3,
 };
 
 const NavBar = () => {
@@ -35,16 +34,6 @@ const NavBar = () => {
           })}
         >
           <AiFillHome />
-        </div>
-      </Link>
-
-      <Link to={'/map'}>
-        <div
-          className={cx(styles.icon, {
-            [styles.selected]: getNavBarState() === states.map,
-          })}
-        >
-          <MdMap />
         </div>
       </Link>
 

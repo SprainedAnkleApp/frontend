@@ -9,19 +9,15 @@ const App = () => {
 
   const fetchCurrentUser = async () => {
     try {
-      console.log('Fetching user');
       const fetchedUser = await getCurrentUser();
       if (!fetchedUser) {
         throw 'User not found';
       }
-      console.log('Fetched user', fetchedUser);
-
       setCurrentUser(fetchedUser);
     } catch (e) {
       logout();
     }
   };
-  console.log('Refresh');
 
   useEffect(() => {
     if (!isAuthenticated() || Object.keys(currentUser).length) return;

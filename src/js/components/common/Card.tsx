@@ -8,8 +8,16 @@ export type CardProps = {
   children?: React.ReactNode;
 };
 
-const Card = ({ className, children }: CardProps) => {
-  return <div className={cx(styles.card, className)}>{children}</div>;
-};
+const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+  return (
+    // eslint-disable-next-line react/prop-types
+    <div className={cx(styles.card, props.className)} ref={ref}>
+      {/* eslint-disable-next-line react/prop-types */}
+      {props.children}
+    </div>
+  );
+});
+
+Card.displayName = 'Card';
 
 export default Card;
