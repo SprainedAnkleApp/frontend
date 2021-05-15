@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import styles from './Post.module.css';
 import React, { useContext } from 'react';
-import { Post as PostType } from '../../models/interfaces';
+import { Post as PostType, User } from '../../models/interfaces';
 import { userContext } from '../../contexts/CurrentUser';
 
 export type PostProps = PostType & {
@@ -29,15 +29,14 @@ const Post = ({
     return <span>{content}</span>;
   };
   return (
-    <Card className={className}>
-      <div className={styles.header}>
-        <Icon url={user?.profilePhoto} variant="s" />
-        <div className={styles.nameWithTime}>
-          <span className={styles.userName}>{user?.login}</span>
-          <span className={styles.time}>{timestamp}</span>
-        </div>
-        <KebabMenu className={styles.kebab} />
-      </div>
+    <Card.Card className={className}>
+      {/* TODO add timestamp */}
+      <Card.Header
+        timestamp={timestamp}
+        user={user as User}
+        active={true}
+        rightPart={<KebabMenu className={styles.kebab} />}
+      />
       <div className={styles.content}>{getContent()}</div>
       <div className={styles.buttons}>
         <div className={styles['button-container']}>
@@ -68,7 +67,7 @@ const Post = ({
           <span className={styles['button-text']}>{watch}</span>
         </div>
       </div>
-    </Card>
+    </Card.Card>
   );
 };
 

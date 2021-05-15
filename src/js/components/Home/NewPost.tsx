@@ -38,12 +38,12 @@ const NewPost = () => {
   const PopupTriggerCard = React.forwardRef<HTMLDivElement>((props, ref) => {
     return (
       <div ref={ref} {...props}>
-        <Card ref={cardRef}>
+        <Card.Card ref={cardRef}>
           <div className={styles.wrapper}>
             <Icon url={user.profilePhoto} />
             <div className={styles.input}>O czym myślisz</div>
           </div>
-        </Card>
+        </Card.Card>
       </div>
     );
   });
@@ -80,7 +80,7 @@ const NewPost = () => {
         overlayStyle={overlayStyle}
       >
         <div style={{ width: width }}>
-          <Card ref={modalRef}>
+          <Card.Card ref={modalRef}>
             <div className={styles.modal}>
               <Icon url={user.profilePhoto} className={styles.icon} />
               <textarea
@@ -101,7 +101,7 @@ const NewPost = () => {
                 disabled={buttonDisabled}
               />
             </div>
-          </Card>
+          </Card.Card>
         </div>
       </Popup>
     </div>
