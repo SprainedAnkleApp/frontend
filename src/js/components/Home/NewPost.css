@@ -1,5 +1,0 @@
-/* SOLUTION ONLY FOR DEMO REMOVE IT SOMEDAY AND ADD BLUR*/
-.my-popup-overlay {
-  background: rgba(255, 255, 255, 0.2);
-  filter: blur(1px);
-}
