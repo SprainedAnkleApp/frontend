@@ -4,13 +4,21 @@
   grid-template-columns: 1fr 2fr 1fr;
   column-gap: 100px;
   row-gap: 30px;
+  max-height: 100vh;
   grid-template-areas: 
-  "friends newPost achievements"
-  "friends posts achievements"
-  "friends posts chat";
+  "friends wall achievements"
+  "friends wall chat";
   background-color: var(--lightest-green);
 }
 
-.main {
+.central {
+  grid-area: wall;
+  overflow: scroll;
+  max-height: calc(100vh - 115px); /* Header height */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
 
+.central::-webkit-scrollbar {
+  width: none;
 }

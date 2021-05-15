@@ -18,7 +18,7 @@ const states: statesType = {
 };
 
 const NavBar = () => {
-  const location = useLocation();
+  const location = useLocation<Location>();
 
   const getNavBarState = () => {
     const params = location.pathname.split('/');

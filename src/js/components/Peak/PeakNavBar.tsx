@@ -15,7 +15,7 @@ const states: statesType = {
 };
 
 const PeakNavBar = ({ id }: { id: number }) => {
-  const location = useLocation();
+  const location = useLocation<Location>();
 
   const getNavBarState = () => {
     const params = location.pathname.split('/');
