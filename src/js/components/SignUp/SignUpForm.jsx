@@ -16,6 +16,9 @@ const SignUpForm = () => {
   const onSubmit = (data) => {
     const promise = signUp({
       username: data.login,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
       password: data.password,
       matchingPassword: data.repeatPassword,
     });
@@ -34,6 +37,45 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
+      <InputWithLabel
+        type={'text'}
+        name={'firstName'}
+        text={'Imię'}
+        placeholder={'Wprowadź swoje imię'}
+        register={register({
+          required: 'Pole wymagane',
+          maxLength: 30,
+        })}
+        error={errors.firstName}
+      />
+
+      <InputWithLabel
+        type={'text'}
+        name={'lastName'}
+        text={'Nazwisko'}
+        placeholder={'Wprowadź swoje nazwisko'}
+        register={register({
+          required: 'Pole wymagane',
+          maxLength: 30,
+        })}
+        error={errors.lastName}
+      />
+
+      <InputWithLabel
+        type={'email'}
+        name={'email'}
+        text={'Email'}
+        placeholder={'Wprowadź swój email'}
+        register={register({
+          required: 'Pole wymagane',
+          pattern: {
+            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            message: 'Niepoprawny email',
+          },
+        })}
+        error={errors.email}
+      />
+
       <InputWithLabel
         type={'text'}
         name={'login'}
@@ -62,8 +104,8 @@ const SignUpForm = () => {
             message: 'Hasło musi zawierać wielką literę, znak specjalny oraz cyfrę',
           },
         })}
+        error={errors.password}
       />
-      {errors.password && <p>{errors.password.message}</p>}
 
       <InputWithLabel
         type={'password'}
@@ -76,8 +118,8 @@ const SignUpForm = () => {
             repeatPassword: (value) => value === password.current || 'Hasła muszą być takie same',
           },
         })}
+        error={errors.repeatPassword}
       />
-      {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
       {submitError && <Error text={submitError} />}
 
       <SubmitButton text={'Zarejestruj'} onClick={handleSubmit(onSubmit)} progress={'success'} />

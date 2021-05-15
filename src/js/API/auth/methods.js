@@ -36,10 +36,14 @@ export const isAuthenticated = () => {
   return userInfo;
 };
 
-export const signUp = async ({ username, password, matchingPassword }) => {
-  const firstName = username + ' firstname';
-  const lastName = username + ' lastname';
-  const email = username + ' email@gmail.com';
+export const signUp = async ({
+  username,
+  firstName,
+  lastName,
+  email,
+  password,
+  matchingPassword,
+}) => {
   const gender = 'Male';
 
   const response = await axios.post(getSignUpUrl(), {
