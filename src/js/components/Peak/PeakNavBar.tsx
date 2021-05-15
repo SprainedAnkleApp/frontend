@@ -1,58 +1,43 @@
 import cx from 'classnames';
 
 import styles from './PeakNavBar.module.css';
-import { Link, useLocation } from 'react-router-dom';
 import React from 'react';
+import { peakInformations } from '../../views/Peak/PeakDetails';
 
-type statesType = {
-  [name: string]: number;
+export type PeakNavbarProps = {
+  state: peakInformations;
+  setState: (choice: peakInformations) => void;
 };
 
-const states: statesType = {
-  description: 1,
-  map: 2,
-  posts: 3,
-};
-
-const PeakNavBar = ({ id }: { id: number }) => {
-  const location = useLocation();
-
-  const getNavBarState = () => {
-    const params = location.pathname.split('/');
-    return states[params[3]] ?? states.description;
-  };
-
+const PeakNavBar = ({ state, setState }: PeakNavbarProps) => {
   return (
     <div className={styles.navigation}>
-      <Link to={`/peaks/${id}`} className={styles.navbarItem}>
-        <div
-          className={cx(styles.icon, {
-            [styles.selected]: getNavBarState() === states.description,
-          })}
-        >
-          Description
-        </div>
-      </Link>
+      <div
+        className={cx(styles.icon, {
+          [styles.selected]: state === 'description',
+        })}
+        onClick={() => setState('description')}
+      >
+        Description
+      </div>
 
-      <Link to={`/peaks/${id}/map`} className={styles.navbarItem}>
-        <div
-          className={cx(styles.icon, {
-            [styles.selected]: getNavBarState() === states.map,
-          })}
-        >
-          Map
-        </div>
-      </Link>
+      <div
+        className={cx(styles.icon, {
+          [styles.selected]: state === 'map',
+        })}
+        onClick={() => setState('map')}
+      >
+        Map
+      </div>
 
-      <Link to={`/peaks/${id}/posts`} className={styles.navbarItem}>
-        <div
-          className={cx(styles.icon, {
-            [styles.selected]: getNavBarState() === states.posts,
-          })}
-        >
-          Posts
-        </div>
-      </Link>
+      <div
+        className={cx(styles.icon, {
+          [styles.selected]: state == 'posts',
+        })}
+        onClick={() => setState('posts')}
+      >
+        Posts
+      </div>
     </div>
   );
 };
