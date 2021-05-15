@@ -14,27 +14,27 @@ const PeakNavBar = ({ state, setState }: PeakNavbarProps) => {
     <div className={styles.navigation}>
       <div
         className={cx(styles.icon, {
-          [styles.selected]: state === peakInformations.description,
+          [styles.selected]: state === 'description',
         })}
-        onClick={() => setState(peakInformations.description)}
+        onClick={() => setState('description')}
       >
         Description
       </div>
 
       <div
         className={cx(styles.icon, {
-          [styles.selected]: state === peakInformations.map,
+          [styles.selected]: state === 'map',
         })}
-        onClick={() => setState(peakInformations.map)}
+        onClick={() => setState('map')}
       >
         Map
       </div>
 
       <div
         className={cx(styles.icon, {
-          [styles.selected]: state == peakInformations.posts,
+          [styles.selected]: state == 'posts',
         })}
-        onClick={() => setState(peakInformations.posts)}
+        onClick={() => setState('posts')}
       >
         Posts
       </div>

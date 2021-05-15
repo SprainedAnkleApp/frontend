@@ -8,20 +8,14 @@ import { Peak as PeakType } from '../../models/interfaces';
 import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
 
-export enum peakInformations {
-  description,
-  map,
-  posts,
-}
+export type peakInformations = 'description' | 'map' | 'posts';
 
 const PeakDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [peakDetails, setPeakDetails] = useState<PeakType | undefined>(
     undefined
   );
-  const [state, setState] = useState<peakInformations>(
-    peakInformations.description
-  );
+  const [state, setState] = useState<peakInformations>('description');
 
   useEffect(() => {
     const fetchPeak = async () => {
@@ -38,13 +32,13 @@ const PeakDetails = () => {
       <Peak peak={peakDetails} redirectTo={'/peaks'} className={styles.card} />
       <PeakNavBar state={state} setState={setState} />
       <div className={styles.peakInformation}>
-        {state === peakInformations.description && (
+        {state === 'description' && (
           <PeakDescription peak={peakDetails} key={peakDetails.name} />
         )}
-        {state === peakInformations.map && (
+        {state === 'map' && (
           <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />
         )}
-        {state === peakInformations.posts && <p>Posts</p>}
+        {state === 'posts' && <p>Posts</p>}
       </div>
     </div>
   );
