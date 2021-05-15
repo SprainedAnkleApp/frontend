@@ -4,25 +4,29 @@ import React, { useEffect, useState } from 'react';
 import { getFriends } from '../../API/friends/methods';
 import { Friend } from '../../models/interfaces';
 
-const toFriendInfoComponent = (friend: Friend) => {
-  return (
-    <FriendInfo
-      key={`friend_${friend.id}`}
-      name={friend.firstName + ' ' + friend.lastName}
-      url={friend.profilePhoto}
-      className={styles.friend}
-      status={friend.id % 3 === 0 ? 'online' : 'offline'}
-    />
-  );
-};
-
 export type FriendsProps = {
   searchTerm: string;
+  startChat: (friendId: number) => void;
+  activeChatId: number | null;
 };
 
-const Friends = ({ searchTerm }: FriendsProps) => {
+const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
   const [filteredFriends, setFilteredFriends] = useState<Friend[]>([]);
   const [friends, setFriends] = useState<Friend[]>([]);
+
+  const toFriendInfoComponent = (friend: Friend) => {
+    return (
+      <FriendInfo
+        key={`friend_${friend.id}`}
+        name={friend.firstName + ' ' + friend.lastName}
+        url={friend.profilePhoto}
+        className={styles.friend}
+        status={friend.id % 3 === 0 ? 'online' : 'offline'}
+        startChat={() => startChat(friend.id)}
+        isChatActive={activeChatId === friend.id}
+      />
+    );
+  };
 
   useEffect(() => {
     const fetchFriends = async () => {
