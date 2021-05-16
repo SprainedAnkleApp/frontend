@@ -81,30 +81,47 @@ const NewPost = () => {
         contentStyle={contentStyle}
         overlayStyle={overlayStyle}
       >
-        <div style={{ width: width }}>
-          <Card.Card ref={modalRef}>
-            <div className={styles.modal}>
-              <Icon url={user.profilePhoto} className={styles.icon} />
-              <textarea
-                placeholder={'O czym myślisz?'}
-                className={styles.textarea}
-                value={postText}
-                onChange={(event) => {
-                  setPostText(event.target.value);
-                  setError(false);
-                  setButtonDisabled(false);
-                }}
-              />
-              <SubmitButton
-                text={error ? 'Wystapił błąd' : 'Opublikuj'}
-                className={styles.submitButton}
-                progress={error ? 'error' : 'success'}
-                onClick={sendNewPost}
-                disabled={buttonDisabled}
-              />
+        {(_close: () => void, isOpen: boolean) => {
+          useEffect(() => {
+            if (!isOpen) return;
+            const rootDiv = document.getElementById('root');
+            if (!rootDiv) return;
+            rootDiv.style.filter = 'blur(1px)';
+
+            return () => {
+              if (!isOpen) return;
+              const rootDiv = document.getElementById('root');
+              if (!rootDiv) return;
+              rootDiv.style.filter = 'none';
+            };
+          }, [isOpen]);
+          return (
+            <div style={{ width: width }}>
+              <Card.Card ref={modalRef}>
+                <div className={styles.modal}>
+                  <Icon url={user.profilePhoto} className={styles.icon} />
+                  <textarea
+                    placeholder={'O czym myślisz?'}
+                    className={styles.textarea}
+                    value={postText}
+                    onChange={(event) => {
+                      setPostText(event.target.value);
+                      setError(false);
+                      setButtonDisabled(false);
+                    }}
+                  />
+                  <SubmitButton
+                    text={error ? 'Wystapił błąd' : 'Opublikuj'}
+                    className={styles.submitButton}
+                    progress={error ? 'error' : 'success'}
+                    onClick={sendNewPost}
+                    disabled={buttonDisabled}
+                  />
+                </div>
+              </Card.Card>
             </div>
-          </Card.Card>
-        </div>
+          );
+        }}
       </Popup>
     </div>
   );
