@@ -16,13 +16,13 @@ import React from 'react';
 import { User } from '../../models/interfaces';
 import { PeakDetails } from '../Peak';
 
-import cx from 'classnames';
-
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
   const location = useLocation<Location>();
+
+  console.log(activeChatId, location.pathname !== '/chat');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -52,13 +52,16 @@ const Home = () => {
         />
         <Switch>
           <Route path="/peaks/:id">
-            <PeakDetails />
+            <PeakDetails className={styles.central} />
           </Route>
           <Route path="/peaks">
-            <PeaksList />
+            <PeaksList className={styles.central} />
           </Route>
           <Route path="/chat">
-            <ChatWindow className={styles.central} />
+            <ChatWindow
+              activeChatId={activeChatId}
+              className={styles.central}
+            />
           </Route>
           <Route path="/">
             <Posts className={styles.central} />
@@ -67,6 +70,7 @@ const Home = () => {
         <Achievements />
         {location.pathname !== '/chat' && activeChatId !== null && (
           <ChatWindow
+            activeChatId={activeChatId}
             className={styles.chat}
             onClose={() => setActiveChatId(null)}
           />

@@ -1,7 +1,7 @@
 .home {
   padding: 20px 30px 0px 20px;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 2.5fr 1fr;
   column-gap: 100px;
   row-gap: 30px;
   height: calc(100vh - 115px); /* Header height with home padding*/

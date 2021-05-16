@@ -10,24 +10,13 @@ import { getMessages } from '../../API/chat/methods';
 import cx from 'classnames';
 
 export type ChatWindowProps = Partial<React.PropsWithoutRef<HTMLDivElement>> & {
+  activeChatId: number | null;
   onClose?: () => void;
 };
-const ChatWindow = ({ onClose, className }: ChatWindowProps) => {
+const ChatWindow = ({ onClose, activeChatId, className }: ChatWindowProps) => {
   const { user } = useContext(userContext);
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
-
-  const mapMessageToMessageField = (message: Message) => {
-    return (
-      <div
-        className={cx(style.message, {
-          [style.myMessage]: message.senderId == user.id,
-        })}
-      >
-        {message.content}
-      </div>
-    );
-  };
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -43,6 +32,7 @@ const ChatWindow = ({ onClose, className }: ChatWindowProps) => {
     } catch (e) {}
   };
 
+  if (activeChatId === null) return null;
   return (
     <Card.Card className={cx(className, style.main)}>
       <Card.Header
@@ -57,7 +47,16 @@ const ChatWindow = ({ onClose, className }: ChatWindowProps) => {
         active={true}
       />
       <div className={style.messages}>
-        {messages.map(mapMessageToMessageField)}
+        {messages.map((message, index) => (
+          <div
+            key={`messageNr_${index}`}
+            className={cx(style.message, {
+              [style.myMessage]: message.senderId == user.id,
+            })}
+          >
+            {message.content}
+          </div>
+        ))}
       </div>
       <div className={style.textInput}>
         <input
