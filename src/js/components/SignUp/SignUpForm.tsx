@@ -1,13 +1,23 @@
-import { SubmitButton, InputWithLabel, Error } from '../common';
+import {
+  SubmitButton,
+  InputWithLabel,
+  Error,
+  SelectWithLabel,
+} from '../common';
 import { useHistory } from 'react-router';
 import { signUp } from '../../API/auth/methods';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import React, { useState, useRef } from 'react';
+import { SelectOptions } from '../common/SelectWithLabel';
 
 type FormValues = {
-  login: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   password: string;
   repeatPassword: string;
+  gender: string;
 };
 
 const SignUpForm = () => {
@@ -19,13 +29,16 @@ const SignUpForm = () => {
 
   const history = useHistory();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+
     const promise = signUp({
-      username: data.login,
+      username: data.username,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
       password: data.password,
       matchingPassword: data.repeatPassword,
+      gender: data.gender,
     });
 
     promise
@@ -40,14 +53,18 @@ const SignUpForm = () => {
       });
   };
 
+  const selectOptions: SelectOptions = {
+    placeholder: 'Wybierz płeć',
+    options: ['kobieta', 'męższczyzna', 'inne'],
+  };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <InputWithLabel
         type={'text'}
         name={'firstName'}
-        text={'Imię'}
+        label={'Imię'}
         placeholder={'Wprowadź swoje imię'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
           maxLength: 30,
         })}
@@ -57,9 +74,9 @@ const SignUpForm = () => {
       <InputWithLabel
         type={'text'}
         name={'lastName'}
-        text={'Nazwisko'}
+        label={'Nazwisko'}
         placeholder={'Wprowadź swoje nazwisko'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
           maxLength: 30,
         })}
@@ -69,9 +86,9 @@ const SignUpForm = () => {
       <InputWithLabel
         type={'email'}
         name={'email'}
-        text={'Email'}
+        label={'Email'}
         placeholder={'Wprowadź swój email'}
-        register={register({
+        ref={register({
           required: 'Pole wymagane',
           pattern: {
             value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -90,7 +107,7 @@ const SignUpForm = () => {
           required: 'Pole wymagane',
           maxLength: 30,
         })}
-        error={errors.login}
+        error={errors.username}
       />
 
       <InputWithLabel
@@ -127,6 +144,19 @@ const SignUpForm = () => {
         })}
         error={errors.repeatPassword}
       />
+      <SelectWithLabel
+        type={'text'}
+        name={'gender'}
+        label={'Płeć'}
+        selectProps={selectOptions}
+        ref={register({
+          validate: {
+            gender: (value) => value !== 'DEFAULT' || 'Pole wymagane',
+          },
+        })}
+        error={errors.repeatPassword}
+      />
+
       {submitError && <Error text={submitError} />}
 
       <SubmitButton

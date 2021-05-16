@@ -49,18 +49,21 @@ export const isAuthenticated = (): boolean => {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const signUp = async ({
   username,
+  firstName,
+  lastName,
+  email,
   password,
   matchingPassword,
+  gender,
 }: {
   username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   password: string;
   matchingPassword: string;
+  gender: string;
 }) => {
-  const firstName = username + ' firstname';
-  const lastName = username + ' lastname';
-  const email = username + ' email@gmail.com';
-  const gender = 'Male';
-
   try {
     const response = await axios.post(getSignUpUrl(), {
       username: username,
