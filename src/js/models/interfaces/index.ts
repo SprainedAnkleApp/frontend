@@ -11,6 +11,8 @@ export type Peak = {
   about: string;
   photo: string;
   name: string;
+  latitude: number;
+  longitude: number;
 };
 
 export type User = {
