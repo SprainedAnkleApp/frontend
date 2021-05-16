@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 2fr 1fr;
   column-gap: 100px;
   row-gap: 30px;
-  max-height: 100vh;
+  height: calc(100vh - 115px); /* Header height with home padding*/
   grid-template-areas: 
   "friends wall achievements"
   "friends wall chat";
@@ -14,9 +14,17 @@
 .central {
   grid-area: wall;
   overflow: scroll;
-  max-height: calc(100vh - 115px); /* Header height */
+  max-height: 100%; 
+  margin-bottom: 50px;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
+}
+
+.chat {
+  grid-area: chat;
+  height: 480px;
+  place-self: end end;
+  margin-bottom: 20px;
 }
 
 .central::-webkit-scrollbar {

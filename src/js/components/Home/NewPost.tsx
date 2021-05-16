@@ -61,11 +61,13 @@ const NewPost = () => {
   PopupTriggerCard.displayName = 'NewPostInactive';
 
   const contentStyle = {
+    zIndex: 6,
+  };
+  const overlayStyle = {
+    zIndex: 5,
     background: 'rgba(255, 255, 255, 0.2)',
     filter: 'blur(1px)',
-    zIndex: 5,
   };
-  const overlayStyle = { zIndex: 5 };
 
   // TODO enhance positioning of modal and watch resize events
   return (

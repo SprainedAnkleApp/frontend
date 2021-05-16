@@ -10,26 +10,24 @@ export type CardProps = {
   children?: React.ReactNode;
 };
 
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  (props, ref) => {
-    return (
-      // eslint-disable-next-line react/prop-types
-      <div className={cx(styles.card, props.className)} ref={ref}>
-        {/* eslint-disable-next-line react/prop-types */}
-        {props.children}
-      </div>
-    );
-  }
-);
+const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+  return (
+    // eslint-disable-next-line react/prop-types
+    <div className={cx(styles.card, props.className)} ref={ref}>
+      {/* eslint-disable-next-line react/prop-types */}
+      {props.children}
+    </div>
+  );
+});
 
 export type CardHeaderProps = {
   user: User;
   timestamp?: string;
   active: boolean;
-  rightPart: React.ReactNode;
+  rightPart?: React.ReactNode;
 };
 
-export const CardHeader = ({
+const CardHeader = ({
   timestamp,
   active,
   rightPart,
@@ -44,7 +42,7 @@ export const CardHeader = ({
           {active ? 'Active' : timestamp}
         </span>
       </div>
-      <div className={styles.onRight}>{rightPart}</div>
+      {rightPart && <div className={styles.onRight}>{rightPart}</div>}
     </div>
   );
 };

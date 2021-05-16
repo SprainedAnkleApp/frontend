@@ -16,6 +16,8 @@ import React from 'react';
 import { User } from '../../models/interfaces';
 import { PeakDetails } from '../Peak';
 
+import cx from 'classnames';
+
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -63,7 +65,12 @@ const Home = () => {
           </Route>
         </Switch>
         <Achievements />
-        {location.pathname !== '/chat' && <ChatWindow />}
+        {location.pathname !== '/chat' && activeChatId !== null && (
+          <ChatWindow
+            className={styles.chat}
+            onClose={() => setActiveChatId(null)}
+          />
+        )}
       </div>
     </div>
   );

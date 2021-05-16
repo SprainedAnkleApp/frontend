@@ -1,4 +1,4 @@
-import { Icon, KebabMenu, Card } from '../common';
+import { KebabMenu, Card } from '../common';
 import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
 import cx from 'classnames';
 
