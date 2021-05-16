@@ -6,3 +6,33 @@
   flex-direction: column;
   padding: 15px 18px;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nameWithTime {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
+
+.userName {
+  color: var(--green);
+  font-size: var(--xxs-font-size);
+}
+
+.time {
+  color: var(--gray);
+  font-size: var(--xxxs-font-size);
+}
+
+.active {
+  color: var(--green);
+}
+
+.onRight {
+  margin-left: auto;
+}

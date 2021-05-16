@@ -1,11 +1,16 @@
 import { Header } from '../../components/common/Header';
-import { Friends, NewPost, Posts, Achievements } from '../../components/Home';
+import {
+  Friends,
+  Posts,
+  Achievements,
+  ChatWindow,
+} from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
 
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../../API/user/methods';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, useLocation } from 'react-router';
 import { PeaksList } from '../PeaksList';
 import React from 'react';
 import { User } from '../../models/interfaces';
@@ -14,6 +19,10 @@ import { PeakDetails } from '../Peak';
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeChatId, setActiveChatId] = useState<number | null>(null);
+  const location = useLocation<Location>();
+
+  console.log(activeChatId, location.pathname !== '/chat');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -36,20 +45,36 @@ const Home = () => {
         onChangeSearchTerm={(value) => setSearchTerm(value)}
       />
       <div className={styles.home}>
-        <Friends searchTerm={searchTerm} />
+        <Friends
+          searchTerm={searchTerm}
+          startChat={(friendId: number) => setActiveChatId(friendId)}
+          activeChatId={activeChatId}
+        />
         <Switch>
           <Route path="/peaks/:id">
-            <PeakDetails />
+            <PeakDetails className={styles.central} />
           </Route>
           <Route path="/peaks">
-            <PeaksList />
+            <PeaksList className={styles.central} />
+          </Route>
+          <Route path="/chat">
+            <ChatWindow
+              activeChatId={activeChatId}
+              className={styles.central}
+            />
           </Route>
           <Route path="/">
-            <NewPost />
-            <Posts />
+            <Posts className={styles.central} />
           </Route>
         </Switch>
         <Achievements />
+        {location.pathname !== '/chat' && activeChatId !== null && (
+          <ChatWindow
+            activeChatId={activeChatId}
+            className={styles.chat}
+            onClose={() => setActiveChatId(null)}
+          />
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,12 @@ import { getPeaks } from '../../API/peaks/methods';
 import { Peak as PeakType } from '../../models/interfaces';
 import PeakWarning from '../../components/PeaksList/PeakWarning';
 
-const PeaksList = () => {
+import cx from 'classnames';
+
+export type PeaksListProps = {
+  className: string;
+};
+const PeaksList = ({ className }: PeaksListProps) => {
   const [peaksData, setPeaksData] = useState<PeakType[]>([]);
 
   useEffect(() => {
@@ -24,7 +29,7 @@ const PeaksList = () => {
   });
 
   return (
-    <div className={styles.container}>
+    <div className={cx(styles.container, className)}>
       <div className={styles.peaksList}>
         {peaks.filter((_, index) => index % 2 === 0)}
       </div>

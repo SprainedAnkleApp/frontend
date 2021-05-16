@@ -17,3 +17,7 @@
 .status {
   margin-left: auto;
 }
+
+.chatActive {
+  background-color: var(--light-green);
+}

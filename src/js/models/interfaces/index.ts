@@ -16,6 +16,7 @@ export type Peak = {
 };
 
 export type User = {
+  id: number;
   login: string;
   profilePhoto: string;
 };
@@ -51,4 +52,9 @@ export type PeakCompletion = {
     peakId: number;
   };
   completionTime: string;
+};
+
+export type Message = {
+  senderId: number;
+  content: string;
 };

@@ -2,6 +2,8 @@ import cx from 'classnames';
 
 import styles from './Card.module.css';
 import React from 'react';
+import Icon from './Icon';
+import { User } from '../../models/interfaces';
 
 export type CardProps = {
   className?: string;
@@ -18,6 +20,36 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   );
 });
 
+export type CardHeaderProps = {
+  user: User;
+  timestamp?: string;
+  active: boolean;
+  rightPart?: React.ReactNode;
+};
+
+const CardHeader = ({
+  timestamp,
+  active,
+  rightPart,
+  user,
+}: CardHeaderProps) => {
+  return (
+    <div className={styles.header}>
+      <Icon url={user?.profilePhoto} variant="s" />
+      <div className={styles.nameWithTime}>
+        <span className={styles.userName}>{user?.login}</span>
+        <span className={cx(styles.time, { [styles.active]: active })}>
+          {active ? 'Active' : timestamp}
+        </span>
+      </div>
+      {rightPart && <div className={styles.onRight}>{rightPart}</div>}
+    </div>
+  );
+};
+
 Card.displayName = 'Card';
 
-export default Card;
+export default {
+  Card: Card,
+  Header: CardHeader,
+};

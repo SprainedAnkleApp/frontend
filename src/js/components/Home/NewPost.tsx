@@ -1,6 +1,4 @@
 import { Icon, Card, SubmitButton } from '../common';
-
-import './NewPost.css';
 import styles from './NewPost.module.css';
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { userContext } from '../../contexts/CurrentUser';
@@ -40,12 +38,12 @@ const NewPost = () => {
   const PopupTriggerCard = React.forwardRef<HTMLDivElement>((props, ref) => {
     return (
       <div ref={ref} {...props}>
-        <Card ref={cardRef}>
+        <Card.Card ref={cardRef}>
           <div className={styles.wrapper}>
             <Icon url={user.profilePhoto} />
             <div className={styles.input}>O czym myślisz</div>
           </div>
-        </Card>
+        </Card.Card>
       </div>
     );
   });
@@ -62,40 +60,70 @@ const NewPost = () => {
 
   PopupTriggerCard.displayName = 'NewPostInactive';
 
+  const contentStyle = {
+    zIndex: 6,
+  };
+  const overlayStyle = {
+    zIndex: 5,
+    background: 'rgba(255, 255, 255, 0.2)',
+    filter: 'blur(1px)',
+  };
+
   // TODO enhance positioning of modal and watch resize events
   return (
-    <Popup
-      trigger={<PopupTriggerCard />}
-      position="bottom center"
-      arrow={false}
-      offsetY={-offset}
-      className="my-popup"
-    >
-      <div style={{ width: width }}>
-        <Card ref={modalRef}>
-          <div className={styles.modal}>
-            <Icon url={user.profilePhoto} className={styles.icon} />
-            <textarea
-              placeholder={'O czym myślisz?'}
-              className={styles.textarea}
-              value={postText}
-              onChange={(event) => {
-                setPostText(event.target.value);
-                setError(false);
-                setButtonDisabled(false);
-              }}
-            />
-            <SubmitButton
-              text={error ? 'Wystapił błąd' : 'Opublikuj'}
-              className={styles.submitButton}
-              progress={error ? 'error' : 'success'}
-              onClick={sendNewPost}
-              disabled={buttonDisabled}
-            />
-          </div>
-        </Card>
-      </div>
-    </Popup>
+    <div className={styles.main}>
+      <Popup
+        trigger={<PopupTriggerCard />}
+        position="bottom center"
+        arrow={false}
+        offsetY={-offset}
+        className="my-popup"
+        contentStyle={contentStyle}
+        overlayStyle={overlayStyle}
+      >
+        {(_close: () => void, isOpen: boolean) => {
+          useEffect(() => {
+            if (!isOpen) return;
+            const rootDiv = document.getElementById('root');
+            if (!rootDiv) return;
+            rootDiv.style.filter = 'blur(1px)';
+
+            return () => {
+              if (!isOpen) return;
+              const rootDiv = document.getElementById('root');
+              if (!rootDiv) return;
+              rootDiv.style.filter = 'none';
+            };
+          }, [isOpen]);
+          return (
+            <div style={{ width: width }}>
+              <Card.Card ref={modalRef}>
+                <div className={styles.modal}>
+                  <Icon url={user.profilePhoto} className={styles.icon} />
+                  <textarea
+                    placeholder={'O czym myślisz?'}
+                    className={styles.textarea}
+                    value={postText}
+                    onChange={(event) => {
+                      setPostText(event.target.value);
+                      setError(false);
+                      setButtonDisabled(false);
+                    }}
+                  />
+                  <SubmitButton
+                    text={error ? 'Wystapił błąd' : 'Opublikuj'}
+                    className={styles.submitButton}
+                    progress={error ? 'error' : 'success'}
+                    onClick={sendNewPost}
+                    disabled={buttonDisabled}
+                  />
+                </div>
+              </Card.Card>
+            </div>
+          );
+        }}
+      </Popup>
+    </div>
   );
 };
 

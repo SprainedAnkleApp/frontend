@@ -3,6 +3,10 @@
   flex-direction: row;
 }
 
+.main {
+  margin-bottom: 30px;
+}
+
 .modal {
   display: grid;
   grid-template-columns: auto 1fr;

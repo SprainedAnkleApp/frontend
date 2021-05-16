@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
 const OAuthHandler = () => {
-  const location = useLocation();
+  const location = useLocation<Location>();
 
   const getUrlParam = (name: string) => {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');

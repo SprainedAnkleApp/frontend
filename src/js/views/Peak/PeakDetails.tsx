@@ -8,9 +8,15 @@ import { Peak as PeakType } from '../../models/interfaces';
 import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
 
+import cx from 'classnames';
+
 export type peakInformations = 'description' | 'map' | 'posts';
 
-const PeakDetails = () => {
+export type PeakDetailsProps = {
+  className: string;
+};
+
+const PeakDetails = ({ className }: PeakDetailsProps) => {
   const { id } = useParams<{ id: string }>();
   const [peakDetails, setPeakDetails] = useState<PeakType | undefined>(
     undefined
@@ -28,7 +34,7 @@ const PeakDetails = () => {
   if (!peakDetails) return null;
 
   return (
-    <div className={styles.container}>
+    <div className={cx(styles.container, className)}>
       <Peak peak={peakDetails} redirectTo={'/peaks'} className={styles.card} />
       <PeakNavBar state={state} setState={setState} />
       <div className={styles.peakInformation}>

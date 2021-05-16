@@ -5,10 +5,15 @@ import { Post as PostType } from '../../models/interfaces';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import usePaginatedData from '../../hooks/usePaginatedData';
+import NewPost from './NewPost';
 
-const Posts = () => {
+export type PostsProps = {
+  className: string;
+};
+
+const Posts = ({ className }: PostsProps) => {
   const { data, nextPage, hasMore } = usePaginatedData<PostType>(
-    getPostsPaginated(60)
+    getPostsPaginated(10)
   );
 
   const renderPosts = () =>
@@ -17,7 +22,8 @@ const Posts = () => {
     ));
 
   return (
-    <div className={styles.wrapper}>
+    <div className={className}>
+      <NewPost />
       <InfiniteScroll
         dataLength={data.length}
         next={nextPage}

@@ -11,6 +11,7 @@ export type FriendInfoProps = {
   className: string;
   status: 'online' | 'offline';
   startChat?: () => void;
+  isChatActive?: boolean;
 };
 
 const FriendInfo = ({
@@ -18,10 +19,18 @@ const FriendInfo = ({
   name,
   className,
   status,
+  isChatActive,
   startChat,
 }: FriendInfoProps) => {
   return (
-    <div className={cx(styles.wrapper, className)} onClick={startChat}>
+    <div
+      className={cx(
+        styles.wrapper,
+        { [styles.chatActive]: isChatActive },
+        className
+      )}
+      onClick={startChat}
+    >
       <Icon url={url} />
       <span className={styles.name}>{name}</span>
       <UserStatus status={status} className={styles.status} />
