@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 2.5fr 1fr;
   column-gap: 100px;
-  row-gap: 30px;
+  /* row-gap: 0px; */
   height: calc(100vh - 115px); /* Header height with home padding*/
   grid-template-areas: 
   "friends wall achievements"
@@ -16,6 +16,8 @@
   overflow: scroll;
   max-height: 100%; 
   margin-bottom: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
 }

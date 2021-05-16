@@ -36,39 +36,41 @@ const ChatWindow = ({ onClose, activeChatId, className }: ChatWindowProps) => {
 
   if (activeChatId === null) return null;
   return (
-    <Card.Card className={cx(className, style.main)}>
-      <Card.Header
-        rightPart={
-          onClose && (
-            <button onClick={onClose} className={style.close}>
-              &times;
-            </button>
-          )
-        }
-        user={user as User}
-        active={true}
-      />
-      <div className={style.messages}>
-        {messages.map((message, index) => (
-          <div
-            key={`messageNr_${index}`}
-            className={cx(style.message, {
-              [style.myMessage]: message.senderId == user.id,
-            })}
-          >
-            {message.content}
-          </div>
-        ))}
-      </div>
-      <div className={style.textInput}>
-        <input
-          type="text"
-          value={currentMessage}
-          onChange={(event) => setCurrentMessage(event.target.value)}
+    <div className={className}>
+      <Card.Card className={cx(className, style.main)}>
+        <Card.Header
+          rightPart={
+            onClose && (
+              <button onClick={onClose} className={style.close}>
+                &times;
+              </button>
+            )
+          }
+          user={user as User}
+          active={true}
         />
-        <RiSendPlaneFill className={style.sendIcon} onClick={sendMessage} />
-      </div>
-    </Card.Card>
+        <div className={style.messages}>
+          {messages.map((message, index) => (
+            <div
+              key={`messageNr_${index}`}
+              className={cx(style.message, {
+                [style.myMessage]: message.senderId == user.id,
+              })}
+            >
+              {message.content}
+            </div>
+          ))}
+        </div>
+        <div className={style.textInput}>
+          <input
+            type="text"
+            value={currentMessage}
+            onChange={(event) => setCurrentMessage(event.target.value)}
+          />
+          <RiSendPlaneFill className={style.sendIcon} onClick={sendMessage} />
+        </div>
+      </Card.Card>
+    </div>
   );
 };
 

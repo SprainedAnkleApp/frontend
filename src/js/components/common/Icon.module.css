@@ -9,6 +9,8 @@
 .sSize {
   width: 35px;
   height: 35px;
+  min-width: 35px;
+  min-height: 35px;
 }
 
 .mSize {
@@ -21,4 +23,6 @@
 .lSize {
   width: 55px;
   height: 55px;
+  min-width: 55px;
+  min-height: 55px;
 }
