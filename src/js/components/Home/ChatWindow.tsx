@@ -27,9 +27,11 @@ const ChatWindow = ({ onClose, activeChatId, className }: ChatWindowProps) => {
   }, []);
 
   const sendMessage = async () => {
-    try {
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+    // TODO here will be send message url
+    console.log('Message sent');
+    // try {
+    //   // eslint-disable-next-line no-empty
+    // } catch (e) {}
   };
 
   if (activeChatId === null) return null;
