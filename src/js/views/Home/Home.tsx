@@ -22,8 +22,6 @@ const Home = () => {
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
   const location = useLocation<Location>();
 
-  console.log(activeChatId, location.pathname !== '/chat');
-
   useEffect(() => {
     const fetchUser = async () => {
       const userData = await getCurrentUser();

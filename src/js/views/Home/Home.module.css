@@ -15,7 +15,7 @@
   grid-area: wall;
   overflow: scroll;
   max-height: 100%; 
-  margin-bottom: 50px;
+  padding-bottom: 50px;
   padding-left: 30px;
   padding-right: 30px;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
