@@ -8,7 +8,7 @@ export type ProfileNavBarProps = {
 
 const ProfileNavBar = ({ className }: ProfileNavBarProps) => {
   return (
-    <div className={className}>
+    <div className={styles.stickyCard}>
       <Card.Card className={className}>
         <div className={styles.navBar}>
           <div className={styles.posts}>
