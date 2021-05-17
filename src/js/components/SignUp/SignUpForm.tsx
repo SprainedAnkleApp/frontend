@@ -8,7 +8,6 @@ import { useHistory } from 'react-router';
 import { signUp } from '../../API/auth/methods';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import React, { useState, useRef } from 'react';
-import { SelectOptions } from '../common/SelectWithLabel';
 
 type FormValues = {
   username: string;
@@ -29,8 +28,6 @@ const SignUpForm = () => {
 
   const history = useHistory();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-
     const promise = signUp({
       username: data.username,
       firstName: data.firstName,
@@ -53,10 +50,6 @@ const SignUpForm = () => {
       });
   };
 
-  const selectOptions: SelectOptions = {
-    placeholder: 'Wybierz płeć',
-    options: ['kobieta', 'męższczyzna', 'inne'],
-  };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <InputWithLabel
@@ -148,7 +141,8 @@ const SignUpForm = () => {
         type={'text'}
         name={'gender'}
         label={'Płeć'}
-        selectProps={selectOptions}
+        placeholder={'Wybierz płeć'}
+        options={['kobieta', 'męższczyzna', 'inne']}
         ref={register({
           validate: {
             gender: (value) => value !== 'DEFAULT' || 'Pole wymagane',

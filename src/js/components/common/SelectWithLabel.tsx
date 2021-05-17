@@ -8,15 +8,11 @@ type ErrorType = {
   message?: string | undefined;
 };
 
-export type SelectOptions = {
-  placeholder: string;
-  options: Array<string>;
-};
-
 export type SelectWithLabelProps = InputHTMLAttributes<HTMLSelectElement> & {
   label: string;
   error?: ErrorType;
-  selectProps: SelectOptions;
+  placeholder: string;
+  options: Array<string>;
 };
 
 const SelectWithLabel = React.forwardRef<
@@ -24,7 +20,14 @@ const SelectWithLabel = React.forwardRef<
   SelectWithLabelProps
 >(
   (
-    { className, label, selectProps, error, ...props }: SelectWithLabelProps,
+    {
+      className,
+      label,
+      placeholder,
+      options,
+      error,
+      ...props
+    }: SelectWithLabelProps,
     ref
   ) => {
     return (
@@ -40,9 +43,9 @@ const SelectWithLabel = React.forwardRef<
           {...props}
         >
           <option className={styles.placeholder} value="DEFAULT" disabled>
-            {selectProps.placeholder}
+            {placeholder}
           </option>
-          {selectProps.options.map((option) => {
+          {options.map((option) => {
             return (
               <option key={option} value={option}>
                 {option}
