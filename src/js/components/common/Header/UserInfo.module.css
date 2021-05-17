@@ -11,7 +11,8 @@ a:active {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: var(--s-font-size);
+  font-size: var(--xs-font-size);
+  font-weight: var(--medium-font-weight);
   grid-area: UserInfo;
   justify-self: right;
 }
