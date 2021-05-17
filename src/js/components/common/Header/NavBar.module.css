@@ -44,3 +44,7 @@
 .slide3 {
   margin-left: calc(66% + 6.5px);
 }
+
+.slide4 {
+  visibility: hidden;
+}

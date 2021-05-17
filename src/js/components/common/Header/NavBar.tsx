@@ -15,6 +15,7 @@ const states: statesType = {
   home: 1,
   chat: 2,
   peaks: 3,
+  profile: 4,
 };
 
 const NavBar = () => {
