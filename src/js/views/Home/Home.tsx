@@ -4,6 +4,7 @@ import {
   Posts,
   Achievements,
   ChatWindow,
+  Profile,
 } from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
 
@@ -51,6 +52,9 @@ const Home = () => {
           activeChatId={activeChatId}
         />
         <Switch>
+          <Route path="/profile">
+            <Profile className={styles.central} />
+          </Route>
           <Route path="/peaks/:id">
             <PeakDetails className={styles.central} />
           </Route>

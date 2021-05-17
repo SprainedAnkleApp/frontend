@@ -1,0 +1,54 @@
+.card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.upperContainer {
+    position: relative;
+}
+
+.backgroundImg {
+    content:url('../../../../images/profile_bg.png');
+    width: 100%;
+    padding: 0 0 30px 0;
+}
+
+.profileImg {
+    content:url('../../../../images/profile_pic.png');
+    height: 70%;
+    margin: 0;
+    position: absolute;
+    top: 68%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: var(--xl-border-radius);
+}
+
+.bottomContainer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userNameWrapper {
+    justify-content: center;
+}
+
+.userName {
+    width: 100%;
+    text-align: center;
+    font-size: var(--m-font-size);
+    font-weight: var(--bold-font-weight);
+    margin: 0px;
+    color: var(--darkest-gray);
+}
+
+.lvl {
+    width: 100%;
+    text-align: center;
+    margin: 2px;
+    color: var(--gray);
+    font-weight: var(--medium-font-weight);
+}
