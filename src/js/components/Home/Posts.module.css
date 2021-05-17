@@ -10,3 +10,8 @@
 .post:first-child {
   margin-top: 0;
 }
+
+.postListPadding {
+  padding-right: 6%;
+  padding-left: 6%;
+}

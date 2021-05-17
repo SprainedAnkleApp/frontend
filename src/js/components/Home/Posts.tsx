@@ -22,13 +22,15 @@ const Posts = ({ className }: PostsProps) => {
     ));
 
   return (
-    <div className={className}>
+    <div className={className} id="postsScroll">
       <NewPost />
       <InfiniteScroll
         dataLength={data.length}
         next={nextPage}
         hasMore={hasMore}
+        scrollableTarget="postsScroll"
         loader={<h4>Loading...</h4>}
+        className={styles.postListPadding}
       >
         {renderPosts()}
       </InfiniteScroll>

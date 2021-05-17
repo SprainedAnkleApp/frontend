@@ -1,8 +1,14 @@
 .wrapper {
   grid-area: friends;
   width: 100%;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
 
+.messages::-webkit-scrollbar {
+  width: none;
+}
 .title {
   font-size: var(--m-font-size);
   font-weight: var(--bold-font-weight);
@@ -11,5 +17,10 @@
 }
 
 .friend {
-  margin-bottom: 23px;
+  margin-bottom: 13px;
+  padding: 5px 8px;
+  padding-right: 23px;
+  font-size: var(--xs-font-size);
+  color: var(--darkest-gray);
+  border-radius: var(--l-border-radius);
 }
