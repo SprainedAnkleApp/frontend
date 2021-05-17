@@ -32,7 +32,7 @@ export const createNewPost = async (content: string): Promise<void> => {
   await axios.post(
     createNewPostUrl(),
     {
-      body: { content },
+      content: content,
     },
     {
       headers: authHeader(),
