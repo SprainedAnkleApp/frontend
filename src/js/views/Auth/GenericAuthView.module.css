@@ -15,10 +15,14 @@
   display: flex;
   flex-direction: column;
   min-width: 512px;
+  max-height: 85vh;
   width: 50%;
   grid-area: section;
 }
 
+.children {
+  overflow: auto;
+}
 .redirect {
   grid-area: redirect;
   place-self: start right;

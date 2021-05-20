@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.select {
+  height: 45px;
+  border: var(--l-border-width) solid var(--border-gray);
+  border-radius: var(--xl-border-radius);
+  background-color: #F1F1F1;
+  font-weight: var(--normal-font-weight);
+  font-size: var(--s-font-size);
+  color: var(--darkest-gray);
+  padding: 2px 20px;
+  margin-top: 2px;
+}
+
+.select:focus {
+  outline: none;
+}
+
+.label {
+  font-weight: var(--bold-font-weight);
+  font-size: var(--s-font-size);
+  color: var(--darkest-gray);
+}

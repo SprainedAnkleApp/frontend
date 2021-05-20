@@ -19,7 +19,7 @@ const GenericAuthView = ({
       {React.cloneElement(redirect, { className: styles.redirect })}
       <div className={styles.section}>
         <h1 className={styles.title}>{title}</h1>
-        {children}
+        <div className={styles.children}>{children}</div>
       </div>
     </div>
   );
