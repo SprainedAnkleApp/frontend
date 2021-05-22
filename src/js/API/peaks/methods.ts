@@ -5,6 +5,7 @@ import {
   getPeakUrl,
   getPeakCompletionUrl,
   getFirstConquerorUrl,
+  getPeakTotalCompletionsUrl,
 } from './urls';
 import { Peak, PeakCompletion, User } from '../../models/interfaces';
 
@@ -54,6 +55,20 @@ export const getFirstConqueror = async (
 ): Promise<User | undefined> => {
   try {
     const response = await axios.get(getFirstConquerorUrl(peakId), {
+      headers: authHeader(),
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
+export const getPeakTotalCompletions = async (
+  peakId: string
+): Promise<number | undefined> => {
+  try {
+    const response = await axios.get(getPeakTotalCompletionsUrl(peakId), {
       headers: authHeader(),
     });
     return response.data;
