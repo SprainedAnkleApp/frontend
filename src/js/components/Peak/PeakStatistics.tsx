@@ -18,12 +18,12 @@ const PeakStatistics = ({
         {firstConqueror ? (
           <>
             <img
-              src={firstConqueror?.profilePhoto}
+              src={firstConqueror.profilePhoto}
               alt=""
               className={styles.userPhoto}
             />
             <span>
-              {firstConqueror?.firstName} {firstConqueror?.lastName}
+              {firstConqueror.firstName} {firstConqueror.lastName}
             </span>
           </>
         ) : (
