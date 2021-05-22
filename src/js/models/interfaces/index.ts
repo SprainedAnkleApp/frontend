@@ -18,6 +18,9 @@ export type Peak = {
 export type User = {
   id: number;
   login: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   profilePhoto: string;
 };
 

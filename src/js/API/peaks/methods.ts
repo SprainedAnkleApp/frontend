@@ -1,7 +1,12 @@
 import axios from 'axios';
 import authHeader from '../auth/methods';
-import { getPeaksUrl, getPeakUrl, getPeakCompletionUrl } from './urls';
-import { Peak, PeakCompletion } from '../../models/interfaces';
+import {
+  getPeaksUrl,
+  getPeakUrl,
+  getPeakCompletionUrl,
+  getFirstConquerorUrl,
+} from './urls';
+import { Peak, PeakCompletion, User } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -37,6 +42,20 @@ export const completeThePeak = async (
       },
       { headers: authHeader() }
     );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
+export const getFirstConqueror = async (
+  peakId: string
+): Promise<User | undefined> => {
+  try {
+    const response = await axios.get(getFirstConquerorUrl(peakId), {
+      headers: authHeader(),
+    });
     return response.data;
   } catch (error) {
     console.log(error);
