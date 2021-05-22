@@ -8,9 +8,14 @@ import PeakStatistics from './PeakStatistics';
 export type PeakDescriptionProps = {
   peak: Peak;
   firstConqueror: User | undefined;
+  totalCompletions: number | undefined;
 };
 
-const PeakDescription = ({ peak, firstConqueror }: PeakDescriptionProps) => {
+const PeakDescription = ({
+  peak,
+  firstConqueror,
+  totalCompletions,
+}: PeakDescriptionProps) => {
   // TODO add form to reach peak
   const reachPeak = async (time: number) => {
     const peakCompletionResponse = await completeThePeak(peak.id, time);
@@ -24,7 +29,10 @@ const PeakDescription = ({ peak, firstConqueror }: PeakDescriptionProps) => {
       <p>Wysokość: {peak.height} m n.p.m.</p>
       <p>Województwo: {peak.region}</p>
       <p>Pasmo górskie: {peak.mountainRange}</p>
-      <PeakStatistics firstConqueror={firstConqueror} />
+      <PeakStatistics
+        firstConqueror={firstConqueror}
+        totalCompletions={totalCompletions}
+      />
       <div className={styles.buttonBox}>
         <SubmitButton
           onClick={() => reachPeak(3000)}
