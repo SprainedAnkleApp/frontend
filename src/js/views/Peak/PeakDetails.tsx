@@ -2,13 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import PeakMap from '../../components/Peak/PeakMap';
 import styles from './PeakDetails.module.css';
-import {
-  getFirstConqueror,
-  getPeak,
-  getNumberOfPeakConquerors,
-} from '../../API/peaks/methods';
+import { getPeak } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
-import { Peak as PeakType, User } from '../../models/interfaces';
+import { Peak as PeakType } from '../../models/interfaces';
 import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
 
@@ -25,12 +21,6 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
   const [peakDetails, setPeakDetails] = useState<PeakType | undefined>(
     undefined
   );
-  const [firstConqueror, setFirstConqueror] = useState<User | undefined>(
-    undefined
-  );
-  const [numberOfPeakConquerors, setNumberOfPeakConquerors] = useState<
-    number | undefined
-  >(undefined);
   const [state, setState] = useState<peakInformations>('description');
 
   useEffect(() => {
@@ -38,11 +28,6 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
       setPeakDetails(await getPeak(id));
     };
     fetchPeak();
-    const getPeakStatistics = async () => {
-      setFirstConqueror(await getFirstConqueror(id));
-      setNumberOfPeakConquerors(await getNumberOfPeakConquerors(id));
-    };
-    getPeakStatistics();
   }, []);
 
   if (!peakDetails) return null;
@@ -53,12 +38,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
       <PeakNavBar state={state} setState={setState} />
       <div className={styles.peakInformation}>
         {state === 'description' && (
-          <PeakDescription
-            peak={peakDetails}
-            key={peakDetails.name}
-            firstConqueror={firstConqueror}
-            numberOfPeakConquerors={numberOfPeakConquerors}
-          />
+          <PeakDescription peak={peakDetails} key={peakDetails.name} />
         )}
         {state === 'map' && (
           <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />

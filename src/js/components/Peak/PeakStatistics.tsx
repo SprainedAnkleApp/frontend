@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  getFirstConqueror,
+  getNumberOfPeakConquerors,
+} from '../../API/peaks/methods';
 import { User } from '../../models/interfaces';
 import styles from './PeakStatistics.module.css';
 
-export type PeakStatisticsProps = {
-  firstConqueror: User | undefined;
-  numberOfPeakConquerors: number | undefined;
-};
-const PeakStatistics = ({
-  firstConqueror,
-  numberOfPeakConquerors,
-}: PeakStatisticsProps) => {
+const PeakStatistics = ({ peakId }: { peakId: string }) => {
+  const [firstConqueror, setFirstConqueror] = useState<User | undefined>(
+    undefined
+  );
+  const [numberOfPeakConquerors, setNumberOfPeakConquerors] = useState<
+    number | undefined
+  >(undefined);
+
+  useEffect(() => {
+    const getPeakStatistics = async () => {
+      setFirstConqueror(await getFirstConqueror(peakId));
+      setNumberOfPeakConquerors(await getNumberOfPeakConquerors(peakId));
+    };
+    getPeakStatistics();
+  }, []);
+
   return (
     <>
       <h3 className={styles.statisticsHeader}>Statistics</h3>
