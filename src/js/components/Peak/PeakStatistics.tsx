@@ -42,7 +42,9 @@ const PeakStatistics = ({ peakId }: { peakId: string }) => {
           <span className={styles.noFirstConqueror}>-</span>
         )}
       </div>
-      <p>Liczba zdobywców: {numberOfPeakConquerors}</p>
+      {numberOfPeakConquerors !== undefined && (
+        <p>Liczba zdobywców: {numberOfPeakConquerors}</p>
+      )}
     </>
   );
 };
