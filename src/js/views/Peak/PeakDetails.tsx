@@ -22,11 +22,11 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
     undefined
   );
   const [state, setState] = useState<peakInformations>('description');
+  const [showForm, setShowForm] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPeak = async () => {
-      const value = await getPeak(id);
-      setPeakDetails(value);
+      setPeakDetails(await getPeak(id));
     };
     fetchPeak();
   }, []);
@@ -35,11 +35,21 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
 
   return (
     <div className={cx(styles.container, className)}>
-      <Peak peak={peakDetails} redirectTo={'/peaks'} className={styles.card} />
+      <Peak
+        peak={peakDetails}
+        redirectTo={'/peaks'}
+        className={styles.card}
+        setShowForm={() => setShowForm(!showForm)}
+        peakDetails={true}
+      />
       <PeakNavBar state={state} setState={setState} />
       <div className={styles.peakInformation}>
         {state === 'description' && (
-          <PeakDescription peak={peakDetails} key={peakDetails.name} />
+          <PeakDescription
+            peak={peakDetails}
+            showForm={showForm}
+            key={peakDetails.name}
+          />
         )}
         {state === 'map' && (
           <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />

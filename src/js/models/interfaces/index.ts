@@ -13,11 +13,15 @@ export type Peak = {
   name: string;
   latitude: number;
   longitude: number;
+  completed: boolean;
 };
 
 export type User = {
   id: number;
   login: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   profilePhoto: string;
 };
 

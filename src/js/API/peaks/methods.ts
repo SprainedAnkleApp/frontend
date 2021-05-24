@@ -1,7 +1,13 @@
 import axios from 'axios';
 import authHeader from '../auth/methods';
-import { getPeaksUrl, getPeakUrl, getPeakCompletionUrl } from './urls';
-import { Peak, PeakCompletion } from '../../models/interfaces';
+import {
+  getPeaksUrl,
+  getPeakUrl,
+  getPeakCompletionUrl,
+  getFirstConquerorUrl,
+  getNumberOfPeakConquerorsUrl,
+} from './urls';
+import { Peak, PeakCompletion, User } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -16,7 +22,9 @@ export const getPeaks = async (): Promise<Peak[]> => {
 
 export const getPeak = async (id: string): Promise<Peak | undefined> => {
   try {
-    const response = await axios.get(getPeakUrl(id), { headers: authHeader() });
+    const response = await axios.get<Peak>(getPeakUrl(id), {
+      headers: authHeader(),
+    });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -36,6 +44,38 @@ export const completeThePeak = async (
         time: time,
       },
       { headers: authHeader() }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
+// TODO remove after changes on backend
+export const getFirstConqueror = async (
+  peakId: string
+): Promise<User | undefined> => {
+  try {
+    const response = await axios.get<User>(getFirstConquerorUrl(peakId), {
+      headers: authHeader(),
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
+export const getNumberOfPeakConquerors = async (
+  peakId: string
+): Promise<number | undefined> => {
+  try {
+    const response = await axios.get<number>(
+      getNumberOfPeakConquerorsUrl(peakId),
+      {
+        headers: authHeader(),
+      }
     );
     return response.data;
   } catch (error) {
