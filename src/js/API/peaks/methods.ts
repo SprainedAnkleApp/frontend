@@ -52,6 +52,7 @@ export const completeThePeak = async (
   }
 };
 
+// TODO remove after changes on backend
 export const getFirstConqueror = async (
   peakId: string
 ): Promise<User | undefined> => {
