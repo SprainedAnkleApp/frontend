@@ -30,7 +30,7 @@ const PeakStatistics = ({
           <span className={styles.noFirstConqueror}>-</span>
         )}
       </div>
-      <p className={styles.wrapper}>Liczba zdobywców: {totalCompletions}</p>
+      <p>Liczba zdobywców: {totalCompletions}</p>
     </>
   );
 };
