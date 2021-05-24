@@ -5,7 +5,7 @@ import {
   getPeakUrl,
   getPeakCompletionUrl,
   getFirstConquerorUrl,
-  getPeakTotalCompletionsUrl,
+  getNumberOfPeakConquerorsUrl,
 } from './urls';
 import { Peak, PeakCompletion, User } from '../../models/interfaces';
 
@@ -74,12 +74,12 @@ export const getFirstConqueror = async (
   }
 };
 
-export const getPeakTotalCompletions = async (
+export const getNumberOfPeakConquerors = async (
   peakId: string
 ): Promise<number | undefined> => {
   try {
     const response: AxiosResponse<number | undefined> = await axios.get(
-      getPeakTotalCompletionsUrl(peakId),
+      getNumberOfPeakConquerorsUrl(peakId),
       {
         headers: authHeader(),
       }

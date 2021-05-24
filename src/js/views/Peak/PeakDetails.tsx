@@ -5,7 +5,7 @@ import styles from './PeakDetails.module.css';
 import {
   getFirstConqueror,
   getPeak,
-  getPeakTotalCompletions,
+  getNumberOfPeakConquerors,
 } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
 import { Peak as PeakType, User } from '../../models/interfaces';
@@ -28,9 +28,9 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
   const [firstConqueror, setFirstConqueror] = useState<User | undefined>(
     undefined
   );
-  const [totalCompletions, setTotalCompletions] = useState<number | undefined>(
-    undefined
-  );
+  const [numberOfPeakConquerors, setNumberOfPeakConquerors] = useState<
+    number | undefined
+  >(undefined);
   const [state, setState] = useState<peakInformations>('description');
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
     fetchPeak();
     const getPeakStatistics = async () => {
       setFirstConqueror(await getFirstConqueror(id));
-      setTotalCompletions(await getPeakTotalCompletions(id));
+      setNumberOfPeakConquerors(await getNumberOfPeakConquerors(id));
     };
     getPeakStatistics();
   }, []);
@@ -57,7 +57,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
             peak={peakDetails}
             key={peakDetails.name}
             firstConqueror={firstConqueror}
-            totalCompletions={totalCompletions}
+            numberOfPeakConquerors={numberOfPeakConquerors}
           />
         )}
         {state === 'map' && (

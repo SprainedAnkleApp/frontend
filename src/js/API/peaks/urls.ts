@@ -9,5 +9,5 @@ export const getPeakUrl = (id: string): string =>
 export const getFirstConquerorUrl = (peakId: string): string =>
   `${process.env.REACT_APP_API_URL}api/public/peakCompletions/${peakId}/first`;
 
-export const getPeakTotalCompletionsUrl = (peakId: string): string =>
+export const getNumberOfPeakConquerorsUrl = (peakId: string): string =>
   `${process.env.REACT_APP_API_URL}api/public/peakCompletions/${peakId}/totalCompletions`;

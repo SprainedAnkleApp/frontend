@@ -8,13 +8,13 @@ import PeakStatistics from './PeakStatistics';
 export type PeakDescriptionProps = {
   peak: Peak;
   firstConqueror: User | undefined;
-  totalCompletions: number | undefined;
+  numberOfPeakConquerors: number | undefined;
 };
 
 const PeakDescription = ({
   peak,
   firstConqueror,
-  totalCompletions,
+  numberOfPeakConquerors,
 }: PeakDescriptionProps) => {
   // TODO add form to reach peak
   const reachPeak = async (time: number) => {
@@ -31,7 +31,7 @@ const PeakDescription = ({
       <p>Pasmo górskie: {peak.mountainRange}</p>
       <PeakStatistics
         firstConqueror={firstConqueror}
-        totalCompletions={totalCompletions}
+        numberOfPeakConquerors={numberOfPeakConquerors}
       />
       <div className={styles.buttonBox}>
         <SubmitButton

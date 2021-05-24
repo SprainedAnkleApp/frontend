@@ -4,11 +4,11 @@ import styles from './PeakStatistics.module.css';
 
 export type PeakStatisticsProps = {
   firstConqueror: User | undefined;
-  totalCompletions: number | undefined;
+  numberOfPeakConquerors: number | undefined;
 };
 const PeakStatistics = ({
   firstConqueror,
-  totalCompletions,
+  numberOfPeakConquerors,
 }: PeakStatisticsProps) => {
   return (
     <>
@@ -30,7 +30,7 @@ const PeakStatistics = ({
           <span className={styles.noFirstConqueror}>-</span>
         )}
       </div>
-      <p>Liczba zdobywców: {totalCompletions}</p>
+      <p>Liczba zdobywców: {numberOfPeakConquerors}</p>
     </>
   );
 };
