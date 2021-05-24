@@ -13,6 +13,7 @@ export type Peak = {
   name: string;
   latitude: number;
   longitude: number;
+  completed: boolean;
 };
 
 export type User = {
