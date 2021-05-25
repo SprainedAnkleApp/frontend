@@ -7,8 +7,9 @@ import {
   getFirstConquerorUrl,
   getNumberOfPeakConquerorsUrl,
   getPeakAverageTimeCompletionUrl,
+  getPeakPostsUrl,
 } from './urls';
-import { Peak, PeakCompletion, User } from '../../models/interfaces';
+import { Peak, PeakCompletion, Post, User } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -119,5 +120,39 @@ export const getPeakAverageTimeCompletion = async (
   } catch (error) {
     console.log(error);
     return undefined;
+  }
+};
+
+export const getPeakPosts = async (peakId: string): Promise<Post[]> => {
+  try {
+    const response = await axios.get(getPeakPostsUrl(peakId), {
+      headers: authHeader(),
+    });
+    return response.data.content;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const getPeakPostsPaginated = (
+  peakId: string,
+  pageSize: number
+) => async (page: number): Promise<{ pages: number; data: Post[] }> => {
+  try {
+    const pagePeakPostsUrl =
+      getPeakPostsUrl(peakId) + `?pageNumber=${page}&pageSize=${pageSize}`;
+    const response = await axios.get(pagePeakPostsUrl, {
+      headers: authHeader(),
+    });
+    return (
+      {
+        pages: response.data.totalPages,
+        data: response.data.content,
+      } ?? []
+    );
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };

@@ -1,0 +1,9 @@
+.peakScroll {
+  overflow: scroll;
+  max-height: 100%; 
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}

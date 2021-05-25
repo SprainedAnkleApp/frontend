@@ -30,12 +30,15 @@ export type Comment = {
 };
 
 export type Post = {
+  id: number;
   photoPath?: string;
   content?: string;
   timestamp: string;
   liked: number;
   comments: Comment[];
   watch: number;
+  peak?: Peak;
+  user?: User;
 };
 
 export type Friend = {
