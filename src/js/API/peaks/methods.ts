@@ -145,12 +145,10 @@ export const getPeakPostsPaginated = (
     const response = await axios.get(pagePeakPostsUrl, {
       headers: authHeader(),
     });
-    return (
-      {
-        pages: response.data.totalPages,
-        data: response.data.content,
-      } ?? []
-    );
+    return {
+      pages: response.data.totalPages,
+      data: response.data.content,
+    };
   } catch (error) {
     console.log(error);
     throw error;
