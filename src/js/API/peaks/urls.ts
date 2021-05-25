@@ -11,3 +11,6 @@ export const getFirstConquerorUrl = (peakId: string): string =>
 
 export const getNumberOfPeakConquerorsUrl = (peakId: string): string =>
   `${process.env.REACT_APP_API_URL}api/public/peakCompletions/${peakId}/totalCompletions`;
+
+export const getPeakAverageTimeCompletionUrl = (peakId: string): string =>
+  `${process.env.REACT_APP_API_URL}api/public/peakCompletions/${peakId}/averageTime`;
