@@ -128,10 +128,31 @@ export const getPeakPosts = async (peakId: string): Promise<Post[]> => {
     const response = await axios.get(getPeakPostsUrl(peakId), {
       headers: authHeader(),
     });
-    console.log(response.data);
     return response.data.content;
   } catch (error) {
     console.log(error);
     return [];
+  }
+};
+
+export const getPeakPostsPaginated = (
+  peakId: string,
+  pageSize: number
+) => async (page: number): Promise<{ pages: number; data: Post[] }> => {
+  try {
+    const pagePeakPostsUrl =
+      getPeakPostsUrl(peakId) + `?pageNumber=${page}&pageSize=${pageSize}`;
+    const response = await axios.get(pagePeakPostsUrl, {
+      headers: authHeader(),
+    });
+    return (
+      {
+        pages: response.data.totalPages,
+        data: response.data.content,
+      } ?? []
+    );
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };

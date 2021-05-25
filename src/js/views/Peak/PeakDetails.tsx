@@ -35,7 +35,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
   if (!peakDetails) return null;
 
   return (
-    <div className={cx(styles.container, className)}>
+    <div className={cx(styles.container, className)} id="peakPostsScroll">
       <Peak
         peak={peakDetails}
         redirectTo={'/peaks'}
