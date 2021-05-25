@@ -39,6 +39,11 @@
   margin: 20px auto;
 }
 
+.posts {
+  width: 80%;
+  margin: 20px auto;
+}
+
 .buttonBox {
   margin: auto;
   text-align: center;

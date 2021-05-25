@@ -14,3 +14,6 @@ export const getNumberOfPeakConquerorsUrl = (peakId: string): string =>
 
 export const getPeakAverageTimeCompletionUrl = (peakId: string): string =>
   `${process.env.REACT_APP_API_URL}api/public/peakCompletions/${peakId}/averageTime`;
+
+export const getPeakPostsUrl = (peakId: string): string =>
+  `${process.env.REACT_APP_API_URL}api/public/peak/${peakId}/posts`;

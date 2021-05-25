@@ -9,6 +9,7 @@ import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
 
 import cx from 'classnames';
+import PeakPosts from '../../components/Peak/PeakPosts';
 
 export type peakInformations = 'description' | 'map' | 'posts';
 
@@ -43,7 +44,9 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
         peakDetails={true}
       />
       <PeakNavBar state={state} setState={setState} />
-      <div className={styles.peakInformation}>
+      <div
+        className={state !== 'posts' ? styles.peakInformation : styles.posts}
+      >
         {state === 'description' && (
           <PeakDescription
             peak={peakDetails}
@@ -54,7 +57,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
         {state === 'map' && (
           <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />
         )}
-        {state === 'posts' && <p>Posts</p>}
+        {state === 'posts' && <PeakPosts peakId={id} />}
       </div>
     </div>
   );

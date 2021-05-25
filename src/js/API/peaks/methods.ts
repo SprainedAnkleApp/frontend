@@ -7,8 +7,9 @@ import {
   getFirstConquerorUrl,
   getNumberOfPeakConquerorsUrl,
   getPeakAverageTimeCompletionUrl,
+  getPeakPostsUrl,
 } from './urls';
-import { Peak, PeakCompletion, User } from '../../models/interfaces';
+import { Peak, PeakCompletion, Post, User } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -119,5 +120,18 @@ export const getPeakAverageTimeCompletion = async (
   } catch (error) {
     console.log(error);
     return undefined;
+  }
+};
+
+export const getPeakPosts = async (peakId: string): Promise<Post[]> => {
+  try {
+    const response = await axios.get(getPeakPostsUrl(peakId), {
+      headers: authHeader(),
+    });
+    console.log(response.data);
+    return response.data.content;
+  } catch (error) {
+    console.log(error);
+    return [];
   }
 };
