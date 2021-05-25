@@ -1,6 +1,6 @@
 .userPhoto {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: var(--l-border-radius);
     object-fit: cover;
     margin: 0 10px;
@@ -17,6 +17,6 @@
   color: var(--darkest-gray);
 }
 
-.noFirstConqueror {
+.noConqueror {
   margin: 0 10px;
 }

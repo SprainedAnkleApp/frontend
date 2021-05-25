@@ -68,6 +68,26 @@ export const getFirstConqueror = async (
   }
 };
 
+export const getLastConqueror = async (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  peakId: string
+): Promise<User | undefined> => {
+  try {
+    const user: User = {
+      id: 2,
+      firstName: 'Adam',
+      lastName: 'Nowak',
+      profilePhoto: 'https://i.imgur.com/VNNp6zWb.jpg',
+      email: 'anowak@mail.com',
+      login: 'anowak',
+    };
+    return user;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
 export const getNumberOfPeakConquerors = async (
   peakId: string
 ): Promise<number | undefined> => {
