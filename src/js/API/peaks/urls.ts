@@ -17,3 +17,10 @@ export const getPeakAverageTimeCompletionUrl = (peakId: string): string =>
 
 export const getPeakPostsUrl = (peakId: string): string =>
   `${process.env.REACT_APP_API_URL}api/public/peak/${peakId}/posts`;
+
+export const getPagePeakPostsUrl = (
+  peakId: string,
+  page: number,
+  pageSize: number
+): string =>
+  getPeakPostsUrl(peakId) + `?pageNumber=${page}&pageSize=${pageSize}`;

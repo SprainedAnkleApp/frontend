@@ -8,6 +8,7 @@ import {
   getNumberOfPeakConquerorsUrl,
   getPeakAverageTimeCompletionUrl,
   getPeakPostsUrl,
+  getPagePeakPostsUrl,
 } from './urls';
 import { Peak, PeakCompletion, Post, User } from '../../models/interfaces';
 
@@ -140,11 +141,12 @@ export const getPeakPostsPaginated = (
   pageSize: number
 ) => async (page: number): Promise<{ pages: number; data: Post[] }> => {
   try {
-    const pagePeakPostsUrl =
-      getPeakPostsUrl(peakId) + `?pageNumber=${page}&pageSize=${pageSize}`;
-    const response = await axios.get(pagePeakPostsUrl, {
-      headers: authHeader(),
-    });
+    const response = await axios.get(
+      getPagePeakPostsUrl(peakId, page, pageSize),
+      {
+        headers: authHeader(),
+      }
+    );
     return {
       pages: response.data.totalPages,
       data: response.data.content,
