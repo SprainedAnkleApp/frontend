@@ -1,36 +1,34 @@
 import styles from './Posts.module.css';
-import { Post } from '.';
-import { getPostsPaginated } from '../../API/wall/methods';
+import Post from './Post';
 import { Post as PostType } from '../../models/interfaces';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import usePaginatedData from '../../hooks/usePaginatedData';
-import NewPost from './NewPost';
+import usePaginatedData, { Fetcher } from '../../hooks/usePaginatedData';
 
 export type PostsProps = {
-  className: string;
+  postsFetcher: Fetcher<PostType>;
+  className?: string;
+  children?: React.ReactNode;
 };
 
-const Posts = ({ className }: PostsProps) => {
-  const { data, nextPage, hasMore } = usePaginatedData<PostType>(
-    getPostsPaginated(10)
-  );
+const Posts = ({ className, postsFetcher, children }: PostsProps) => {
+  const { data, nextPage, hasMore } = usePaginatedData<PostType>(postsFetcher);
 
   const renderPosts = () =>
     data.map((post) => (
-      <Post key={post.timestamp} {...post} className={styles.post} />
+      <Post key={post.id} {...post} className={styles.post} />
     ));
 
   return (
     <div className={className} id="postsScroll">
-      <NewPost />
+      {children}
       <InfiniteScroll
         dataLength={data.length}
         next={nextPage}
         hasMore={hasMore}
         scrollableTarget="postsScroll"
         loader={<h4>Loading...</h4>}
-        className={styles.postListPadding}
+        className={styles.peakScroll}
       >
         {renderPosts()}
       </InfiniteScroll>

@@ -1,9 +1,17 @@
+.post {
+  margin-top: 30px;
+}
+
+.post:first-child {
+  margin-top: 0;
+}
+
 .peakScroll {
   overflow: scroll;
   max-height: 100%; 
   padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-right: 6%;
+  padding-left: 6%;
   -ms-overflow-style: none;  /* Internet Explorer 10+ and Edge */
   scrollbar-width: none;  /* Firefox */
   overflow-x: hidden
@@ -11,12 +19,4 @@
 
 .peakScroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
-}
-
-.post {
-  margin-top: 30px;
-}
-
-.post:first-child {
-  margin-top: 0;
 }

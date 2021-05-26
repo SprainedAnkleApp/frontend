@@ -1,9 +1,9 @@
 import { Header } from '../../components/common/Header';
 import {
   Friends,
-  Posts,
   Achievements,
   ChatWindow,
+  NewPost,
 } from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
 
@@ -15,6 +15,8 @@ import { PeaksList } from '../PeaksList';
 import React from 'react';
 import { User } from '../../models/interfaces';
 import { PeakDetails } from '../Peak';
+import Posts from '../../components/common/Posts';
+import { getPostsPaginated } from '../../API/wall/methods';
 
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -62,7 +64,12 @@ const Home = () => {
             />
           </Route>
           <Route path="/">
-            <Posts className={styles.central} />
+            <Posts
+              className={styles.central}
+              postsFetcher={getPostsPaginated(10)}
+            >
+              <NewPost />
+            </Posts>
           </Route>
         </Switch>
         <Achievements />
