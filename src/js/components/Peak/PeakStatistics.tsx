@@ -6,6 +6,7 @@ import {
   getPeakAverageTimeCompletion,
 } from '../../API/peaks/methods';
 import { User } from '../../models/interfaces';
+import { Icon } from '../common';
 import styles from './PeakStatistics.module.css';
 
 const PeakStatistics = ({ peakId }: { peakId: string }) => {
@@ -39,34 +40,34 @@ const PeakStatistics = ({ peakId }: { peakId: string }) => {
         Pierwszy zdobywca:
         {firstConqueror ? (
           <>
-            <img
-              src={firstConqueror.profilePhoto}
-              alt=""
-              className={styles.userPhoto}
+            <Icon
+              url={firstConqueror.profilePhoto}
+              variant="xs"
+              className={styles.horizontalMargin}
             />
             <span>
               {firstConqueror.firstName} {firstConqueror.lastName}
             </span>
           </>
         ) : (
-          <span className={styles.noConqueror}>-</span>
+          <span className={styles.horizontalMargin}>-</span>
         )}
       </p>
       <p className={styles.wrapper}>
         Ostatni zdobywca:
         {lastConqueror ? (
           <>
-            <img
-              src={lastConqueror.profilePhoto}
-              alt=""
-              className={styles.userPhoto}
+            <Icon
+              url={lastConqueror.profilePhoto}
+              variant="xs"
+              className={styles.horizontalMargin}
             />
             <span>
               {lastConqueror.firstName} {lastConqueror.lastName}
             </span>
           </>
         ) : (
-          <span className={styles.noConqueror}>-</span>
+          <span className={styles.horizontalMargin}>-</span>
         )}
       </p>
       {numberOfPeakConquerors !== undefined && (
