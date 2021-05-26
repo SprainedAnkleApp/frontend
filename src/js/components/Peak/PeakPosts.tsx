@@ -3,7 +3,6 @@ import { Post as PostType } from '../../models/interfaces';
 import { getPeakPostsPaginated } from '../../API/peaks/methods';
 import { Post } from '../Home';
 import styles from './PeakPosts.module.css';
-import postStyles from '../Home/Posts.module.css';
 import usePaginatedData from '../../hooks/usePaginatedData';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -14,7 +13,7 @@ const PeakPosts = ({ peakId }: { peakId: string }) => {
 
   const renderPosts = () =>
     data.map((post) => (
-      <Post key={post.id} {...post} className={postStyles.post} />
+      <Post key={post.id} {...post} className={styles.post} />
     ));
 
   return (
