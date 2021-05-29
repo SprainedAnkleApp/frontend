@@ -6,6 +6,13 @@
   object-fit: cover;
 }
 
+.xsSize {
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+}
+
 .sSize {
   width: 35px;
   height: 35px;

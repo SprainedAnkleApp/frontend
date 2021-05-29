@@ -6,8 +6,11 @@ import {
   getPeakCompletionUrl,
   getFirstConquerorUrl,
   getNumberOfPeakConquerorsUrl,
+  getPeakAverageTimeCompletionUrl,
+  getPeakPostsUrl,
+  getPagePeakPostsUrl,
 } from './urls';
-import { Peak, PeakCompletion, User } from '../../models/interfaces';
+import { Peak, PeakCompletion, Post, User } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -67,6 +70,26 @@ export const getFirstConqueror = async (
   }
 };
 
+export const getLastConqueror = async (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  peakId: string
+): Promise<User | undefined> => {
+  try {
+    const user: User = {
+      id: 2,
+      firstName: 'Adam',
+      lastName: 'Nowak',
+      profilePhoto: 'https://i.imgur.com/VNNp6zWb.jpg',
+      email: 'anowak@mail.com',
+      login: 'anowak',
+    };
+    return user;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
 export const getNumberOfPeakConquerors = async (
   peakId: string
 ): Promise<number | undefined> => {
@@ -81,5 +104,55 @@ export const getNumberOfPeakConquerors = async (
   } catch (error) {
     console.log(error);
     return undefined;
+  }
+};
+
+export const getPeakAverageTimeCompletion = async (
+  peakId: string
+): Promise<number | undefined> => {
+  try {
+    const response = await axios.get<number>(
+      getPeakAverageTimeCompletionUrl(peakId),
+      {
+        headers: authHeader(),
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+
+export const getPeakPosts = async (peakId: string): Promise<Post[]> => {
+  try {
+    const response = await axios.get(getPeakPostsUrl(peakId), {
+      headers: authHeader(),
+    });
+    return response.data.content;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const getPeakPostsPaginated = (
+  peakId: string,
+  pageSize: number
+) => async (page: number): Promise<{ pages: number; data: Post[] }> => {
+  try {
+    const response = await axios.get(
+      getPagePeakPostsUrl(peakId, page, pageSize),
+      {
+        headers: authHeader(),
+      }
+    );
+    return {
+      pages: response.data.totalPages,
+      data: response.data.content,
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
