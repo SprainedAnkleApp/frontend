@@ -14,19 +14,12 @@ const Post = ({
   photoPath,
   content,
   timestamp,
-  liked,
+  reactions,
   comments,
   watch,
   className,
   user,
 }: PostProps) => {
-  const getContent = () => {
-    if (photoPath)
-      return (
-        <img src={photoPath} alt="post content" className={styles.photo} />
-      );
-    return <span>{content}</span>;
-  };
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
@@ -36,7 +29,20 @@ const Post = ({
         active={true}
         rightPart={<KebabMenu className={styles.kebab} />}
       />
-      <div className={styles.content}>{getContent()}</div>
+      <div className={styles.content}>
+        {content && (
+          <span
+            className={cx(styles['content-text'], {
+              [styles.withBottomPadding]: photoPath,
+            })}
+          >
+            {content}
+          </span>
+        )}
+        {photoPath && (
+          <img src={photoPath} alt="post content" className={styles.photo} />
+        )}
+      </div>
       <div className={styles.buttons}>
         <div className={styles['button-container']}>
           <button
@@ -45,7 +51,7 @@ const Post = ({
           >
             <BsFillHeartFill />
           </button>
-          <span className={styles['button-text']}>{liked}</span>
+          <span className={styles['button-text']}>{reactions}</span>
         </div>
         <div className={styles['button-container']}>
           <button

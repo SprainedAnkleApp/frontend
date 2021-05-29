@@ -26,6 +26,7 @@ export type User = {
 };
 
 export type Comment = {
+  user: User;
   text: string;
 };
 
@@ -34,7 +35,7 @@ export type Post = {
   photoPath?: string;
   content?: string;
   timestamp: string;
-  liked: number;
+  reactions: number;
   comments: Comment[];
   watch: number;
   peak?: Peak;

@@ -18,7 +18,7 @@ const NewPost = () => {
   useEffect(() => {
     if (cardRef.current) {
       setOffset(cardRef.current.clientHeight);
-      setWidth(cardRef.current.clientWidth);
+      setWidth(cardRef.current.clientWidth + 1);
     }
   }, []);
 
@@ -26,7 +26,7 @@ const NewPost = () => {
     const resizeListener = () => {
       if (cardRef.current) {
         setOffset(cardRef.current.clientHeight);
-        setWidth(cardRef.current.clientWidth);
+        setWidth(cardRef.current.clientWidth + 1);
       }
     };
     window.addEventListener('resize', resizeListener);
@@ -41,7 +41,7 @@ const NewPost = () => {
         <Card.Card ref={cardRef}>
           <div className={styles.wrapper}>
             <Icon url={user.profilePhoto} />
-            <div className={styles.input}>O czym myślisz</div>
+            <p className={styles.input}>O czym myślisz?</p>
           </div>
         </Card.Card>
       </div>
@@ -68,7 +68,6 @@ const NewPost = () => {
     filter: 'blur(1px)',
   };
 
-  // TODO enhance positioning of modal and watch resize events
   return (
     <div className={styles.main}>
       <Popup
