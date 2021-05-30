@@ -17,7 +17,7 @@ type FormValues = {
   hours: number;
 };
 
-const PeakDescription = ({ peak, showForm }: PeakDescriptionProps) => {
+const PeakDescription = ({ peak }: PeakDescriptionProps) => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const { register, errors, handleSubmit } = useForm<FormValues>();
 
