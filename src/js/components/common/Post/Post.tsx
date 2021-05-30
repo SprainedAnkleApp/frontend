@@ -1,10 +1,11 @@
-import { KebabMenu, Card } from '.';
+import { KebabMenu, Card } from '..';
 import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
-import React from 'react';
-import { Post as PostType, User } from '../../models/interfaces';
+import React, { useState } from 'react';
+import { Post as PostType, User } from '../../../models/interfaces';
+import { Comments } from '.';
 
 export type PostProps = PostType & {
   className?: string;
@@ -20,6 +21,7 @@ const Post = ({
   className,
   user,
 }: PostProps) => {
+  const [showComments, setShowComments] = useState(false);
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
@@ -56,7 +58,7 @@ const Post = ({
         <div className={styles['button-container']}>
           <button
             className={styles['button-icon']}
-            onClick={() => console.log('comments')}
+            onClick={() => setShowComments((show) => !show)}
           >
             <BsFillChatFill />
           </button>
@@ -72,6 +74,11 @@ const Post = ({
           <span className={styles['button-text']}>{watch}</span>
         </div>
       </div>
+      {showComments && (
+        <div>
+          <Comments comments={comments ?? []} />
+        </div>
+      )}
     </Card.Card>
   );
 };

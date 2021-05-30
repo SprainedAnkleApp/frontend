@@ -15,7 +15,7 @@ import { PeaksList } from '../PeaksList';
 import React from 'react';
 import { User } from '../../models/interfaces';
 import { PeakDetails } from '../Peak';
-import Posts from '../../components/common/Posts';
+import { Posts } from '../../components/common/Post';
 import { getPostsPaginated } from '../../API/wall/methods';
 
 const Home = () => {
