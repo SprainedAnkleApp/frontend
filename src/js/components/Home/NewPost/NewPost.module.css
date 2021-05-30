@@ -11,9 +11,11 @@
 .modal {
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto auto;
   grid-template-areas: 
   "icon textarea"
-  ". textarea"
+  "addImage textarea"
+  ". photo"
   "button button";
 }
 
@@ -49,6 +51,13 @@
   grid-area: icon;
 }
 
+.addImage {
+  grid-area: addImage;
+  justify-self: top;
+  margin-top: 15px;
+}
+
+
 
 .input {
   background-color: transparent;
@@ -69,4 +78,11 @@
 
 .input:focus {
   outline: none;
+}
+
+.photo {
+  grid-area: photo;
+  object-fit: cover;
+  max-width: 100%;
+  padding: 15px;
 }

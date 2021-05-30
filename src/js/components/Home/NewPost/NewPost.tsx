@@ -1,9 +1,11 @@
-import { Icon, Card, SubmitButton } from '../common';
-import styles from './NewPost.module.css';
+import { Icon, Card, SubmitButton } from '../../common';
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import { userContext } from '../../contexts/CurrentUser';
+import { userContext } from '../../../contexts/CurrentUser';
 import Popup from 'reactjs-popup';
-import { createNewPost } from '../../API/wall/methods';
+import { createNewPost } from '../../../API/wall/methods';
+
+import styles from './NewPost.module.css';
+import AddImage from './AddImage';
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -11,7 +13,10 @@ const NewPost = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState(0);
+
   const [postText, setPostText] = useState('');
+  const [image, setImage] = useState<null | File>(null);
+
   const [error, setError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
@@ -98,6 +103,13 @@ const NewPost = () => {
               <Card.Card ref={modalRef}>
                 <div className={styles.modal}>
                   <Icon url={user.profilePhoto} className={styles.icon} />
+                  <AddImage
+                    image={image}
+                    addImage={(e) =>
+                      setImage(e?.target?.files && e.target.files[0])
+                    }
+                    className={styles.addImage}
+                  />
                   <textarea
                     placeholder={'O czym myślisz?'}
                     className={styles.textarea}
@@ -108,6 +120,13 @@ const NewPost = () => {
                       setButtonDisabled(false);
                     }}
                   />
+                  {image && (
+                    <img
+                      className={styles.photo}
+                      src={URL.createObjectURL(image)}
+                      alt="uploaded photo"
+                    />
+                  )}
                   <SubmitButton
                     text={error ? 'Wystapił błąd' : 'Opublikuj'}
                     className={styles.submitButton}
