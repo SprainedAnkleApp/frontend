@@ -13,31 +13,10 @@
     font-size: var(--s-font-size);
 }
 
-.timeInputContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: var(--bold-font-weight);
-    font-size: var(--s-font-size);
-    color: var(--darkest-gray);
-}
-
 .label {
     font-weight: var(--bold-font-weight);
     font-size: var(--s-font-size);
     color: var(--darkest-gray);
-}
-
-.timeInput {
-    border: var(--l-border-width) solid var(--border-gray);  
-    border-radius: var(--xl-border-radius);
-    background-color: #F1F1F1;
-    font-weight: var(--normal-font-weight);
-    font-size: var(--s-font-size);
-    color: var(--darkest-gray);
-    text-align: center;
-    height: 50px;
-    width: 55px;
 }
 
 .buttonBox {
