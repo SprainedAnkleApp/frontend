@@ -13,33 +13,33 @@ const PeakStatistics = ({ statistics }: { statistics: any }) => {
       {statistics.completion_total !== undefined && (
         <p>Liczba zdobywców: {statistics.completion_total}</p>
       )}
-      Pierwszy zdobywca:
-      {statistics.completion_first ? (
-        <UserInfo
-          profilePhoto={statistics.completion_first.user.profilePhoto}
-          name={
-            statistics.completion_first.user.firstName +
-            ' ' +
-            statistics.completion_first.user.lastName
-          }
-          minutes={statistics.completion_first.completionTime}
-        />
-      ) : (
-        <span className={styles.horizontalMargin}>-</span>
+      {statistics.completion_first && (
+        <>
+          Pierwszy zdobywca:
+          <UserInfo
+            profilePhoto={statistics.completion_first.user.profilePhoto}
+            name={
+              statistics.completion_first.user.firstName +
+              ' ' +
+              statistics.completion_first.user.lastName
+            }
+            minutes={statistics.completion_first.completionTime}
+          />
+        </>
       )}
-      Najszybszy zdobywca:
-      {statistics.time_fastest ? (
-        <UserInfo
-          profilePhoto={statistics.time_fastest.user.profilePhoto}
-          name={
-            statistics.time_fastest.user.firstName +
-            ' ' +
-            statistics.time_fastest.user.lastName
-          }
-          minutes={statistics.time_fastest.completionTime}
-        />
-      ) : (
-        <span className={styles.horizontalMargin}>-</span>
+      {statistics.time_fastest && (
+        <>
+          Najszybszy zdobywca:
+          <UserInfo
+            profilePhoto={statistics.time_fastest.user.profilePhoto}
+            name={
+              statistics.time_fastest.user.firstName +
+              ' ' +
+              statistics.time_fastest.user.lastName
+            }
+            minutes={statistics.time_fastest.completionTime}
+          />
+        </>
       )}
       {statistics.completion_latest.length > 0 && (
         <>
