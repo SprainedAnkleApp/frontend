@@ -6,12 +6,14 @@ import styles from './Post.module.css';
 import React, { useState } from 'react';
 import { Post as PostType, User } from '../../../models/interfaces';
 import { Comments } from '.';
+import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 
 export type PostProps = PostType & {
   className?: string;
 };
 
 const Post = ({
+  id,
   photoPath,
   content,
   timestamp,
@@ -21,6 +23,8 @@ const Post = ({
   className,
   user,
 }: PostProps) => {
+  const [liked, setLiked] = useState(false);
+  const [watched, setWatched] = useState(false);
   const [showComments, setShowComments] = useState(false);
   return (
     <Card.Card className={className}>
@@ -48,8 +52,21 @@ const Post = ({
       <div className={styles.buttons}>
         <div className={styles['button-container']}>
           <button
-            className={cx(styles['button-icon'], styles.heart)}
-            onClick={() => console.log('like')}
+            className={cx(styles['button-icon'], styles.heart, {
+              [styles.clicked]: liked,
+            })}
+            onClick={async () => {
+              try {
+                if (liked) {
+                  deleteReaction(id, 'LIKE');
+                  setLiked(false);
+                } else {
+                  createReaction(id, 'LIKE');
+                  setLiked(true);
+                }
+                // eslint-disable-next-line no-empty
+              } catch {}
+            }}
           >
             <BsFillHeartFill />
           </button>
@@ -64,10 +81,25 @@ const Post = ({
           </button>
           <span className={styles['button-text']}>{comments}</span>
         </div>
-        <div className={cx(styles['button-container'], styles.watch)}>
+        <div
+          className={cx(styles['button-container'], styles.watch, {
+            [styles.clicked]: watched,
+          })}
+        >
           <button
             className={styles['button-icon']}
-            onClick={() => console.log('watch')}
+            onClick={async () => {
+              try {
+                if (liked) {
+                  deleteReaction(id, 'LOVE');
+                  setLiked(false);
+                } else {
+                  createReaction(id, 'LOVE');
+                  setLiked(true);
+                }
+                // eslint-disable-next-line no-empty
+              } catch {}
+            }}
           >
             <BsEyeFill />
           </button>

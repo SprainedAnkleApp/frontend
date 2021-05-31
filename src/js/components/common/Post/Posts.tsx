@@ -16,6 +16,7 @@ const Posts = ({ className, postsFetcher, children }: PostsProps) => {
 
   const renderPosts = () =>
     data.map((post) => {
+      console.log(post);
       return <Post key={post.id} {...post} className={styles.post} />;
     });
 
