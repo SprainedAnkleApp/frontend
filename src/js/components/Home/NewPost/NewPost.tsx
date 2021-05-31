@@ -61,7 +61,7 @@ const NewPost = () => {
   const overlayStyle = {
     zIndex: 5,
     background: 'rgba(255, 255, 255, 0.2)',
-    filter: 'blur(1px)',
+    filter: 'blur(6px)',
   };
 
   return (
@@ -80,7 +80,7 @@ const NewPost = () => {
             if (!isOpen) return;
             const rootDiv = document.getElementById('root');
             if (!rootDiv) return;
-            rootDiv.style.filter = 'blur(1px)';
+            rootDiv.style.filter = 'blur(6px)';
 
             return () => {
               if (!isOpen) return;

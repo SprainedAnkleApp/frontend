@@ -14,12 +14,10 @@
   border: var(--l-border-width) solid var(--border-gray);  
   border-radius: var(--xl-border-radius);
 
-  background-color: #F1F1F1;
   font-weight: var(--normal-font-weight);
   font-size: var(--s-font-size);
   color: var(--darkest-gray);
-  height: 45px;
-  padding: 2px 20px;
+  padding: 15px 22px;
   margin-top: 2px;
 }
 .input:focus {
