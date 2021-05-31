@@ -90,12 +90,12 @@ const Post = ({
             className={styles['button-icon']}
             onClick={async () => {
               try {
-                if (liked) {
+                if (watched) {
                   deleteReaction(id, 'LOVE');
-                  setLiked(false);
+                  setWatched(false);
                 } else {
                   createReaction(id, 'LOVE');
-                  setLiked(true);
+                  setWatched(true);
                 }
                 // eslint-disable-next-line no-empty
               } catch {}
