@@ -50,7 +50,7 @@ const PeakStatistics = ({ statistics }: { statistics: any }) => {
                 profilePhoto={statistic.user.profilePhoto}
                 name={statistic.user.firstName + ' ' + statistic.user.lastName}
                 minutes={statistic.completionTime}
-                key={statistic.id}
+                key={statistic.id.userId}
               />
             );
           })}

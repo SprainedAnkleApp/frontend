@@ -25,7 +25,6 @@ export const getPeak = async (id: string): Promise<Peak | undefined> => {
     const response = await axios.get<Peak>(getPeakUrl(id), {
       headers: authHeader(),
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);

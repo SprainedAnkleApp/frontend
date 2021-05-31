@@ -3,15 +3,14 @@ import { Icon } from '../common';
 import styles from './UserInfo.module.css';
 
 export type UserInfoProps = {
-  key?: number | string;
   name: string;
   profilePhoto: string;
   minutes: number;
 };
 
-const UserInfo = ({ name, minutes, profilePhoto, key }: UserInfoProps) => {
+const UserInfo = ({ name, minutes, profilePhoto }: UserInfoProps) => {
   return (
-    <div className={styles.wrapper} key={key}>
+    <div className={styles.wrapper}>
       <Icon
         url={profilePhoto}
         variant="xs"
