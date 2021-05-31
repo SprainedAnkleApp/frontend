@@ -1,0 +1,25 @@
+.addImage {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+
+  font-size: 35px;
+  background-color: var(--lighter-gray);
+}
+
+.withImage {
+  background-color: var(--light-green);
+}
+
+.addImage label {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.addImage input {
+  display: none;
+}
+

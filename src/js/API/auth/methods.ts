@@ -29,12 +29,16 @@ export const logout = (): void => {
 
 export type AuthHeader = {
   Authorization?: string;
+  ['Content-Type']?: string;
 };
 
 export default function authHeader(): AuthHeader {
   const userInfo = localStorage.getItem('userInfo');
   if (userInfo) {
-    return { Authorization: JSON.parse(userInfo) };
+    return {
+      Authorization: JSON.parse(userInfo),
+      ['Content-Type']: 'application/json',
+    };
   } else {
     return {};
   }
