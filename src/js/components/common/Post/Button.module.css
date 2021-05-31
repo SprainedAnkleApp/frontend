@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.icon {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 22px;
+  height: 22px;
+  cursor: pointer;
+  color: inherit;
+  font-weight: var(--extra-bold-font-weight);
+}
+
+.text {
+  font-size: var(--xxs-font-size);
+  color: var(--gray);
+  line-height: 16px;
+}
+
+.icon:active {
+  opacity: 0.8;
+}
+
+.clicked {
+  opacity: 0.8;
+}

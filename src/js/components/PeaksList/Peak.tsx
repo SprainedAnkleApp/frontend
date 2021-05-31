@@ -71,7 +71,6 @@ const Peak = ({
         ) : (
           <TiTimes className={styles.reachedIcon} />
         )}
-
         <Popup
           trigger={
             <p className={styles.reachedText}>

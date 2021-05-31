@@ -14,6 +14,15 @@ export type Peak = {
   latitude: number;
   longitude: number;
   completed: boolean;
+  statistics: Statistics;
+};
+
+export type Statistics = {
+  time_average: number;
+  completion_total: number;
+  completion_first: PeakCompletion;
+  time_fastest: PeakCompletion;
+  completion_latest: PeakCompletion[];
 };
 
 export type User = {
@@ -26,15 +35,18 @@ export type User = {
 };
 
 export type Comment = {
+  user: User;
   text: string;
 };
+
+export type Reaction = 'LIKE' | 'LOVE';
 
 export type Post = {
   id: number;
   photoPath?: string;
   content?: string;
   timestamp: string;
-  liked: number;
+  reactions: Reaction[];
   comments: Comment[];
   watch: number;
   peak?: Peak;
@@ -54,6 +66,7 @@ export type Achievement = {
 };
 
 export type PeakCompletion = {
+  user: User;
   id: {
     userId: number;
     peakId: number;

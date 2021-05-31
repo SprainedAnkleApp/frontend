@@ -6,9 +6,10 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-.messages::-webkit-scrollbar {
-  width: none;
+.wrapper::-webkit-scrollbar {
+  display: none;
 }
+
 .title {
   font-size: var(--m-font-size);
   font-weight: var(--bold-font-weight);

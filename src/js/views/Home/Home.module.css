@@ -30,5 +30,5 @@
 }
 
 .central::-webkit-scrollbar {
-  width: none;
+  display: none;
 }

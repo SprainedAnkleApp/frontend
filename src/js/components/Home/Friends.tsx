@@ -55,7 +55,7 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.title}>Friends</div>
+      <div className={styles.title}>Znajomi</div>
       {filteredFriends.map(toFriendInfoComponent)}
     </div>
   );

@@ -1,9 +1,9 @@
 import styles from './Posts.module.css';
 import Post from './Post';
-import { Post as PostType } from '../../models/interfaces';
+import { Post as PostType } from '../../../models/interfaces';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import usePaginatedData, { Fetcher } from '../../hooks/usePaginatedData';
+import usePaginatedData, { Fetcher } from '../../../hooks/usePaginatedData';
 
 export type PostsProps = {
   postsFetcher: Fetcher<PostType>;
@@ -15,9 +15,10 @@ const Posts = ({ className, postsFetcher, children }: PostsProps) => {
   const { data, nextPage, hasMore } = usePaginatedData<PostType>(postsFetcher);
 
   const renderPosts = () =>
-    data.map((post) => (
-      <Post key={post.id} {...post} className={styles.post} />
-    ));
+    data.map((post) => {
+      console.log(post);
+      return <Post key={post.id} {...post} className={styles.post} />;
+    });
 
   return (
     <div className={className} id="postsScroll">
