@@ -5,7 +5,7 @@ import styles from './UserInfo.module.css';
 export type UserInfoProps = {
   name: string;
   profilePhoto: string;
-  minutes: number;
+  minutes: string;
 };
 
 const UserInfo = ({ name, minutes, profilePhoto }: UserInfoProps) => {

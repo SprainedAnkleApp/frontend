@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import { PeakCompletion, Statistics } from '../../models/interfaces';
 import styles from './PeakStatistics.module.css';
 import UserInfo from './UserInfo';
 
-const PeakStatistics = ({ statistics }: { statistics: any }) => {
+const PeakStatistics = ({ statistics }: { statistics: Statistics }) => {
   return (
     <>
       <h3 className={styles.statisticsHeader}>Statystyki</h3>
@@ -44,16 +44,22 @@ const PeakStatistics = ({ statistics }: { statistics: any }) => {
       {statistics.completion_latest.length > 0 && (
         <>
           Ostatni zdobywcy:
-          {statistics.completion_latest.map((statistic: any) => {
-            return (
-              <UserInfo
-                profilePhoto={statistic.user.profilePhoto}
-                name={statistic.user.firstName + ' ' + statistic.user.lastName}
-                minutes={statistic.completionTime}
-                key={statistic.id.userId}
-              />
-            );
-          })}
+          {statistics.completion_latest.map(
+            (peakCompletion: PeakCompletion) => {
+              return (
+                <UserInfo
+                  profilePhoto={peakCompletion.user.profilePhoto}
+                  name={
+                    peakCompletion.user.firstName +
+                    ' ' +
+                    peakCompletion.user.lastName
+                  }
+                  minutes={peakCompletion.completionTime}
+                  key={peakCompletion.id.userId}
+                />
+              );
+            }
+          )}
         </>
       )}
     </>

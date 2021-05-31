@@ -1,6 +1,6 @@
 import styles from './PeakDescription.module.css';
 import React from 'react';
-import { Peak } from '../../models/interfaces';
+import { Peak, Statistics } from '../../models/interfaces';
 import { SubmitButton } from '../common';
 import { completeThePeak } from '../../API/peaks/methods';
 import PeakStatistics from './PeakStatistics';
@@ -8,8 +8,7 @@ import PeakStatistics from './PeakStatistics';
 export type PeakDescriptionProps = {
   peak: Peak;
   showForm: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  statistics: any;
+  statistics: Statistics;
 };
 const PeakDescription = ({
   peak,

@@ -14,8 +14,15 @@ export type Peak = {
   latitude: number;
   longitude: number;
   completed: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  statistics: any;
+  statistics: Statistics;
+};
+
+export type Statistics = {
+  time_average: number;
+  completion_total: number;
+  completion_first: PeakCompletion;
+  time_fastest: PeakCompletion;
+  completion_latest: PeakCompletion[];
 };
 
 export type User = {
@@ -59,6 +66,7 @@ export type Achievement = {
 };
 
 export type PeakCompletion = {
+  user: User;
   id: {
     userId: number;
     peakId: number;
