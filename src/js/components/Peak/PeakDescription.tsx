@@ -8,8 +8,14 @@ import PeakStatistics from './PeakStatistics';
 export type PeakDescriptionProps = {
   peak: Peak;
   showForm: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  statistics: any;
 };
-const PeakDescription = ({ peak, showForm }: PeakDescriptionProps) => {
+const PeakDescription = ({
+  peak,
+  showForm,
+  statistics,
+}: PeakDescriptionProps) => {
   // TODO add form to reach peak
   const reachPeak = async (time: number) => {
     const peakCompletionResponse = await completeThePeak(peak.id, time);
@@ -23,7 +29,7 @@ const PeakDescription = ({ peak, showForm }: PeakDescriptionProps) => {
       <p>Wysokość: {peak.height} m n.p.m.</p>
       <p>Województwo: {peak.region}</p>
       <p>Pasmo górskie: {peak.mountainRange}</p>
-      <PeakStatistics peakId={peak.id} />
+      <PeakStatistics statistics={statistics} />
       {showForm && (
         <div className={styles.buttonBox}>
           <SubmitButton

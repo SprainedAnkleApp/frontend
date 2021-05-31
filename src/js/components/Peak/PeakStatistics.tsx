@@ -1,80 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import {
-  getFirstConqueror,
-  getLastConqueror,
-  getNumberOfPeakConquerors,
-  getPeakAverageTimeCompletion,
-} from '../../API/peaks/methods';
-import { User } from '../../models/interfaces';
-import { Icon } from '../common';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
 import styles from './PeakStatistics.module.css';
+import UserInfo from './UserInfo';
 
-const PeakStatistics = ({ peakId }: { peakId: string }) => {
-  const [firstConqueror, setFirstConqueror] = useState<User | undefined>(
-    undefined
-  );
-  const [lastConqueror, setLastConqueror] = useState<User | undefined>(
-    undefined
-  );
-  const [numberOfPeakConquerors, setNumberOfPeakConquerors] = useState<
-    number | undefined
-  >(undefined);
-  const [averageTimeCompletion, setAverageTimeCompletion] = useState<
-    number | undefined
-  >(undefined);
-
-  useEffect(() => {
-    const getPeakStatistics = async () => {
-      setFirstConqueror(await getFirstConqueror(peakId));
-      setNumberOfPeakConquerors(await getNumberOfPeakConquerors(peakId));
-      setAverageTimeCompletion(await getPeakAverageTimeCompletion(peakId));
-      setLastConqueror(await getLastConqueror(peakId));
-    };
-    getPeakStatistics();
-  }, []);
-
+const PeakStatistics = ({ statistics }: { statistics: any }) => {
   return (
     <>
-      <h3 className={styles.statisticsHeader}>Statistics</h3>
-      <p className={styles.wrapper}>
-        Pierwszy zdobywca:
-        {firstConqueror ? (
-          <>
-            <Icon
-              url={firstConqueror.profilePhoto}
-              variant="xs"
-              className={styles.horizontalMargin}
-            />
-            <span>
-              {firstConqueror.firstName} {firstConqueror.lastName}
-            </span>
-          </>
-        ) : (
-          <span className={styles.horizontalMargin}>-</span>
-        )}
-      </p>
-      <p className={styles.wrapper}>
-        Ostatni zdobywca:
-        {lastConqueror ? (
-          <>
-            <Icon
-              url={lastConqueror.profilePhoto}
-              variant="xs"
-              className={styles.horizontalMargin}
-            />
-            <span>
-              {lastConqueror.firstName} {lastConqueror.lastName}
-            </span>
-          </>
-        ) : (
-          <span className={styles.horizontalMargin}>-</span>
-        )}
-      </p>
-      {numberOfPeakConquerors !== undefined && (
-        <p>Liczba zdobywców: {numberOfPeakConquerors}</p>
+      <h3 className={styles.statisticsHeader}>Statystyki</h3>
+      {statistics.time_average !== undefined && (
+        <p>Średni czas zdobycia szczytu: {statistics.time_average} min</p>
       )}
-      {averageTimeCompletion !== undefined && (
-        <p>Średni czas zdobycia szczytu: {averageTimeCompletion} min</p>
+      {statistics.completion_total !== undefined && (
+        <p>Liczba zdobywców: {statistics.completion_total}</p>
+      )}
+      Pierwszy zdobywca:
+      {statistics.completion_first ? (
+        <UserInfo
+          profilePhoto={statistics.completion_first.user.profilePhoto}
+          name={
+            statistics.completion_first.user.firstName +
+            ' ' +
+            statistics.completion_first.user.lastName
+          }
+          minutes={statistics.completion_first.completionTime}
+        />
+      ) : (
+        <span className={styles.horizontalMargin}>-</span>
+      )}
+      Najszybszy zdobywca:
+      {statistics.time_fastest ? (
+        <UserInfo
+          profilePhoto={statistics.time_fastest.user.profilePhoto}
+          name={
+            statistics.time_fastest.user.firstName +
+            ' ' +
+            statistics.time_fastest.user.lastName
+          }
+          minutes={statistics.time_fastest.completionTime}
+        />
+      ) : (
+        <span className={styles.horizontalMargin}>-</span>
+      )}
+      {statistics.completion_latest.length > 0 && (
+        <>
+          Ostatni zdobywcy:
+          {statistics.completion_latest.map((statistic: any) => {
+            return (
+              <UserInfo
+                profilePhoto={statistic.user.profilePhoto}
+                name={statistic.user.firstName + ' ' + statistic.user.lastName}
+                minutes={statistic.completionTime}
+                key={statistic.id}
+              />
+            );
+          })}
+        </>
       )}
     </>
   );

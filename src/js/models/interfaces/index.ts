@@ -14,6 +14,8 @@ export type Peak = {
   latitude: number;
   longitude: number;
   completed: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  statistics: any;
 };
 
 export type User = {
