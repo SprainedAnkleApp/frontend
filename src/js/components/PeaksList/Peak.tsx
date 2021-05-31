@@ -46,7 +46,7 @@ const Peak = ({
           <TiTimes className={styles.reachedIcon} />
         )}
         <p className={styles.reachedText}>
-          {peak.completed ? 'Zdobyty' : 'Zdobyj'}
+          {peak.completed ? 'Zdobyty' : 'Zdobądź'}
         </p>
       </div>
     </div>
