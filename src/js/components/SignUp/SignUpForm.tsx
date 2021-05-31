@@ -34,7 +34,6 @@ const SignUpForm = () => {
       email: data.email,
       password: data.password,
       matchingPassword: data.repeatPassword,
-      gender: data.gender,
     });
 
     promise
@@ -92,7 +91,7 @@ const SignUpForm = () => {
 
       <InputWithLabel
         type={'text'}
-        name={'login'}
+        name={'username'}
         label={'Nazwa użytkownika'}
         placeholder={'Wprowadź nazwę użytkownika'}
         ref={register({
@@ -132,19 +131,6 @@ const SignUpForm = () => {
           validate: {
             repeatPassword: (value) =>
               value === password.current || 'Hasła muszą być takie same',
-          },
-        })}
-        error={errors.repeatPassword}
-      />
-      <SelectWithLabel
-        type={'text'}
-        name={'gender'}
-        label={'Płeć'}
-        placeholder={'Wybierz płeć'}
-        options={['kobieta', 'męższczyzna', 'inne']}
-        ref={register({
-          validate: {
-            gender: (value) => value !== 'DEFAULT' || 'Pole wymagane',
           },
         })}
         error={errors.repeatPassword}
