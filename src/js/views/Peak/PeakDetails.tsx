@@ -52,6 +52,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
             peak={peakDetails}
             showForm={showForm}
             key={peakDetails.name}
+            statistics={peakDetails.statistics}
           />
         )}
         {state === 'map' && (

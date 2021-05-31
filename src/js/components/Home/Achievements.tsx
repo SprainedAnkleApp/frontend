@@ -37,7 +37,7 @@ const Achievements = () => {
         progress={1 / 3}
         className={styles.achievement}
       />
-      <div className={styles.title}>Achievements</div>
+      <div className={styles.title}>Osiągnięcia</div>
       <div className={styles.achievements}>
         {achievements.map(toAchievementComponent)}
       </div>

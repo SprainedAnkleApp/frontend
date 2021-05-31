@@ -18,7 +18,7 @@ const PeakNavBar = ({ state, setState }: PeakNavbarProps) => {
         })}
         onClick={() => setState('description')}
       >
-        Description
+        Opis
       </div>
 
       <div
@@ -27,7 +27,7 @@ const PeakNavBar = ({ state, setState }: PeakNavbarProps) => {
         })}
         onClick={() => setState('map')}
       >
-        Map
+        Mapa
       </div>
 
       <div
@@ -36,7 +36,7 @@ const PeakNavBar = ({ state, setState }: PeakNavbarProps) => {
         })}
         onClick={() => setState('posts')}
       >
-        Posts
+        Posty
       </div>
     </div>
   );
