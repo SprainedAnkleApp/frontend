@@ -1,13 +1,22 @@
-import { SubmitButton, InputWithLabel, Error } from '../common';
+import {
+  SubmitButton,
+  InputWithLabel,
+  Error,
+  SelectWithLabel,
+} from '../common';
 import { useHistory } from 'react-router';
 import { signUp } from '../../API/auth/methods';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import React, { useState, useRef } from 'react';
 
 type FormValues = {
-  login: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   password: string;
   repeatPassword: string;
+  gender: string;
 };
 
 const SignUpForm = () => {
@@ -20,9 +29,13 @@ const SignUpForm = () => {
   const history = useHistory();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const promise = signUp({
-      username: data.login,
+      username: data.username,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
       password: data.password,
       matchingPassword: data.repeatPassword,
+      gender: data.gender,
     });
 
     promise
@@ -41,6 +54,45 @@ const SignUpForm = () => {
     <form onSubmit={(e) => e.preventDefault()}>
       <InputWithLabel
         type={'text'}
+        name={'firstName'}
+        label={'Imię'}
+        placeholder={'Wprowadź swoje imię'}
+        ref={register({
+          required: 'Pole wymagane',
+          maxLength: 30,
+        })}
+        error={errors.firstName}
+      />
+
+      <InputWithLabel
+        type={'text'}
+        name={'lastName'}
+        label={'Nazwisko'}
+        placeholder={'Wprowadź swoje nazwisko'}
+        ref={register({
+          required: 'Pole wymagane',
+          maxLength: 30,
+        })}
+        error={errors.lastName}
+      />
+
+      <InputWithLabel
+        type={'email'}
+        name={'email'}
+        label={'Email'}
+        placeholder={'Wprowadź swój email'}
+        ref={register({
+          required: 'Pole wymagane',
+          pattern: {
+            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            message: 'Niepoprawny email',
+          },
+        })}
+        error={errors.email}
+      />
+
+      <InputWithLabel
+        type={'text'}
         name={'login'}
         label={'Nazwa użytkownika'}
         placeholder={'Wprowadź nazwę użytkownika'}
@@ -48,7 +100,7 @@ const SignUpForm = () => {
           required: 'Pole wymagane',
           maxLength: 30,
         })}
-        error={errors.login}
+        error={errors.username}
       />
 
       <InputWithLabel
@@ -68,8 +120,8 @@ const SignUpForm = () => {
               'Hasło musi zawierać wielką literę, znak specjalny oraz cyfrę',
           },
         })}
+        error={errors.password}
       />
-      {errors.password && <p>{errors.password.message}</p>}
 
       <InputWithLabel
         type={'password'}
@@ -83,8 +135,22 @@ const SignUpForm = () => {
               value === password.current || 'Hasła muszą być takie same',
           },
         })}
+        error={errors.repeatPassword}
       />
-      {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
+      <SelectWithLabel
+        type={'text'}
+        name={'gender'}
+        label={'Płeć'}
+        placeholder={'Wybierz płeć'}
+        options={['kobieta', 'męższczyzna', 'inne']}
+        ref={register({
+          validate: {
+            gender: (value) => value !== 'DEFAULT' || 'Pole wymagane',
+          },
+        })}
+        error={errors.repeatPassword}
+      />
+
       {submitError && <Error text={submitError} />}
 
       <SubmitButton

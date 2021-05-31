@@ -50,7 +50,6 @@ const NewPost = () => {
 
   const sendNewPost = async () => {
     try {
-      console.log('I sent request');
       setButtonDisabled(true);
       await createNewPost(postText);
     } catch (error) {

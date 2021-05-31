@@ -13,11 +13,15 @@ export type Peak = {
   name: string;
   latitude: number;
   longitude: number;
+  completed: boolean;
 };
 
 export type User = {
   id: number;
   login: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   profilePhoto: string;
 };
 
@@ -26,12 +30,15 @@ export type Comment = {
 };
 
 export type Post = {
+  id: number;
   photoPath?: string;
   content?: string;
   timestamp: string;
   liked: number;
   comments: Comment[];
   watch: number;
+  peak?: Peak;
+  user?: User;
 };
 
 export type Friend = {

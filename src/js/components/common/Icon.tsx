@@ -6,7 +6,7 @@ import React from 'react';
 export type IconProps = {
   className?: string;
   url: string;
-  variant?: 's' | 'm' | 'l';
+  variant?: 'xs' | 's' | 'm' | 'l';
 };
 
 const Icon = ({ className, url, variant = 'm' }: IconProps) => {

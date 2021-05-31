@@ -1,11 +1,10 @@
-import { KebabMenu, Card } from '../common';
+import { KebabMenu, Card } from '.';
 import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Post as PostType, User } from '../../models/interfaces';
-import { userContext } from '../../contexts/CurrentUser';
 
 export type PostProps = PostType & {
   className?: string;
@@ -19,8 +18,8 @@ const Post = ({
   comments,
   watch,
   className,
+  user,
 }: PostProps) => {
-  const { user } = useContext(userContext);
   const getContent = () => {
     if (photoPath)
       return (

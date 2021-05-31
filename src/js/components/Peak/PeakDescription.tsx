@@ -3,12 +3,13 @@ import React from 'react';
 import { Peak } from '../../models/interfaces';
 import { SubmitButton } from '../common';
 import { completeThePeak } from '../../API/peaks/methods';
+import PeakStatistics from './PeakStatistics';
 
 export type PeakDescriptionProps = {
   peak: Peak;
+  showForm: boolean;
 };
-
-const PeakDescription = ({ peak }: PeakDescriptionProps) => {
+const PeakDescription = ({ peak, showForm }: PeakDescriptionProps) => {
   // TODO add form to reach peak
   const reachPeak = async (time: number) => {
     const peakCompletionResponse = await completeThePeak(peak.id, time);
@@ -22,13 +23,16 @@ const PeakDescription = ({ peak }: PeakDescriptionProps) => {
       <p>Wysokość: {peak.height} m n.p.m.</p>
       <p>Województwo: {peak.region}</p>
       <p>Pasmo górskie: {peak.mountainRange}</p>
-      <div className={styles.buttonBox}>
-        <SubmitButton
-          onClick={() => reachPeak(3000)}
-          text="Zaznacz jako zdobyty"
-          className={styles.reachPeakButton}
-        />
-      </div>
+      <PeakStatistics peakId={peak.id} />
+      {showForm && (
+        <div className={styles.buttonBox}>
+          <SubmitButton
+            onClick={() => reachPeak(3000)}
+            text="Zaznacz jako zdobyty"
+            className={styles.reachPeakButton}
+          />
+        </div>
+      )}
     </div>
   );
 };

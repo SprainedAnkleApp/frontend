@@ -7,12 +7,11 @@
     background-color:white;
     border-radius: 20px;
     margin: 3% 0;
-    cursor: pointer;
     text-decoration: none;
     color: black;
 }
 
-.card:hover {
+.redirectLink:hover {
     opacity: 80%;
 }
 
@@ -24,9 +23,10 @@
     object-position: center;
 }
 
-.peakInformation{
+.peakInformation {
     display: grid;
     grid-template-columns: 5fr 1fr;
+    position: relative;
 }
 
 .peakName {
@@ -47,22 +47,43 @@
     margin-bottom: 20px;
 }
 
-.rating {
-    margin-top: 20%;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    margin-right: 20px;
+.reachedInfo {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    background-color: var(--lighter-gray);
+    text-align: center;
+    border-radius: var(--l-border-radius);
+    color: var(--darkest-gray);
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 }
 
-.star {
-    color: gold;
-    width: 18px;
-    height: 18px;
-    text-align: right;
+.reachedIcon {
+    text-align: center;
+    margin: 0 5px;
 }
 
-.ratingText {
+.peakReachedInfo {
+    background-color: var(--green);
+    color: white;
+}
+
+.peakNotReachedInfo {
+    cursor: pointer;
+}
+
+.reachedText {
     font-size: var(--xxs-font-size);
-    margin: 2px 0 0 5px;
-    text-align: left;
+    padding-right: 10px;
+    text-align: center;
 }
+
+@media (max-width: 1200px) {
+    .reachedInfo {
+        position: relative;
+        margin: auto;
+        right: auto;
+    }
+  }
