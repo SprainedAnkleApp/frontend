@@ -65,6 +65,7 @@ const Home = () => {
           </Route>
           <Route path="/">
             <Posts
+              currentUserId={user.id}
               className={styles.central}
               postsFetcher={getPostsPaginated(10)}
             >

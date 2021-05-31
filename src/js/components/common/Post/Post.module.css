@@ -37,6 +37,10 @@
   color: var(--heart-red);
 }
 
+.inactiveHeart {
+  color: var(--gray);
+}
+
 .watch {
   margin-left: auto;
 }

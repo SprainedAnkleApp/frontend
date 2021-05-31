@@ -30,7 +30,10 @@ export type Comment = {
   text: string;
 };
 
-export type Reaction = 'LIKE' | 'LOVE';
+export type Reaction = {
+  type: 'LIKE' | 'LOVE';
+  userId: number;
+};
 
 export type Post = {
   id: number;

@@ -1,19 +1,26 @@
 import { KebabMenu, Card } from '..';
-import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
+import {
+  BsFillChatFill,
+  BsFillHeartFill,
+  BsEyeFill,
+  BsHeart,
+} from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
 import React, { useState } from 'react';
-import { Post as PostType, User, Reaction } from '../../../models/interfaces';
+import { Post as PostType, User } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 
 export type PostProps = PostType & {
+  currentUserId: number;
   className?: string;
 };
 
 const Post = ({
   id,
+  currentUserId,
   photoPath,
   content,
   timestamp,
@@ -23,25 +30,33 @@ const Post = ({
   user,
 }: PostProps) => {
   const [liked, setLiked] = useState(
-    reactions.find((reaction) => reaction === 'LIKE') ? true : false
+    reactions.find(
+      (reaction) => reaction.type === 'LIKE' && reaction.userId == currentUserId
+    )
+      ? true
+      : false
   );
   const [watched, setWatched] = useState(
-    reactions.find((reaction) => reaction === 'LOVE') ? true : false
+    reactions.find((reaction) => reaction.type === 'LOVE') ? true : false
   );
   const [showComments, setShowComments] = useState(false);
+
+  const [reactionsCount, setReactionsCount] = useState(
+    reactions.filter((reaction) => reaction.type === 'LIKE').length
+  );
 
   const reactionToggle = (
     state: boolean,
     setState: (state: boolean) => void,
-    reaction: Reaction
+    reactionType: string
   ) => async () => {
     try {
       if (state) {
-        deleteReaction(id, reaction);
-        setState(false);
+        deleteReaction(id, reactionType);
+        setState(!state);
       } else {
-        createReaction(id, reaction);
-        setState(true);
+        createReaction(id, reactionType);
+        setState(!state);
       }
       // eslint-disable-next-line no-empty
     } catch {}
@@ -72,10 +87,24 @@ const Post = ({
       <div className={styles.buttons}>
         <PostButton
           active={liked}
-          className={cx(styles['button-icon'], styles.heart)}
-          onClick={reactionToggle(liked, setLiked, 'LIKE')}
-          icon={<BsFillHeartFill />}
-          count={reactions.filter((reaction) => reaction === 'LIKE').length}
+          className={cx(
+            styles['button-icon'],
+            liked ? styles.heart : styles.inactiveHeart
+          )}
+          onClick={reactionToggle(
+            liked,
+            (toggle) => {
+              if (toggle) {
+                setReactionsCount(reactionsCount + 1);
+              } else {
+                setReactionsCount(reactionsCount - 1);
+              }
+              setLiked(toggle);
+            },
+            'LIKE'
+          )}
+          icon={liked ? <BsFillHeartFill /> : <BsHeart />}
+          count={reactionsCount}
         />
         <PostButton
           active={showComments}
@@ -89,7 +118,7 @@ const Post = ({
           className={cx(styles['button-container'], styles.watch)}
           onClick={reactionToggle(watched, setWatched, 'LOVE')}
           icon={<BsEyeFill />}
-          count={reactions.filter((reaction) => reaction === 'LOVE').length}
+          count={reactionsCount}
         />
       </div>
       {showComments && (

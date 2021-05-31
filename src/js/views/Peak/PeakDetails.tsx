@@ -4,6 +4,7 @@ import PeakMap from '../../components/Peak/PeakMap';
 import styles from './PeakDetails.module.css';
 import { getPeak, getPeakPostsPaginated } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
+import { getCurrentUser } from '../../API/user/methods';
 import { Peak as PeakType } from '../../models/interfaces';
 import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
@@ -22,6 +23,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
   const [peakDetails, setPeakDetails] = useState<PeakType | undefined>(
     undefined
   );
+  const [currentUserId, setUser] = useState<number | null>(null);
   const [state, setState] = useState<peakInformations>('description');
   const [showForm, setShowForm] = useState<boolean>(false);
 
@@ -30,6 +32,15 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
       setPeakDetails(await getPeak(id));
     };
     fetchPeak();
+    const fetchUser = async () => {
+      const userData = await getCurrentUser();
+      if (!userData) {
+        setUser(null);
+        return;
+      }
+      setUser(userData.id);
+    };
+    fetchUser();
   }, []);
 
   if (!peakDetails) return null;
@@ -58,7 +69,10 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
           <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />
         )}
         {state === 'posts' && (
-          <Posts postsFetcher={getPeakPostsPaginated(id, 10)} />
+          <Posts
+            currentUserId={currentUserId ? currentUserId : -1}
+            postsFetcher={getPeakPostsPaginated(id, 10)}
+          />
         )}
       </div>
     </div>

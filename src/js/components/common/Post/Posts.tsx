@@ -7,17 +7,30 @@ import usePaginatedData, { Fetcher } from '../../../hooks/usePaginatedData';
 
 export type PostsProps = {
   postsFetcher: Fetcher<PostType>;
+  currentUserId: number;
   className?: string;
   children?: React.ReactNode;
 };
 
-const Posts = ({ className, postsFetcher, children }: PostsProps) => {
+const Posts = ({
+  currentUserId,
+  className,
+  postsFetcher,
+  children,
+}: PostsProps) => {
   const { data, nextPage, hasMore } = usePaginatedData<PostType>(postsFetcher);
 
   const renderPosts = () =>
     data.map((post) => {
       console.log(post);
-      return <Post key={post.id} {...post} className={styles.post} />;
+      return (
+        <Post
+          currentUserId={currentUserId}
+          key={post.id}
+          {...post}
+          className={styles.post}
+        />
+      );
     });
 
   return (
