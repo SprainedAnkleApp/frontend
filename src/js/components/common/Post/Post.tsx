@@ -4,8 +4,8 @@ import cx from 'classnames';
 
 import styles from './Post.module.css';
 import React, { useState } from 'react';
-import { Post as PostType, User } from '../../../models/interfaces';
-import { Comments } from '.';
+import { Post as PostType, User, Reaction } from '../../../models/interfaces';
+import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 
 export type PostProps = PostType & {
@@ -19,13 +19,33 @@ const Post = ({
   timestamp,
   reactions,
   comments,
-  watch,
   className,
   user,
 }: PostProps) => {
-  const [liked, setLiked] = useState(false);
-  const [watched, setWatched] = useState(false);
+  const [liked, setLiked] = useState(
+    reactions.find((reaction) => reaction === 'LIKE') ? true : false
+  );
+  const [watched, setWatched] = useState(
+    reactions.find((reaction) => reaction === 'LOVE') ? true : false
+  );
   const [showComments, setShowComments] = useState(false);
+
+  const reactionToggle = (
+    state: boolean,
+    setState: (state: boolean) => void,
+    reaction: Reaction
+  ) => async () => {
+    try {
+      if (state) {
+        deleteReaction(id, reaction);
+        setState(false);
+      } else {
+        createReaction(id, reaction);
+        setState(true);
+      }
+      // eslint-disable-next-line no-empty
+    } catch {}
+  };
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
@@ -50,61 +70,27 @@ const Post = ({
         )}
       </div>
       <div className={styles.buttons}>
-        <div className={styles['button-container']}>
-          <button
-            className={cx(styles['button-icon'], styles.heart, {
-              [styles.clicked]: liked,
-            })}
-            onClick={async () => {
-              try {
-                if (liked) {
-                  deleteReaction(id, 'LIKE');
-                  setLiked(false);
-                } else {
-                  createReaction(id, 'LIKE');
-                  setLiked(true);
-                }
-                // eslint-disable-next-line no-empty
-              } catch {}
-            }}
-          >
-            <BsFillHeartFill />
-          </button>
-          <span className={styles['button-text']}>{reactions}</span>
-        </div>
-        <div className={styles['button-container']}>
-          <button
-            className={styles['button-icon']}
-            onClick={() => setShowComments((show) => !show)}
-          >
-            <BsFillChatFill />
-          </button>
-          <span className={styles['button-text']}>{comments}</span>
-        </div>
-        <div
-          className={cx(styles['button-container'], styles.watch, {
-            [styles.clicked]: watched,
-          })}
-        >
-          <button
-            className={styles['button-icon']}
-            onClick={async () => {
-              try {
-                if (watched) {
-                  deleteReaction(id, 'LOVE');
-                  setWatched(false);
-                } else {
-                  createReaction(id, 'LOVE');
-                  setWatched(true);
-                }
-                // eslint-disable-next-line no-empty
-              } catch {}
-            }}
-          >
-            <BsEyeFill />
-          </button>
-          <span className={styles['button-text']}>{watch}</span>
-        </div>
+        <PostButton
+          active={liked}
+          className={cx(styles['button-icon'], styles.heart)}
+          onClick={reactionToggle(liked, setLiked, 'LIKE')}
+          icon={<BsFillHeartFill />}
+          count={reactions.filter((reaction) => reaction === 'LIKE').length}
+        />
+        <PostButton
+          active={showComments}
+          className={styles['button-container']}
+          onClick={() => setShowComments((show) => !show)}
+          icon={<BsFillChatFill />}
+          count={comments ? comments.length : 0}
+        />
+        <PostButton
+          active={watched}
+          className={cx(styles['button-container'], styles.watch)}
+          onClick={reactionToggle(watched, setWatched, 'LOVE')}
+          icon={<BsEyeFill />}
+          count={reactions.filter((reaction) => reaction === 'LOVE').length}
+        />
       </div>
       {showComments && (
         <div>
