@@ -26,15 +26,18 @@ export type User = {
 };
 
 export type Comment = {
+  user: User;
   text: string;
 };
+
+export type Reaction = 'LIKE' | 'LOVE';
 
 export type Post = {
   id: number;
   photoPath?: string;
   content?: string;
   timestamp: string;
-  liked: number;
+  reactions: Reaction[];
   comments: Comment[];
   watch: number;
   peak?: Peak;

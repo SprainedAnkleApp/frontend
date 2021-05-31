@@ -9,7 +9,7 @@ import { Peak } from '../../components/PeaksList';
 import PeakNavBar from '../../components/Peak/PeakNavBar';
 
 import cx from 'classnames';
-import Posts from '../../components/common/Posts';
+import { Posts } from '../../components/common/Post';
 
 export type peakInformations = 'description' | 'map' | 'posts';
 

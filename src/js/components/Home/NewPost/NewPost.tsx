@@ -1,9 +1,11 @@
-import { Icon, Card, SubmitButton } from '../common';
-import styles from './NewPost.module.css';
+import { Icon, Card, SubmitButton } from '../../common';
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import { userContext } from '../../contexts/CurrentUser';
+import { userContext } from '../../../contexts/CurrentUser';
 import Popup from 'reactjs-popup';
-import { createNewPost } from '../../API/wall/methods';
+import { createNewPost } from '../../../API/wall/methods';
+
+import styles from './NewPost.module.css';
+import AddImage from './AddImage';
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -11,14 +13,17 @@ const NewPost = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState(0);
+
   const [postText, setPostText] = useState('');
+  const [image, setImage] = useState<null | File>(null);
+
   const [error, setError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   useEffect(() => {
     if (cardRef.current) {
       setOffset(cardRef.current.clientHeight);
-      setWidth(cardRef.current.clientWidth);
+      setWidth(cardRef.current.clientWidth + 1);
     }
   }, []);
 
@@ -26,7 +31,7 @@ const NewPost = () => {
     const resizeListener = () => {
       if (cardRef.current) {
         setOffset(cardRef.current.clientHeight);
-        setWidth(cardRef.current.clientWidth);
+        setWidth(cardRef.current.clientWidth + 1);
       }
     };
     window.addEventListener('resize', resizeListener);
@@ -41,21 +46,12 @@ const NewPost = () => {
         <Card.Card ref={cardRef}>
           <div className={styles.wrapper}>
             <Icon url={user.profilePhoto} />
-            <div className={styles.input}>O czym myślisz</div>
+            <p className={styles.input}>O czym myślisz?</p>
           </div>
         </Card.Card>
       </div>
     );
   });
-
-  const sendNewPost = async () => {
-    try {
-      setButtonDisabled(true);
-      await createNewPost(postText);
-    } catch (error) {
-      setError(true);
-    }
-  };
 
   PopupTriggerCard.displayName = 'NewPostInactive';
 
@@ -68,7 +64,6 @@ const NewPost = () => {
     filter: 'blur(1px)',
   };
 
-  // TODO enhance positioning of modal and watch resize events
   return (
     <div className={styles.main}>
       <Popup
@@ -80,7 +75,7 @@ const NewPost = () => {
         contentStyle={contentStyle}
         overlayStyle={overlayStyle}
       >
-        {(_close: () => void, isOpen: boolean) => {
+        {(close: () => void, isOpen: boolean) => {
           useEffect(() => {
             if (!isOpen) return;
             const rootDiv = document.getElementById('root');
@@ -94,11 +89,27 @@ const NewPost = () => {
               rootDiv.style.filter = 'none';
             };
           }, [isOpen]);
+          const sendNewPost = async () => {
+            try {
+              setButtonDisabled(true);
+              await createNewPost(postText, image);
+              close();
+            } catch (error) {
+              setError(true);
+            }
+          };
           return (
             <div style={{ width: width }}>
               <Card.Card ref={modalRef}>
                 <div className={styles.modal}>
                   <Icon url={user.profilePhoto} className={styles.icon} />
+                  <AddImage
+                    image={image}
+                    addImage={(e) =>
+                      setImage(e?.target?.files && e.target.files[0])
+                    }
+                    className={styles.addImage}
+                  />
                   <textarea
                     placeholder={'O czym myślisz?'}
                     className={styles.textarea}
@@ -109,12 +120,19 @@ const NewPost = () => {
                       setButtonDisabled(false);
                     }}
                   />
+                  {image && (
+                    <img
+                      className={styles.photo}
+                      src={URL.createObjectURL(image)}
+                      alt="uploaded photo"
+                    />
+                  )}
                   <SubmitButton
                     text={error ? 'Wystapił błąd' : 'Opublikuj'}
                     className={styles.submitButton}
                     progress={error ? 'error' : 'success'}
                     onClick={sendNewPost}
-                    disabled={buttonDisabled}
+                    disabled={!error && buttonDisabled}
                   />
                 </div>
               </Card.Card>

@@ -16,7 +16,6 @@ type Location = {
 };
 
 const LoginForm = () => {
-  // TODO enhance validation and form submit error handling
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [registered, setRegistered] = useState<string | null>(null);
   const location = useLocation<Location>();
