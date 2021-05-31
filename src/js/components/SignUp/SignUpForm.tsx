@@ -20,7 +20,6 @@ type FormValues = {
 };
 
 const SignUpForm = () => {
-  // TODO enhance validation and form submit error handling
   const [submitError, setSubmitError] = useState<string | null>(null);
   const { register, errors, handleSubmit, watch } = useForm<FormValues>();
   const password = useRef({});

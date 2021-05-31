@@ -1,4 +1,9 @@
-import { getPostsUrl, getPaginatedPostsUrl, createNewPostUrl } from './urls';
+import {
+  createNewPhotoPostUrl,
+  getPostsUrl,
+  getPaginatedPostsUrl,
+  createNewPostUrl,
+} from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
 import { Post } from '../../models/interfaces';
@@ -31,14 +36,14 @@ export const getPostsPaginated = (pageSize: number) => async (
   }
 };
 
-export const createNewPost = async (content: string): Promise<void> => {
-  await axios.post(
-    createNewPostUrl(),
-    {
-      content: content,
-    },
-    {
-      headers: authHeader(),
-    }
-  );
+export const createNewPost = async (
+  content: string,
+  file: File | null
+): Promise<void> => {
+  const body = new FormData();
+  body.append('content', content);
+  if (file) body.append('file', file);
+  await axios.post(file ? createNewPhotoPostUrl() : createNewPostUrl(), body, {
+    headers: authHeader(),
+  });
 };

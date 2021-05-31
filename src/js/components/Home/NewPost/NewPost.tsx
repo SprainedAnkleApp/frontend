@@ -53,15 +53,6 @@ const NewPost = () => {
     );
   });
 
-  const sendNewPost = async () => {
-    try {
-      setButtonDisabled(true);
-      await createNewPost(postText);
-    } catch (error) {
-      setError(true);
-    }
-  };
-
   PopupTriggerCard.displayName = 'NewPostInactive';
 
   const contentStyle = {
@@ -84,7 +75,7 @@ const NewPost = () => {
         contentStyle={contentStyle}
         overlayStyle={overlayStyle}
       >
-        {(_close: () => void, isOpen: boolean) => {
+        {(close: () => void, isOpen: boolean) => {
           useEffect(() => {
             if (!isOpen) return;
             const rootDiv = document.getElementById('root');
@@ -98,6 +89,15 @@ const NewPost = () => {
               rootDiv.style.filter = 'none';
             };
           }, [isOpen]);
+          const sendNewPost = async () => {
+            try {
+              setButtonDisabled(true);
+              await createNewPost(postText, image);
+              close();
+            } catch (error) {
+              setError(true);
+            }
+          };
           return (
             <div style={{ width: width }}>
               <Card.Card ref={modalRef}>
@@ -132,7 +132,7 @@ const NewPost = () => {
                     className={styles.submitButton}
                     progress={error ? 'error' : 'success'}
                     onClick={sendNewPost}
-                    disabled={buttonDisabled}
+                    disabled={!error && buttonDisabled}
                   />
                 </div>
               </Card.Card>
