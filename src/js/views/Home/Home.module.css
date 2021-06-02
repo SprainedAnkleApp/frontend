@@ -1,34 +1,20 @@
 .home {
-  padding: 15px 30px 0px 10px;
+  padding: 13px 32px 0px 12px;
   display: grid;
   grid-template-columns: 1fr 2.5fr 1fr;
-  column-gap: 100px;
+  column-gap: 30px;
   /* row-gap: 0px; */
-  height: calc(100vh - 115px); /* Header height with home padding*/
-  grid-template-areas: 
-  "friends wall achievements"
-  "friends wall chat";
+  height: 100vh; /* Header height with home padding*/
   background-color: var(--lightest-green);
 }
 
-.central {
-  grid-area: wall;
-  overflow: scroll;
-  max-height: 100%; 
-  padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+.paneHeader {
+  position: sticky;
+  background-color: var(--lightest-green);
+  z-index: 5;
+  height: 102px;
+  top: 0;
+  padding-bottom: 34px;
 }
 
-.chat {
-  grid-area: chat;
-  height: 480px;
-  place-self: end end;
-  margin-bottom: 20px;
-}
 
-.central::-webkit-scrollbar {
-  display: none;
-}

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import style from './ChatWindow.module.css';
-import { Card } from '../common';
+import { Card } from '.';
 import { userContext } from '../../contexts/CurrentUser';
 import { User, Message } from '../../models/interfaces';
 import { RiSendPlaneFill } from 'react-icons/ri';

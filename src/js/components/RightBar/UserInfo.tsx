@@ -1,8 +1,8 @@
-import { KebabMenu, Icon } from '..';
+import { KebabMenu, Icon } from '../common';
 
 import styles from './UserInfo.module.css';
 import React, { useContext } from 'react';
-import { userContext } from '../../../contexts/CurrentUser';
+import { userContext } from '../../contexts/CurrentUser';
 
 const UserInfo = () => {
   const { user } = useContext(userContext);
