@@ -9,7 +9,7 @@ import PeakWarning from '../../components/PeaksList/PeakWarning';
 import cx from 'classnames';
 
 export type PeaksListProps = {
-  className: string;
+  className?: string;
 };
 const PeaksList = ({ className }: PeaksListProps) => {
   const [peaksData, setPeaksData] = useState<PeakType[]>([]);

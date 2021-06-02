@@ -11,5 +11,9 @@
 .central {
   margin-left: 2%;
   margin-right: 4%;
+  height: 100%;
+}
 
+.chat {
+  height: 85%;
 }

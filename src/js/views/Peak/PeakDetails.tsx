@@ -14,7 +14,7 @@ import { Posts } from '../../components/common/Post';
 export type peakInformations = 'description' | 'map' | 'posts';
 
 export type PeakDetailsProps = {
-  className: string;
+  className?: string;
 };
 
 const PeakDetails = ({ className }: PeakDetailsProps) => {
