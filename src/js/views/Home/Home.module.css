@@ -1,5 +1,5 @@
 .home {
-  padding: 13px 32px 0px 12px;
+  padding: 13px 12px 0px 12px;
   display: grid;
   grid-template-columns: 1fr 2.5fr 1fr;
   /* row-gap: 0px; */

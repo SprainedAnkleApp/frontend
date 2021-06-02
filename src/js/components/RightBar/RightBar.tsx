@@ -25,6 +25,7 @@ const RightBar = ({ activeChatId, closeChat, headerStyles }: RightBarProps) => {
           activeChatId={activeChatId}
           className={styles.chat}
           onClose={closeChat}
+          small
         />
       )}
     </div>

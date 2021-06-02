@@ -12,8 +12,14 @@ import cx from 'classnames';
 export type ChatWindowProps = Partial<React.PropsWithoutRef<HTMLDivElement>> & {
   activeChatId: number | null;
   onClose?: () => void;
+  small?: boolean;
 };
-const ChatWindow = ({ onClose, activeChatId, className }: ChatWindowProps) => {
+const ChatWindow = ({
+  onClose,
+  activeChatId,
+  className,
+  small = false,
+}: ChatWindowProps) => {
   const { user } = useContext(userContext);
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
@@ -36,7 +42,7 @@ const ChatWindow = ({ onClose, activeChatId, className }: ChatWindowProps) => {
 
   if (activeChatId === null) return null;
   return (
-    <Card.Card className={cx(className, style.main)}>
+    <Card.Card className={cx(style.main, { [style.small]: small }, className)}>
       <Card.Header
         rightPart={
           onClose && (
