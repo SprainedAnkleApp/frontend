@@ -37,7 +37,7 @@ const SelectWithLabel = React.forwardRef<
         </label>
         <select
           defaultValue={'DEFAULT'}
-          className={styles.select}
+          className={cx(styles.select, styles.selectPlaceholder)}
           ref={ref}
           id={label}
           {...props}

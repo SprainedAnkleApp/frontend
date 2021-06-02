@@ -1,6 +1,5 @@
 import styles from './FriendInfo.module.css';
-import { Icon } from '../common';
-import UserStatus from './UserStatus';
+import { Icon, UserStatus } from '../../common';
 
 import cx from 'classnames';
 import React from 'react';

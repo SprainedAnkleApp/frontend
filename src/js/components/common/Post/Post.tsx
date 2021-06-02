@@ -1,4 +1,4 @@
-import { KebabMenu, Card } from '..';
+import { Card } from '..';
 import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
 import cx from 'classnames';
 
@@ -49,12 +49,7 @@ const Post = ({
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
-      <Card.Header
-        timestamp={timestamp}
-        user={user as User}
-        active={true}
-        rightPart={<KebabMenu className={styles.kebab} />}
-      />
+      <Card.Header timestamp={timestamp} user={user as User} active={true} />
       <div className={styles.content}>
         {content && (
           <span

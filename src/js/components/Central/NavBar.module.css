@@ -1,13 +1,11 @@
 .navigation {
   display: flex;
   flex-direction: row;
-  font-size: 24px;
   background-color: var(--lighter-gray);
   border-radius: var(--xl-border-radius);
-  grid-area: NavBar;
   width: min-content;
-  justify-self: center;
-  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .icon {
@@ -18,11 +16,18 @@
   color: var(--light-gray);
 }
 
-.selected {
-  color: var(--darkest-gray);
+.iconWrapper {
+  max-height: 24px;
+  font-size: 24px;
 }
 
-.slide {
+.selected {
+  color: var(--darkest-gray);
+  background-color: var(--light-green);
+  border-radius: var(--l-border-radius);
+}
+
+/* .slide {
   z-index: 1;
   width:55px;
   height: 60px;
@@ -43,4 +48,4 @@
 
 .slide3 {
   margin-left: calc(66% + 6.5px);
-}
+} */

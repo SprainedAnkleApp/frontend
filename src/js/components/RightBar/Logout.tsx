@@ -1,18 +1,15 @@
-import styles from './UserInfo.module.css';
-import React, { useContext, useState, useRef } from 'react';
-import { userContext } from '../../../contexts/CurrentUser';
-import { useHistory } from 'react-router';
-import { logout } from '../../../API/auth/methods';
-import { FiLogOut } from 'react-icons/fi';
-import { Icon, KebabMenu } from '..';
+import React, { useState, useRef } from 'react';
+import { KebabMenu } from '../common';
 import { ControlledMenu, MenuItem } from '@szhsin/react-menu';
-import '@szhsin/react-menu/dist/index.css';
+import { FiLogOut } from 'react-icons/fi';
+import { useHistory } from 'react-router';
+import { logout } from '../../API/auth/methods';
 
-const UserInfo = () => {
-  const { user } = useContext(userContext);
+import styles from './Logout.module.css';
+
+const Logout = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
-  if (!user) return null;
 
   const history = useHistory();
   const logoutAndRedirect = () => {
@@ -22,9 +19,7 @@ const UserInfo = () => {
     });
   };
   return (
-    <div className={styles.wrapper}>
-      <Icon url={user.profilePhoto} />
-      <div className={styles.userName}>{user.login}</div>
+    <>
       <div ref={ref} onClick={() => setOpen(true)} className={styles.kebabMenu}>
         <KebabMenu />
       </div>
@@ -38,8 +33,8 @@ const UserInfo = () => {
           <span className={styles.horizontalMargin}>Wyloguj się</span>
         </MenuItem>
       </ControlledMenu>
-    </div>
+    </>
   );
 };
 
-export default UserInfo;
+export default Logout;

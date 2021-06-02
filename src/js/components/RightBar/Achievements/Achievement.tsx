@@ -1,10 +1,10 @@
 import styles from './Achievement.module.css';
-import { ProgressBar } from '../common';
 import { FaMedal } from 'react-icons/fa';
 
 import cx from 'classnames';
 import React from 'react';
-import { Achievement as AchievementType } from '../../models/interfaces';
+import { ProgressBar } from '../../common';
+import { Achievement as AchievementType } from '../../../models/interfaces';
 
 export type AchievementProps = {
   className: string;
