@@ -3,10 +3,21 @@ import { PeakCompletion, Statistics } from '../../models/interfaces';
 import styles from './PeakStatistics.module.css';
 import UserInfo from './UserInfo';
 
-const PeakStatistics = ({ statistics }: { statistics: Statistics }) => {
+export type PeakStatisticsProps = {
+  statistics: Statistics;
+  completed: boolean;
+  completionTime: number;
+};
+
+const PeakStatistics = ({
+  statistics,
+  completed,
+  completionTime,
+}: PeakStatisticsProps) => {
   return (
     <>
       <h3 className={styles.statisticsHeader}>Statystyki</h3>
+      {completed && <p>Twój czas zdobycia szczytu: {completionTime} min</p>}
       {statistics.time_average !== undefined && (
         <p>Średni czas zdobycia szczytu: {statistics.time_average} min</p>
       )}

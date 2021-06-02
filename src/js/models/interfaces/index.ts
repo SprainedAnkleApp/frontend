@@ -14,6 +14,7 @@ export type Peak = {
   latitude: number;
   longitude: number;
   completed: boolean;
+  completionTime: number;
   statistics: Statistics;
 };
 
