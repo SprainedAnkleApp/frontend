@@ -3,7 +3,7 @@ import { Achievement as AchievementType } from '../../../models/interfaces';
 
 import styles from './Achievements.module.css';
 import React, { useEffect, useState } from 'react';
-import { getAchievementsShort } from '../../API/achievements/methods';
+import { getAchievementsShort } from '../../../API/achievements/methods';
 
 const toAchievementComponent = (achievement: AchievementType) => {
   return (
