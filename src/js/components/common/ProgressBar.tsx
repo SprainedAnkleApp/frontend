@@ -17,7 +17,7 @@ const ProgressBar = ({
   completed,
 }: ProgressBarProps) => {
   const containerStyles = {
-    border: `2px solid ${backgroundColor}`,
+    border: `1px solid ${backgroundColor}`,
   };
   const fillerStyles = {
     width: `${completed ? 100 : percentage}%`,
