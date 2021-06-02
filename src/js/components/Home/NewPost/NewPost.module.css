@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .main {
@@ -10,9 +11,11 @@
 .modal {
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto auto;
   grid-template-areas: 
   "icon textarea"
-  ". textarea"
+  "addImage textarea"
+  ". photo"
   "button button";
 }
 
@@ -48,14 +51,23 @@
   grid-area: icon;
 }
 
+.addImage {
+  grid-area: addImage;
+  justify-self: top;
+  margin-top: 15px;
+}
+
+
 
 .input {
   background-color: transparent;
-  color: var(--darkest-gray);
+  color: var(--gray);
   font-size: var(--xs-font-size);
   margin-left: 14px;
   border: none;
   width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .input::placeholder {
@@ -66,4 +78,11 @@
 
 .input:focus {
   outline: none;
+}
+
+.photo {
+  grid-area: photo;
+  object-fit: cover;
+  max-width: 100%;
+  padding: 15px;
 }

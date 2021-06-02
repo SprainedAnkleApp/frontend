@@ -6,8 +6,7 @@
   font-size: var(--m-font-size);
   color: var(--darkest-gray);
   font-weight: var(--bold-font-weight);
-  margin-bottom: 15px;
-
+  margin-bottom: 20px;
 }
 
 .achievements {
@@ -16,7 +15,7 @@
 }
 
 .achievement {
-  margin-bottom: 9px;
+  margin-bottom: 20px;
 }
 
 .highlightedAchievement {
