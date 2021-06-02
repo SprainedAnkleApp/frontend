@@ -1,4 +1,4 @@
-import { KebabMenu, Icon } from '../common';
+import { Icon } from '../common';
 
 import styles from './UserInfo.module.css';
 import React, { useContext } from 'react';
@@ -11,7 +11,6 @@ const UserInfo = () => {
     <div className={styles.wrapper}>
       <Icon url={user.profilePhoto} />
       <div className={styles.userName}>{user.login}</div>
-      <KebabMenu />
     </div>
   );
 };

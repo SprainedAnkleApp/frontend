@@ -11,3 +11,19 @@
 .pane::-webkit-scrollbar {
   display: none;
 }
+
+.userInfoWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px; 
+  align-items: center;
+
+}
+
+.userInfo {
+  padding: 5px 0 5px 6px;
+  background-color: lawngreen;
+  border-radius: var(--xl-border-radius);
+  width: min-content;
+  margin-left: auto;
+}
