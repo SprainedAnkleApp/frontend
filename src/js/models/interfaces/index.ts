@@ -61,8 +61,11 @@ export type Friend = {
 };
 
 export type Achievement = {
-  name: string;
+  achievementTitle: string;
+  completed: boolean;
   progress: number;
+  toComplete: number;
+  peakId: number;
 };
 
 export type PeakCompletion = {

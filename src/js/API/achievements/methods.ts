@@ -1,11 +1,34 @@
 import { Achievement } from '../../models/interfaces';
+import axios from 'axios';
+import authHeader from '../auth/methods';
+import { getAchievementsShortUrl, getUserAchievementsUrl } from './urls';
 
-export const getAchievements = async (): Promise<Achievement[]> => {
-  const achievements = [
-    { name: 'Achievement_1', progress: 99 / 99 },
-    { name: 'Achievement_2', progress: 33 / 99 },
-    { name: 'Achievement_3', progress: 79 / 99 },
-  ];
+export const getAchievementsShort = async (): Promise<Achievement[]> => {
+  console.log(getAchievementsShortUrl());
+  try {
+    const response = await axios.get<Achievement[]>(getAchievementsShortUrl(), {
+      headers: authHeader(),
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return [];
+  }
+};
 
-  return achievements;
+export const getAchievements = async (
+  userId: string
+): Promise<Achievement[]> => {
+  console.log(getAchievementsShortUrl());
+  try {
+    const response = await axios.get<Achievement[]>(
+      getUserAchievementsUrl(userId),
+      {
+        headers: authHeader(),
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return [];
+  }
 };
