@@ -4,13 +4,10 @@ import {
   getPeaksUrl,
   getPeakUrl,
   getPeakCompletionUrl,
-  getFirstConquerorUrl,
-  getNumberOfPeakConquerorsUrl,
-  getPeakAverageTimeCompletionUrl,
   getPeakPostsUrl,
   getPagePeakPostsUrl,
 } from './urls';
-import { Peak, PeakCompletion, Post, User } from '../../models/interfaces';
+import { Peak, PeakCompletion, Post } from '../../models/interfaces';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -47,75 +44,6 @@ export const completeThePeak = async (
         time: time,
       },
       { headers: authHeader() }
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-};
-
-// TODO remove after changes on backend
-export const getFirstConqueror = async (
-  peakId: string
-): Promise<User | undefined> => {
-  try {
-    const response = await axios.get<User>(getFirstConquerorUrl(peakId), {
-      headers: authHeader(),
-    });
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-};
-
-export const getLastConqueror = async (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  peakId: string
-): Promise<User | undefined> => {
-  try {
-    const user: User = {
-      id: 2,
-      firstName: 'Adam',
-      lastName: 'Nowak',
-      profilePhoto: 'https://i.imgur.com/VNNp6zWb.jpg',
-      email: 'anowak@mail.com',
-      login: 'anowak',
-    };
-    return user;
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-};
-
-export const getNumberOfPeakConquerors = async (
-  peakId: string
-): Promise<number | undefined> => {
-  try {
-    const response = await axios.get<number>(
-      getNumberOfPeakConquerorsUrl(peakId),
-      {
-        headers: authHeader(),
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-};
-
-export const getPeakAverageTimeCompletion = async (
-  peakId: string
-): Promise<number | undefined> => {
-  try {
-    const response = await axios.get<number>(
-      getPeakAverageTimeCompletionUrl(peakId),
-      {
-        headers: authHeader(),
-      }
     );
     return response.data;
   } catch (error) {

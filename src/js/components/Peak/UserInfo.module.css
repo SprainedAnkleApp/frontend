@@ -1,0 +1,9 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+  .horizontalMargin {
+    margin: 0 10px;
+}

@@ -35,9 +35,7 @@ const PeaksList = ({ className }: PeaksListProps) => {
       </div>
       <div className={cx(styles.peaksList, styles.listRight)}>
         <PeakWarning
-          warningText={
-            'Remember to always be careful in the mountains. Stay safe.'
-          }
+          warningText={'Pamiętaj, aby zawsze być ostrożnym w górach.'}
         />
         {peaks.filter((_, index) => index % 2 === 1)}
       </div>
