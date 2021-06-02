@@ -13,3 +13,4 @@ export { default as ProgressBar } from './ProgressBar';
 export { default as ChatWindow } from './ChatWindow';
 export { default as UserStatus } from './UserStatus';
 export { default as SectionNavBar } from './SectionNavBar';
+export { default as UserRow } from './UserRow';

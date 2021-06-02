@@ -1,26 +1,26 @@
-import styles from './FriendInfo.module.css';
-import { Icon, UserStatus } from '../../common';
+import styles from './UserRow.module.css';
+import { Icon } from '.';
 
 import cx from 'classnames';
 import React from 'react';
 
-export type FriendInfoProps = {
+export type UserRowProps = {
   url: string;
   name: string;
-  className: string;
-  status: 'online' | 'offline';
+  className?: string;
   startChat?: () => void;
   isChatActive?: boolean;
+  children?: React.ReactNode;
 };
 
-const FriendInfo = ({
+const UserRow = ({
   url,
   name,
   className,
-  status,
   isChatActive,
   startChat,
-}: FriendInfoProps) => {
+  children,
+}: UserRowProps) => {
   return (
     <div
       className={cx(
@@ -32,9 +32,9 @@ const FriendInfo = ({
     >
       <Icon url={url} />
       <span className={styles.name}>{name}</span>
-      <UserStatus status={status} className={styles.status} />
+      <div className={styles.right}>{children}</div>
     </div>
   );
 };
 
-export default FriendInfo;
+export default UserRow;

@@ -1,8 +1,8 @@
 import styles from './Friends.module.css';
-import FriendInfo from './FriendInfo';
 import React, { useEffect, useState } from 'react';
 import { getFriends } from '../../../API/friends/methods';
 import { Friend } from '../../../models/interfaces';
+import { UserStatus, UserRow } from '../../common';
 
 export type FriendsProps = {
   searchTerm: string;
@@ -16,15 +16,17 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
 
   const toFriendInfoComponent = (friend: Friend) => {
     return (
-      <FriendInfo
+      <UserRow
         key={`friend_${friend.id}`}
         name={friend.firstName + ' ' + friend.lastName}
         url={friend.profilePhoto}
         className={styles.friend}
-        status={friend.id % 3 === 0 ? 'online' : 'offline'}
         startChat={() => startChat(friend.id)}
         isChatActive={activeChatId === friend.id}
-      />
+      >
+        {' '}
+        <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
+      </UserRow>
     );
   };
 
