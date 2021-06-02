@@ -30,10 +30,10 @@ const PeaksList = ({ className }: PeaksListProps) => {
 
   return (
     <div className={cx(styles.container, className)}>
-      <div className={styles.peaksList}>
+      <div className={cx(styles.peaksList, styles.listLeft)}>
         {peaks.filter((_, index) => index % 2 === 0)}
       </div>
-      <div className={styles.peaksList}>
+      <div className={cx(styles.peaksList, styles.listRight)}>
         <PeakWarning
           warningText={
             'Remember to always be careful in the mountains. Stay safe.'
