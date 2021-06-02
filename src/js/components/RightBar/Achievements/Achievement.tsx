@@ -3,8 +3,8 @@ import { FaMedal } from 'react-icons/fa';
 
 import cx from 'classnames';
 import React from 'react';
-import { ProgressBar } from '../../common';
 import { Achievement as AchievementType } from '../../../models/interfaces';
+import ProgressBar from '@ramonak/react-progress-bar';
 
 export type AchievementProps = {
   className: string;
@@ -17,12 +17,14 @@ const Achievement = ({ className, achievement }: AchievementProps) => {
       <FaMedal className={styles.icon} size={35} color="#ffd700" />
       <span className={styles.name}>{achievement.achievementTitle}</span>
       <ProgressBar
-        className={styles.progressBar}
-        backgroundColor="#7A7A7A"
-        percentage={Math.round(
-          (achievement.progress / achievement.toComplete) * 100
-        )}
-        completed={achievement.completed}
+        completed={
+          achievement.completed
+            ? 'Ukończone'
+            : Math.round((achievement.progress / achievement.toComplete) * 100)
+        }
+        bgColor={'var(--gray)'}
+        baseBgColor={'var(--lighter-gray)'}
+        labelAlignment={'center'}
       />
     </div>
   );
