@@ -44,7 +44,7 @@ export type Reaction = 'LIKE' | 'LOVE';
 
 export type Post = {
   id: number;
-  photoPath?: string;
+  signedUrl?: string;
   content?: string;
   timestamp: string;
   reactions: Reaction[];

@@ -16,10 +16,8 @@ const PeakDescription = ({
   statistics,
 }: PeakDescriptionProps) => {
   // TODO add form to reach peak
-  const reachPeak = async (time: number) => {
-    const peakCompletionResponse = await completeThePeak(peak.id, time);
-    console.log(peakCompletionResponse);
-  };
+  const reachPeak = async (time: number) =>
+    await completeThePeak(peak.id, time);
 
   return (
     <div className={styles.peakDescription}>
