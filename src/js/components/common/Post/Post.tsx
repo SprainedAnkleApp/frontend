@@ -14,7 +14,7 @@ export type PostProps = PostType & {
 
 const Post = ({
   id,
-  photoPath,
+  signedUrl,
   content,
   timestamp,
   reactions,
@@ -54,14 +54,14 @@ const Post = ({
         {content && (
           <span
             className={cx(styles['content-text'], {
-              [styles.withBottomPadding]: photoPath,
+              [styles.withBottomPadding]: signedUrl,
             })}
           >
             {content}
           </span>
         )}
-        {photoPath && (
-          <img src={photoPath} alt="post content" className={styles.photo} />
+        {signedUrl && (
+          <img src={signedUrl} alt="post content" className={styles.photo} />
         )}
       </div>
       <div className={styles.buttons}>
