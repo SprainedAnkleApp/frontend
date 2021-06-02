@@ -1,10 +1,10 @@
-import { UserInfo } from '.';
+import { UserInfo, Logout } from '.';
 
 import styles from './RightBar.module.css';
 import React from 'react';
 import { Achievements } from './Achievements';
 import { useLocation } from 'react-router';
-import { ChatWindow, KebabMenu } from '../common';
+import { ChatWindow } from '../common';
 
 import cx from 'classnames';
 
@@ -22,7 +22,7 @@ const RightBar = ({ activeChatId, closeChat, headerStyles }: RightBarProps) => {
         <div className={styles.userInfo}>
           <UserInfo />
         </div>
-        <KebabMenu />
+        <Logout />
       </div>
       <Achievements />
       {location.pathname !== '/chat' && activeChatId !== null && (

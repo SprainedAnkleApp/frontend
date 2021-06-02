@@ -1,8 +1,8 @@
-import { Icon } from '../common';
-
 import styles from './UserInfo.module.css';
 import React, { useContext } from 'react';
+import '@szhsin/react-menu/dist/index.css';
 import { userContext } from '../../contexts/CurrentUser';
+import { Icon } from '../common';
 
 const UserInfo = () => {
   const { user } = useContext(userContext);
