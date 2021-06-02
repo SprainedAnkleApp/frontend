@@ -6,10 +6,10 @@ export type ProfileNavBarProps = {
   className: string;
 };
 
-const ProfileNavBar = ({ className }: ProfileNavBarProps) => {
+const ProfileNavBar = () => {
   return (
     <div className={styles.stickyCard}>
-      <Card.Card className={className}>
+      <Card.Card>
         <div className={styles.navBar}>
           <div className={styles.posts}>
             <p className={styles.tabText}>Posts</p>

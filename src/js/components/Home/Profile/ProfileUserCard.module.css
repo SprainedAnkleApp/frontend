@@ -1,3 +1,7 @@
+.profileUserCard {
+    margin-bottom: 30px;
+}
+
 .card {
     overflow: hidden;
     padding: 0;
@@ -33,6 +37,7 @@
 }
 
 .userNameWrapper {
+    padding-top: 10px;
     justify-content: center;
 }
 
@@ -51,4 +56,5 @@
     margin: 2px;
     color: var(--gray);
     font-weight: var(--medium-font-weight);
+    font-size: var(--xs-font-size);
 }

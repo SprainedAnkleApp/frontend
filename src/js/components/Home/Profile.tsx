@@ -1,9 +1,9 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import postStyles from './Posts.module.css';
+import postStyles from '../common/Post/Posts.module.css';
 import styles from './Profile.module.css';
-import { Post } from '.';
+import Post from '../common/Post/Post';
 import { Post as PostType } from '../../models/interfaces';
 import { getPostsPaginated } from '../../API/wall/methods';
 import { ProfileUserCard, ProfileNavBar } from './Profile/index';
@@ -25,8 +25,8 @@ const Profile = ({ className }: ProfileProps) => {
 
   return (
     <div className={className}>
-      <ProfileUserCard className={className} />
-      <ProfileNavBar className={className} />
+      <ProfileUserCard />
+      <ProfileNavBar />
       <div className={styles.tabWrapper}>
         <div className={styles.tab}>
           <InfiniteScroll

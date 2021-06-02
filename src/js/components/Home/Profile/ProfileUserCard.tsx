@@ -6,9 +6,9 @@ export type ProfileUserCardProps = {
   className: string;
 };
 
-const ProfileUserCard = ({ className }: ProfileUserCardProps) => {
+const ProfileUserCard = () => {
   return (
-    <div className={className}>
+    <div className={styles.profileUserCard}>
       <Card.Card className={styles.card}>
         <div className={styles.upperContainer}>
           <div className={styles.backgroundImg}></div>
