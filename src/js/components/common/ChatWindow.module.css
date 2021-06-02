@@ -18,6 +18,7 @@
   overflow: scroll;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
+  margin-bottom: 10px;
 }
 
 .messages::-webkit-scrollbar {
@@ -43,12 +44,11 @@
 .textInput {
   background: var(--lighter-gray);
   border-radius: var(--xl-border-radius);
-  font-size: var(--xs-font-size);
   margin-top: auto;
   color: var(--gray);
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  padding: 10px 23px;
 }
 
 .textInput input {
@@ -56,8 +56,6 @@
   border: none;
   outline: none;
   width: 100%;
-  color: var(--gray);
-  padding-left: 16px;
   font-size: var(--xs-font-size);
 }
 
@@ -66,9 +64,11 @@
 }
 
 .sendIcon {
-  font-size: 24px;
-  padding-top: 9px;
-  padding-bottom: 5px;
-  padding-right: 15px;
+  font-size: 21px;
+  max-height: 21px;
   margin-left: auto;
+}
+
+.bottomSpace {
+  padding-bottom: 10px;
 }

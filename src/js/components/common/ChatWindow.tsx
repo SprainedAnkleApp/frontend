@@ -47,6 +47,7 @@ const ChatWindow = ({ onClose, activeChatId, className }: ChatWindowProps) => {
         }
         user={user as User}
         active={true}
+        className={style.bottomSpace}
       />
       <div className={style.messages}>
         {messages.map((message, index) => (
