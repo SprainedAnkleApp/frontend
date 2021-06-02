@@ -18,3 +18,16 @@ body * {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('/src/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/src/fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
