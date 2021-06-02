@@ -14,6 +14,7 @@ export type Peak = {
   latitude: number;
   longitude: number;
   completed: boolean;
+  completionTime: number;
   statistics: Statistics;
 };
 
@@ -61,8 +62,11 @@ export type Friend = {
 };
 
 export type Achievement = {
-  name: string;
+  achievementTitle: string;
+  completed: boolean;
   progress: number;
+  toComplete: number;
+  peakId: number;
 };
 
 export type PeakCompletion = {
