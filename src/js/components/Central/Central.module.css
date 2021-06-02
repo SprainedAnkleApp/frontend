@@ -7,3 +7,9 @@
 .pane::-webkit-scrollbar {
   display: none;
 }
+
+.central {
+  margin-left: 2%;
+  margin-right: 4%;
+
+}

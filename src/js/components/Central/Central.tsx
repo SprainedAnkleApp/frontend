@@ -21,25 +21,30 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
       <div className={headerStyles}>
         <NavBar />
       </div>
-      <Switch>
-        <Route path="/peaks/:id">
-          <PeakDetails className={styles.central} />
-        </Route>
-        <Route path="/peaks">
-          <PeaksList className={styles.central} />
-        </Route>
-        <Route path="/chat">
-          <ChatWindow activeChatId={activeChatId} className={styles.central} />
-        </Route>
-        <Route path="/">
-          <Posts
-            className={styles.central}
-            postsFetcher={getPostsPaginated(10)}
-          >
-            <NewPost />
-          </Posts>
-        </Route>
-      </Switch>
+      <div className={styles.central}>
+        <Switch>
+          <Route path="/peaks/:id">
+            <PeakDetails className={styles.central} />
+          </Route>
+          <Route path="/peaks">
+            <PeaksList className={styles.central} />
+          </Route>
+          <Route path="/chat">
+            <ChatWindow
+              activeChatId={activeChatId}
+              className={styles.central}
+            />
+          </Route>
+          <Route path="/">
+            <Posts
+              className={styles.central}
+              postsFetcher={getPostsPaginated(10)}
+            >
+              <NewPost />
+            </Posts>
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 };

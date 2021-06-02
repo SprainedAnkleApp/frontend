@@ -3,14 +3,14 @@
   border-radius: var(--xl-border-radius);
   display: flex;
   align-content: center;
-  padding: 14px 14px;
+  padding: 16px 16px;
 }
 
 .icon {
   font-size: 34px;
   max-height: 34px;
   max-width: 34px;
-  margin-left: 19px;
+  margin-left: 3px;
   margin-right: 20px;
   line-height: 1;
   color: var(--light-gray);

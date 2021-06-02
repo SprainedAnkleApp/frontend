@@ -23,7 +23,7 @@ const NewPost = () => {
   useEffect(() => {
     if (cardRef.current) {
       setOffset(cardRef.current.clientHeight);
-      setWidth(cardRef.current.clientWidth + 1);
+      setWidth(cardRef.current.clientWidth);
     }
   }, []);
 

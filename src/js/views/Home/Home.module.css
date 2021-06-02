@@ -2,7 +2,6 @@
   padding: 13px 32px 0px 12px;
   display: grid;
   grid-template-columns: 1fr 2.5fr 1fr;
-  column-gap: 30px;
   /* row-gap: 0px; */
   height: 100vh; /* Header height with home padding*/
   background-color: var(--lightest-green);
