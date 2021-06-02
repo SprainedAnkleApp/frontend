@@ -29,9 +29,6 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
           <Route path="/peaks">
             <PeaksList />
           </Route>
-          <Route path="/peaks">
-            <PeaksList />
-          </Route>
           <Route path="/chat">
             <ChatWindow activeChatId={activeChatId} className={styles.chat} />
           </Route>
