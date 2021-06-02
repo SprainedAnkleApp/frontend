@@ -11,7 +11,7 @@ import '@szhsin/react-menu/dist/index.css';
 const UserInfo = () => {
   const { user } = useContext(userContext);
   const [isOpen, setOpen] = useState<boolean>(false);
-  const ref = useRef<null>(null);
+  const ref = useRef<HTMLDivElement>(null);
   if (!user) return null;
 
   const history = useHistory();
