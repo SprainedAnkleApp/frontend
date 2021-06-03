@@ -1,5 +1,8 @@
+import axios from 'axios';
 import Image from '../../../images/mountain.jpg';
-import { Friend } from '../../models/interfaces';
+import { Friend, User } from '../../models/interfaces';
+import authHeader from '../auth/methods';
+import { getUsersFriendsUrl } from './urls';
 
 export const getFriends = async (): Promise<Friend[]> => {
   const friends = [
@@ -21,4 +24,22 @@ export const getFriends = async (): Promise<Friend[]> => {
     { id: 15, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
   ];
   return friends;
+};
+
+export const getUsersFriends = (userId: string, pageSize: number) => async (
+  page: number
+): Promise<{ pages: number; data: User[] }> => {
+  try {
+    const pageUsersFriendsUrl = getUsersFriendsUrl(userId, page, pageSize);
+    const response = await axios.get(pageUsersFriendsUrl, {
+      headers: authHeader(),
+    });
+    return {
+      pages: response.data.totalPages ?? 0,
+      data: response.data.content ?? [],
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };

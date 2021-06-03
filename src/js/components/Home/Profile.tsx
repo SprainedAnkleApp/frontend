@@ -1,20 +1,20 @@
 import React, { useEffect, useState, useContext } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
 import { User } from '../../models/interfaces';
 import { useParams } from 'react-router';
 import styles from './Profile.module.css';
-import Post from '../common/Post/Post';
-import { Post as PostType } from '../../models/interfaces';
 import { getPostsPaginated } from '../../API/wall/methods';
-import { ProfileUserCard, ProfileNavBar } from './Profile/index';
-import usePaginatedData from '../../hooks/usePaginatedData';
-import { getUserAchievementsUrl } from '../../API/achievements/urls';
+import {
+  ProfileUserCard,
+  ProfileNavBar,
+  ProfileAchievements,
+  ProfileFriends,
+} from './Profile/index';
 import { getUserById } from '../../API/user/methods';
 import { userContext } from '../../contexts/CurrentUser';
 import { Posts } from '../common/Post';
 import { Switch, Route, Redirect } from 'react-router';
-import { Achievements } from '../Home';
+import { getUsersFriends } from '../../API/friends/methods';
+
 export type ProfileProps = {
   className: string;
 };
@@ -36,7 +36,7 @@ const Profile = ({ className }: ProfileProps) => {
     } else {
       setProfileUser(user);
     }
-  }, []);
+  }, [userId]);
 
   return (
     <div className={className}>
@@ -54,13 +54,10 @@ const Profile = ({ className }: ProfileProps) => {
           ></Posts>
         </Route>
         <Route path="/profile/:userId/achievements">
-          <Achievements />
+          <ProfileAchievements />
         </Route>
         <Route path="/profile/:userId/friends">
-          <Posts
-            className={styles.central}
-            postsFetcher={getPostsPaginated(10)}
-          ></Posts>
+          <ProfileFriends friendsFetcher={getUsersFriends(userId, 10)} />
         </Route>
       </Switch>
     </div>
