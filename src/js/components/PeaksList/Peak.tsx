@@ -34,8 +34,11 @@ const Peak = ({
   const [completed, setCompleted] = useState<boolean>(peak.completed);
   const { register, errors, handleSubmit } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const promise = completeThePeak(peak.id, data.hours * 60 + data.minutes);
+  const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
+    const promise = completeThePeak(
+      peak.id,
+      parseInt(data.hours.toString()) * 60 + parseInt(data.minutes.toString())
+    );
 
     promise
       .then(() => {
@@ -95,10 +98,10 @@ const Peak = ({
               };
             }, [isOpen]);
             return (
-              <Card.Card>
+              <Card.Card className={styles.reachPeakCard}>
                 <form onSubmit={(e) => e.preventDefault()}>
                   <label className={styles.label}>
-                    {'Wprowadz czas ukończenia'}
+                    {'Wprowadź czas ukończenia'}
                   </label>
                   <div className={styles.timeInputContainer}>
                     <input
@@ -127,6 +130,7 @@ const Peak = ({
                         required: 'Pole wymagane',
                         validate: {
                           nonNegative: (v) => parseInt(v) >= 0,
+                          lessThanHour: (v) => parseInt(v) < 60,
                         },
                       })}
                     />
@@ -144,7 +148,7 @@ const Peak = ({
                       onSubmit(data);
                       close();
                     })}
-                    text="Zatwierdz"
+                    text="Zatwierdź"
                     className={styles.reachPeakButton}
                   />
 
