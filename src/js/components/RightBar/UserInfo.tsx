@@ -11,8 +11,6 @@ const UserInfo = () => {
   const { user } = useContext(userContext);
   const location = useLocation<Location>();
 
-  console.log(user.profilePhoto);
-  if (!user) return null;
   return (
     <Link to={'/profile/' + user.id} className={styles.wrapper}>
       <div
