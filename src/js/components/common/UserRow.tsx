@@ -5,36 +5,57 @@ import cx from 'classnames';
 import React from 'react';
 
 export type UserRowProps = {
-  url: string;
-  name: string;
+  info: React.ReactNode;
   className?: string;
-  startChat?: () => void;
-  isChatActive?: boolean;
+  onClick?: () => void;
+  isActive?: boolean;
   children?: React.ReactNode;
 };
 
 const UserRow = ({
-  url,
-  name,
   className,
-  isChatActive,
-  startChat,
+  isActive,
+  onClick,
+  info,
   children,
 }: UserRowProps) => {
   return (
     <div
       className={cx(
         styles.wrapper,
-        { [styles.chatActive]: isChatActive },
+        { [styles.chatActive]: isActive },
         className
       )}
-      onClick={startChat}
+      onClick={onClick}
     >
-      <Icon url={url} />
-      <span className={styles.name}>{name}</span>
+      {info}
       <div className={styles.right}>{children}</div>
     </div>
   );
 };
 
-export default UserRow;
+export type UserInfoProps = {
+  url: string;
+  name: string;
+  iconClassName?: string;
+  textClassName?: string;
+};
+
+const UserInfo = ({
+  url,
+  iconClassName,
+  textClassName,
+  name,
+}: UserInfoProps) => (
+  <>
+    <Icon url={url} className={iconClassName} />
+    <span className={cx(styles.name, textClassName)}>{name}</span>
+  </>
+);
+
+UserRow.displayName = 'UserRow';
+
+export default {
+  UserRow: UserRow,
+  UserInfo: UserInfo,
+};

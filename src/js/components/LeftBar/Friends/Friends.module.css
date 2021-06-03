@@ -18,3 +18,7 @@
   color: var(--darkest-gray);
   border-radius: var(--l-border-radius);
 }
+
+.friend:hover {
+  cursor: pointer;
+}

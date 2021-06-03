@@ -19,17 +19,20 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
 
   const toUserRowComponent = (friend: User) => {
     return (
-      <UserRow
+      <UserRow.UserRow
         key={`friend_${friend.id}`}
-        name={friend.firstName + ' ' + friend.lastName}
-        url={friend.profilePhoto}
         className={styles.friend}
-        startChat={() => startChat(friend.id)}
-        isChatActive={activeChatId === friend.id}
+        onClick={() => startChat(friend.id)}
+        isActive={activeChatId === friend.id}
+        info={
+          <UserRow.UserInfo
+            name={friend.firstName + ' ' + friend.lastName}
+            url={friend.profilePhoto}
+          />
+        }
       >
-        {' '}
         <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
-      </UserRow>
+      </UserRow.UserRow>
     );
   };
 
