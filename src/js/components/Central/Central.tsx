@@ -18,7 +18,7 @@ export type CentralProps = {
 
 const Central = ({ activeChatId, headerStyles }: CentralProps) => {
   return (
-    <div className={styles.pane}>
+    <div className={styles.pane} id="scroll">
       <div className={headerStyles}>
         <NavBar />
       </div>

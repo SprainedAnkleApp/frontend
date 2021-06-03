@@ -7,11 +7,11 @@ export const getPendingFriendsPaginatedUrl = (
 ): string =>
   `${process.env.REACT_APP_API_URL}api/public/users/me/friends/pending?pageNumber=${pageNumber}&pageSize=${pageSize}`;
 
-export const acceptFriendUrl = (id: number): string =>
-  `${process.env.REACT_APP_API_URL}api/users/${id}/accept`;
+export const acceptFriendUrl = (): string =>
+  `${process.env.REACT_APP_API_URL}api/users/accept`;
 
-export const addFriendUrl = (id: number): string =>
-  `${process.env.REACT_APP_API_URL}api/users/${id}/add`;
+export const addFriendUrl = (): string =>
+  `${process.env.REACT_APP_API_URL}api/users/add`;
 
-export const rejectFriendUrl = (id: number): string =>
-  `${process.env.REACT_APP_API_URL}api/users/${id}/reject`;
+export const rejectFriendUrl = (): string =>
+  `${process.env.REACT_APP_API_URL}api/users/reject`;

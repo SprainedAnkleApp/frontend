@@ -4,14 +4,11 @@ import cx from 'classnames';
 
 import styles from './Post.module.css';
 import React, { useState, useContext } from 'react';
-import { Post as PostType, User, Reaction } from '../../../models/interfaces';
+import { Post as PostType, User } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
-<<<<<<< HEAD
 import { userContext } from '../../../contexts/CurrentUser';
-=======
 import useModalRescuer from '../../../hooks/useModalRescuer';
->>>>>>> develop
 
 export type PostProps = PostType & {
   className?: string;
@@ -41,11 +38,11 @@ const Post = ({
   const likePost = async () => {
     try {
       if (liked) {
-        await deleteReaction(id, { type: 'LOVE', userId: currentUser.id});
+        await deleteReaction(id, { type: 'LOVE', userId: currentUser.id });
         setLiked(false);
         setLikesCount((count) => count - 1);
       } else {
-        await createReaction(id, { type: 'LOVE', userId: currentUser.id});
+        await createReaction(id, { type: 'LOVE', userId: currentUser.id });
         setLiked(true);
         setLikesCount((count) => count + 1);
       }
@@ -74,7 +71,7 @@ const Post = ({
       <div className={styles.buttons}>
         <PostButton
           active={liked}
-          className={cx(styles['button-icon'], styles.heart)}
+          className={cx(styles['button-icon'], { [styles.heart]: liked })}
           onClick={likePost}
           icon={<BsFillHeartFill />}
           count={likesCount}
