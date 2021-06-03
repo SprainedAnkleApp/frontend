@@ -12,8 +12,9 @@ import {
 import { getUserById } from '../../API/user/methods';
 import { userContext } from '../../contexts/CurrentUser';
 import { Posts } from '../common/Post';
-import { Switch, Route, Redirect } from 'react-router';
 import { getUsersFriends } from '../../API/friends/methods';
+
+export type profileTabs = 'posts' | 'achievements' | 'friends';
 
 export type ProfileProps = {
   className: string;
@@ -25,6 +26,7 @@ const Profile = ({ className }: ProfileProps) => {
   const [profileUser, setProfileUser] = useState<
     User | Record<string, never>
   >();
+  const [state, setState] = useState<profileTabs>('posts');
 
   useEffect(() => {
     if (user.id.toString() != userId) {
@@ -39,27 +41,24 @@ const Profile = ({ className }: ProfileProps) => {
   }, [userId]);
 
   return (
-    <div className={className}>
+    <div className={className} id="postsScroll">
       <ProfileUserCard
         profileUserName={profileUser?.firstName + ' ' + profileUser?.lastName}
         profilePhoto={profileUser?.profilePhoto}
       />
-      <ProfileNavBar userId={userId} />
-      <Switch>
-        <Redirect exact from="/profile/:userId" to="/profile/:userId/posts" />
-        <Route path="/profile/:userId/posts">
+      <ProfileNavBar userId={userId} state={state} setState={setState} />
+      <div>
+        {state === 'posts' && (
           <Posts
             className={styles.central}
             postsFetcher={getPostsPaginated(10)}
           ></Posts>
-        </Route>
-        <Route path="/profile/:userId/achievements">
-          <ProfileAchievements />
-        </Route>
-        <Route path="/profile/:userId/friends">
+        )}
+        {state === 'achievements' && <ProfileAchievements />}
+        {state === 'friends' && (
           <ProfileFriends friendsFetcher={getUsersFriends(userId, 10)} />
-        </Route>
-      </Switch>
+        )}
+      </div>
     </div>
   );
 };

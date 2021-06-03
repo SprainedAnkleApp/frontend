@@ -16,6 +16,12 @@
     font-size: var(--xs-font-size);
     font-weight: var(--medium-font-weight);
     color: var(--gray);
+    height: 100%;
+    width: 33%;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .selected {
