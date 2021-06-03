@@ -6,7 +6,7 @@ export type Fetcher<T> = (
 
 const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
   const [data, setData] = useState<T[]>([]);
 
   const nextPage = async () => {
@@ -18,7 +18,7 @@ const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
       try {
         const result = await fetcher(currentPage);
         setData(data.concat(result.data));
-        setHasMore(currentPage < result.pages);
+        setHasMore(currentPage + 1 < result.pages);
         // eslint-disable-next-line no-empty
       } catch (e) {}
     };
