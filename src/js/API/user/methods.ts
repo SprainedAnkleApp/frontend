@@ -6,6 +6,7 @@ import {
 import axios from 'axios';
 import authHeader from '../auth/methods';
 import { User } from '../../models/interfaces';
+import { makePaginatedRequest } from '../utils';
 
 export const getCurrentUser = async (): Promise<User | null> => {
   try {
@@ -34,17 +35,11 @@ export const getSearchUsersPaginated = (
   pageSize: number,
   searchTerm: string
 ) => async (page: number): Promise<{ pages: number; data: User[] }> => {
-  try {
-    const pagePostsUrl = getSearchUsersPaginatedUrl(page, pageSize, searchTerm);
-    const response = await axios.get(pagePostsUrl, {
-      headers: authHeader(),
-    });
-    return {
-      pages: response.data.totalPages ?? 0,
-      data: response.data.content ?? [],
-    };
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const searchUsersPaginatedUrl = getSearchUsersPaginatedUrl(
+    page,
+    pageSize,
+    searchTerm
+  );
+
+  return makePaginatedRequest(searchUsersPaginatedUrl);
 };
