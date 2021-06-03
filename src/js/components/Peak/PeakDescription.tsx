@@ -16,7 +16,11 @@ const PeakDescription = ({ peak, statistics }: PeakDescriptionProps) => {
       <p>Wysokość: {peak.height} m n.p.m.</p>
       <p>Województwo: {peak.region}</p>
       <p>Pasmo górskie: {peak.mountainRange}</p>
-      <PeakStatistics statistics={statistics} />
+      <PeakStatistics
+        statistics={statistics}
+        completed={peak.completed}
+        completionTime={peak.completionTime}
+      />
     </div>
   );
 };

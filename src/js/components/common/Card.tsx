@@ -25,6 +25,7 @@ export type CardHeaderProps = {
   timestamp?: string;
   active: boolean;
   rightPart?: React.ReactNode;
+  className?: string;
 };
 
 const CardHeader = ({
@@ -32,9 +33,10 @@ const CardHeader = ({
   active,
   rightPart,
   user,
+  className,
 }: CardHeaderProps) => {
   return (
-    <div className={styles.header}>
+    <div className={cx(styles.header, className)}>
       <Icon url={user?.profilePhoto} variant="s" />
       <div className={styles.nameWithTime}>
         <span className={styles.userName}>{user?.login}</span>

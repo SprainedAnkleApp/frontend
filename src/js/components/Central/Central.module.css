@@ -1,0 +1,19 @@
+.pane {
+  overflow: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.pane::-webkit-scrollbar {
+  display: none;
+}
+
+.central {
+  margin-left: 2.5%;
+  margin-right: 2%;
+  height: 100%;
+}
+
+.chat {
+  height: 85%;
+}

@@ -5,16 +5,21 @@
 }
 
 .select {
-  height: 45px;
+  padding: 15px 22px;
   border: var(--l-border-width) solid var(--border-gray);
   border-radius: var(--xl-border-radius);
-  background-color: #F1F1F1;
+  background-color: #fff;
   font-weight: var(--normal-font-weight);
   font-size: var(--s-font-size);
   color: var(--darkest-gray);
-  padding: 2px 20px;
   margin-top: 2px;
+  appearance: none;       /* Remove default arrow */
 }
+
+.selectPlaceholder {
+  color: var(--light-gray);
+}
+
 
 .select:focus {
   outline: none;
@@ -24,4 +29,8 @@
   font-weight: var(--bold-font-weight);
   font-size: var(--s-font-size);
   color: var(--darkest-gray);
+}
+
+.label:disabled {
+  opacity: 1;
 }

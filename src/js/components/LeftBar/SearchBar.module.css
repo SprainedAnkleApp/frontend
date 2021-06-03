@@ -1,26 +1,24 @@
 .searchBar {
-  width: 320px;
   background-color: var(--lighter-gray);
   border-radius: var(--xl-border-radius);
   display: flex;
-  justify-content: space-evenly;
   align-content: center;
-  padding: 14px 14px;
-}
-
-.searchBar {
-  grid-area: SearchBar;
+  padding: 16px 16px;
 }
 
 .icon {
   font-size: 34px;
-  padding: 3px 2px;
+  max-height: 34px;
+  max-width: 34px;
+  margin-left: 3px;
+  margin-right: 20px;
+  line-height: 1;
   color: var(--light-gray);
 }
 
 .input {
-  width: 233px;
   border: none;
+  width: 100%;
   background-color: inherit;
   font-size: var(--s-font-size);
   color: var(--darkest-gray);
