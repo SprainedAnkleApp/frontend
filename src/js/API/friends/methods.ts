@@ -1,29 +1,81 @@
+import { User } from '../../models/interfaces';
+import {
+  getPendingFriendsPaginatedUrl,
+  getFriendsUrl,
+  getUsersFriendsUrl,
+  acceptFriendUrl,
+  rejectFriendUrl,
+  addFriendUrl,
+} from './urls';
 import axios from 'axios';
-import Image from '../../../images/mountain.jpg';
-import { Friend, User } from '../../models/interfaces';
 import authHeader from '../auth/methods';
-import { getUsersFriendsUrl } from './urls';
+import { makePaginatedRequest } from '../utils';
 
-export const getFriends = async (): Promise<Friend[]> => {
-  const friends = [
-    { id: 0, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 1, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 2, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 3, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 4, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 5, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 6, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 7, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 8, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 9, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 10, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 11, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 12, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 13, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-    { id: 14, firstName: 'Bartosz', lastName: 'Kaszuba', profilePhoto: Image },
-    { id: 15, firstName: 'Konrad', lastName: 'Dębiec', profilePhoto: Image },
-  ];
-  return friends;
+export const getFriends = (pageSize: number) => async (
+  page: number
+): Promise<{ pages: number; data: User[] }> => {
+  const friendsUrl = getFriendsUrl(page, pageSize);
+  return makePaginatedRequest(friendsUrl);
+};
+
+type UserWithData = User & {
+  extraData: string;
+};
+
+export const getPendingFriendsPaginated = (pageSize: number) => async (
+  page: number
+): Promise<{ pages: number; data: UserWithData[] }> => {
+  const pendingFriendsPaginatedUrl = getPendingFriendsPaginatedUrl(
+    page,
+    pageSize
+  );
+  const response = await makePaginatedRequest(pendingFriendsPaginatedUrl);
+  type apiResponse = {
+    user: User;
+    sentDate: string;
+  }[];
+
+  const userWithExtraData = (response.data as apiResponse).map((dataPiece) => ({
+    ...dataPiece.user,
+    extraData: dataPiece.sentDate,
+  }));
+  return {
+    pages: response.pages,
+    data: userWithExtraData,
+  };
+};
+
+export const acceptFriendship = async (userId: number): Promise<void> => {
+  try {
+    await axios.post(acceptFriendUrl(userId), {
+      headers: authHeader(),
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const rejectFriendship = async (userId: number): Promise<void> => {
+  try {
+    await axios.post(rejectFriendUrl(userId), {
+      headers: authHeader(),
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const addFriendship = async (userId: number): Promise<void> => {
+  try {
+    await axios.post(addFriendUrl(userId), {
+      headers: authHeader(),
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
 
 export const getUsersFriends = (userId: string, pageSize: number) => async (

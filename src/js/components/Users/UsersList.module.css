@@ -1,0 +1,46 @@
+.user {
+  font-size: var(--s-font-size);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--light-gray);
+  margin-bottom: 8px;
+  padding-right: 10px;
+}
+
+.user:last-child {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border: 0;
+}
+
+.icon {
+  margin-top: 4px;
+  font-size: var(--m-font-size);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.userScroll {
+  padding-right: 3%;
+  padding-left: 2%;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ and Edge */
+  scrollbar-width: none;  /* Firefox */
+  height: 100%;
+}
+
+.userScroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+
+.placeholder {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: var(--m-font-size);
+}
+
+.placeholderIcon {
+  font-size: 100px;
+}
+
+

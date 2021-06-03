@@ -1,29 +1,19 @@
-import { Header } from '../../components/common/Header';
-import {
-  Friends,
-  Achievements,
-  ChatWindow,
-  NewPost,
-} from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
 
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../../API/user/methods';
-import { Switch, Route, useLocation } from 'react-router';
-import { PeaksList } from '../PeaksList';
+
 import React from 'react';
 import { User } from '../../models/interfaces';
-import { PeakDetails } from '../Peak';
-import { Profile } from '../Profile';
-import { Posts } from '../../components/common/Post';
-import { getPostsPaginated } from '../../API/wall/methods';
+import { LeftBar } from '../../components/LeftBar';
+import { RightBar } from '../../components/RightBar';
+import { Central } from '../../components/Central';
 
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
-  const location = useLocation<Location>();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -40,51 +30,20 @@ const Home = () => {
 
   if (!user) return <div>Loading</div>;
   return (
-    <div className={styles.main}>
-      <Header
+    <div className={styles.home}>
+      <LeftBar
+        headerStyles={styles.paneHeader}
         searchTerm={searchTerm}
         onChangeSearchTerm={(value) => setSearchTerm(value)}
+        startChat={(friendId) => setActiveChatId(friendId)}
+        activeChatId={activeChatId}
       />
-      <div className={styles.home}>
-        <Friends
-          searchTerm={searchTerm}
-          startChat={(friendId: number) => setActiveChatId(friendId)}
-          activeChatId={activeChatId}
-        />
-        <Switch>
-          <Route path="/profile/:userId">
-            <Profile className={styles.central} />
-          </Route>
-          <Route path="/peaks/:id">
-            <PeakDetails className={styles.central} />
-          </Route>
-          <Route path="/peaks">
-            <PeaksList className={styles.central} />
-          </Route>
-          <Route path="/chat">
-            <ChatWindow
-              activeChatId={activeChatId}
-              className={styles.central}
-            />
-          </Route>
-          <Route path="/">
-            <Posts
-              className={styles.central}
-              postsFetcher={getPostsPaginated(10)}
-            >
-              <NewPost />
-            </Posts>
-          </Route>
-        </Switch>
-        <Achievements />
-        {location.pathname !== '/chat' && activeChatId !== null && (
-          <ChatWindow
-            activeChatId={activeChatId}
-            className={styles.chat}
-            onClose={() => setActiveChatId(null)}
-          />
-        )}
-      </div>
+      <Central activeChatId={activeChatId} headerStyles={styles.paneHeader} />
+      <RightBar
+        headerStyles={styles.paneHeader}
+        activeChatId={activeChatId}
+        closeChat={() => setActiveChatId(null)}
+      />
     </div>
   );
 };

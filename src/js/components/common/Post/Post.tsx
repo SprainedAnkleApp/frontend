@@ -1,5 +1,5 @@
-import { KebabMenu, Card } from '..';
-import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
+import { Card } from '..';
+import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Post as PostType, User, Reaction } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
+import useModalRescuer from '../../../hooks/useModalRescuer';
 
 export type PostProps = PostType & {
   className?: string;
@@ -14,7 +15,7 @@ export type PostProps = PostType & {
 
 const Post = ({
   id,
-  photoPath,
+  signedUrl,
   content,
   timestamp,
   reactions,
@@ -25,10 +26,9 @@ const Post = ({
   const [liked, setLiked] = useState(
     reactions.find((reaction) => reaction === 'LIKE') ? true : false
   );
-  const [watched, setWatched] = useState(
-    reactions.find((reaction) => reaction === 'LOVE') ? true : false
-  );
+
   const [showComments, setShowComments] = useState(false);
+  const { openModal, rescuer } = useModalRescuer();
 
   const reactionToggle = (
     state: boolean,
@@ -37,36 +37,32 @@ const Post = ({
   ) => async () => {
     try {
       if (state) {
-        deleteReaction(id, reaction);
+        await deleteReaction(id, reaction);
         setState(false);
       } else {
-        createReaction(id, reaction);
+        await createReaction(id, reaction);
         setState(true);
       }
-      // eslint-disable-next-line no-empty
-    } catch {}
+    } catch (e) {
+      openModal();
+    }
   };
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
-      <Card.Header
-        timestamp={timestamp}
-        user={user as User}
-        active={true}
-        rightPart={<KebabMenu className={styles.kebab} />}
-      />
+      <Card.Header timestamp={timestamp} user={user as User} active={true} />
       <div className={styles.content}>
         {content && (
           <span
             className={cx(styles['content-text'], {
-              [styles.withBottomPadding]: photoPath,
+              [styles.withBottomPadding]: signedUrl,
             })}
           >
             {content}
           </span>
         )}
-        {photoPath && (
-          <img src={photoPath} alt="post content" className={styles.photo} />
+        {signedUrl && (
+          <img src={signedUrl} alt="post content" className={styles.photo} />
         )}
       </div>
       <div className={styles.buttons}>
@@ -84,19 +80,13 @@ const Post = ({
           icon={<BsFillChatFill />}
           count={comments ? comments.length : 0}
         />
-        <PostButton
-          active={watched}
-          className={cx(styles['button-container'], styles.watch)}
-          onClick={reactionToggle(watched, setWatched, 'LOVE')}
-          icon={<BsEyeFill />}
-          count={reactions.filter((reaction) => reaction === 'LOVE').length}
-        />
       </div>
       {showComments && (
         <div>
           <Comments comments={comments ?? []} />
         </div>
       )}
+      {rescuer}
     </Card.Card>
   );
 };

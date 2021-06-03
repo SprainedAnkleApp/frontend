@@ -13,6 +13,13 @@ const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
     setCurrentPage((currentPage) => currentPage + 1);
   };
 
+  const refetch = async () => {
+    const result = await fetcher(0);
+    setData(result.data);
+    setCurrentPage(0);
+    setHasMore(0 < result.pages);
+  };
+
   useEffect(() => {
     const fetchNewPage = async () => {
       try {
@@ -25,6 +32,7 @@ const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
     fetchNewPage();
   }, [currentPage]);
   return {
+    refetch,
     nextPage,
     hasMore,
     data,

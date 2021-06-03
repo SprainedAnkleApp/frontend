@@ -6,29 +6,36 @@ import React from 'react';
 export type ProgressBarProps = {
   className?: string;
   backgroundColor: string;
-  percentage: number;
+  progress: number;
+  toComplete: number;
   completed?: boolean;
 };
 
 const ProgressBar = ({
   className,
   backgroundColor,
-  percentage,
+  progress,
+  toComplete,
   completed,
 }: ProgressBarProps) => {
+  const percentage = Math.round((progress / toComplete) * 100);
   const containerStyles = {
-    border: `1px solid ${backgroundColor}`,
+    backgroundColor: 'var(--lighter-gray)',
   };
   const fillerStyles = {
     width: `${completed ? 100 : percentage}%`,
     backgroundColor: backgroundColor,
   };
 
+  const color = {
+    color: percentage < 60 ? 'black' : 'white',
+  };
+
   return (
     <div className={cx(styles.wrapper, className)} style={containerStyles}>
       <div className={styles.filler} style={fillerStyles}></div>
-      <span className={styles.label}>
-        {completed ? 'Ukończone' : `${percentage}%`}
+      <span className={styles.label} style={color}>
+        {completed ? 'Ukończone' : `${progress}/${toComplete}`}
       </span>
     </div>
   );

@@ -1,0 +1,15 @@
+.kebabMenu {
+  cursor: pointer;
+}
+
+.horizontalMargin {
+  margin-left: 10px;
+}
+
+.menuItem {
+  font-size: var(--xs-font-size);
+}
+
+.menuItem:hover {
+  background-color: var(--light-green);
+}

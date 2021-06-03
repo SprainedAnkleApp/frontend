@@ -1,0 +1,83 @@
+.small {
+  height: 50vh;
+  max-height: 50vh;
+  position: sticky;
+  bottom: 10px;
+  margin-top: auto;
+}
+
+.close {
+  background-color: transparent;
+  border: none;
+  font-size: 36px;
+  line-height: 0.5;
+  color: var(--gray);
+  padding: 0;
+  cursor: pointer;
+}
+
+.close:focus {
+  outline: none;
+}
+
+.messages {
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  margin-bottom: 10px;
+}
+
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  max-width: 85%;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 12px 18px;
+  border-radius: var(--xl-border-radius);
+  background-color: var(--lighter-gray);
+  color: var(--gray);
+  font-size: var(--xxxs-font-size);
+}
+
+.myMessage {
+  align-self: flex-end;
+  background-color: var(--light-green);
+}
+
+.textInput {
+  background: var(--lighter-gray);
+  border-radius: var(--xl-border-radius);
+  margin-top: auto;
+  color: var(--gray);
+  display: flex;
+  flex-direction: row;
+  padding: 10px 23px;
+}
+
+.textInput input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: var(--xs-font-size);
+}
+
+.textInput input:focus{
+  outline: none;
+}
+
+.sendIcon {
+  font-size: 21px;
+  max-height: 21px;
+  margin-left: auto;
+}
+
+.bottomSpace {
+  padding-bottom: 10px;
+}
