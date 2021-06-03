@@ -1,6 +1,6 @@
+import React from 'react';
 import cx from 'classnames';
 import styles from './ProfileNavBar.module.css';
-import React from 'react';
 import { Card } from '../../common';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const ProfileNavBar = ({ userId }: ProfileNavBarProps) => {
                   location.pathname.split('/').pop() === 'posts',
               })}
             >
-              Posts
+              Posty
             </div>
           </Link>
           <Link to={'./achievements'} className={styles.achievements}>
@@ -32,7 +32,7 @@ const ProfileNavBar = ({ userId }: ProfileNavBarProps) => {
                   location.pathname.split('/').pop() === 'achievements',
               })}
             >
-              Achievements
+              Osiągnięcia
             </div>
           </Link>
           <Link to={'./friends'} className={styles.friends}>
@@ -42,7 +42,7 @@ const ProfileNavBar = ({ userId }: ProfileNavBarProps) => {
                   location.pathname.split('/').pop() === 'friends',
               })}
             >
-              Friends
+              Znajomi
             </div>
           </Link>
         </div>
