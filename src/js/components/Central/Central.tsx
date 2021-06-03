@@ -37,7 +37,7 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
             <ChatWindow activeChatId={activeChatId} className={styles.fixed} />
           </Route>
           <Route path="/">
-            <Posts postsFetcher={getPostsPaginated(10)}>
+            <Posts postsFetcher={getPostsPaginated(10)} scrollId="scroll">
               <NewPost />
             </Posts>
           </Route>
