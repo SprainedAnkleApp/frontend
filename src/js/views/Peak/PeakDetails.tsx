@@ -51,7 +51,6 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
         {state === 'description' && (
           <PeakDescription
             peak={peakDetails}
-            showForm={showForm}
             key={peakDetails.name}
             statistics={peakDetails.statistics}
           />
