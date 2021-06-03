@@ -9,6 +9,7 @@ import { completeThePeak } from '../../API/peaks/methods';
 import Popup from 'reactjs-popup';
 import { TiTick, TiTimes } from 'react-icons/ti';
 import Error from '../common/Error';
+import useBlur from '../../hooks/useBlur';
 
 export type PeakProps = {
   peak: PeakType;
@@ -81,19 +82,7 @@ const Peak = ({
           nested
         >
           {(close: () => void, isOpen: boolean) => {
-            useEffect(() => {
-              if (!isOpen) return;
-              const rootDiv = document.getElementById('root');
-              if (!rootDiv) return;
-              rootDiv.style.filter = 'blur(2px)';
-
-              return () => {
-                if (!isOpen) return;
-                const rootDiv = document.getElementById('root');
-                if (!rootDiv) return;
-                rootDiv.style.filter = 'none';
-              };
-            }, [isOpen]);
+            useBlur(isOpen);
             return (
               <Card.Card>
                 <form onSubmit={(e) => e.preventDefault()}>
