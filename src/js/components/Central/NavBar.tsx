@@ -1,6 +1,7 @@
 import { RiLandscapeFill } from 'react-icons/ri';
 import { IoMdChatboxes } from 'react-icons/io';
 import { AiFillHome } from 'react-icons/ai';
+import { BsFillPeopleFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './NavBar.module.css';
@@ -15,6 +16,7 @@ const states: statesType = {
   home: 1,
   chat: 2,
   peaks: 3,
+  users: 4,
 };
 
 const NavBar = () => {
@@ -58,6 +60,17 @@ const NavBar = () => {
         >
           <div className={styles.iconWrapper}>
             <RiLandscapeFill />
+          </div>
+        </div>
+      </Link>
+      <Link to={'/users'}>
+        <div
+          className={cx(styles.icon, {
+            [styles.selected]: getNavBarState() === states.users,
+          })}
+        >
+          <div className={styles.iconWrapper}>
+            <BsFillPeopleFill />
           </div>
         </div>
       </Link>

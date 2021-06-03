@@ -8,6 +8,7 @@ import {
   getPagePeakPostsUrl,
 } from './urls';
 import { Peak, PeakCompletion, Post } from '../../models/interfaces';
+import { makePaginatedRequest } from '../utils';
 
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
@@ -68,19 +69,6 @@ export const getPeakPostsPaginated = (
   peakId: string,
   pageSize: number
 ) => async (page: number): Promise<{ pages: number; data: Post[] }> => {
-  try {
-    const response = await axios.get(
-      getPagePeakPostsUrl(peakId, page, pageSize),
-      {
-        headers: authHeader(),
-      }
-    );
-    return {
-      pages: response.data.totalPages,
-      data: response.data.content,
-    };
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const peakPostsPaginatedUrl = getPagePeakPostsUrl(peakId, page, pageSize);
+  return makePaginatedRequest(peakPostsPaginatedUrl);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router';
 import PeakMap from '../../components/Peak/PeakMap';
 import { Peak } from '../../components/PeaksList';
@@ -7,10 +7,10 @@ import styles from './PeakDetails.module.css';
 import { getPeak, getPeakPostsPaginated } from '../../API/peaks/methods';
 import PeakDescription from '../../components/Peak/PeakDescription';
 import { Peak as PeakType } from '../../models/interfaces';
-import PeakNavBar from '../../components/Peak/PeakNavBar';
 
 import cx from 'classnames';
 import { Posts } from '../../components/common/Post';
+import { SectionNavBar } from '../../components/common';
 
 export type peakInformations = 'description' | 'map' | 'posts';
 
@@ -25,6 +25,15 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
   );
   const [state, setState] = useState<peakInformations>('description');
   const [showForm, setShowForm] = useState<boolean>(false);
+
+  const possibleStates = useMemo(
+    () => ({
+      description: 'Opis',
+      map: 'Mapa',
+      posts: 'Posty',
+    }),
+    []
+  );
 
   useEffect(() => {
     const fetchPeak = async () => {
@@ -44,7 +53,12 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
         setShowForm={() => setShowForm(!showForm)}
         peakDetails={true}
       />
-      <PeakNavBar state={state} setState={setState} />
+      <SectionNavBar
+        state={state}
+        setState={setState}
+        possibleStates={possibleStates}
+        className={styles.navBar}
+      />
       <div
         className={state !== 'posts' ? styles.peakInformation : styles.posts}
       >

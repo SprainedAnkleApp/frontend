@@ -28,11 +28,12 @@ export type Statistics = {
 
 export type User = {
   id: number;
-  login: string;
+  login?: string;
   firstName: string;
   lastName: string;
   email: string;
   profilePhoto: string;
+  friend?: boolean;
 };
 
 export type Comment = {
@@ -44,7 +45,7 @@ export type Reaction = 'LIKE' | 'LOVE';
 
 export type Post = {
   id: number;
-  photoPath?: string;
+  signedUrl?: string;
   content?: string;
   timestamp: string;
   reactions: Reaction[];
@@ -52,13 +53,6 @@ export type Post = {
   watch: number;
   peak?: Peak;
   user?: User;
-};
-
-export type Friend = {
-  id: number;
-  firstName: string;
-  lastName: string;
-  profilePhoto: string;
 };
 
 export type Achievement = {

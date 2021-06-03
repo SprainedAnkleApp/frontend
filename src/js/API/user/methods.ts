@@ -1,7 +1,12 @@
-import { getCurrentUserUrl, getUserUrl } from './urls';
+import {
+  getCurrentUserUrl,
+  getUserUrl,
+  getSearchUsersPaginatedUrl,
+} from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
 import { User } from '../../models/interfaces';
+import { makePaginatedRequest } from '../utils';
 
 export const getCurrentUser = async (): Promise<User | null> => {
   try {
@@ -24,4 +29,17 @@ export const getUserById = async (id: string): Promise<User | null> => {
     console.log(error);
     return null;
   }
+};
+
+export const getSearchUsersPaginated = (
+  pageSize: number,
+  searchTerm: string
+) => async (page: number): Promise<{ pages: number; data: User[] }> => {
+  const searchUsersPaginatedUrl = getSearchUsersPaginatedUrl(
+    page,
+    pageSize,
+    searchTerm
+  );
+
+  return makePaginatedRequest(searchUsersPaginatedUrl);
 };

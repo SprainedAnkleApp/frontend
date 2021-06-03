@@ -4,18 +4,15 @@
   width: 100%;
 }
 
-.wrapper:hover {
-  cursor: pointer;
-}
-
 .name {
   padding-left: 16px;
   font-size: var(--xs-font-size);
   color: var(--gray);
+  margin-right: auto;
 }
 
-.status {
-  margin-left: auto;
+.right {
+  justify-self: flex-end;
 }
 
 .chatActive {

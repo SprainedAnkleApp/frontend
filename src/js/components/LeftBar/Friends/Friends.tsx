@@ -1,8 +1,10 @@
 import styles from './Friends.module.css';
-import FriendInfo from './FriendInfo';
 import React, { useEffect, useState } from 'react';
 import { getFriends } from '../../../API/friends/methods';
-import { Friend } from '../../../models/interfaces';
+import { User } from '../../../models/interfaces';
+import { UserStatus, UserRow } from '../../common';
+import usePaginatedData from '../../../hooks/usePaginatedData';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export type FriendsProps = {
   searchTerm: string;
@@ -11,39 +13,31 @@ export type FriendsProps = {
 };
 
 const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
-  const [filteredFriends, setFilteredFriends] = useState<Friend[]>([]);
-  const [friends, setFriends] = useState<Friend[]>([]);
+  const [filteredFriends, setFilteredFriends] = useState<User[]>([]);
 
-  const toFriendInfoComponent = (friend: Friend) => {
+  const { data, nextPage, hasMore } = usePaginatedData<User>(getFriends(10));
+
+  const toUserRowComponent = (friend: User) => {
     return (
-      <FriendInfo
+      <UserRow.UserRow
         key={`friend_${friend.id}`}
-        name={friend.firstName + ' ' + friend.lastName}
-        url={friend.profilePhoto}
         className={styles.friend}
-        status={friend.id % 3 === 0 ? 'online' : 'offline'}
-        startChat={() => startChat(friend.id)}
-        isChatActive={activeChatId === friend.id}
-      />
+        onClick={() => startChat(friend.id)}
+        isActive={activeChatId === friend.id}
+        info={
+          <UserRow.UserInfo
+            name={friend.firstName + ' ' + friend.lastName}
+            url={friend.profilePhoto}
+          />
+        }
+      >
+        <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
+      </UserRow.UserRow>
     );
   };
 
   useEffect(() => {
-    const fetchFriends = async () => {
-      try {
-        const result = await getFriends();
-        setFriends(result);
-        setFilteredFriends(result);
-        // TODO error handling
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchFriends();
-  }, []);
-
-  useEffect(() => {
-    const result = friends.filter((friend) =>
+    const result = data.filter((friend) =>
       (
         friend.firstName.toLowerCase() +
         ' ' +
@@ -51,12 +45,23 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
       ).includes(searchTerm.toLowerCase())
     );
     setFilteredFriends(result);
-  }, [searchTerm]);
+  }, [searchTerm, data]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Znajomi</div>
-      {filteredFriends.map(toFriendInfoComponent)}
+      <InfiniteScroll
+        dataLength={data.length}
+        next={nextPage}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+      >
+        {filteredFriends.length > 0 ? (
+          filteredFriends.map(toUserRowComponent)
+        ) : (
+          <h4>Brak</h4>
+        )}
+      </InfiniteScroll>
     </div>
   );
 };
