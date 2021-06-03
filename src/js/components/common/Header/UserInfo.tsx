@@ -12,14 +12,16 @@ const UserInfo = () => {
 
   if (!user) return null;
   return (
-    <Link to={'/profile'} className={styles.wrapper}>
+    <Link to={'/profile/' + user.id} className={styles.wrapper}>
       <div
         className={cx([styles.wrapper, styles.selectionWrapper], {
           [styles.selected]: location.pathname.split('/')[1] === 'profile',
         })}
       >
         <Icon url={user.profilePhoto} />
-        <div className={styles.userName}>{user.login}</div>
+        <div className={styles.userName}>
+          {user.firstName + ' ' + user.lastName}
+        </div>
       </div>
       <div>
         <KebabMenu className={styles.kebabMenu} />

@@ -14,7 +14,9 @@ export const getCurrentUser = async (): Promise<User | null> => {
   }
 };
 
-export const getUserById = async (id: string): Promise<User | null> => {
+export const getUserById = async (
+  id: string
+): Promise<User | Record<string, never>> => {
   try {
     const response = await axios.get(getUserUrl(id), {
       headers: authHeader(),
@@ -22,6 +24,6 @@ export const getUserById = async (id: string): Promise<User | null> => {
     return response.data;
   } catch (error) {
     console.log(error);
-    return null;
+    return {};
   }
 };

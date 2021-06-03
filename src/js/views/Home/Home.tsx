@@ -52,7 +52,7 @@ const Home = () => {
           activeChatId={activeChatId}
         />
         <Switch>
-          <Route path="/profile">
+          <Route path="/profile/:userId">
             <Profile className={styles.central} />
           </Route>
           <Route path="/peaks/:id">

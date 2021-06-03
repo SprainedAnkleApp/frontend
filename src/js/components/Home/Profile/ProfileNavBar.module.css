@@ -18,6 +18,11 @@
     color: var(--gray);
 }
 
+.selected {
+    font-weight: var(--bold-font-weight);
+    color: var(--darkest-gray);
+}
+
 .posts {
     height: 100%;
     width: 33%;
