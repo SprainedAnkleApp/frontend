@@ -10,6 +10,7 @@ import { Posts } from '../common/Post';
 import { getPostsPaginated } from '../../API/wall/methods';
 import { ChatWindow } from '../common';
 import { Users } from '../../views/Users';
+import { Profile } from '../../views/Profile';
 
 export type CentralProps = {
   activeChatId: number | null;
@@ -24,6 +25,9 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
       </div>
       <div className={styles.central}>
         <Switch>
+          <Route path="/profile/:userId">
+            <Profile className={styles.central} />
+          </Route>
           <Route path="/users">
             <Users />
           </Route>
