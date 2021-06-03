@@ -1,4 +1,4 @@
-import { KebabMenu, Icon } from '../common';
+import { Icon } from '../common';
 import cx from 'classnames';
 
 import styles from './UserInfo.module.css';

@@ -46,7 +46,7 @@ const Profile = ({ className }: ProfileProps) => {
         profileUserName={profileUser?.firstName + ' ' + profileUser?.lastName}
         profilePhoto={profileUser?.profilePhoto}
       />
-      <ProfileNavBar userId={userId} state={state} setState={setState} />
+      <ProfileNavBar state={state} setState={setState} />
       <div>
         {state === 'posts' && (
           <Posts
