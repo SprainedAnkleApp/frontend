@@ -1,5 +1,5 @@
 import { Card } from '..';
-import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
+import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Post as PostType, User, Reaction } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
+import useModalRescuer from '../../../hooks/useModalRescuer';
 
 export type PostProps = PostType & {
   className?: string;
@@ -25,10 +26,9 @@ const Post = ({
   const [liked, setLiked] = useState(
     reactions.find((reaction) => reaction === 'LIKE') ? true : false
   );
-  const [watched, setWatched] = useState(
-    reactions.find((reaction) => reaction === 'LOVE') ? true : false
-  );
+
   const [showComments, setShowComments] = useState(false);
+  const { openModal, rescuer } = useModalRescuer();
 
   const reactionToggle = (
     state: boolean,
@@ -37,14 +37,15 @@ const Post = ({
   ) => async () => {
     try {
       if (state) {
-        deleteReaction(id, reaction);
+        await deleteReaction(id, reaction);
         setState(false);
       } else {
-        createReaction(id, reaction);
+        await createReaction(id, reaction);
         setState(true);
       }
-      // eslint-disable-next-line no-empty
-    } catch {}
+    } catch (e) {
+      openModal();
+    }
   };
   return (
     <Card.Card className={className}>
@@ -79,19 +80,13 @@ const Post = ({
           icon={<BsFillChatFill />}
           count={comments ? comments.length : 0}
         />
-        <PostButton
-          active={watched}
-          className={cx(styles['button-container'], styles.watch)}
-          onClick={reactionToggle(watched, setWatched, 'LOVE')}
-          icon={<BsEyeFill />}
-          count={reactions.filter((reaction) => reaction === 'LOVE').length}
-        />
       </div>
       {showComments && (
         <div>
           <Comments comments={comments ?? []} />
         </div>
       )}
+      {rescuer}
     </Card.Card>
   );
 };

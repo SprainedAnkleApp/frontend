@@ -1,0 +1,20 @@
+.text {
+  font-size: var(--l-font-size);
+  padding: 20px 30px;
+  
+}
+
+.icon {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 60px;
+}
+
+.button {
+  font-size: var(--s-font-size);
+  padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  height: auto;
+  width: 100%;
+}

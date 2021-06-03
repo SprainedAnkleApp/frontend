@@ -6,6 +6,7 @@ import { createNewPost } from '../../../API/wall/methods';
 
 import styles from './NewPost.module.css';
 import AddImage from './AddImage';
+import useBlur from '../../../hooks/useBlur';
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -76,19 +77,7 @@ const NewPost = () => {
         overlayStyle={overlayStyle}
       >
         {(close: () => void, isOpen: boolean) => {
-          useEffect(() => {
-            if (!isOpen) return;
-            const rootDiv = document.getElementById('root');
-            if (!rootDiv) return;
-            rootDiv.style.filter = 'blur(6px)';
-
-            return () => {
-              if (!isOpen) return;
-              const rootDiv = document.getElementById('root');
-              if (!rootDiv) return;
-              rootDiv.style.filter = 'none';
-            };
-          }, [isOpen]);
+          useBlur(isOpen);
           const sendNewPost = async () => {
             try {
               setButtonDisabled(true);
