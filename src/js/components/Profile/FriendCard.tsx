@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './FriendCard.module.css';
-import { Card } from '../../common';
-import { User as UserType } from '../../../models/interfaces';
+import { Card } from '../common';
+import { User as UserType } from '../../models/interfaces';
 import { Link } from 'react-router-dom';
 
 const FriendCard = ({

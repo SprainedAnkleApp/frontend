@@ -12,7 +12,7 @@
 }
 
 .backgroundImg {
-    content:url('../../../../images/profile_bg.png');
+    content:url('../../../images/profile_bg.png');
     width: 100%;
     padding: 0 0 30px 0;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './ProfileFriends.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import usePaginatedData, { Fetcher } from '../../../hooks/usePaginatedData';
-import { User as UserType } from '../../../models/interfaces';
+import usePaginatedData, { Fetcher } from '../../hooks/usePaginatedData';
+import { User as UserType } from '../../models/interfaces';
 import FriendCard from './FriendCard';
 
 export type ProfileFirendsProps = {

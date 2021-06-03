@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProfileUserCard.module.css';
-import { Card } from '../../common';
+import { Card } from '../common';
 
 export type ProfileUserCardProps = {
   profileUserName: string;

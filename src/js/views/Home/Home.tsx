@@ -3,7 +3,6 @@ import {
   Friends,
   Achievements,
   ChatWindow,
-  Profile,
   NewPost,
 } from '../../components/Home';
 import Image from '../../../images/mountain.jpg';
@@ -16,6 +15,7 @@ import { PeaksList } from '../PeaksList';
 import React from 'react';
 import { User } from '../../models/interfaces';
 import { PeakDetails } from '../Peak';
+import { Profile } from '../Profile';
 import { Posts } from '../../components/common/Post';
 import { getPostsPaginated } from '../../API/wall/methods';
 

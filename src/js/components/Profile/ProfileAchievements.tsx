@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProfileAchievements.module.css';
-import { Achievements } from '../../Home';
-import { Card } from '../../common';
+import { Achievements } from '../Home';
+import { Card } from '../common';
 
 const ProfileAchievements = () => {
   return (

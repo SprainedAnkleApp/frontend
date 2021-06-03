@@ -8,10 +8,10 @@ import {
   ProfileNavBar,
   ProfileAchievements,
   ProfileFriends,
-} from './Profile/index';
+} from '../../components/Profile/index';
 import { getUserById } from '../../API/user/methods';
 import { userContext } from '../../contexts/CurrentUser';
-import { Posts } from '../common/Post';
+import { Posts } from '../../components/common/Post';
 import { getUsersFriends } from '../../API/friends/methods';
 
 export type profileTabs = 'posts' | 'achievements' | 'friends';
