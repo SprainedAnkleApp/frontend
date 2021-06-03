@@ -18,7 +18,6 @@
 }
 
 .profileImg {
-    content:url('../../../../images/profile_pic.png');
     height: 70%;
     margin: 0;
     position: absolute;
