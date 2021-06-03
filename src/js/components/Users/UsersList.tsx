@@ -14,6 +14,7 @@ import {
   rejectFriendship,
   acceptFriendship,
 } from '../../API/friends/methods';
+import useModalRescuer from '../../hooks/useModalRescuer';
 
 export type ListProps<T extends User> = {
   state: UsersListOptions;
@@ -22,6 +23,7 @@ export type ListProps<T extends User> = {
 
 const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
   const { data, nextPage, hasMore, refetch } = usePaginatedData<T>(userFetcher);
+  const { openModal, rescuer } = useModalRescuer();
 
   useEffect(() => {
     refetch();
@@ -32,7 +34,13 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
       return (
         <MdPersonAdd
           className={styles.icon}
-          onClick={() => addFriendship(id)}
+          onClick={async () => {
+            try {
+              await addFriendship(id);
+            } catch (e) {
+              openModal();
+            }
+          }}
         />
       );
     } else {
@@ -40,11 +48,23 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
         <div>
           <AiOutlineCheck
             className={styles.icon}
-            onClick={() => acceptFriendship(id)}
+            onClick={async () => {
+              try {
+                await acceptFriendship(id);
+              } catch (e) {
+                openModal();
+              }
+            }}
           />
           <AiOutlineClose
             className={styles.icon}
-            onClick={() => rejectFriendship(id)}
+            onClick={async () => {
+              try {
+                await rejectFriendship(id);
+              } catch (e) {
+                openModal();
+              }
+            }}
           />
         </div>
       );
@@ -80,6 +100,7 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
           <BiSad className={styles.placeholderIcon} />
         </div>
       )}
+      {rescuer}
     </InfiniteScroll>
   );
 };

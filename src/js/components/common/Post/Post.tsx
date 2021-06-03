@@ -1,5 +1,5 @@
 import { Card } from '..';
-import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
+import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
@@ -7,7 +7,11 @@ import React, { useState, useContext } from 'react';
 import { Post as PostType, User, Reaction } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
+<<<<<<< HEAD
 import { userContext } from '../../../contexts/CurrentUser';
+=======
+import useModalRescuer from '../../../hooks/useModalRescuer';
+>>>>>>> develop
 
 export type PostProps = PostType & {
   className?: string;
@@ -30,25 +34,24 @@ const Post = ({
       : false
   );
   const [likesCount, setLikesCount] = useState(reactions.length);
-  const [showComments, setShowComments] = useState(false);
 
-  const reactionToggle = (
-    state: boolean,
-    setState: (state: boolean) => void,
-    reaction: Reaction
-  ) => async () => {
+  const [showComments, setShowComments] = useState(false);
+  const { openModal, rescuer } = useModalRescuer();
+
+  const likePost = async () => {
     try {
-      if (state) {
-        deleteReaction(id, reaction);
-        setState(false);
+      if (liked) {
+        await deleteReaction(id, { type: 'LOVE', userId: currentUser.id});
+        setLiked(false);
         setLikesCount((count) => count - 1);
       } else {
-        createReaction(id, reaction);
-        setState(true);
+        await createReaction(id, { type: 'LOVE', userId: currentUser.id});
+        setLiked(true);
         setLikesCount((count) => count + 1);
       }
-      // eslint-disable-next-line no-empty
-    } catch {}
+    } catch (e) {
+      openModal();
+    }
   };
   return (
     <Card.Card className={className}>
@@ -72,10 +75,7 @@ const Post = ({
         <PostButton
           active={liked}
           className={cx(styles['button-icon'], styles.heart)}
-          onClick={reactionToggle(liked, setLiked, {
-            type: 'LOVE',
-            userId: currentUser.id,
-          })}
+          onClick={likePost}
           icon={<BsFillHeartFill />}
           count={likesCount}
         />
@@ -92,6 +92,7 @@ const Post = ({
           <Comments comments={comments ?? []} />
         </div>
       )}
+      {rescuer}
     </Card.Card>
   );
 };

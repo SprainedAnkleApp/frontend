@@ -74,6 +74,19 @@
     cursor: pointer;
 }
 
+.reachPeakCard {
+    text-align: center;
+}
+
+.reachPeakButton {
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: var(--xs-font-size);
+}
+
 .reachedText {
     font-size: var(--xxs-font-size);
     padding-right: 10px;
@@ -90,6 +103,7 @@
     text-align: center;
     height: 50px;
     width: 55px;
+    margin: 0 10px;
 }
 
 .timeInputContainer {
@@ -99,6 +113,7 @@
     font-weight: var(--bold-font-weight);
     font-size: var(--s-font-size);
     color: var(--darkest-gray);
+    margin-top: 15px;
 }
 
 @media (max-width: 1200px) {

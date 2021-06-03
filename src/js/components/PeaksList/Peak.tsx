@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import cx from 'classnames';
 import styles from './Peak.module.css';
 import { Peak as PeakType } from '../../models/interfaces';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SubmitButton, Card } from '../common';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { completeThePeak } from '../../API/peaks/methods';
 import Popup from 'reactjs-popup';
 import { TiTick, TiTimes } from 'react-icons/ti';
 import Error from '../common/Error';
+import useBlur from '../../hooks/useBlur';
 
 export type PeakProps = {
   peak: PeakType;
@@ -34,8 +35,11 @@ const Peak = ({
   const [completed, setCompleted] = useState<boolean>(peak.completed);
   const { register, errors, handleSubmit } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const promise = completeThePeak(peak.id, data.hours * 60 + data.minutes);
+  const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
+    const promise = completeThePeak(
+      peak.id,
+      parseInt(data.hours.toString()) * 60 + parseInt(data.minutes.toString())
+    );
 
     promise
       .then(() => {
@@ -81,24 +85,12 @@ const Peak = ({
           nested
         >
           {(close: () => void, isOpen: boolean) => {
-            useEffect(() => {
-              if (!isOpen) return;
-              const rootDiv = document.getElementById('root');
-              if (!rootDiv) return;
-              rootDiv.style.filter = 'blur(2px)';
-
-              return () => {
-                if (!isOpen) return;
-                const rootDiv = document.getElementById('root');
-                if (!rootDiv) return;
-                rootDiv.style.filter = 'none';
-              };
-            }, [isOpen]);
+            useBlur(isOpen);
             return (
-              <Card.Card>
+              <Card.Card className={styles.reachPeakCard}>
                 <form onSubmit={(e) => e.preventDefault()}>
                   <label className={styles.label}>
-                    {'Wprowadz czas ukończenia'}
+                    {'Wprowadź czas ukończenia'}
                   </label>
                   <div className={styles.timeInputContainer}>
                     <input
@@ -127,6 +119,7 @@ const Peak = ({
                         required: 'Pole wymagane',
                         validate: {
                           nonNegative: (v) => parseInt(v) >= 0,
+                          lessThanHour: (v) => parseInt(v) < 60,
                         },
                       })}
                     />
@@ -144,7 +137,7 @@ const Peak = ({
                       onSubmit(data);
                       close();
                     })}
-                    text="Zatwierdz"
+                    text="Zatwierdź"
                     className={styles.reachPeakButton}
                   />
 
