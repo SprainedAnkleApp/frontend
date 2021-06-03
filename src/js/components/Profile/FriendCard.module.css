@@ -32,6 +32,6 @@
     text-align: center;
     margin: 0px;
     font-size: var(--xs-font-size);
-    font-weight: var(--normal-font-weight);
+    font-weight: var(--medium-font-weight);
     color: var(--white);
 }
