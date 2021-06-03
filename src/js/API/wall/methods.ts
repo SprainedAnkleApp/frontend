@@ -33,7 +33,11 @@ export const createNewPost = async (
   const body = new FormData();
   body.append('content', content);
   if (file) body.append('file', file);
-  await axios.post(file ? createNewPhotoPostUrl() : createNewPostUrl(), body, {
-    headers: authHeader(),
-  });
+  await axios.post(
+    file ? createNewPhotoPostUrl() : createNewPostUrl(),
+    file ? body : { content: content },
+    {
+      headers: authHeader(),
+    }
+  );
 };
