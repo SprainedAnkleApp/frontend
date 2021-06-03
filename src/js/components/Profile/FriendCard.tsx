@@ -4,14 +4,7 @@ import { Card } from '../common';
 import { User as UserType } from '../../models/interfaces';
 import { Link } from 'react-router-dom';
 
-const FriendCard = ({
-  id,
-  login,
-  firstName,
-  lastName,
-  email,
-  profilePhoto,
-}: UserType) => {
+const FriendCard = ({ id, firstName, lastName, profilePhoto }: UserType) => {
   return (
     <div className={styles.friendCard}>
       <Link to={'/profile/' + id} className={styles.posts}>

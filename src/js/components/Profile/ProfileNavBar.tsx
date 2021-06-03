@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import styles from './ProfileNavBar.module.css';
 import { Card } from '../common';
-import { useLocation } from 'react-router-dom';
 import { profileTabs } from '../../views/Profile/Profile';
 
 export type ProfileNavBarProps = {
