@@ -56,7 +56,10 @@ const Profile = ({ className }: ProfileProps) => {
         )}
         {state === 'achievements' && <ProfileAchievements />}
         {state === 'friends' && (
-          <ProfileFriends friendsFetcher={getUsersFriends(userId, 10)} />
+          <ProfileFriends
+            key={userId}
+            friendsFetcher={getUsersFriends(userId, 10)}
+          />
         )}
       </div>
     </div>
