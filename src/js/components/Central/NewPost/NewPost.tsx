@@ -2,7 +2,10 @@ import { Icon, Card, SubmitButton } from '../../common';
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { userContext } from '../../../contexts/CurrentUser';
 import Popup from 'reactjs-popup';
-import { createNewPost } from '../../../API/wall/methods';
+import {
+  createNewPost,
+  createNewPostWithPhoto,
+} from '../../../API/wall/methods';
 
 import styles from './NewPost.module.css';
 import AddImage from './AddImage';
@@ -92,7 +95,8 @@ const NewPost = () => {
           const sendNewPost = async () => {
             try {
               setButtonDisabled(true);
-              await createNewPost(postText, image);
+              if (image) await createNewPostWithPhoto(postText, image);
+              else await createNewPost(postText);
               close();
             } catch (error) {
               setError(true);

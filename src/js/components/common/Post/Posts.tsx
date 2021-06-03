@@ -15,10 +15,11 @@ const Posts = ({ className, postsFetcher, children }: PostsProps) => {
   const { data, nextPage, hasMore } = usePaginatedData<PostType>(postsFetcher);
 
   const renderPosts = () =>
-    data.map((post) => {
-      console.log(post);
-      return <Post key={post.id} {...post} className={styles.post} />;
-    });
+    data
+      .filter((post) => post)
+      .map((post) => {
+        return <Post key={post.id} {...post} className={styles.post} />;
+      });
 
   return (
     <div className={className} id="postsScroll">

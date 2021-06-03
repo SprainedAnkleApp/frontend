@@ -1,4 +1,5 @@
 .pane {
+  height: 100vh;
   overflow: scroll;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
@@ -11,9 +12,9 @@
 .central {
   margin-left: 2.5%;
   margin-right: 2%;
-  height: 100%;
+  height: calc(100% - 102px);
 }
 
-.chat {
-  height: 85%;
+.fixed {
+  height: calc(100% - 50px);
 }

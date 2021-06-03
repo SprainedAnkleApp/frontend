@@ -25,7 +25,7 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
       <div className={styles.central}>
         <Switch>
           <Route path="/users">
-            <Users />
+            <Users className={styles.fixed} />
           </Route>
           <Route path="/peaks/:id">
             <PeakDetails />
@@ -34,7 +34,7 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
             <PeaksList />
           </Route>
           <Route path="/chat">
-            <ChatWindow activeChatId={activeChatId} className={styles.chat} />
+            <ChatWindow activeChatId={activeChatId} className={styles.fixed} />
           </Route>
           <Route path="/">
             <Posts postsFetcher={getPostsPaginated(10)}>

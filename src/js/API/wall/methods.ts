@@ -23,17 +23,28 @@ export const getPostsPaginated = (pageSize: number) => async (
   page: number
 ): Promise<{ pages: number; data: Post[] }> => {
   const pagePostsUrl = getPaginatedPostsUrl(page, pageSize);
+  console.log(makePaginatedRequest(pagePostsUrl));
   return makePaginatedRequest(pagePostsUrl);
 };
 
-export const createNewPost = async (
+export const createNewPost = async (content: string): Promise<void> => {
+  await axios.post(
+    createNewPostUrl(),
+    { content: content },
+    {
+      headers: authHeader(),
+    }
+  );
+};
+
+export const createNewPostWithPhoto = async (
   content: string,
-  file: File | null
+  file: File
 ): Promise<void> => {
   const body = new FormData();
   body.append('content', content);
-  if (file) body.append('file', file);
-  await axios.post(file ? createNewPhotoPostUrl() : createNewPostUrl(), body, {
+  body.append('file', file);
+  await axios.post(createNewPhotoPostUrl(), body, {
     headers: authHeader(),
   });
 };

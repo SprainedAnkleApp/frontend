@@ -8,9 +8,15 @@ import { UsersList } from '../../components/Users';
 import { getSearchUsersPaginated } from '../../API/user/methods';
 import { getPendingFriendsPaginated } from '../../API/friends/methods';
 
+import cx from 'classnames';
+
 export type UsersListOptions = 'all' | 'invitations';
 
-const Users = () => {
+export type UsersProps = {
+  className?: string;
+};
+
+const Users = ({ className }: UsersProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const [selectedList, setSelectedList] = useState<UsersListOptions>('all');
@@ -31,7 +37,7 @@ const Users = () => {
       : pendingFetcher();
   }, [selectedList, searchTerm]);
   return (
-    <>
+    <div className={cx(styles.wrapper, className)}>
       <SectionNavBar
         state={selectedList}
         possibleStates={states}
@@ -48,7 +54,7 @@ const Users = () => {
       <Card.Card className={styles.card}>
         <UsersList userFetcher={fetcher()} state={selectedList} />
       </Card.Card>
-    </>
+    </div>
   );
 };
 
