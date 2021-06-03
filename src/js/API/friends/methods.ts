@@ -17,19 +17,36 @@ export const getFriends = (pageSize: number) => async (
   return makePaginatedRequest(friendsUrl);
 };
 
+type UserWithData = User & {
+  extraData: string;
+};
+
 export const getPendingFriendsPaginated = (pageSize: number) => async (
   page: number
-): Promise<{ pages: number; data: User[] }> => {
+): Promise<{ pages: number; data: UserWithData[] }> => {
   const pendingFriendsPaginatedUrl = getPendingFriendsPaginatedUrl(
     page,
     pageSize
   );
-  return makePaginatedRequest(pendingFriendsPaginatedUrl);
+  const response = await makePaginatedRequest(pendingFriendsPaginatedUrl);
+  type apiResponse = {
+    user: User;
+    sentDate: string;
+  }[];
+
+  const userWithExtraData = (response.data as apiResponse).map((dataPiece) => ({
+    ...dataPiece.user,
+    extraData: dataPiece.sentDate,
+  }));
+  return {
+    pages: response.pages,
+    data: userWithExtraData,
+  };
 };
 
 export const acceptFriendship = async (userId: number): Promise<void> => {
   try {
-    await axios.get(acceptFriendUrl(userId), {
+    await axios.post(acceptFriendUrl(userId), {
       headers: authHeader(),
     });
   } catch (error) {
@@ -40,7 +57,7 @@ export const acceptFriendship = async (userId: number): Promise<void> => {
 
 export const rejectFriendship = async (userId: number): Promise<void> => {
   try {
-    await axios.get(rejectFriendUrl(userId), {
+    await axios.post(rejectFriendUrl(userId), {
       headers: authHeader(),
     });
   } catch (error) {
@@ -51,7 +68,7 @@ export const rejectFriendship = async (userId: number): Promise<void> => {
 
 export const addFriendship = async (userId: number): Promise<void> => {
   try {
-    await axios.get(addFriendUrl(userId), {
+    await axios.post(addFriendUrl(userId), {
       headers: authHeader(),
     });
   } catch (error) {

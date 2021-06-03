@@ -9,6 +9,7 @@ import { NewPost } from './NewPost';
 import { Posts } from '../common/Post';
 import { getPostsPaginated } from '../../API/wall/methods';
 import { ChatWindow } from '../common';
+import { Users } from '../../views/Users';
 
 export type CentralProps = {
   activeChatId: number | null;
@@ -23,6 +24,9 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
       </div>
       <div className={styles.central}>
         <Switch>
+          <Route path="/users">
+            <Users />
+          </Route>
           <Route path="/peaks/:id">
             <PeakDetails />
           </Route>

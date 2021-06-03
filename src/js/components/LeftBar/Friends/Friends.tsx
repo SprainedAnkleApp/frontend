@@ -44,7 +44,6 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
         friend.lastName.toLowerCase()
       ).includes(searchTerm.toLowerCase())
     );
-    console.log(result);
     setFilteredFriends(result);
   }, [searchTerm, data]);
 

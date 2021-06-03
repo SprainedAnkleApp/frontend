@@ -25,7 +25,6 @@ const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
       try {
         const result = await fetcher(currentPage);
         setData(data.concat(result.data));
-        console.log(fetcher, hasMore, currentPage, result.pages);
         setHasMore(currentPage + 1 < result.pages);
         // eslint-disable-next-line no-empty
       } catch (e) {}
