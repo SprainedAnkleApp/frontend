@@ -1,0 +1,37 @@
+.friendCard {
+    width: 30%;
+    float: left;
+    margin: 3%;
+    min-width: 100px;
+    position: relative;
+}
+
+.card {
+    padding: 10px;
+}
+
+.profileImg {
+    border-radius: var(--l-border-radius);
+}
+
+.usernameBox {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 0 0 var(--l-border-radius) var(--l-border-radius);
+    padding-top: 30px;
+}
+
+.username {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    font-size: var(--xs-font-size);
+    font-weight: var(--normal-font-weight);
+    color: var(--white);
+}
