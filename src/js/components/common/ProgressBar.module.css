@@ -3,7 +3,7 @@
   background-color: transparent;
   border-radius: 50px;
   position: relative;
-  min-height: calc(1em + 4px);
+  min-height: calc(1em + 6px);
 }
 
 .filler {

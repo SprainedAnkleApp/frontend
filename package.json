@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^4.4.2",
-    "@ramonak/react-progress-bar": "^3.1.0",
     "@szhsin/react-menu": "^1.10.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
