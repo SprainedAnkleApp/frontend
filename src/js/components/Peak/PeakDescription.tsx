@@ -1,24 +1,14 @@
 import styles from './PeakDescription.module.css';
 import React from 'react';
 import { Peak, Statistics } from '../../models/interfaces';
-import { SubmitButton } from '../common';
-import { completeThePeak } from '../../API/peaks/methods';
 import PeakStatistics from './PeakStatistics';
 
 export type PeakDescriptionProps = {
   peak: Peak;
-  showForm: boolean;
   statistics: Statistics;
 };
-const PeakDescription = ({
-  peak,
-  showForm,
-  statistics,
-}: PeakDescriptionProps) => {
-  // TODO add form to reach peak
-  const reachPeak = async (time: number) =>
-    await completeThePeak(peak.id, time);
 
+const PeakDescription = ({ peak, statistics }: PeakDescriptionProps) => {
   return (
     <div className={styles.peakDescription}>
       <p className={styles.about}>{peak.about}</p>
@@ -31,15 +21,6 @@ const PeakDescription = ({
         completed={peak.completed}
         completionTime={peak.completionTime}
       />
-      {showForm && (
-        <div className={styles.buttonBox}>
-          <SubmitButton
-            onClick={() => reachPeak(3000)}
-            text="Zaznacz jako zdobyty"
-            className={styles.reachPeakButton}
-          />
-        </div>
-      )}
     </div>
   );
 };

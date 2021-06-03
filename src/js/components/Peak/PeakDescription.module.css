@@ -10,6 +10,13 @@
 .descriptionHeader {
     margin-bottom: 30px;
     color: var(--darkest-gray);
+    font-size: var(--s-font-size);
+}
+
+.label {
+    font-weight: var(--bold-font-weight);
+    font-size: var(--s-font-size);
+    color: var(--darkest-gray);
 }
 
 .buttonBox {
