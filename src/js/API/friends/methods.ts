@@ -45,34 +45,19 @@ export const getPendingFriendsPaginated = (pageSize: number) => async (
 };
 
 export const acceptFriendship = async (userId: number): Promise<void> => {
-  try {
-    await axios.post(acceptFriendUrl(userId), {
-      headers: authHeader(),
-    });
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  await axios.post(acceptFriendUrl(userId), {
+    headers: authHeader(),
+  });
 };
 
 export const rejectFriendship = async (userId: number): Promise<void> => {
-  try {
-    await axios.post(rejectFriendUrl(userId), {
-      headers: authHeader(),
-    });
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  await axios.post(rejectFriendUrl(userId), {
+    headers: authHeader(),
+  });
 };
 
 export const addFriendship = async (userId: number): Promise<void> => {
-  try {
-    await axios.post(addFriendUrl(userId), {
-      headers: authHeader(),
-    });
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  await axios.post(addFriendUrl(userId), {
+    headers: authHeader(),
+  });
 };
