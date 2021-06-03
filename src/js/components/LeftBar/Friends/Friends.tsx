@@ -1,8 +1,8 @@
 import styles from './Friends.module.css';
 import FriendInfo from './FriendInfo';
 import React, { useEffect, useState } from 'react';
-import { getFriends } from '../../API/friends/methods';
-import { Friend } from '../../models/interfaces';
+import { getFriends } from '../../../API/friends/methods';
+import { Friend } from '../../../models/interfaces';
 
 export type FriendsProps = {
   searchTerm: string;
@@ -55,7 +55,7 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.title}>Friends</div>
+      <div className={styles.title}>Znajomi</div>
       {filteredFriends.map(toFriendInfoComponent)}
     </div>
   );

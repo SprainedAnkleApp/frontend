@@ -32,7 +32,9 @@ const NavBar = () => {
             [styles.selected]: getNavBarState() === states.home,
           })}
         >
-          <AiFillHome />
+          <div className={styles.iconWrapper}>
+            <AiFillHome />
+          </div>
         </div>
       </Link>
 
@@ -42,7 +44,9 @@ const NavBar = () => {
             [styles.selected]: getNavBarState() === states.chat,
           })}
         >
-          <IoMdChatboxes />
+          <div className={styles.iconWrapper}>
+            <IoMdChatboxes />
+          </div>
         </div>
       </Link>
 
@@ -52,13 +56,15 @@ const NavBar = () => {
             [styles.selected]: getNavBarState() === states.peaks,
           })}
         >
-          <RiLandscapeFill />
+          <div className={styles.iconWrapper}>
+            <RiLandscapeFill />
+          </div>
         </div>
       </Link>
-
+      {/* 
       <div
         className={cx(styles.slide, styles[`slide${getNavBarState()}`])}
-      ></div>
+      ></div> */}
     </div>
   );
 };

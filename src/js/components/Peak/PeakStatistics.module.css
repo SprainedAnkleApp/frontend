@@ -1,12 +1,3 @@
-.horizontalMargin {
-    margin: 0 10px;
-}
-
-.wrapper {
-  display: flex;
-  align-items: center;
-}
-
 .statisticsHeader {
   margin: 30px 0 22px;
   color: var(--darkest-gray);

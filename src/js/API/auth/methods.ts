@@ -58,7 +58,6 @@ export const signUp = async ({
   email,
   password,
   matchingPassword,
-  gender,
 }: {
   username: string;
   firstName: string;
@@ -66,7 +65,6 @@ export const signUp = async ({
   email: string;
   password: string;
   matchingPassword: string;
-  gender: string;
 }) => {
   try {
     const response = await axios.post(getSignUpUrl(), {
@@ -76,7 +74,6 @@ export const signUp = async ({
       firstName: firstName,
       lastName: lastName,
       email: email,
-      gender: gender,
     });
     return response.data;
     // eslint-disable-next-line no-empty

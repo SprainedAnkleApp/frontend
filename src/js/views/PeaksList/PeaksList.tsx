@@ -9,7 +9,7 @@ import PeakWarning from '../../components/PeaksList/PeakWarning';
 import cx from 'classnames';
 
 export type PeaksListProps = {
-  className: string;
+  className?: string;
 };
 const PeaksList = ({ className }: PeaksListProps) => {
   const [peaksData, setPeaksData] = useState<PeakType[]>([]);
@@ -31,15 +31,21 @@ const PeaksList = ({ className }: PeaksListProps) => {
   return (
     <div className={cx(styles.container, className)}>
       <div className={styles.peaksList}>
-        {peaks.filter((_, index) => index % 2 === 0)}
+        {peaks
+          .filter((_, index) => index % 2 === 0)
+          .map((element) =>
+            React.cloneElement(element, { className: styles.listLeft })
+          )}
       </div>
       <div className={styles.peaksList}>
         <PeakWarning
-          warningText={
-            'Remember to always be careful in the mountains. Stay safe.'
-          }
+          warningText={'Pamiętaj, aby zawsze być ostrożnym w górach.'}
         />
-        {peaks.filter((_, index) => index % 2 === 1)}
+        {peaks
+          .filter((_, index) => index % 2 === 1)
+          .map((element) =>
+            React.cloneElement(element, { className: styles.right })
+          )}
       </div>
     </div>
   );

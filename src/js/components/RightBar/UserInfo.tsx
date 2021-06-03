@@ -1,8 +1,8 @@
-import { KebabMenu, Icon } from '..';
-
 import styles from './UserInfo.module.css';
 import React, { useContext } from 'react';
-import { userContext } from '../../../contexts/CurrentUser';
+import '@szhsin/react-menu/dist/index.css';
+import { userContext } from '../../contexts/CurrentUser';
+import { Icon } from '../common';
 
 const UserInfo = () => {
   const { user } = useContext(userContext);
@@ -11,7 +11,6 @@ const UserInfo = () => {
     <div className={styles.wrapper}>
       <Icon url={user.profilePhoto} />
       <div className={styles.userName}>{user.login}</div>
-      <KebabMenu />
     </div>
   );
 };

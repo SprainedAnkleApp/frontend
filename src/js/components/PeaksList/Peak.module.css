@@ -12,7 +12,7 @@
 }
 
 .redirectLink:hover {
-    opacity: 80%;
+    opacity: 0.8;
 }
 
 .photo {
@@ -78,6 +78,27 @@
     font-size: var(--xxs-font-size);
     padding-right: 10px;
     text-align: center;
+}
+
+.timeInput {
+    border: var(--l-border-width) solid var(--border-gray);  
+    border-radius: var(--xl-border-radius);
+    background-color: #F1F1F1;
+    font-weight: var(--normal-font-weight);
+    font-size: var(--s-font-size);
+    color: var(--darkest-gray);
+    text-align: center;
+    height: 50px;
+    width: 55px;
+}
+
+.timeInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--bold-font-weight);
+    font-size: var(--s-font-size);
+    color: var(--darkest-gray);
 }
 
 @media (max-width: 1200px) {
