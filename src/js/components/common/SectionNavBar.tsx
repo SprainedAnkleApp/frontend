@@ -18,11 +18,6 @@ const SectionNavBar = <T extends string>({
   className,
   iconClass,
 }: SectionNavBarProps<T>) => {
-  {
-    Object.entries(possibleStates).map((possibleState) =>
-      console.log(possibleState)
-    );
-  }
   return (
     <div className={cx(styles.navigation, className)}>
       {Object.entries(possibleStates).map(([entry, entryName], index) => (

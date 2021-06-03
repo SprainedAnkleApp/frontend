@@ -1,8 +1,10 @@
 import styles from './Friends.module.css';
 import React, { useEffect, useState } from 'react';
 import { getFriends } from '../../../API/friends/methods';
-import { Friend } from '../../../models/interfaces';
+import { User } from '../../../models/interfaces';
 import { UserStatus, UserRow } from '../../common';
+import usePaginatedData from '../../../hooks/usePaginatedData';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export type FriendsProps = {
   searchTerm: string;
@@ -11,10 +13,11 @@ export type FriendsProps = {
 };
 
 const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
-  const [filteredFriends, setFilteredFriends] = useState<Friend[]>([]);
-  const [friends, setFriends] = useState<Friend[]>([]);
+  const [filteredFriends, setFilteredFriends] = useState<User[]>([]);
 
-  const toFriendInfoComponent = (friend: Friend) => {
+  const { data, nextPage, hasMore } = usePaginatedData<User>(getFriends(10));
+
+  const toUserRowComponent = (friend: User) => {
     return (
       <UserRow
         key={`friend_${friend.id}`}
@@ -31,34 +34,32 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
   };
 
   useEffect(() => {
-    const fetchFriends = async () => {
-      try {
-        const result = await getFriends();
-        setFriends(result);
-        setFilteredFriends(result);
-        // TODO error handling
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchFriends();
-  }, []);
-
-  useEffect(() => {
-    const result = friends.filter((friend) =>
+    const result = data.filter((friend) =>
       (
         friend.firstName.toLowerCase() +
         ' ' +
         friend.lastName.toLowerCase()
       ).includes(searchTerm.toLowerCase())
     );
+    console.log(result);
     setFilteredFriends(result);
-  }, [searchTerm]);
+  }, [searchTerm, data]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Znajomi</div>
-      {filteredFriends.map(toFriendInfoComponent)}
+      <InfiniteScroll
+        dataLength={data.length}
+        next={nextPage}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+      >
+        {filteredFriends.length > 0 ? (
+          filteredFriends.map(toUserRowComponent)
+        ) : (
+          <h4>Brak</h4>
+        )}
+      </InfiniteScroll>
     </div>
   );
 };
