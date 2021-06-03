@@ -22,7 +22,7 @@ const ProfileFriends = ({ friendsFetcher }: ProfileFirendsProps) => {
     });
 
   return (
-    <div className={styles.achivementsWrapper}>
+    <div>
       <InfiniteScroll
         dataLength={data.length}
         next={nextPage}
