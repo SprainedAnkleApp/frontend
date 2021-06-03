@@ -1,5 +1,5 @@
 import { Card, SubmitButton } from '.';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Popup from 'reactjs-popup';
 import { BiSad } from 'react-icons/bi';
 

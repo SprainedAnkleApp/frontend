@@ -1,5 +1,5 @@
 import { Card } from '..';
-import { BsFillChatFill, BsFillHeartFill, BsEyeFill } from 'react-icons/bs';
+import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
