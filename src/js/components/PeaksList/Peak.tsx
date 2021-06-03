@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import cx from 'classnames';
 import styles from './Peak.module.css';
 import { Peak as PeakType } from '../../models/interfaces';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SubmitButton, Card } from '../common';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { completeThePeak } from '../../API/peaks/methods';
