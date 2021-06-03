@@ -56,11 +56,7 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
       >
-        {filteredFriends.length > 0 ? (
-          filteredFriends.map(toUserRowComponent)
-        ) : (
-          <h4>Brak</h4>
-        )}
+        {filteredFriends.map(toUserRowComponent)}
       </InfiniteScroll>
     </div>
   );
