@@ -2,10 +2,7 @@ import { Icon, Card, SubmitButton, SelectWithLabel } from '../../common';
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { userContext } from '../../../contexts/CurrentUser';
 import Popup from 'reactjs-popup';
-import {
-  createNewPost,
-  createNewPostWithPhoto,
-} from '../../../API/wall/methods';
+import { createNewPostWithPhotoAndPeak } from '../../../API/wall/methods';
 
 import styles from './NewPost.module.css';
 import AddImage from './AddImage';
@@ -121,14 +118,20 @@ const NewPost = () => {
               setButtonDisabled(true);
               const peak = showPeak ? peakId : null;
               showMap
-                ? await createNewPost(
+                ? await createNewPostWithPhotoAndPeak(
                     postText,
                     image,
                     anchor[0],
                     anchor[1],
                     peak
                   )
-                : await createNewPost(postText, image, 0.0, 0.0, peak);
+                : await createNewPostWithPhotoAndPeak(
+                    postText,
+                    image,
+                    0.0,
+                    0.0,
+                    peak
+                  );
               close();
               clearInput();
             } catch (error) {

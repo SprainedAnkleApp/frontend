@@ -38,7 +38,7 @@ export const createNewPost = async (content: string): Promise<void> => {
   );
 };
 
-export const createNewPostWithPhoto = async (
+export const createNewPostWithPhotoAndPeak = async (
   content: string,
   file: File | null,
   latitude: number | null,
