@@ -2,7 +2,7 @@ import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import { MdPersonAdd } from 'react-icons/md';
 import { User } from '../../models/interfaces';
 import { UsersListOptions } from '../../views/Users/Users';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { UserRow } from '../common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import usePaginatedData, { Fetcher } from '../../hooks/usePaginatedData';
@@ -15,6 +15,7 @@ import {
   acceptFriendship,
 } from '../../API/friends/methods';
 import useModalRescuer from '../../hooks/useModalRescuer';
+import { userContext } from '../../contexts/CurrentUser';
 
 export type ListProps<T extends User> = {
   state: UsersListOptions;
@@ -24,6 +25,7 @@ export type ListProps<T extends User> = {
 const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
   const { data, nextPage, hasMore, refetch } = usePaginatedData<T>(userFetcher);
   const { openModal, rescuer } = useModalRescuer();
+  const { user: currentUser } = useContext(userContext);
 
   useEffect(() => {
     refetch();
@@ -80,20 +82,23 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
       className={styles.userScroll}
     >
       {data.length > 0 ? (
-        data.map((user) => (
-          <UserRow.UserRow
-            key={`friend_${user.id}`}
-            className={styles.user}
-            info={
-              <UserRow.UserInfo
-                name={user.firstName + ' ' + user.lastName}
-                url={user.profilePhoto}
-              />
-            }
-          >
-            {createButtons(user.id)}
-          </UserRow.UserRow>
-        ))
+        data.map((user) => {
+          if (user.id === currentUser.id) return null;
+          return (
+            <UserRow.UserRow
+              key={`friend_${user.id}`}
+              className={styles.user}
+              info={
+                <UserRow.UserInfo
+                  name={user.firstName + ' ' + user.lastName}
+                  url={user.profilePhoto}
+                />
+              }
+            >
+              {createButtons(user.id)}
+            </UserRow.UserRow>
+          );
+        })
       ) : (
         <div className={styles.placeholder}>
           <p>Nie znaleziono {state == 'all' ? 'użytkowników' : 'zaproszeń'}</p>

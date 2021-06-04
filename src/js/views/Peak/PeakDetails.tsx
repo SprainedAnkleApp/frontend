@@ -73,7 +73,10 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
           <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />
         )}
         {state === 'posts' && (
-          <Posts postsFetcher={getPeakPostsPaginated(id, 10)} />
+          <Posts
+            postsFetcher={getPeakPostsPaginated(id, 10)}
+            scrollId="postsScroll"
+          />
         )}
       </div>
     </div>

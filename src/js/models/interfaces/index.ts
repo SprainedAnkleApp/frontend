@@ -41,7 +41,10 @@ export type Comment = {
   text: string;
 };
 
-export type Reaction = 'LIKE' | 'LOVE';
+export type Reaction = {
+  type: 'LOVE';
+  userId: number;
+};
 
 export type Post = {
   id: number;
