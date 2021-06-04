@@ -14,7 +14,7 @@ export type ModalRescuerProps = {
 const ModalRescuer = ({ isOpen, close }: ModalRescuerProps) => {
   useBlur(isOpen);
   return (
-    <Popup open={isOpen} closeOnDocumentClick onClose={close}>
+    <Popup open={isOpen} closeOnDocumentClick onClose={close} modal nested>
       <Card.Card>
         <div className={styles.text}>Wystąpił błąd</div>
         <BiSad className={styles.icon} />

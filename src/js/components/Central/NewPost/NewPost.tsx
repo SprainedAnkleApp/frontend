@@ -7,6 +7,9 @@ import { createNewPost } from '../../../API/wall/methods';
 import styles from './NewPost.module.css';
 import AddImage from './AddImage';
 import useBlur from '../../../hooks/useBlur';
+import AddMap from './AddMap';
+import { Point } from 'pigeon-maps';
+import DraggableMap from './DraggableMap';
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -17,6 +20,8 @@ const NewPost = () => {
 
   const [postText, setPostText] = useState('');
   const [image, setImage] = useState<null | File>(null);
+  const [showMap, setShowMap] = useState<boolean>(false);
+  const [anchor, setAnchor] = useState<Point>([49.13905, 20.220381]);
 
   const [error, setError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -62,7 +67,13 @@ const NewPost = () => {
   const overlayStyle = {
     zIndex: 5,
     background: 'rgba(255, 255, 255, 0.2)',
-    filter: 'blur(6px)',
+  };
+
+  const clearInput = () => {
+    setPostText('');
+    setImage(null);
+    setShowMap(false);
+    setButtonDisabled(false);
   };
 
   return (
@@ -75,20 +86,25 @@ const NewPost = () => {
         className="my-popup"
         contentStyle={contentStyle}
         overlayStyle={overlayStyle}
+        modal
+        nested
       >
         {(close: () => void, isOpen: boolean) => {
           useBlur(isOpen);
           const sendNewPost = async () => {
             try {
               setButtonDisabled(true);
-              await createNewPost(postText, image);
+              showMap
+                ? await createNewPost(postText, image, anchor[0], anchor[1])
+                : await createNewPost(postText, image, 0.0, 0.0);
               close();
+              clearInput();
             } catch (error) {
               setError(true);
             }
           };
           return (
-            <div style={{ width: width }}>
+            <div style={{ width: width }} className={styles.popupWindow}>
               <Card.Card ref={modalRef}>
                 <div className={styles.modal}>
                   <Icon url={user.profilePhoto} className={styles.icon} />
@@ -98,6 +114,11 @@ const NewPost = () => {
                       setImage(e?.target?.files && e.target.files[0])
                     }
                     className={styles.addImage}
+                  />
+                  <AddMap
+                    showMap={showMap}
+                    setShowMap={setShowMap}
+                    className={styles.addMap}
                   />
                   <textarea
                     placeholder={'O czym myślisz?'}
@@ -115,6 +136,14 @@ const NewPost = () => {
                       src={URL.createObjectURL(image)}
                       alt="uploaded photo"
                     />
+                  )}
+                  {showMap && (
+                    <div className={styles.map}>
+                      <DraggableMap anchor={anchor} setAnchor={setAnchor} />
+                      <span className={styles.mapInstruction}>
+                        Aby wybrać miejsce na mapie, przeciągnij pinezkę.
+                      </span>
+                    </div>
                   )}
                   <SubmitButton
                     text={error ? 'Wystapił błąd' : 'Opublikuj'}

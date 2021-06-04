@@ -28,14 +28,20 @@ export const getPostsPaginated = (pageSize: number) => async (
 
 export const createNewPost = async (
   content: string,
-  file: File | null
+  file: File | null,
+  latitude: number | null,
+  longitude: number | null
 ): Promise<void> => {
   const body = new FormData();
   body.append('content', content);
   if (file) body.append('file', file);
+  if (latitude) body.append('latitude', latitude.toString());
+  if (longitude) body.append('longitude', longitude.toString());
   await axios.post(
     file ? createNewPhotoPostUrl() : createNewPostUrl(),
-    file ? body : { content: content },
+    file
+      ? body
+      : { content: content, latitude: latitude, longitude: longitude },
     {
       headers: authHeader(),
     }
