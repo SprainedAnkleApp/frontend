@@ -53,6 +53,8 @@ export type Post = {
   watch: number;
   peak?: Peak;
   user?: User;
+  latitude: number;
+  longitude: number;
 };
 
 export type Achievement = {

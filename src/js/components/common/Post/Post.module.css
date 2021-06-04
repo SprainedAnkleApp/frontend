@@ -13,8 +13,9 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-.withBottomPadding {
-  padding-bottom: 15px;
+
+.withBottomMargin {
+  margin-bottom: 15px;
 }
 
 .photo {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router';
-import PeakMap from '../../components/Peak/PeakMap';
+import MapWithMarker from '../../components/common/MapWithMarker';
 import { Peak } from '../../components/PeaksList';
 
 import styles from './PeakDetails.module.css';
@@ -70,7 +70,9 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
           />
         )}
         {state === 'map' && (
-          <PeakMap center={[peakDetails.latitude, peakDetails.longitude]} />
+          <MapWithMarker
+            center={[peakDetails.latitude, peakDetails.longitude]}
+          />
         )}
         {state === 'posts' && (
           <Posts postsFetcher={getPeakPostsPaginated(id, 10)} />

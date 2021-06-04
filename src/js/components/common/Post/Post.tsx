@@ -8,6 +8,7 @@ import { Post as PostType, User, Reaction } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 import useModalRescuer from '../../../hooks/useModalRescuer';
+import MapWithMarker from '../MapWithMarker';
 
 export type PostProps = PostType & {
   className?: string;
@@ -22,6 +23,8 @@ const Post = ({
   comments,
   className,
   user,
+  latitude,
+  longitude,
 }: PostProps) => {
   const [liked, setLiked] = useState(
     reactions.find((reaction) => reaction === 'LIKE') ? true : false
@@ -55,11 +58,20 @@ const Post = ({
         {content && (
           <span
             className={cx(styles['content-text'], {
-              [styles.withBottomPadding]: signedUrl,
+              [styles.withBottomMargin]:
+                signedUrl || (latitude !== 0.0 && longitude !== 0.0),
             })}
           >
             {content}
           </span>
+        )}
+        {latitude !== 0.0 && longitude !== 0.0 && (
+          <MapWithMarker
+            center={[latitude, longitude]}
+            className={cx({
+              [styles.withBottomMargin]: signedUrl,
+            })}
+          />
         )}
         {signedUrl && (
           <img src={signedUrl} alt="post content" className={styles.photo} />
