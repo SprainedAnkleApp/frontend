@@ -25,6 +25,7 @@ const Post = ({
   user,
   latitude,
   longitude,
+  peak,
 }: PostProps) => {
   const [liked, setLiked] = useState(
     reactions.find((reaction) => reaction === 'LIKE') ? true : false
@@ -55,6 +56,15 @@ const Post = ({
       {/* TODO add timestamp */}
       <Card.Header timestamp={timestamp} user={user as User} active={true} />
       <div className={styles.content}>
+        {peak && (
+          <span
+            className={cx(styles['peak-text'], {
+              [styles.withBottomMargin]: content,
+            })}
+          >
+            {peak.name}
+          </span>
+        )}
         {content && (
           <span
             className={cx(styles['content-text'], {

@@ -1,4 +1,4 @@
-import { Icon, Card, SubmitButton } from '../../common';
+import { Icon, Card, SubmitButton, SelectWithLabel } from '../../common';
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { userContext } from '../../../contexts/CurrentUser';
 import Popup from 'reactjs-popup';
@@ -10,6 +10,14 @@ import useBlur from '../../../hooks/useBlur';
 import AddMap from './AddMap';
 import { Point } from 'pigeon-maps';
 import DraggableMap from './DraggableMap';
+import { getPeaks } from '../../../API/peaks/methods';
+import { Peak } from '../../../models/interfaces';
+import AddPeak from './AddPeak';
+
+export type Option = {
+  value: string;
+  label: string;
+};
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -22,15 +30,29 @@ const NewPost = () => {
   const [image, setImage] = useState<null | File>(null);
   const [showMap, setShowMap] = useState<boolean>(false);
   const [anchor, setAnchor] = useState<Point>([49.13905, 20.220381]);
+  const [showPeak, setShowPeak] = useState<boolean>(false);
 
   const [error, setError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [options, setOptions] = useState<Option[]>([]);
+  const [peakId, setPeakId] = useState<string | null>(null);
 
   useEffect(() => {
     if (cardRef.current) {
       setOffset(cardRef.current.clientHeight);
       setWidth(cardRef.current.clientWidth);
     }
+    const fetchPeaks = async () => {
+      const peaks = await getPeaks();
+      console.log(peaks);
+      const peaksOptions: Option[] = peaks.map((peak: Peak) => {
+        const option: Option = { value: peak.id, label: peak.name };
+        return option;
+      });
+      setOptions(peaksOptions);
+      console.log(peaksOptions);
+    };
+    fetchPeaks();
   }, []);
 
   useEffect(() => {
@@ -94,9 +116,16 @@ const NewPost = () => {
           const sendNewPost = async () => {
             try {
               setButtonDisabled(true);
+              const peak = showPeak ? peakId : null;
               showMap
-                ? await createNewPost(postText, image, anchor[0], anchor[1])
-                : await createNewPost(postText, image, 0.0, 0.0);
+                ? await createNewPost(
+                    postText,
+                    image,
+                    anchor[0],
+                    anchor[1],
+                    peak
+                  )
+                : await createNewPost(postText, image, 0.0, 0.0, peak);
               close();
               clearInput();
             } catch (error) {
@@ -120,6 +149,23 @@ const NewPost = () => {
                     setShowMap={setShowMap}
                     className={styles.addMap}
                   />
+                  <AddPeak
+                    showPeak={showPeak}
+                    setShowPeak={setShowPeak}
+                    className={styles.addPeak}
+                  />
+                  {showPeak && (
+                    <div className={styles.dropdownContainer}>
+                      <SelectWithLabel
+                        type={'text'}
+                        name={'peak'}
+                        label={''}
+                        placeholder={'Wspomnij o szczycie'}
+                        options={options}
+                        onChange={(e) => setPeakId(e.target.value)}
+                      />
+                    </div>
+                  )}
                   <textarea
                     placeholder={'O czym myślisz?'}
                     className={styles.textarea}

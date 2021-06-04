@@ -14,6 +14,12 @@
   padding-right: 15px;
 }
 
+.peak-text {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: var(--xxs-font-size);
+}
+
 .withBottomMargin {
   margin-bottom: 15px;
 }

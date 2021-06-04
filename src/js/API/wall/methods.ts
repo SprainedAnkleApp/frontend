@@ -3,6 +3,7 @@ import {
   getPostsUrl,
   getPaginatedPostsUrl,
   createNewPostUrl,
+  createNewPeakPostUrl,
 } from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
@@ -30,16 +31,22 @@ export const createNewPost = async (
   content: string,
   file: File | null,
   latitude: number | null,
-  longitude: number | null
+  longitude: number | null,
+  peakId: string | null
 ): Promise<void> => {
   const body = new FormData();
   body.append('content', content);
   if (file) body.append('file', file);
   if (latitude) body.append('latitude', latitude.toString());
   if (longitude) body.append('longitude', longitude.toString());
+
   await axios.post(
-    file ? createNewPhotoPostUrl() : createNewPostUrl(),
-    file
+    peakId
+      ? createNewPeakPostUrl(peakId)
+      : file
+      ? createNewPhotoPostUrl()
+      : createNewPostUrl(),
+    file || peakId
       ? body
       : { content: content, latitude: latitude, longitude: longitude },
     {

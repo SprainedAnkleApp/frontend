@@ -1,0 +1,21 @@
+.addPeak {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: var(--lighter-gray);
+}
+  
+.withPeak {
+    background-color: var(--light-green);
+}
+  
+.peakIcon {
+    height: 70%;
+    width: 70%;
+    display: grid;
+    place-items: center;
+    margin: 2px auto;
+    cursor: pointer;
+}  
+  
