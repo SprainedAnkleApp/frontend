@@ -3,10 +3,11 @@ import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
-import React, { useState } from 'react';
-import { Post as PostType, User, Reaction } from '../../../models/interfaces';
+import React, { useState, useContext } from 'react';
+import { Post as PostType, User } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
+import { userContext } from '../../../contexts/CurrentUser';
 import useModalRescuer from '../../../hooks/useModalRescuer';
 import MapWithMarker from '../MapWithMarker';
 
@@ -27,25 +28,27 @@ const Post = ({
   longitude,
   peak,
 }: PostProps) => {
+  const { user: currentUser } = useContext(userContext);
   const [liked, setLiked] = useState(
-    reactions.find((reaction) => reaction === 'LIKE') ? true : false
+    reactions.find((reaction) => reaction.userId === currentUser.id)
+      ? true
+      : false
   );
+  const [likesCount, setLikesCount] = useState(reactions.length);
 
   const [showComments, setShowComments] = useState(false);
   const { openModal, rescuer } = useModalRescuer();
 
-  const reactionToggle = (
-    state: boolean,
-    setState: (state: boolean) => void,
-    reaction: Reaction
-  ) => async () => {
+  const likePost = async () => {
     try {
-      if (state) {
-        await deleteReaction(id, reaction);
-        setState(false);
+      if (liked) {
+        await deleteReaction(id, { type: 'LOVE', userId: currentUser.id });
+        setLiked(false);
+        setLikesCount((count) => count - 1);
       } else {
-        await createReaction(id, reaction);
-        setState(true);
+        await createReaction(id, { type: 'LOVE', userId: currentUser.id });
+        setLiked(true);
+        setLikesCount((count) => count + 1);
       }
     } catch (e) {
       openModal();
@@ -90,10 +93,10 @@ const Post = ({
       <div className={styles.buttons}>
         <PostButton
           active={liked}
-          className={cx(styles['button-icon'], styles.heart)}
-          onClick={reactionToggle(liked, setLiked, 'LIKE')}
+          className={cx(styles['button-icon'], { [styles.heart]: liked })}
+          onClick={likePost}
           icon={<BsFillHeartFill />}
-          count={reactions.filter((reaction) => reaction === 'LIKE').length}
+          count={likesCount}
         />
         <PostButton
           active={showComments}

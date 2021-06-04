@@ -75,7 +75,10 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
           />
         )}
         {state === 'posts' && (
-          <Posts postsFetcher={getPeakPostsPaginated(id, 10)} />
+          <Posts
+            postsFetcher={getPeakPostsPaginated(id, 10)}
+            scrollId="postsScroll"
+          />
         )}
       </div>
     </div>

@@ -11,15 +11,15 @@ export type IconProps = {
 };
 
 const Icon = ({ className, url, variant = 'm' }: IconProps) => {
-  const [showPlaceholder, setShowPlaceholder] = useState(!url);
+  const [showIcon, setShowIcon] = useState(true);
   return (
     <div className={cx(styles.avatar, styles[`${variant}Size`], className)}>
-      {!showPlaceholder ? (
+      {url && showIcon ? (
         <img
           src={url}
           alt="icon"
           className={styles.photo}
-          onError={() => setShowPlaceholder(true)}
+          onError={() => setShowIcon(false)}
         />
       ) : (
         <BsPersonFill className={styles.photo} />
