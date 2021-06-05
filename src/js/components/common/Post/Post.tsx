@@ -78,7 +78,7 @@ const Post = ({
               })}
               onClick={() => redirectToPeak(peak.id)}
             >
-              {peak?.name}
+              {peak.name}
             </div>
           )
         }
