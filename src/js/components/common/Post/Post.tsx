@@ -10,6 +10,7 @@ import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 import { userContext } from '../../../contexts/CurrentUser';
 import useModalRescuer from '../../../hooks/useModalRescuer';
 import MapWithMarker from '../MapWithMarker';
+import { useHistory } from 'react-router';
 
 export type PostProps = PostType & {
   className?: string;
@@ -38,6 +39,7 @@ const Post = ({
 
   const [showComments, setShowComments] = useState(false);
   const { openModal, rescuer } = useModalRescuer();
+  const history = useHistory();
 
   const likePost = async () => {
     try {
@@ -54,20 +56,34 @@ const Post = ({
       openModal();
     }
   };
+
+  const redirectToPeak = (peakId: string) => {
+    history.push({
+      pathname: `/peaks/${peakId}`,
+    });
+  };
+
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
-      <Card.Header timestamp={timestamp} user={user as User} active={true} />
+      <Card.Header
+        timestamp={timestamp}
+        user={user as User}
+        active={true}
+        rightPart={
+          peak && (
+            <div
+              className={cx(styles['peak-text'], {
+                [styles.withBottomMargin]: content,
+              })}
+              onClick={() => redirectToPeak(peak.id)}
+            >
+              {peak?.name}
+            </div>
+          )
+        }
+      />
       <div className={styles.content}>
-        {peak && (
-          <span
-            className={cx(styles['peak-text'], {
-              [styles.withBottomMargin]: content,
-            })}
-          >
-            {peak.name}
-          </span>
-        )}
         {content && (
           <span
             className={cx(styles['content-text'], {
