@@ -10,14 +10,10 @@ import useBlur from '../../../hooks/useBlur';
 import AddMap from './AddMap';
 import { Point } from 'pigeon-maps';
 import DraggableMap from './DraggableMap';
-import { getPeaks } from '../../../API/peaks/methods';
+import { getPeaksNames } from '../../../API/peaks/methods';
 import { Peak } from '../../../models/interfaces';
 import AddPeak from './AddPeak';
-
-export type Option = {
-  value: string;
-  label: string;
-};
+import { Option } from '../../common/SelectWithLabel';
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -43,14 +39,11 @@ const NewPost = () => {
       setWidth(cardRef.current.clientWidth);
     }
     const fetchPeaks = async () => {
-      const peaks = await getPeaks();
-      console.log(peaks);
+      const peaks = await getPeaksNames();
       const peaksOptions: Option[] = peaks.map((peak: Peak) => {
-        const option: Option = { value: peak.id, label: peak.name };
-        return option;
+        return { value: peak.id, label: peak.name };
       });
       setOptions(peaksOptions);
-      console.log(peaksOptions);
     };
     fetchPeaks();
   }, []);
@@ -117,21 +110,15 @@ const NewPost = () => {
             try {
               setButtonDisabled(true);
               const peak = showPeak ? peakId : null;
-              showMap
-                ? await createNewPostWithPhotoAndPeak(
-                    postText,
-                    image,
-                    anchor[0],
-                    anchor[1],
-                    peak
-                  )
-                : await createNewPostWithPhotoAndPeak(
-                    postText,
-                    image,
-                    0.0,
-                    0.0,
-                    peak
-                  );
+
+              await createNewPostWithPhotoAndPeak(
+                postText,
+                image,
+                showMap ? anchor[0] : 0.0,
+                showMap ? anchor[1] : 0.0,
+                peak
+              );
+
               close();
               clearInput();
             } catch (error) {
