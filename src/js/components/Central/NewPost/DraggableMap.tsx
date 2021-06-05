@@ -7,7 +7,7 @@ export type DraggableMapProps = {
 };
 const DraggableMap = ({ anchor, setAnchor }: DraggableMapProps) => {
   return (
-    <Map height={300} defaultCenter={anchor} defaultZoom={11}>
+    <Map height={300} center={anchor} defaultZoom={11}>
       <ZoomControl />
       <Draggable anchor={anchor} onDragEnd={setAnchor}>
         <Marker width={50} color={'#78D17E'} />

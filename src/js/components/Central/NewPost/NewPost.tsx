@@ -32,6 +32,7 @@ const NewPost = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [options, setOptions] = useState<Option[]>([]);
   const [peakId, setPeakId] = useState<string | null>(null);
+  const [peaks, setPeaks] = useState<Peak[]>([]);
 
   useEffect(() => {
     if (cardRef.current) {
@@ -39,8 +40,9 @@ const NewPost = () => {
       setWidth(cardRef.current.clientWidth);
     }
     const fetchPeaks = async () => {
-      const peaks = await getPeaksNames();
-      const peaksOptions: Option[] = peaks.map((peak: Peak) => {
+      const peaksData = await getPeaksNames();
+      setPeaks(peaksData);
+      const peaksOptions: Option[] = peaksData.map((peak: Peak) => {
         return { value: peak.id, label: peak.name };
       });
       setOptions(peaksOptions);
@@ -155,7 +157,14 @@ const NewPost = () => {
                         label={''}
                         placeholder={'Wspomnij o szczycie'}
                         options={options}
-                        onChange={(e) => setPeakId(e.target.value)}
+                        onChange={(e) => {
+                          setPeakId(e.target.value);
+                          const peak: Peak | undefined = peaks.find(
+                            (peak: Peak) =>
+                              parseInt(peak.id) === parseInt(e.target.value)
+                          );
+                          if (peak) setAnchor([peak.latitude, peak.longitude]);
+                        }}
                       />
                     </div>
                   )}
