@@ -24,7 +24,6 @@ export const getPostsPaginated = (pageSize: number) => async (
   page: number
 ): Promise<{ pages: number; data: Post[] }> => {
   const pagePostsUrl = getPaginatedPostsUrl(page, pageSize);
-  console.log(makePaginatedRequest(pagePostsUrl));
   return makePaginatedRequest(pagePostsUrl);
 };
 
