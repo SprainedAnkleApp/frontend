@@ -15,9 +15,16 @@ import { Profile } from '../../views/Profile';
 export type CentralProps = {
   activeChatId: number | null;
   headerStyles?: string;
+  newPeakReached: number;
+  setNewPeakReached: (state: number) => void;
 };
 
-const Central = ({ activeChatId, headerStyles }: CentralProps) => {
+const Central = ({
+  activeChatId,
+  headerStyles,
+  newPeakReached,
+  setNewPeakReached,
+}: CentralProps) => {
   const [newPostAdded, setNewPostAdded] = useState<number>(0);
   return (
     <div className={styles.pane} id="scroll">
@@ -33,7 +40,10 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
             <Users className={styles.fixed} />
           </Route>
           <Route path="/peaks/:id">
-            <PeakDetails />
+            <PeakDetails
+              newPeakReached={newPeakReached}
+              setNewPeakReached={setNewPeakReached}
+            />
           </Route>
           <Route path="/peaks">
             <PeaksList />

@@ -18,7 +18,13 @@ const toAchievementComponent = (achievement: AchievementType) => {
   );
 };
 
-const Achievements = ({ userId }: { userId?: string }) => {
+const Achievements = ({
+  userId,
+  newPeakReached,
+}: {
+  userId?: string;
+  newPeakReached?: number;
+}) => {
   const [achievements, setAchievements] = useState<AchievementType[]>([]);
 
   useEffect(() => {
@@ -32,7 +38,7 @@ const Achievements = ({ userId }: { userId?: string }) => {
       } catch (e) {}
     };
     fetchAchievements();
-  }, []);
+  }, [newPeakReached]);
 
   return (
     <div className={styles.wrapper}>
