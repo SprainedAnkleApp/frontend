@@ -1,17 +1,29 @@
+import { Icon } from '../common';
+import cx from 'classnames';
+
 import styles from './UserInfo.module.css';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useContext } from 'react';
 import '@szhsin/react-menu/dist/index.css';
 import { userContext } from '../../contexts/CurrentUser';
-import { Icon } from '../common';
 
 const UserInfo = () => {
   const { user } = useContext(userContext);
-  if (!user) return null;
+  const location = useLocation<Location>();
+
   return (
-    <div className={styles.wrapper}>
-      <Icon url={user.profilePhoto} />
-      <div className={styles.userName}>{user.login}</div>
-    </div>
+    <Link to={'/profile/' + user.id} className={styles.wrapper}>
+      <div
+        className={cx([styles.wrapper, styles.selectionWrapper], {
+          [styles.selected]: location.pathname.split('/')[1] === 'profile',
+        })}
+      >
+        <Icon url={user.profilePhoto} />
+        <div className={styles.userName}>
+          {user.firstName + ' ' + user.lastName}
+        </div>
+      </div>
+    </Link>
   );
 };
 

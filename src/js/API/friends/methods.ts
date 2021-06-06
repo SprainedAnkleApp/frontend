@@ -2,6 +2,7 @@ import { User } from '../../models/interfaces';
 import {
   getPendingFriendsPaginatedUrl,
   getFriendsUrl,
+  getUsersFriendsUrl,
   acceptFriendUrl,
   rejectFriendUrl,
   addFriendUrl,
@@ -72,4 +73,22 @@ export const addFriendship = async (userId: number): Promise<void> => {
       headers: authHeader(),
     }
   );
+};
+
+export const getUsersFriends = (userId: string, pageSize: number) => async (
+  page: number
+): Promise<{ pages: number; data: User[] }> => {
+  try {
+    const pageUsersFriendsUrl = getUsersFriendsUrl(userId, page, pageSize);
+    const response = await axios.get(pageUsersFriendsUrl, {
+      headers: authHeader(),
+    });
+    return {
+      pages: response.data.totalPages ?? 0,
+      data: response.data.content ?? [],
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };

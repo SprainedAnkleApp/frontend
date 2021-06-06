@@ -6,7 +6,7 @@ export type Fetcher<T> = (
 
 const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
   const [data, setData] = useState<T[]>([]);
 
   const nextPage = async () => {
