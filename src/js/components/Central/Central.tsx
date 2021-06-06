@@ -1,7 +1,7 @@
 import { NavBar } from '.';
 
 import styles from './Central.module.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router';
 import { PeakDetails } from '../../views/Peak';
 import { PeaksList } from '../../views/PeaksList';
@@ -18,6 +18,7 @@ export type CentralProps = {
 };
 
 const Central = ({ activeChatId, headerStyles }: CentralProps) => {
+  const [newPostAdded, setNewPostAdded] = useState<number>(0);
   return (
     <div className={styles.pane} id="scroll">
       <div className={headerStyles}>
@@ -41,8 +42,15 @@ const Central = ({ activeChatId, headerStyles }: CentralProps) => {
             <ChatWindow activeChatId={activeChatId} className={styles.fixed} />
           </Route>
           <Route path="/">
-            <Posts postsFetcher={getPostsPaginated(10)} scrollId="scroll">
-              <NewPost />
+            <Posts
+              postsFetcher={getPostsPaginated(10)}
+              newPostAdded={newPostAdded}
+              scrollId="scroll"
+            >
+              <NewPost
+                newPostAdded={newPostAdded}
+                setNewPostAdded={setNewPostAdded}
+              />
             </Posts>
           </Route>
         </Switch>

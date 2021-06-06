@@ -4,16 +4,26 @@ import { Post as PostType } from '../../../models/interfaces';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import usePaginatedData, { Fetcher } from '../../../hooks/usePaginatedData';
+import { useEffect } from 'react';
 
 export type PostsProps = {
   postsFetcher: Fetcher<PostType>;
   scrollId: string;
   className?: string;
   children?: React.ReactNode;
+  newPostAdded?: number;
 };
 
-const Posts = ({ className, postsFetcher, scrollId, children }: PostsProps) => {
-  const { data, nextPage, hasMore } = usePaginatedData<PostType>(postsFetcher);
+const Posts = ({
+  className,
+  postsFetcher,
+  scrollId,
+  children,
+  newPostAdded = 0,
+}: PostsProps) => {
+  const { data, nextPage, hasMore, refetch } = usePaginatedData<PostType>(
+    postsFetcher
+  );
 
   const renderPosts = () =>
     data
@@ -21,6 +31,10 @@ const Posts = ({ className, postsFetcher, scrollId, children }: PostsProps) => {
       .map((post) => {
         return <Post key={post.id} {...post} className={styles.post} />;
       });
+
+  useEffect(() => {
+    refetch();
+  }, [postsFetcher, newPostAdded]);
 
   return (
     <div className={className}>
