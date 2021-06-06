@@ -49,7 +49,7 @@ const Profile = ({ className }: ProfileProps) => {
             scrollId="postsScroll"
           ></Posts>
         )}
-        {state === 'achievements' && <ProfileAchievements />}
+        {state === 'achievements' && <ProfileAchievements userId={userId} />}
         {state === 'friends' && (
           <ProfileFriends
             key={userId}
