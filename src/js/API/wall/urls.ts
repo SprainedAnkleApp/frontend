@@ -4,6 +4,13 @@ export const getPostsUrl = (): string =>
 export const getPaginatedPostsUrl = (page: number, pageSize: number): string =>
   getPostsUrl() + `?pageNumber=${page}&pageSize=${pageSize}`;
 
+export const getUserPaginatedPostsUrl = (
+  page: number,
+  pageSize: number,
+  userId: string
+): string =>
+  getPostsUrl() + `/${userId}?pageNumber=${page}&pageSize=${pageSize}`;
+
 export const createNewPostUrl = (): string =>
   `${process.env.REACT_APP_API_URL}api/public/posts/post`;
 
