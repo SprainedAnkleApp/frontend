@@ -16,10 +16,8 @@ import AddPeak from './AddPeak';
 import { Option } from '../../common/SelectWithLabel';
 
 const NewPost = ({
-  newPostAdded,
   setNewPostAdded,
 }: {
-  newPostAdded: number;
   setNewPostAdded: (state: number) => void;
 }) => {
   const { user } = useContext(userContext);
@@ -129,7 +127,7 @@ const NewPost = ({
 
               close();
               clearInput();
-              setNewPostAdded(newPostAdded + 1);
+              setNewPostAdded(Math.random());
             } catch (error) {
               setError(true);
             }

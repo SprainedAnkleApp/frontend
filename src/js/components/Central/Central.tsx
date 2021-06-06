@@ -57,10 +57,7 @@ const Central = ({
               newPostAdded={newPostAdded}
               scrollId="scroll"
             >
-              <NewPost
-                newPostAdded={newPostAdded}
-                setNewPostAdded={setNewPostAdded}
-              />
+              <NewPost setNewPostAdded={setNewPostAdded} />
             </Posts>
           </Route>
         </Switch>
