@@ -1,15 +1,19 @@
-import { Icon, Card, SubmitButton } from '../../common';
+import { Icon, Card, SubmitButton, SelectWithLabel } from '../../common';
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { userContext } from '../../../contexts/CurrentUser';
 import Popup from 'reactjs-popup';
-import {
-  createNewPost,
-  createNewPostWithPhoto,
-} from '../../../API/wall/methods';
+import { createNewPostWithPhotoAndPeak } from '../../../API/wall/methods';
 
 import styles from './NewPost.module.css';
 import AddImage from './AddImage';
 import useBlur from '../../../hooks/useBlur';
+import AddMap from './AddMap';
+import { Point } from 'pigeon-maps';
+import DraggableMap from './DraggableMap';
+import { getPeaksNames } from '../../../API/peaks/methods';
+import { Peak } from '../../../models/interfaces';
+import AddPeak from './AddPeak';
+import { Option } from '../../common/SelectWithLabel';
 
 const NewPost = () => {
   const { user } = useContext(userContext);
@@ -20,15 +24,30 @@ const NewPost = () => {
 
   const [postText, setPostText] = useState('');
   const [image, setImage] = useState<null | File>(null);
+  const [showMap, setShowMap] = useState<boolean>(false);
+  const [anchor, setAnchor] = useState<Point>([49.13905, 20.220381]);
+  const [showPeak, setShowPeak] = useState<boolean>(false);
 
   const [error, setError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [options, setOptions] = useState<Option[]>([]);
+  const [peakId, setPeakId] = useState<string | null>(null);
+  const [peaks, setPeaks] = useState<Peak[]>([]);
 
   useEffect(() => {
     if (cardRef.current) {
       setOffset(cardRef.current.clientHeight);
       setWidth(cardRef.current.clientWidth);
     }
+    const fetchPeaks = async () => {
+      const peaksData = await getPeaksNames();
+      setPeaks(peaksData);
+      const peaksOptions: Option[] = peaksData.map((peak: Peak) => {
+        return { value: peak.id, label: peak.name };
+      });
+      setOptions(peaksOptions);
+    };
+    fetchPeaks();
   }, []);
 
   useEffect(() => {
@@ -65,7 +84,13 @@ const NewPost = () => {
   const overlayStyle = {
     zIndex: 5,
     background: 'rgba(255, 255, 255, 0.2)',
-    filter: 'blur(6px)',
+  };
+
+  const clearInput = () => {
+    setPostText('');
+    setImage(null);
+    setShowMap(false);
+    setButtonDisabled(false);
   };
 
   return (
@@ -78,21 +103,32 @@ const NewPost = () => {
         className="my-popup"
         contentStyle={contentStyle}
         overlayStyle={overlayStyle}
+        modal
+        nested
       >
         {(close: () => void, isOpen: boolean) => {
           useBlur(isOpen);
           const sendNewPost = async () => {
             try {
               setButtonDisabled(true);
-              if (image) await createNewPostWithPhoto(postText, image);
-              else await createNewPost(postText);
+              const peak = showPeak ? peakId : null;
+
+              await createNewPostWithPhotoAndPeak(
+                postText,
+                image,
+                showMap ? anchor[0] : 0.0,
+                showMap ? anchor[1] : 0.0,
+                peak
+              );
+
               close();
+              clearInput();
             } catch (error) {
               setError(true);
             }
           };
           return (
-            <div style={{ width: width }}>
+            <div style={{ width: width }} className={styles.popupWindow}>
               <Card.Card ref={modalRef}>
                 <div className={styles.modal}>
                   <Icon url={user.profilePhoto} className={styles.icon} />
@@ -103,6 +139,35 @@ const NewPost = () => {
                     }
                     className={styles.addImage}
                   />
+                  <AddMap
+                    showMap={showMap}
+                    setShowMap={setShowMap}
+                    className={styles.addMap}
+                  />
+                  <AddPeak
+                    showPeak={showPeak}
+                    setShowPeak={setShowPeak}
+                    className={styles.addPeak}
+                  />
+                  {showPeak && (
+                    <div className={styles.dropdownContainer}>
+                      <SelectWithLabel
+                        type={'text'}
+                        name={'peak'}
+                        label={''}
+                        placeholder={'Wspomnij o szczycie'}
+                        options={options}
+                        onChange={(e) => {
+                          setPeakId(e.target.value);
+                          const peak = peaks.find(
+                            (peak: Peak) =>
+                              parseInt(peak.id) === parseInt(e.target.value)
+                          );
+                          if (peak) setAnchor([peak.latitude, peak.longitude]);
+                        }}
+                      />
+                    </div>
+                  )}
                   <textarea
                     placeholder={'O czym myślisz?'}
                     className={styles.textarea}
@@ -119,6 +184,14 @@ const NewPost = () => {
                       src={URL.createObjectURL(image)}
                       alt="uploaded photo"
                     />
+                  )}
+                  {showMap && (
+                    <div className={styles.map}>
+                      <DraggableMap anchor={anchor} setAnchor={setAnchor} />
+                      <span className={styles.mapInstruction}>
+                        Aby wybrać miejsce na mapie, przeciągnij pinezkę.
+                      </span>
+                    </div>
                   )}
                   <SubmitButton
                     text={error ? 'Wystapił błąd' : 'Opublikuj'}

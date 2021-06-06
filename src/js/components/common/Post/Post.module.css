@@ -13,8 +13,22 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-.withBottomPadding {
-  padding-bottom: 15px;
+
+.peak-text {
+  padding: 4px 10px;
+  font-size: var(--xxs-font-size);
+  width: auto;
+  margin-left: 15px;
+  margin-right: auto;
+  text-align: left;
+  background-color: var(--green);
+  border-radius: var(--l-border-radius);
+  color: white;
+  cursor: pointer;
+}
+
+.withBottomMargin {
+  margin-bottom: 15px;
 }
 
 .photo {

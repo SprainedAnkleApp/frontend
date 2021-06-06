@@ -9,6 +9,8 @@ import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 import { userContext } from '../../../contexts/CurrentUser';
 import useModalRescuer from '../../../hooks/useModalRescuer';
+import MapWithMarker from '../MapWithMarker';
+import { useHistory } from 'react-router';
 
 export type PostProps = PostType & {
   className?: string;
@@ -23,6 +25,9 @@ const Post = ({
   comments,
   className,
   user,
+  latitude,
+  longitude,
+  peak,
 }: PostProps) => {
   const { user: currentUser } = useContext(userContext);
   const [liked, setLiked] = useState(
@@ -34,6 +39,7 @@ const Post = ({
 
   const [showComments, setShowComments] = useState(false);
   const { openModal, rescuer } = useModalRescuer();
+  const history = useHistory();
 
   const likePost = async () => {
     try {
@@ -50,19 +56,51 @@ const Post = ({
       openModal();
     }
   };
+
+  const redirectToPeak = (peakId: string) => {
+    history.push({
+      pathname: `/peaks/${peakId}`,
+    });
+  };
+
   return (
     <Card.Card className={className}>
       {/* TODO add timestamp */}
-      <Card.Header timestamp={timestamp} user={user as User} active={true} />
+      <Card.Header
+        timestamp={timestamp}
+        user={user as User}
+        active={true}
+        rightPart={
+          peak && (
+            <div
+              className={cx(styles['peak-text'], {
+                [styles.withBottomMargin]: content,
+              })}
+              onClick={() => redirectToPeak(peak.id)}
+            >
+              {peak.name}
+            </div>
+          )
+        }
+      />
       <div className={styles.content}>
         {content && (
           <span
             className={cx(styles['content-text'], {
-              [styles.withBottomPadding]: signedUrl,
+              [styles.withBottomMargin]:
+                signedUrl || (latitude !== 0.0 && longitude !== 0.0),
             })}
           >
             {content}
           </span>
+        )}
+        {latitude !== 0.0 && longitude !== 0.0 && (
+          <MapWithMarker
+            center={[latitude, longitude]}
+            className={cx({
+              [styles.withBottomMargin]: signedUrl,
+            })}
+          />
         )}
         {signedUrl && (
           <img src={signedUrl} alt="post content" className={styles.photo} />

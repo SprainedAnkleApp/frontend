@@ -6,6 +6,7 @@ import {
   getPeakCompletionUrl,
   getPeakPostsUrl,
   getPagePeakPostsUrl,
+  getPeaksNamesUrl,
 } from './urls';
 import { Peak, PeakCompletion, Post } from '../../models/interfaces';
 import { makePaginatedRequest } from '../utils';
@@ -13,6 +14,17 @@ import { makePaginatedRequest } from '../utils';
 export const getPeaks = async (): Promise<Peak[]> => {
   try {
     const response = await axios.get<Peak[]>(getPeaksUrl(), {
+      headers: authHeader(),
+    });
+    return response.data;
+  } catch (error) {
+    return [];
+  }
+};
+
+export const getPeaksNames = async (): Promise<Peak[]> => {
+  try {
+    const response = await axios.get<Peak[]>(getPeaksNamesUrl(), {
       headers: authHeader(),
     });
     return response.data;

@@ -8,11 +8,16 @@ type ErrorType = {
   message?: string | undefined;
 };
 
+export type Option = {
+  value: string;
+  label: string;
+};
+
 export type SelectWithLabelProps = InputHTMLAttributes<HTMLSelectElement> & {
   label: string;
   error?: ErrorType;
   placeholder: string;
-  options: Array<string>;
+  options: Array<Option>;
 };
 
 const SelectWithLabel = React.forwardRef<
@@ -47,9 +52,11 @@ const SelectWithLabel = React.forwardRef<
           </option>
           {options.map((option) => {
             return (
-              <option key={option} value={option}>
-                {option}
-              </option>
+              <option
+                key={option.value}
+                value={option.value}
+                label={option.label}
+              />
             );
           })}
         </select>

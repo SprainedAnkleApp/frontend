@@ -3,6 +3,7 @@ import {
   getPostsUrl,
   getPaginatedPostsUrl,
   createNewPostUrl,
+  createNewPeakPostUrl,
 } from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
@@ -23,7 +24,6 @@ export const getPostsPaginated = (pageSize: number) => async (
   page: number
 ): Promise<{ pages: number; data: Post[] }> => {
   const pagePostsUrl = getPaginatedPostsUrl(page, pageSize);
-  console.log(makePaginatedRequest(pagePostsUrl));
   return makePaginatedRequest(pagePostsUrl);
 };
 
@@ -37,14 +37,32 @@ export const createNewPost = async (content: string): Promise<void> => {
   );
 };
 
-export const createNewPostWithPhoto = async (
+export const createNewPostWithPhotoAndPeak = async (
   content: string,
-  file: File
+  file: File | null,
+  latitude: number | null,
+  longitude: number | null,
+  peakId: string | null
 ): Promise<void> => {
   const body = new FormData();
   body.append('content', content);
-  body.append('file', file);
-  await axios.post(createNewPhotoPostUrl(), body, {
-    headers: authHeader(),
-  });
+  if (file) body.append('file', file);
+  if (latitude && longitude) {
+    body.append('latitude', latitude.toString());
+    body.append('longitude', longitude.toString());
+  }
+
+  await axios.post(
+    peakId
+      ? createNewPeakPostUrl(peakId)
+      : file
+      ? createNewPhotoPostUrl()
+      : createNewPostUrl(),
+    file || peakId
+      ? body
+      : { content: content, latitude: latitude, longitude: longitude },
+    {
+      headers: authHeader(),
+    }
+  );
 };
