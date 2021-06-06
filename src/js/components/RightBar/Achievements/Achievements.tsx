@@ -18,15 +18,26 @@ const toAchievementComponent = (achievement: AchievementType) => {
   );
 };
 
+function cmpAchivements(a: AchievementType, b: AchievementType) {
+  if (a.progress / a.toComplete < b.progress / b.toComplete) {
+    return 1;
+  }
+  if (a.progress / a.toComplete > b.progress / b.toComplete) {
+    return -1;
+  }
+  return 0;
+}
+
 const Achievements = ({ userId }: { userId?: string }) => {
   const [achievements, setAchievements] = useState<AchievementType[]>([]);
 
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        const data = userId
-          ? await getAchievements(userId)
-          : await getAchievementsShort();
+        const data = (
+          userId ? await getAchievements(userId) : await getAchievementsShort()
+        ).sort(cmpAchivements);
+
         setAchievements(data);
         // eslint-disable-next-line no-empty
       } catch (e) {}
