@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { User } from '../../models/interfaces';
 import { useParams } from 'react-router';
 import styles from './Profile.module.css';
@@ -10,7 +10,6 @@ import {
   ProfileFriends,
 } from '../../components/Profile/index';
 import { getUserById } from '../../API/user/methods';
-import { userContext } from '../../contexts/CurrentUser';
 import { Posts } from '../../components/common/Post';
 import { getUsersFriends } from '../../API/friends/methods';
 
@@ -21,7 +20,6 @@ export type ProfileProps = {
 };
 
 const Profile = ({ className }: ProfileProps) => {
-  const { user } = useContext(userContext);
   const { userId } = useParams<{ userId: string }>();
   const [profileUser, setProfileUser] = useState<
     User | Record<string, never>
@@ -29,15 +27,11 @@ const Profile = ({ className }: ProfileProps) => {
   const [state, setState] = useState<profileTabs>('posts');
 
   useEffect(() => {
-    if (user.id.toString() != userId) {
-      const fetchUser = async () => {
-        const user = await getUserById(userId);
-        setProfileUser(user);
-      };
-      fetchUser();
-    } else {
+    const fetchUser = async () => {
+      const user = await getUserById(userId);
       setProfileUser(user);
-    }
+    };
+    fetchUser();
   }, [userId]);
 
   return (
