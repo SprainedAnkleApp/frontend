@@ -3,7 +3,10 @@ import { Achievement as AchievementType } from '../../../models/interfaces';
 
 import styles from './Achievements.module.css';
 import React, { useEffect, useState } from 'react';
-import { getAchievementsShort } from '../../../API/achievements/methods';
+import {
+  getAchievements,
+  getAchievementsShort,
+} from '../../../API/achievements/methods';
 
 const toAchievementComponent = (achievement: AchievementType) => {
   return (
@@ -15,13 +18,15 @@ const toAchievementComponent = (achievement: AchievementType) => {
   );
 };
 
-const Achievements = () => {
+const Achievements = ({ userId }: { userId?: string }) => {
   const [achievements, setAchievements] = useState<AchievementType[]>([]);
 
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        const data = await getAchievementsShort();
+        const data = userId
+          ? await getAchievements(userId)
+          : await getAchievementsShort();
         setAchievements(data);
         // eslint-disable-next-line no-empty
       } catch (e) {}

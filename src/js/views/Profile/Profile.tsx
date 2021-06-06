@@ -52,6 +52,7 @@ const Profile = ({ className }: ProfileProps) => {
           <Posts
             className={styles.central}
             postsFetcher={getPostsPaginated(10)}
+            scrollId="postsScroll"
           ></Posts>
         )}
         {state === 'achievements' && <ProfileAchievements />}
