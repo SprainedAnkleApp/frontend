@@ -22,7 +22,7 @@
 
 .userInfo {
   padding: 5px 0 5px 6px;
-  background-color: lawngreen;
+  background-color: var(--green);
   border-radius: var(--xl-border-radius);
   width: min-content;
   margin-left: auto;

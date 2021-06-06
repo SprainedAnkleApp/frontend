@@ -47,8 +47,10 @@ export const createNewPostWithPhotoAndPeak = async (
   const body = new FormData();
   body.append('content', content);
   if (file) body.append('file', file);
-  if (latitude) body.append('latitude', latitude.toString());
-  if (longitude) body.append('longitude', longitude.toString());
+  if (latitude && longitude) {
+    body.append('latitude', latitude.toString());
+    body.append('longitude', longitude.toString());
+  }
 
   await axios.post(
     peakId

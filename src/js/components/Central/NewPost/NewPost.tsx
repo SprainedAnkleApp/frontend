@@ -159,7 +159,7 @@ const NewPost = () => {
                         options={options}
                         onChange={(e) => {
                           setPeakId(e.target.value);
-                          const peak: Peak | undefined = peaks.find(
+                          const peak = peaks.find(
                             (peak: Peak) =>
                               parseInt(peak.id) === parseInt(e.target.value)
                           );

@@ -1,6 +1,7 @@
 .container {
     text-align: center;
     display: flex;
+    padding-bottom: 50px;
   }
 
 .peaksList {
