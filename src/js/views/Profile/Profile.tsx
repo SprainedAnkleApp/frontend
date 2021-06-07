@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { User } from '../../models/interfaces';
 import { useParams } from 'react-router';
 import styles from './Profile.module.css';
-import { getUserPostsPaginated } from '../../API/wall/methods';
+import { getProfilePostsPaginated } from '../../API/profile/methods';
 import {
   ProfileUserCard,
   ProfileNavBar,
@@ -45,11 +45,11 @@ const Profile = ({ className }: ProfileProps) => {
         {state === 'posts' && (
           <Posts
             className={styles.central}
-            postsFetcher={getUserPostsPaginated(10, userId)}
+            postsFetcher={getProfilePostsPaginated(userId, 10)}
             scrollId="postsScroll"
           ></Posts>
         )}
-        {state === 'achievements' && <ProfileAchievements />}
+        {state === 'achievements' && <ProfileAchievements userId={userId} />}
         {state === 'friends' && (
           <ProfileFriends
             key={userId}

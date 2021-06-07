@@ -39,7 +39,9 @@ const CardHeader = ({
     <div className={cx(styles.header, className)}>
       <Icon url={user?.profilePhoto} variant="s" />
       <div className={styles.nameWithTime}>
-        <span className={styles.userName}>{user?.login}</span>
+        <span className={styles.userName}>
+          {user?.firstName + ' ' + user?.lastName}
+        </span>
         <span className={cx(styles.time, { [styles.active]: active })}>
           {active ? 'Active' : timestamp}
         </span>
