@@ -10,9 +10,8 @@ export type ProfileFirendsProps = {
 };
 
 const ProfileFriends = ({ friendsFetcher }: ProfileFirendsProps) => {
-  const { data, nextPage, hasMore } = usePaginatedData<UserType>(
-    friendsFetcher
-  );
+  const { data, nextPage, hasMore } =
+    usePaginatedData<UserType>(friendsFetcher);
 
   const renderFriends = () =>
     data.map((user) => {
