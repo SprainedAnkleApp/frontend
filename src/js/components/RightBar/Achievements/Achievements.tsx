@@ -40,8 +40,9 @@ const Achievements = ({
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        const data = (
-          userId ? await getAchievements(userId) : await getAchievementsShort()
+        const data = (userId
+          ? await getAchievements(userId)
+          : await getAchievementsShort()
         ).sort(cmpAchivements);
 
         setAchievements(data);
