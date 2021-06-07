@@ -4,6 +4,7 @@ import {
   getPaginatedPostsUrl,
   createNewPostUrl,
   createNewPeakPostUrl,
+  getUserPaginatedPostsUrl,
 } from './urls';
 import axios from 'axios';
 import authHeader from '../auth/methods';
@@ -24,6 +25,14 @@ export const getPostsPaginated = (pageSize: number) => async (
   page: number
 ): Promise<{ pages: number; data: Post[] }> => {
   const pagePostsUrl = getPaginatedPostsUrl(page, pageSize);
+  return makePaginatedRequest(pagePostsUrl);
+};
+
+export const getUserPostsPaginated = (
+  pageSize: number,
+  userId: string
+) => async (page: number): Promise<{ pages: number; data: Post[] }> => {
+  const pagePostsUrl = getUserPaginatedPostsUrl(page, pageSize, userId);
   return makePaginatedRequest(pagePostsUrl);
 };
 

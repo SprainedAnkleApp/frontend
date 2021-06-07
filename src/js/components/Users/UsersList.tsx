@@ -2,7 +2,7 @@ import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import { MdPersonAdd } from 'react-icons/md';
 import { User } from '../../models/interfaces';
 import { UsersListOptions } from '../../views/Users/Users';
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { UserRow } from '../common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import usePaginatedData, { Fetcher } from '../../hooks/usePaginatedData';
@@ -26,10 +26,11 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
   const { data, nextPage, hasMore, refetch } = usePaginatedData<T>(userFetcher);
   const { openModal, rescuer } = useModalRescuer();
   const { user: currentUser } = useContext(userContext);
+  const [frendAction, setFriendAction] = useState<number>(0);
 
   useEffect(() => {
     refetch();
-  }, [userFetcher]);
+  }, [userFetcher, frendAction]);
 
   const createButtons = (id: number) => {
     if (state === 'all') {
@@ -39,6 +40,7 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
           onClick={async () => {
             try {
               await addFriendship(id);
+              setFriendAction(Math.random());
             } catch (e) {
               openModal();
             }
@@ -53,6 +55,7 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
             onClick={async () => {
               try {
                 await acceptFriendship(id);
+                setFriendAction(Math.random());
               } catch (e) {
                 openModal();
               }
@@ -63,6 +66,7 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
             onClick={async () => {
               try {
                 await rejectFriendship(id);
+                setFriendAction(Math.random());
               } catch (e) {
                 openModal();
               }
