@@ -5,7 +5,6 @@ import React from 'react';
 
 const ExternalLogin = () => {
   const googleIcon = <FaGoogle />;
-  const fbIcon = <FaFacebookSquare />;
 
   return (
     <>
@@ -13,11 +12,6 @@ const ExternalLogin = () => {
         url={GOOGLE_AUTH_URL}
         text={'Kontynuuj z Google'}
         icon={googleIcon}
-      />
-      <ExternalLoginButton
-        url={FACEBOOK_AUTH_URL}
-        text={'Kontynuuj z Facebook'}
-        icon={fbIcon}
       />
     </>
   );
