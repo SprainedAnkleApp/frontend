@@ -9,14 +9,15 @@ import useBlur from '../../hooks/useBlur';
 export type ModalRescuerProps = {
   isOpen: boolean;
   close: () => void;
+  text: string;
 };
 
-const ModalRescuer = ({ isOpen, close }: ModalRescuerProps) => {
+const ModalRescuer = ({ isOpen, close, text }: ModalRescuerProps) => {
   useBlur(isOpen);
   return (
     <Popup open={isOpen} closeOnDocumentClick onClose={close} nested>
       <Card.Card>
-        <div className={styles.text}>Wystąpił błąd</div>
+        <div className={styles.text}>{text}</div>
         <BiSad className={styles.icon} />
         <SubmitButton
           className={styles.button}
