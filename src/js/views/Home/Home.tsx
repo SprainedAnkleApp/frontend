@@ -14,6 +14,7 @@ const Home = () => {
   const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
+  const [newPeakReached, setNewPeakReached] = useState<number>(0);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -38,11 +39,17 @@ const Home = () => {
         startChat={(friendId) => setActiveChatId(friendId)}
         activeChatId={activeChatId}
       />
-      <Central activeChatId={activeChatId} headerStyles={styles.paneHeader} />
+      <Central
+        activeChatId={activeChatId}
+        headerStyles={styles.paneHeader}
+        newPeakReached={newPeakReached}
+        setNewPeakReached={setNewPeakReached}
+      />
       <RightBar
         headerStyles={styles.paneHeader}
         activeChatId={activeChatId}
         closeChat={() => setActiveChatId(null)}
+        newPeakReached={newPeakReached}
       />
     </div>
   );

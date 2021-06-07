@@ -15,7 +15,11 @@ import { Peak } from '../../../models/interfaces';
 import AddPeak from './AddPeak';
 import { Option } from '../../common/SelectWithLabel';
 
-const NewPost = () => {
+const NewPost = ({
+  setNewPostAdded,
+}: {
+  setNewPostAdded: (state: number) => void;
+}) => {
   const { user } = useContext(userContext);
   const cardRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -123,6 +127,7 @@ const NewPost = () => {
 
               close();
               clearInput();
+              setNewPostAdded(Math.random());
             } catch (error) {
               setError(true);
             }

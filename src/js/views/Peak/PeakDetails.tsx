@@ -16,9 +16,15 @@ export type peakInformations = 'description' | 'map' | 'posts';
 
 export type PeakDetailsProps = {
   className?: string;
+  newPeakReached: number;
+  setNewPeakReached: (state: number) => void;
 };
 
-const PeakDetails = ({ className }: PeakDetailsProps) => {
+const PeakDetails = ({
+  className,
+  newPeakReached,
+  setNewPeakReached,
+}: PeakDetailsProps) => {
   const { id } = useParams<{ id: string }>();
   const [peakDetails, setPeakDetails] = useState<PeakType | undefined>(
     undefined
@@ -40,7 +46,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
       setPeakDetails(await getPeak(id));
     };
     fetchPeak();
-  }, []);
+  }, [newPeakReached]);
 
   if (!peakDetails) return null;
 
@@ -51,7 +57,7 @@ const PeakDetails = ({ className }: PeakDetailsProps) => {
         redirectTo={'/peaks'}
         className={styles.card}
         setShowForm={() => setShowForm(!showForm)}
-        peakDetails={true}
+        setNewPeakReached={setNewPeakReached}
       />
       <SectionNavBar
         state={state}

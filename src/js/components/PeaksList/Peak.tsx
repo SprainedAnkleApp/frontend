@@ -16,7 +16,7 @@ export type PeakProps = {
   redirectTo: string;
   className?: string;
   setShowForm?: () => void;
-  peakDetails?: boolean;
+  setNewPeakReached?: (state: number) => void;
 };
 
 type FormValues = {
@@ -29,7 +29,7 @@ const Peak = ({
   redirectTo,
   className,
   setShowForm,
-  peakDetails = false,
+  setNewPeakReached,
 }: PeakProps) => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [completed, setCompleted] = useState<boolean>(peak.completed);
@@ -44,6 +44,7 @@ const Peak = ({
     promise
       .then(() => {
         setCompleted(true);
+        if (setNewPeakReached) setNewPeakReached(Math.random());
       })
       .catch(() => {
         setSubmitError('Wystąpił błąd');
@@ -64,9 +65,7 @@ const Peak = ({
       <div
         className={cx(
           styles.reachedInfo,
-          completed
-            ? styles.peakReachedInfo
-            : peakDetails && styles.peakNotReachedInfo
+          completed ? styles.peakReachedInfo : styles.peakNotReachedInfo
         )}
         onClick={completed ? void 0 : setShowForm}
       >

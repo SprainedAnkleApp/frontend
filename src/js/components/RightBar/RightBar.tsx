@@ -12,9 +12,15 @@ export type RightBarProps = {
   activeChatId: number | null;
   closeChat: () => void;
   headerStyles?: string;
+  newPeakReached: number;
 };
 
-const RightBar = ({ activeChatId, closeChat, headerStyles }: RightBarProps) => {
+const RightBar = ({
+  activeChatId,
+  closeChat,
+  headerStyles,
+  newPeakReached,
+}: RightBarProps) => {
   const location = useLocation<Location>();
   return (
     <div className={styles.pane}>
@@ -24,7 +30,7 @@ const RightBar = ({ activeChatId, closeChat, headerStyles }: RightBarProps) => {
         </div>
         <Logout />
       </div>
-      <Achievements />
+      <Achievements newPeakReached={newPeakReached} />
       {location.pathname !== '/chat' && activeChatId !== null && (
         <ChatWindow
           activeChatId={activeChatId}
