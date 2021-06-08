@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  font-size: var(--m-font-size);
+  font-weight: var(--extra-bold-font-weight);
+  color: var(--darkest-gray);
+  padding-bottom: 12px;
+  padding-left: 8px;
+}
+
+.friend {
+  margin-bottom: 13px;
+  padding: 5px 8px;
+  padding-right: 23px;
+  font-size: var(--xs-font-size);
+  color: var(--darkest-gray);
+  border-radius: var(--l-border-radius);
+}
+
+.friend:hover {
+  cursor: pointer;
+}

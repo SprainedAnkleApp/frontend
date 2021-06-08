@@ -1,16 +1,19 @@
 .home {
-  padding: 20px 30px 0px 20px;
+  padding: 13px 12px 0px 12px;
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  column-gap: 100px;
-  row-gap: 30px;
-  grid-template-areas: 
-  "friends newPost currentAchievement"
-  "friends posts achievements"
-  "friends posts chat";
+  grid-template-columns: 1fr 2.5fr 1fr;
+  /* row-gap: 0px; */
+  height: 100vh; /* Header height with home padding*/
   background-color: var(--lightest-green);
 }
 
-.main {
-
+.paneHeader {
+  position: sticky;
+  background-color: var(--lightest-green);
+  z-index: 5;
+  height: 102px;
+  top: 0;
+  padding-bottom: 34px;
 }
+
+

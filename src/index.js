@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Helmet>
+      <title>SprainedAnkle</title>
+    </Helmet>
     <BrowserRouter>
       <App />
     </BrowserRouter>

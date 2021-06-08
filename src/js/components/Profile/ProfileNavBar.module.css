@@ -1,0 +1,59 @@
+.stickyCard{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.navBar {
+    height: 30px;
+    display: flex;
+}
+
+.tabText {
+    margin: 0px;
+    font-size: var(--xs-font-size);
+    font-weight: var(--medium-font-weight);
+    color: var(--gray);
+    height: 100%;
+    width: 33%;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.selected {
+    font-weight: var(--bold-font-weight);
+    color: var(--darkest-gray);
+}
+
+.posts {
+    height: 100%;
+    width: 33%;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.achievements {
+    height: 100%;
+    width: 33%;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.friends {
+    height: 100%;
+    width: 33%;
+    float: left;
+    clear: both;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

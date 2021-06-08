@@ -1,8 +1,40 @@
 .card {
   border-radius: var(--xl-border-radius);
   background-color: white;
+  font-size: var(--s-font-size);
+  color: var(--gray);
   box-shadow: 0px 15px 20px 10px rgba(231, 231, 231, 0.75);
   display: flex;
   flex-direction: column;
   padding: 15px 18px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.nameWithTime {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
+
+.userName {
+  font-size: var(--xxs-font-size);
+}
+
+.time {
+  color: var(--gray);
+  font-size: var(--xxxs-font-size);
+}
+
+.active {
+  color: var(--green);
+}
+
+.onRight {
+  margin-left: auto;
 }

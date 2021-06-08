@@ -15,10 +15,20 @@
   display: flex;
   flex-direction: column;
   min-width: 512px;
+  max-height: 85vh;
   width: 50%;
   grid-area: section;
 }
 
+.children {  
+  overflow: auto;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.children::-webkit-scrollbar {
+  display: none;
+}
 .redirect {
   grid-area: redirect;
   place-self: start right;
@@ -47,10 +57,32 @@
   .container {
     grid-template-columns: 1fr;
     grid-template-areas:
-    "redirect"
-    "section";
+    "section"
+    "redirect";
   }
   .photo {
     display: none;
+  }
+  .section {
+    margin-top: 5vh;
+  }
+  .redirect {
+    place-self: start center;
+    margin: 40px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--l-font-size);
+  }
+  .section {
+    min-width: 45vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .section{
+    min-width: 40vh;
   }
 }

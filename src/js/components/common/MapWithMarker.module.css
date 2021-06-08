@@ -1,0 +1,4 @@
+.borderRadius {
+  border-radius: var(--xl-border-radius);
+  overflow: hidden; 
+}

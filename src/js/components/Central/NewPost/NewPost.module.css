@@ -1,0 +1,134 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main {
+  margin-bottom: 30px;
+}
+
+.modal {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 
+  "icon textarea"
+  "addPeak textarea"
+  "addImage textarea"
+  "addMap textarea"
+  "dropdown dropdown"
+  "photo photo"
+  "map map"
+  "button button";
+}
+
+.textarea {
+  grid-area: textarea;
+  min-height: 180px;
+  padding-left: 15px;
+  padding-top: 12px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  font-size: var(--xs-font-size);
+  color: var(--gray);
+  justify-self: left;
+  width: 100%;
+}
+
+.textarea::placeholder {
+  color: var(--gray);
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.submitButton {
+  grid-area: button;
+  font-size: var(--xs-font-size);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: auto;
+}
+
+.icon {
+  grid-area: icon;
+}
+
+.addImage {
+  grid-area: addImage;
+  justify-self: top;
+  margin-top: 15px;
+}
+
+.addMap {
+  grid-area: addMap;
+  justify-self: top;
+  margin-top: 15px;
+}
+
+.addPeak {
+  grid-area: addPeak;
+  justify-self: top;
+  margin-top: 15px;
+}
+
+.input {
+  background-color: transparent;
+  color: var(--gray);
+  font-size: var(--xs-font-size);
+  margin-left: 14px;
+  border: none;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.input::placeholder {
+  color: var(--gray);
+  font-size: var(--xs-font-size);
+  opacity: 1;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.photo {
+  grid-area: photo;
+  object-fit: cover;
+  max-width: 100%;
+  padding: 15px;
+}
+
+.map {
+  grid-area: map;
+  max-width: 100%;
+  padding: 15px;
+  text-align: center;
+}
+
+.mapInstruction {
+  font-size: var(--xxxs-font-size);
+}
+
+.popupWindow {
+  max-height: 90vh;
+  overflow-y: auto;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.popupWindow::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.dropdownContainer{
+  max-width: 50%;
+  grid-area: dropdown;
+  padding: 15px 15px 0;
+  text-align: center;
+  font-size: var(--xs-font-size);
+}

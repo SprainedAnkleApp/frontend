@@ -1,0 +1,57 @@
+.kebab {
+  font-size: 24px;
+  color: var(--gray);
+}
+
+.content {
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-text {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.peak-text {
+  padding: 4px 10px;
+  font-size: var(--xxs-font-size);
+  width: auto;
+  margin-left: 15px;
+  margin-right: auto;
+  text-align: left;
+  background-color: var(--green);
+  border-radius: var(--l-border-radius);
+  color: white;
+  cursor: pointer;
+}
+
+.withBottomMargin {
+  margin-bottom: 15px;
+}
+
+.photo {
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--xl-border-radius);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-container {
+  padding: 0 12px;
+}
+
+
+.heart {
+  color: var(--heart-red);
+}
+
+.watch {
+  margin-left: auto;
+}
+

@@ -6,17 +6,30 @@
   object-fit: cover;
 }
 
+.xsSize {
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+}
+
 .sSize {
   width: 35px;
   height: 35px;
+  min-width: 35px;
+  min-height: 35px;
 }
 
 .mSize {
+  min-width: 45px;
   width: 45px;
+  min-height: 45px;
   height: 45px;
 }
 
 .lSize {
   width: 55px;
   height: 55px;
+  min-width: 55px;
+  min-height: 55px;
 }

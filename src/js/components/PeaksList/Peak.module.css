@@ -1,33 +1,125 @@
-.card{
-    display:grid;
-    grid-template-rows:40vh auto;
-    overflow:hidden;
-    position:relative;
-    box-shadow: 8px 4px 16px -2px rgba(90,70,69,0.5);
-    background-color:rgb(238, 235, 235);
-    border-radius:20px;
-    margin-top:5%;
-    margin-bottom: 5%;
-    cursor:pointer;
+.card {
+    display: grid;
+    grid-template-rows: 30vh auto;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 8px 4px 16px -2px rgba(90,70,69,0.2);
+    background-color:white;
+    border-radius: 20px;
+    margin: 3% 0;
     text-decoration: none;
     color: black;
 }
 
-.card:hover{
-    opacity: 80%;
+.redirectLink:hover {
+    opacity: 0.8;
 }
 
-.photo{
+.photo {
     position: relative;
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     object-position: center;
 }
 
-.peakName{
-    font-size: 20px;
+.peakInformation {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    position: relative;
+}
+
+.peakName {
+    font-size: var(--m-font-size);
+    color: var(--darkest-gray);
     font-weight: bold;
     margin-top: 3%;
     margin-bottom: 3%;
+    text-align: left;
+    margin-left: 20px;
 }
+
+.peakHeight {
+    font-size: var(--xxs-font-size);
+    text-align: left;
+    margin-left: 20px;
+    color: lightgray;
+    margin-bottom: 20px;
+}
+
+.reachedInfo {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    background-color: var(--lighter-gray);
+    text-align: center;
+    border-radius: var(--l-border-radius);
+    color: var(--darkest-gray);
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.reachedIcon {
+    text-align: center;
+    margin: 0 5px;
+}
+
+.peakReachedInfo {
+    background-color: var(--green);
+    color: white;
+}
+
+.peakNotReachedInfo {
+    cursor: pointer;
+}
+
+.reachPeakCard {
+    text-align: center;
+}
+
+.reachPeakButton {
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: var(--xs-font-size);
+}
+
+.reachedText {
+    font-size: var(--xxs-font-size);
+    padding-right: 10px;
+    text-align: center;
+}
+
+.timeInput {
+    border: var(--l-border-width) solid var(--border-gray);  
+    border-radius: var(--xl-border-radius);
+    background-color: #F1F1F1;
+    font-weight: var(--normal-font-weight);
+    font-size: var(--s-font-size);
+    color: var(--darkest-gray);
+    text-align: center;
+    height: 50px;
+    width: 55px;
+    margin: 0 10px;
+}
+
+.timeInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--bold-font-weight);
+    font-size: var(--s-font-size);
+    color: var(--darkest-gray);
+    margin-top: 15px;
+}
+
+@media (max-width: 1200px) {
+    .reachedInfo {
+        position: relative;
+        margin: auto;
+        right: auto;
+    }
+  }

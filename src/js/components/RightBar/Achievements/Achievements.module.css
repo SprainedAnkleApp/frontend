@@ -1,0 +1,23 @@
+.wrapper {
+  grid-area: achievements;
+}
+
+.title {
+  font-size: var(--m-font-size);
+  color: var(--darkest-gray);
+  font-weight: var(--bold-font-weight);
+  margin-bottom: 20px;
+}
+
+.achievements {
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement {
+  margin-bottom: 20px;
+}
+
+.highlightedAchievement {
+  grid-area: currentAchievement;
+}

@@ -1,30 +1,19 @@
 .container {
-    width: 100%;
-    height: 40vh;
     text-align: center;
-    position: relative;
+    display: flex;
+    padding-bottom: 50px;
   }
 
-.header {
-    font-size:65px;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
-    margin-top: 5%;
-    font-weight: initial;
+.peaksList {
+    margin: 1%;
+    width: 100%;
+    text-align: center;
 }
 
-.peaksList{
-    margin: 5%;
-    margin-top: 6%;
-    padding-bottom: 5%;
-    display:grid;
-    grid-template-columns: repeat(2,1fr);
-    text-align:center;
-    column-gap:6%;
+.listLeft {
+  margin-right: 1%;
 }
 
-@media only screen and (max-width: 767px){
-    .peaksList{
-      grid-template-columns: 1fr;
-      grid-gap:0;
-    }
+.listRight {
+  margin-left: 1%;
 }

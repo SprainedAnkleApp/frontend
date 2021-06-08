@@ -1,0 +1,8 @@
+.tabWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.tab {
+    width: 80%;
+}
