@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   height: 24px;
+  position: relative;
 }
 
 .icon {
@@ -19,6 +20,13 @@
   font-size: var(--xxs-font-size);
   color: var(--gray);
   line-height: 16px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-left: 5px;
+  font-family: 'Roboto';
 }
 
 .icon:active {

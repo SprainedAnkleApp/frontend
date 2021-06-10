@@ -35,6 +35,9 @@
   color: var(--gray);
   justify-self: left;
   width: 100%;
+  font-family: 'Roboto';
+  font-size: var(--xs-font-size);
+  font-weight: var(--normal-font-weight);
 }
 
 .textarea::placeholder {
