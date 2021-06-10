@@ -11,7 +11,6 @@ const AddComment = () => {
 
   return (
     <div className={styles.addWrapper}>
-      <Icon url={user?.profilePhoto} variant="s" />
       <input
         type="text"
         value={userInput}
@@ -29,17 +28,19 @@ export type CommentsProps = {
 
 const Comments = ({ comments }: CommentsProps) => {
   return (
-    <div>
+    <div className={styles.comments}>
       {comments.map((comment, index) => (
-        <div key={'Comment_' + index}>
+        <div className={styles.commentWrapper} key={'Comment_' + index}>
           <Icon url={comment.user.profilePhoto} />
-          <div>
-            <p>{comment.user.firstName + ' ' + comment.user.lastName}</p>
-            <p> {comment.text}</p>
+          <div className={styles.textWrapper}>
+            <p className={styles.userName}>
+              {comment.user.firstName + ' ' + comment.user.lastName}
+            </p>
+            <p className={styles.content}> {comment.text}</p>
           </div>
         </div>
       ))}
-      <AddComment />
+      {/* <AddComment /> */}
     </div>
   );
 };

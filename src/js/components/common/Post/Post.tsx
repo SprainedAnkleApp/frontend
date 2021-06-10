@@ -10,6 +10,8 @@ import { createReaction, deleteReaction } from '../../../API/reactions/methods';
 import { userContext } from '../../../contexts/CurrentUser';
 import useModalRescuer from '../../../hooks/useModalRescuer';
 import MapWithMarker from '../MapWithMarker';
+import { RiSendPlaneFill } from 'react-icons/ri';
+import { Icon } from '..';
 import { useHistory } from 'react-router';
 
 export type PostProps = PostType & {
@@ -36,8 +38,11 @@ const Post = ({
       : false
   );
   const [likesCount, setLikesCount] = useState(reactions.length);
-
+  const [currentComment, setCurrentComment] = useState('');
   const [showComments, setShowComments] = useState(false);
+  const [currentComments, setCurrentComments] = useState(
+    comments ? comments : []
+  );
   const { openModal, rescuer } = useModalRescuer();
   const history = useHistory();
 
@@ -55,6 +60,19 @@ const Post = ({
     } catch (e) {
       openModal();
     }
+  };
+
+  const submitComment = async () => {
+    if (currentUser) {
+      setCurrentComments([
+        ...currentComments,
+        { user: currentUser as User, text: currentComment },
+      ]);
+    }
+
+    try {
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
   };
 
   const redirectToPeak = (peakId: string) => {
@@ -124,7 +142,21 @@ const Post = ({
       </div>
       {showComments && (
         <div>
-          <Comments comments={comments ?? []} />
+          <Comments comments={currentComments ?? []} />
+          <div className={styles.addCommentWrapper}>
+            <Icon url={currentUser?.profilePhoto} variant="s" />
+            <div className={styles.textInput}>
+              <input
+                type="text"
+                value={currentComment}
+                onChange={(event) => setCurrentComment(event.target.value)}
+              />
+              <RiSendPlaneFill
+                className={styles.sendIcon}
+                onClick={submitComment}
+              />
+            </div>
+          </div>
         </div>
       )}
       {rescuer}
