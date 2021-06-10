@@ -5,17 +5,21 @@ import { Card } from '../common';
 export type ProfileUserCardProps = {
   profileUserName: string;
   profilePhoto: string | undefined;
+  backgroundPhoto: string | undefined;
 };
 
 const ProfileUserCard = ({
   profileUserName,
   profilePhoto,
+  backgroundPhoto,
 }: ProfileUserCardProps) => {
   return (
     <div className={styles.profileUserCard}>
       <Card.Card className={styles.card}>
         <div className={styles.upperContainer}>
-          <div className={styles.backgroundImg}></div>
+          <div className={styles.backgroundImg}>
+            <img src={backgroundPhoto} className={styles.backgroundImg} />
+          </div>
           <div className={styles.profileImg}>
             <img src={profilePhoto} className={styles.profileImg} />
           </div>

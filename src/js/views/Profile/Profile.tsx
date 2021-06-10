@@ -39,6 +39,7 @@ const Profile = () => {
       <ProfileUserCard
         profileUserName={profileUser?.firstName + ' ' + profileUser?.lastName}
         profilePhoto={profileUser?.profilePhoto}
+        backgroundPhoto={profileUser?.backgroundPhoto}
       />
       <ProfileNavBar state={state} setState={setState} />
       <div>
