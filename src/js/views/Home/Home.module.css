@@ -16,4 +16,10 @@
   padding-bottom: 34px;
 }
 
-
+.paneHeaderCentral {
+  position: sticky;
+  background-color: var(--lightest-green);
+  z-index: 5;
+  top: 0;
+  padding-bottom: 13px;
+}

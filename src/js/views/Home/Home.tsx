@@ -41,7 +41,7 @@ const Home = () => {
       />
       <Central
         activeChatId={activeChatId}
-        headerStyles={styles.paneHeader}
+        headerStyles={styles.paneHeaderCentral}
         newPeakReached={newPeakReached}
         setNewPeakReached={setNewPeakReached}
       />
