@@ -12,6 +12,9 @@
     "@types/node": "^15.0.2",
     "@types/react-dom": "^17.0.3",
     "@types/react-router-dom": "^5.1.7",
+    "@types/react-transition-group": "^4.4.1",
+    "@types/sockjs-client": "^1.5.0",
+    "@types/stompjs": "^2.3.4",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "create-index": "^2.6.0",
@@ -26,6 +29,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "reactjs-popup": "^2.0.4",
+    "sockjs-client": "^1.5.1",
+    "stompjs": "^2.3.3",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
   },
@@ -63,5 +68,6 @@
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.2.1"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

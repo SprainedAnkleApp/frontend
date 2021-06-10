@@ -1,4 +1,7 @@
 import { Message } from '../../models/interfaces';
+import axios from 'axios';
+import { getMessagesSocketUrl } from './urls';
+import authHeader from '../auth/methods';
 
 export const getMessages = async (id: number): Promise<Message[]> => {
   const messages = [
