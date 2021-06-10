@@ -10,9 +10,11 @@
 }
 
 .central {
-  margin-left: 12%;
-  margin-right: 12%;
+  padding-left: 12%;
+  padding-right: 12%;
   height: calc(100% - 102px);
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 .fixed {
