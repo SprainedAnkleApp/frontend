@@ -19,7 +19,7 @@ export type ProfileProps = {
   className: string;
 };
 
-const Profile = ({ className }: ProfileProps) => {
+const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const [profileUser, setProfileUser] = useState<
     User | Record<string, never>
@@ -35,7 +35,7 @@ const Profile = ({ className }: ProfileProps) => {
   }, [userId]);
 
   return (
-    <div className={className} id="postsScroll">
+    <div id="postsScroll">
       <ProfileUserCard
         profileUserName={profileUser?.firstName + ' ' + profileUser?.lastName}
         profilePhoto={profileUser?.profilePhoto}
