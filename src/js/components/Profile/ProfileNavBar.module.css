@@ -25,7 +25,7 @@
     display: flex;
 }
 
-.selected {
+.selected, .tabText:hover {
     font-weight: var(--bold-font-weight);
     color: var(--darkest-gray);
 }

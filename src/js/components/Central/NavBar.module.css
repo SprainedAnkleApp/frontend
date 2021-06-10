@@ -21,7 +21,7 @@
   font-size: 24px;
 }
 
-.selected {
+.selected, .icon:hover {
   color: var(--darkest-gray);
   background-color: var(--light-green);
   border-radius: var(--l-border-radius);

@@ -15,6 +15,6 @@
   justify-self: flex-end;
 }
 
-.chatActive {
+.chatActive, .wrapper:hover {
   background-color: var(--light-green);
 }
