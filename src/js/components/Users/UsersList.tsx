@@ -42,7 +42,7 @@ const UsersList = <T extends User>({ state, userFetcher }: ListProps<T>) => {
               await addFriendship(id);
               setFriendAction(Math.random());
             } catch (e) {
-              openModal();
+              openModal('Już zaprosiłeś tę osobę');
             }
           }}
         />
