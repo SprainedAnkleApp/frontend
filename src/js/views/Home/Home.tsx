@@ -1,7 +1,7 @@
 import Image from '../../../images/mountain.jpg';
 
 import styles from './Home.module.css';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { getCurrentUser } from '../../API/user/methods';
 import Stomp from 'stompjs';
 
@@ -11,6 +11,7 @@ import { LeftBar } from '../../components/LeftBar';
 import { RightBar } from '../../components/RightBar';
 import { Central } from '../../components/Central';
 import useWebsocket from '../../hooks/useWebsocket';
+import { ChatContext } from '../../contexts/ChatContext';
 
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -18,11 +19,15 @@ const Home = () => {
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
   const [newPeakReached, setNewPeakReached] = useState<number>(0);
 
+  const { registerBroker, broadcastMessage } = useContext(ChatContext);
+
   const {
     connect: connectToChatFeed,
     isWebsocketActive,
     sendMessage,
-  } = useWebsocket<{ name: string }>('websocket_chat');
+  } = useWebsocket<{ message: string; senderId: number; sendTo: number }>(
+    'websocket_chat'
+  );
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -38,18 +43,30 @@ const Home = () => {
   }, []);
 
   const handleChatMessage = useCallback((frame: Stomp.Frame) => {
-    console.log(frame.body);
+    const message = JSON.parse(frame.body);
+    console.log(message);
+    broadcastMessage({
+      content: message.message,
+      senderId: message.sender.id,
+    });
   }, []);
 
   useEffect(() => {
-    if (user && isWebsocketActive)
+    if (user && isWebsocketActive) {
       connectToChatFeed(`/messages/${user.id}`, handleChatMessage);
+      registerBroker((sendTo: number, content: string) => {
+        sendMessage('/api/chat/', {
+          message: content,
+          senderId: user.id,
+          sendTo: sendTo,
+        });
+      });
+    }
   }, [user, isWebsocketActive]);
 
   if (!user) return <div>Loading</div>;
   return (
     <div className={styles.home}>
-      {/* <button onClick={() => sendMessage('api/chat', { name: 'hejka' })} /> */}
       <LeftBar
         headerStyles={styles.paneHeader}
         searchTerm={searchTerm}

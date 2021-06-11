@@ -3,6 +3,7 @@ import { getCurrentUser } from './js/API/user/methods';
 import { logout, isAuthenticated } from './js/API/auth/methods';
 import { userContext } from './js/contexts/CurrentUser';
 import Routes from './js/routes';
+import { ChatContextProvider } from './js/contexts/ChatContext';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -31,7 +32,9 @@ const App = () => {
         loginUser: () => fetchCurrentUser(),
       }}
     >
-      <Routes />
+      <ChatContextProvider>
+        <Routes />
+      </ChatContextProvider>
     </userContext.Provider>
   );
 };

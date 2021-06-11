@@ -47,7 +47,7 @@ const useWebsocket = <T,>(
 
   const sendMessage = (messageUrl: string, body: T) => {
     if (stompClient.current) {
-      stompClient.current.send(messageUrl, {}, JSON.stringify({ body }));
+      stompClient.current.send(messageUrl, {}, JSON.stringify({ ...body }));
     }
   };
 

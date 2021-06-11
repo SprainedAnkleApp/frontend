@@ -1,11 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-  useRef,
-  Ref,
-} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import style from './ChatWindow.module.css';
 import { Card } from '.';
@@ -15,6 +8,7 @@ import { RiSendPlaneFill } from 'react-icons/ri';
 import { getMessages } from '../../API/chat/methods';
 
 import cx from 'classnames';
+import { ChatContext } from '../../contexts/ChatContext';
 
 export type ChatWindowProps = Partial<React.PropsWithoutRef<HTMLDivElement>> & {
   activeChatId: number | null;
@@ -31,13 +25,21 @@ const ChatWindow = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
 
+  const { subscribe, sendMessage } = useContext(ChatContext);
+
   useEffect(() => {
     const fetchMessages = async () => {
       const fetchedMessages = await getMessages(user.id);
       setMessages(fetchedMessages);
     };
+    if (!activeChatId) return;
     fetchMessages();
-  }, []);
+    subscribe(activeChatId, (content: string) =>
+      setMessages((messages) =>
+        messages.concat([{ content, senderId: activeChatId }])
+      )
+    );
+  }, [setMessages, activeChatId]);
 
   if (activeChatId === null) return null;
   return (
@@ -75,7 +77,13 @@ const ChatWindow = ({
         <RiSendPlaneFill
           className={style.sendIcon}
           onClick={() => {
-            console.log('sent');
+            if (!sendMessage) return;
+            sendMessage(activeChatId, currentMessage);
+            setMessages((messages) =>
+              messages.concat([{ content: currentMessage, senderId: user.id }])
+            );
+
+            setCurrentMessage('');
           }}
         />
       </div>
