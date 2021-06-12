@@ -13,7 +13,7 @@
 }
 
 .tabText {
-    margin: 0px;
+    margin: 0;
     font-size: var(--xs-font-size);
     font-weight: var(--medium-font-weight);
     color: var(--gray);

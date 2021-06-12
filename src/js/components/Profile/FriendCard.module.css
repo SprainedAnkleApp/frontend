@@ -34,7 +34,7 @@
 .username {
     width: 100%;
     text-align: center;
-    margin: 0px;
+    margin: 0;
     font-size: var(--xs-font-size);
     font-weight: var(--medium-font-weight);
     color: var(--white);
