@@ -10,7 +10,7 @@ import { Peak as PeakType } from '../../models/interfaces';
 
 import cx from 'classnames';
 import { Posts } from '../../components/common/Post';
-import { SectionNavBar } from '../../components/common';
+import { Card, SectionNavBar } from '../../components/common';
 
 export type peakInformations = 'description' | 'map' | 'posts';
 
@@ -76,9 +76,11 @@ const PeakDetails = ({
           />
         )}
         {state === 'map' && (
-          <MapWithMarker
-            center={[peakDetails.latitude, peakDetails.longitude]}
-          />
+          <Card.Card className={styles.cardMap}>
+            <MapWithMarker
+              center={[peakDetails.latitude, peakDetails.longitude]}
+            />
+          </Card.Card>
         )}
         {state === 'posts' && (
           <Posts
