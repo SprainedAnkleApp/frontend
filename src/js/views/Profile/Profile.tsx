@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { User } from '../../models/interfaces';
 import { useParams } from 'react-router';
 import styles from './Profile.module.css';
 import { getProfilePostsPaginated } from '../../API/profile/methods';
 import {
   ProfileUserCard,
-  ProfileNavBar,
   ProfileAchievements,
   ProfileFriends,
 } from '../../components/Profile/index';
+import { SectionNavBar } from '../../components/common';
 import { getUserById } from '../../API/user/methods';
 import { Posts } from '../../components/common/Post';
 import { getUsersFriends } from '../../API/friends/methods';
@@ -25,6 +25,14 @@ const Profile = () => {
     User | Record<string, never>
   >();
   const [state, setState] = useState<profileTabs>('posts');
+  const possibleStates = useMemo(
+    () => ({
+      posts: 'Posty',
+      achievements: 'Osiągnięcia',
+      friends: 'Znajomi',
+    }),
+    []
+  );
 
   const fetchUser = async () => {
     const user = await getUserById(userId);
@@ -38,7 +46,11 @@ const Profile = () => {
   return (
     <div id="postsScroll">
       <ProfileUserCard profileUser={profileUser} fetchUser={fetchUser} />
-      <ProfileNavBar state={state} setState={setState} />
+      <SectionNavBar
+        state={state}
+        setState={setState}
+        possibleStates={possibleStates}
+      />
       <div>
         {state === 'posts' && (
           <Posts

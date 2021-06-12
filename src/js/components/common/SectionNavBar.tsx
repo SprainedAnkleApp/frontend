@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import React from 'react';
-
+import { Card } from '../common';
 import styles from './SectionNavBar.module.css';
 
 export type SectionNavBarProps<T extends string> = {
@@ -19,22 +19,26 @@ const SectionNavBar = <T extends string>({
   iconClass,
 }: SectionNavBarProps<T>) => {
   return (
-    <div className={cx(styles.navigation, className)}>
-      {Object.entries(possibleStates).map(([entry, entryName], index) => (
-        <div
-          key={`entry_${index}`}
-          className={cx(
-            styles.icon,
-            {
-              [styles.selected]: entry === state,
-            },
-            iconClass
-          )}
-          onClick={() => setState(entry as T)}
-        >
-          {entryName as string}
+    <div className={cx(styles.stickyCard, className)}>
+      <Card.Card>
+        <div className={styles.navBar}>
+          {Object.entries(possibleStates).map(([entry, entryName], index) => (
+            <div
+              key={`entry_${index}`}
+              className={cx(
+                styles.tabText,
+                {
+                  [styles.selected]: entry === state,
+                },
+                iconClass
+              )}
+              onClick={() => setState(entry as T)}
+            >
+              {entryName as string}
+            </div>
+          ))}
         </div>
-      ))}
+      </Card.Card>
     </div>
   );
 };
