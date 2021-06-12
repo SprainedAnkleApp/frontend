@@ -1,10 +1,12 @@
-import styles from './Friends.module.css';
 import React, { useEffect, useState } from 'react';
 import { getFriends } from '../../../API/friends/methods';
 import { User } from '../../../models/interfaces';
 import { UserStatus, UserRow } from '../../common';
 import usePaginatedData from '../../../hooks/usePaginatedData';
 import InfiniteScroll from 'react-infinite-scroll-component';
+
+import styles from './Friends.module.css';
+import { Friend } from '.';
 
 export type FriendsProps = {
   searchTerm: string;
@@ -17,24 +19,24 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
 
   const { data, nextPage, hasMore } = usePaginatedData<User>(getFriends(10));
 
-  const toUserRowComponent = (friend: User) => {
-    return (
-      <UserRow.UserRow
-        key={`friend_${friend.id}`}
-        className={styles.friend}
-        onClick={() => startChat(friend.id)}
-        isActive={activeChatId === friend.id}
-        info={
-          <UserRow.UserInfo
-            name={friend.firstName + ' ' + friend.lastName}
-            url={friend.profilePhoto}
-          />
-        }
-      >
-        <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
-      </UserRow.UserRow>
-    );
-  };
+  // const toUserRowComponent = (friend: User) => {
+  //   return (
+  //     <UserRow.UserRow
+  //       key={`friend_${friend.id}`}
+  //       className={styles.friend}
+  //       onClick={() => startChat(friend.id)}
+  //       isActive={activeChatId === friend.id}
+  //       info={
+  //         <UserRow.UserInfo
+  //           name={friend.firstName + ' ' + friend.lastName}
+  //           url={friend.profilePhoto}
+  //         />
+  //       }
+  //     >
+  //       <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
+  //     </UserRow.UserRow>
+  //   );
+  // };
 
   useEffect(() => {
     const result = data.filter((friend) =>
@@ -56,7 +58,14 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
       >
-        {filteredFriends.map(toUserRowComponent)}
+        {filteredFriends.map((friend) => (
+          <Friend
+            key={`Friend_${friend.id}`}
+            friend={friend}
+            startChat={() => startChat(friend.id)}
+            activeChatId={activeChatId}
+          />
+        ))}
       </InfiniteScroll>
     </div>
   );

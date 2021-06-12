@@ -6,6 +6,7 @@ type ProcessMessageFunction = (message: Message) => void;
 export type ChatContextType = {
   broadcastMessage: ProcessMessageFunction;
   subscribe: (id: number, callback: (content: string) => void) => void;
+  unsubscribe: (id: number, callback: (content: string) => void) => void;
   registerBroker: (
     brokerCallback: (sendTo: number, content: string) => void
   ) => void;
@@ -19,6 +20,7 @@ export const ChatContext = React.createContext<ChatContextType>({
   broadcastMessage: noop,
   subscribe: noop,
   registerBroker: noop,
+  unsubscribe: noop,
 });
 
 export const ChatContextProvider = ({ children }: { children: ReactNode }) => {
@@ -33,6 +35,19 @@ export const ChatContextProvider = ({ children }: { children: ReactNode }) => {
   const addSubscriber = (id: number, callback: (content: string) => void) => {
     if (!subscribers[id]) subscribers[id] = [];
     subscribers[id].push(callback);
+    console.log('After subscribe', subscribers);
+  };
+
+  const removeSubscriber = (
+    id: number,
+    callback: (content: string) => void
+  ) => {
+    if (!subscribers[id]) subscribers[id] = [];
+    subscribers[id].splice(
+      subscribers[id].findIndex((item) => item === callback),
+      1
+    );
+    console.log('After unsubscribe', subscribers);
   };
 
   const notifySubscribers = (message: Message) => {
@@ -52,6 +67,7 @@ export const ChatContextProvider = ({ children }: { children: ReactNode }) => {
     <ChatContext.Provider
       value={{
         subscribe: addSubscriber,
+        unsubscribe: removeSubscriber,
         broadcastMessage: notifySubscribers,
         registerBroker,
         sendMessage: broker,

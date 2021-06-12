@@ -25,7 +25,7 @@ const ChatWindow = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
 
-  const { subscribe, sendMessage } = useContext(ChatContext);
+  const { subscribe, unsubscribe, sendMessage } = useContext(ChatContext);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -34,11 +34,12 @@ const ChatWindow = ({
     };
     if (!activeChatId) return;
     fetchMessages();
-    subscribe(activeChatId, (content: string) =>
+    const newMessageHandler = (content: string) =>
       setMessages((messages) =>
         messages.concat([{ content, senderId: activeChatId }])
-      )
-    );
+      );
+    subscribe(activeChatId, newMessageHandler);
+    return () => unsubscribe(activeChatId, newMessageHandler);
   }, [setMessages, activeChatId]);
 
   if (activeChatId === null) return null;
