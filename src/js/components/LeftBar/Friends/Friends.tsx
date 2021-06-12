@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getFriends } from '../../../API/friends/methods';
 import { User } from '../../../models/interfaces';
-import { UserStatus, UserRow } from '../../common';
 import usePaginatedData from '../../../hooks/usePaginatedData';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -18,25 +17,6 @@ const Friends = ({ searchTerm, startChat, activeChatId }: FriendsProps) => {
   const [filteredFriends, setFilteredFriends] = useState<User[]>([]);
 
   const { data, nextPage, hasMore } = usePaginatedData<User>(getFriends(10));
-
-  // const toUserRowComponent = (friend: User) => {
-  //   return (
-  //     <UserRow.UserRow
-  //       key={`friend_${friend.id}`}
-  //       className={styles.friend}
-  //       onClick={() => startChat(friend.id)}
-  //       isActive={activeChatId === friend.id}
-  //       info={
-  //         <UserRow.UserInfo
-  //           name={friend.firstName + ' ' + friend.lastName}
-  //           url={friend.profilePhoto}
-  //         />
-  //       }
-  //     >
-  //       <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
-  //     </UserRow.UserRow>
-  //   );
-  // };
 
   useEffect(() => {
     const result = data.filter((friend) =>

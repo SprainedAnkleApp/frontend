@@ -81,3 +81,7 @@ export type Message = {
   senderId: number;
   content: string;
 };
+
+export type ExtendedMessage = Message & {
+  id: number;
+};

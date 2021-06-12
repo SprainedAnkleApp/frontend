@@ -49,7 +49,6 @@ const Home = () => {
 
   const handleChatMessage = useCallback((frame: Stomp.Frame) => {
     const message = JSON.parse(frame.body);
-    console.log(message);
     broadcastMessage({
       content: message.message,
       senderId: message.sender.id,

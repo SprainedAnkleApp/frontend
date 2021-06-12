@@ -35,7 +35,6 @@ export const ChatContextProvider = ({ children }: { children: ReactNode }) => {
   const addSubscriber = (id: number, callback: (content: string) => void) => {
     if (!subscribers[id]) subscribers[id] = [];
     subscribers[id].push(callback);
-    console.log('After subscribe', subscribers);
   };
 
   const removeSubscriber = (
@@ -47,7 +46,6 @@ export const ChatContextProvider = ({ children }: { children: ReactNode }) => {
       subscribers[id].findIndex((item) => item === callback),
       1
     );
-    console.log('After unsubscribe', subscribers);
   };
 
   const notifySubscribers = (message: Message) => {

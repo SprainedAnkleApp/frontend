@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  useLayoutEffect,
-} from 'react';
+import React, { useContext, useEffect, useState, useLayoutEffect } from 'react';
 import { User } from '../../../models/interfaces';
 import { ChatContext } from '../../../contexts/ChatContext';
 import { UserRow, UserStatus, NotificationIndicator } from '../../common';
