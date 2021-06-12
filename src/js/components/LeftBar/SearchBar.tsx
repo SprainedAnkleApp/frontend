@@ -14,7 +14,7 @@ const SearchBar = ({ value, onChange, className }: SearchBarProps) => {
   return (
     <div className={cx(styles.searchBar, className)}>
       <div className={styles.icon}>
-        <RiUserSearchFill />
+        <RiUserSearchFill className={styles.iconUsersSearch} />
       </div>
       <input
         type="text"

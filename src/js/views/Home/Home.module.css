@@ -22,11 +22,3 @@
     grid-template-columns: 1px 1fr 1px;
   }
 }
-
-.paneHeaderCentral {
-  position: sticky;
-  background-color: var(--lightest-green);
-  z-index: 5;
-  top: 0;
-  padding-bottom: 13px;
-}
