@@ -1,14 +1,16 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 
 import style from './ChatWindow.module.css';
-import { Card } from '.';
-import { userContext } from '../../contexts/CurrentUser';
-import { User, Message } from '../../models/interfaces';
+import { Card } from '..';
+import { userContext } from '../../../contexts/CurrentUser';
+import { User, Message } from '../../../models/interfaces';
 import { RiSendPlaneFill } from 'react-icons/ri';
-import { getMessages } from '../../API/chat/methods';
 
 import cx from 'classnames';
-import { ChatContext } from '../../contexts/ChatContext';
+import { ChatContext } from '../../../contexts/ChatContext';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import usePaginatedData from '../../../hooks/usePaginatedData';
+import { getMessagesPaginated } from '../../../API/chat/methods';
 
 export type ChatWindowProps = Partial<React.PropsWithoutRef<HTMLDivElement>> & {
   activeChatId: number | null;
@@ -25,15 +27,25 @@ const ChatWindow = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
 
+  const messageFetcher = useCallback(() => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    if (!activeChatId) return () => {};
+    getMessagesPaginated(activeChatId, 15);
+  }, [activeChatId]);
+
+  const { data, nextPage, hasMore, refetch } = usePaginatedData<Message>(
+    messageFetcher
+  );
+
   const { subscribe, unsubscribe, sendMessage } = useContext(ChatContext);
 
   useEffect(() => {
-    const fetchMessages = async () => {
-      const fetchedMessages = await getMessages(user.id);
-      setMessages(fetchedMessages);
-    };
+    // const fetchMessages = async () => {
+    //   const fetchedMessages = await getMessages(user.id);
+    //   setMessages(fetchedMessages);
+    // };
     if (!activeChatId) return;
-    fetchMessages();
+    // fetchMessages();
     const newMessageHandler = (content: string) =>
       setMessages((messages) =>
         messages.concat([{ content, senderId: activeChatId }])
@@ -57,7 +69,17 @@ const ChatWindow = ({
         active={true}
         className={style.bottomSpace}
       />
-      <div className={style.messages}>
+      <div className={style.messages} id="messagesScroll">
+        <InfiniteScroll
+          dataLength={data.length}
+          next={nextPage}
+          hasMore={hasMore}
+          scrollableTarget="messagesScroll"
+          loader={<h4>Loading...</h4>}
+          className={styles.peakScroll}
+        >
+          {renderFriends()}
+        </InfiniteScroll>
         {messages.map((message, index) => (
           <div
             key={`messageNr_${index}`}

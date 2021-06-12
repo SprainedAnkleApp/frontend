@@ -4,7 +4,7 @@ import styles from './RightBar.module.css';
 import React from 'react';
 import { Achievements } from './Achievements';
 import { useLocation } from 'react-router';
-import { ChatWindow } from '../common';
+import { ChatWindow } from '../common/ChatWindow';
 
 import cx from 'classnames';
 

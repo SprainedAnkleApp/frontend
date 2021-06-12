@@ -20,9 +20,7 @@ const useWebsocket = <T,>(
   const [isWebsocketActive, setWebsocketActive] = useState(false);
 
   useEffect(() => {
-    socket.current = new SockJS(
-      `${process.env.REACT_APP_API_URL}${connectionUrl}`
-    );
+    socket.current = new SockJS(`${connectionUrl}`);
     stompClient.current = Stomp.over(socket.current);
     stompClient.current.connect(
       {},
