@@ -49,7 +49,12 @@ const Central = ({
             <PeaksList />
           </Route>
           <Route path="/chat">
-            <ChatWindow activeChatId={activeChatId} className={styles.fixed} />
+            {activeChatId && (
+              <ChatWindow
+                activeChatId={activeChatId}
+                className={styles.fixed}
+              />
+            )}
           </Route>
           <Route path="/">
             <Posts

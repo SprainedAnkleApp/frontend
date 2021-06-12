@@ -11,9 +11,10 @@ import cx from 'classnames';
 
 import style from './ChatWindow.module.css';
 import { MessageScroll } from '.';
+import { getUserById } from '../../../API/user/methods';
 
 export type ChatWindowProps = Partial<React.PropsWithoutRef<HTMLDivElement>> & {
-  activeChatId: number | null;
+  activeChatId: number;
   onClose?: () => void;
   small?: boolean;
 };
@@ -26,16 +27,28 @@ const ChatWindow = ({
   const { user } = useContext(userContext);
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const [fetchedMessages, setFetchedMessages] = useState<Message[]>([]);
+  const [sender, setSender] = useState<User | Record<string, never>>({});
 
   const [currentMessage, setCurrentMessage] = useState('');
 
   const { subscribe, unsubscribe, sendMessage } = useContext(ChatContext);
 
   useEffect(() => {
-    if (!activeChatId) return;
+    const fetchUser = async () => {
+      const user = await getUserById(`${activeChatId}`);
+      setSender(user);
+    };
+    fetchUser();
+  }, [activeChatId]);
+
+  useEffect(() => {
+    setChatMessages([]);
+  }, [activeChatId]);
+
+  useEffect(() => {
     const newMessageHandler = (content: string) =>
       setChatMessages((messages) =>
-        messages.concat([{ content, senderId: activeChatId }])
+        [{ content: content, senderId: activeChatId }].concat(messages)
       );
     subscribe(activeChatId, newMessageHandler);
     return () => unsubscribe(activeChatId, newMessageHandler);
@@ -48,11 +61,10 @@ const ChatWindow = ({
     setChatMessages((messages) =>
       [{ content: currentMessage, senderId: user.id }].concat(messages)
     );
-
     setCurrentMessage('');
   };
 
-  if (activeChatId === null) return null;
+  if (Object.keys(sender).length <= 0) return null;
   return (
     <Card.Card className={cx(style.main, { [style.small]: small }, className)}>
       <Card.Header
@@ -63,7 +75,7 @@ const ChatWindow = ({
             </button>
           )
         }
-        user={user as User}
+        user={sender as User}
         active={true}
         className={style.bottomSpace}
       />

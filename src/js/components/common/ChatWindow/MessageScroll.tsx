@@ -29,10 +29,19 @@ const MessageScroll = ({
     );
   };
 
-  const { data, nextPage, hasMore } = usePaginatedData<ExtendedMessage>(
+  const {
+    data,
+    nextPage,
+    hasMore,
+    refetch,
+  } = usePaginatedData<ExtendedMessage>(
     getMessagesPaginated(activeChatId, 15),
     filter
   );
+
+  useEffect(() => {
+    refetch();
+  }, [activeChatId]);
 
   useEffect(() => {
     receiveMessages(data);
