@@ -40,7 +40,6 @@ export const getPeak = async (id: string): Promise<Peak | undefined> => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
     return undefined;
   }
 };
@@ -60,7 +59,6 @@ export const completeThePeak = async (
     );
     return response.data;
   } catch (error) {
-    console.log(error);
     return undefined;
   }
 };
@@ -72,7 +70,6 @@ export const getPeakPosts = async (peakId: string): Promise<Post[]> => {
     });
     return response.data.content;
   } catch (error) {
-    console.log(error);
     return [];
   }
 };

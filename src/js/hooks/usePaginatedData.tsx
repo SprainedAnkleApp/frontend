@@ -17,10 +17,13 @@ const usePaginatedData = function <T>(
   };
 
   const refetch = async () => {
-    const result = await fetcher(0);
-    setData(result.data);
-    setCurrentPage(0);
-    setHasMore(0 < result.pages);
+    try {
+      const result = await fetcher(0);
+      setData(result.data);
+      setCurrentPage(0);
+      setHasMore(0 < result.pages);
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
   };
 
   useEffect(() => {

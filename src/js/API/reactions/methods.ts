@@ -7,34 +7,24 @@ export const createReaction = async (
   postId: number,
   type: Reaction
 ): Promise<void> => {
-  try {
-    await axios.post<void>(
-      getReactionUrl(postId),
-      { type: type },
-      {
-        headers: authHeader(),
-      }
-    );
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  await axios.post<void>(
+    getReactionUrl(postId),
+    { type: type },
+    {
+      headers: authHeader(),
+    }
+  );
 };
 
 export const deleteReaction = async (
   postId: number,
   type: Reaction
 ): Promise<void> => {
-  try {
-    await axios.post<void>(
-      getReactionUrl(postId),
-      { type: type },
-      {
-        headers: authHeader(),
-      }
-    );
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  await axios.post<void>(
+    getReactionUrl(postId),
+    { type: type },
+    {
+      headers: authHeader(),
+    }
+  );
 };
