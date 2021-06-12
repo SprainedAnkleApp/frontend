@@ -4,7 +4,10 @@ export type Fetcher<T> = (
   page: number
 ) => Promise<{ pages: number; data: T[] }>;
 
-const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
+const usePaginatedData = function <T>(
+  fetcher: Fetcher<T>,
+  newDataFilter?: (data: T[]) => T[]
+) {
   const [currentPage, setCurrentPage] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [data, setData] = useState<T[]>([]);
@@ -24,7 +27,12 @@ const usePaginatedData = function <T>(fetcher: Fetcher<T>) {
     const fetchNewPage = async () => {
       try {
         const result = await fetcher(currentPage);
-        setData(data.concat(result.data));
+        if (newDataFilter) {
+          const filtered = newDataFilter(result.data);
+          setData(data.concat(filtered));
+        } else {
+          setData(data.concat(result.data));
+        }
         setHasMore(currentPage + 1 < result.pages);
         // eslint-disable-next-line no-empty
       } catch (e) {}

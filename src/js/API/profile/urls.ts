@@ -1,8 +1,8 @@
-export const getProfilePostsUrl = (userId: string): string =>
+export const getProfilePostsUrl = (userId: number): string =>
   `${process.env.REACT_APP_API_URL}api/public/wallitems/${userId}`;
 
 export const getProfilePaginatedPostsUrl = (
-  userId: string,
+  userId: number,
   page: number,
   pageSize: number
 ): string =>

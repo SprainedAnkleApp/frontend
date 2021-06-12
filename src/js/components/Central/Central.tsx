@@ -8,7 +8,7 @@ import { PeaksList } from '../../views/PeaksList';
 import { NewPost } from './NewPost';
 import { Posts } from '../common/Post';
 import { getPostsPaginated } from '../../API/wall/methods';
-import { ChatWindow } from '../common';
+import { ChatWindow } from '../common/ChatWindow';
 import { Users } from '../../views/Users';
 import { Profile } from '../../views/Profile';
 
@@ -49,7 +49,12 @@ const Central = ({
             <PeaksList />
           </Route>
           <Route path="/chat">
-            <ChatWindow activeChatId={activeChatId} className={styles.fixed} />
+            {activeChatId && (
+              <ChatWindow
+                activeChatId={activeChatId}
+                className={styles.fixed}
+              />
+            )}
           </Route>
           <Route path="/">
             <Posts

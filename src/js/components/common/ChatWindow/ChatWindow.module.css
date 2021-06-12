@@ -24,36 +24,6 @@
   outline: none;
 }
 
-.messages {
-  padding-top: 14px;
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-  margin-bottom: 10px;
-}
-
-.messages::-webkit-scrollbar {
-  display: none;
-}
-
-.message {
-  max-width: 85%;
-  align-self: flex-start;
-  margin-bottom: 10px;
-  padding: 12px 18px;
-  border-radius: var(--xl-border-radius);
-  background-color: var(--lighter-gray);
-  color: var(--gray);
-  font-size: var(--xxxs-font-size);
-}
-
-.myMessage {
-  align-self: flex-end;
-  background-color: var(--light-green);
-}
-
 .textInput {
   background: var(--lighter-gray);
   border-radius: var(--xl-border-radius);
@@ -85,6 +55,10 @@
 
 .sendIcon:hover {
   color: var(--darkest-gray);
+}
+
+.omit {
+  display: contents;
 }
 
 .bottomSpace {
