@@ -45,7 +45,7 @@ const Profile = ({ className }: ProfileProps) => {
         {state === 'posts' && (
           <Posts
             className={styles.central}
-            postsFetcher={getProfilePostsPaginated(userId, 10)}
+            postsFetcher={getProfilePostsPaginated(parseInt(userId, 10), 10)}
             scrollId="postsScroll"
           ></Posts>
         )}

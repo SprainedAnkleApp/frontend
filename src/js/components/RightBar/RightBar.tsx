@@ -4,7 +4,8 @@ import styles from './RightBar.module.css';
 import React, { useContext } from 'react';
 import { Achievements } from './Achievements';
 import { useLocation } from 'react-router';
-import { ChatWindow, Icon } from '../common';
+import { ChatWindow } from '../common/ChatWindow';
+import { Icon } from '../common';
 
 import cx from 'classnames';
 import { Link } from 'react-router-dom';

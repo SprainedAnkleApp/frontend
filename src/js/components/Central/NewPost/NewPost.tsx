@@ -107,7 +107,6 @@ const NewPost = ({
         className="my-popup"
         contentStyle={contentStyle}
         overlayStyle={overlayStyle}
-        modal
         nested
       >
         {(close: () => void, isOpen: boolean) => {
