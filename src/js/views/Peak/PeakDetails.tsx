@@ -63,7 +63,6 @@ const PeakDetails = ({
         state={state}
         setState={setState}
         possibleStates={possibleStates}
-        className={styles.navBar}
       />
       <div
         className={state !== 'posts' ? styles.peakInformation : styles.posts}
