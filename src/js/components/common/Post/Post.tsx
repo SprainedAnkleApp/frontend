@@ -3,13 +3,16 @@ import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Post as PostType, User } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
+import { getComments, postComment } from '../../../API/comments/methods';
 import { userContext } from '../../../contexts/CurrentUser';
 import useModalRescuer from '../../../hooks/useModalRescuer';
 import MapWithMarker from '../MapWithMarker';
+import { RiSendPlaneFill } from 'react-icons/ri';
+import { Icon } from '..';
 import { useHistory } from 'react-router';
 
 export type PostProps = PostType & {
@@ -36,10 +39,22 @@ const Post = ({
       : false
   );
   const [likesCount, setLikesCount] = useState(reactions.length);
-
+  const [commentsCount, setCommentsCount] = useState(0);
+  const [currentComment, setCurrentComment] = useState('');
   const [showComments, setShowComments] = useState(false);
+  const [currentComments, setCurrentComments] = useState(comments ?? []);
   const { openModal, rescuer } = useModalRescuer();
   const history = useHistory();
+
+  useEffect(() => {
+    getComments(id).then((comments) => {
+      setCurrentComments(comments.reverse());
+    });
+  }, []);
+
+  useEffect(() => {
+    setCommentsCount(currentComments.length);
+  }, [currentComments]);
 
   const likePost = async () => {
     try {
@@ -54,6 +69,15 @@ const Post = ({
       }
     } catch (e) {
       openModal();
+    }
+  };
+
+  const submitComment = async () => {
+    if (currentUser) {
+      const comment = { user: currentUser as User, text: currentComment };
+      await postComment(id, comment);
+      setCurrentComments([...currentComments, comment]);
+      setCurrentComment('');
     }
   };
 
@@ -119,12 +143,26 @@ const Post = ({
           className={styles['button-container']}
           onClick={() => setShowComments((show) => !show)}
           icon={<BsFillChatFill />}
-          count={comments ? comments.length : 0}
+          count={commentsCount}
         />
       </div>
       {showComments && (
         <div>
-          <Comments comments={comments ?? []} />
+          <Comments comments={currentComments ?? []} />
+          <div className={styles.addCommentWrapper}>
+            <Icon url={currentUser?.profilePhoto} variant="s" />
+            <div className={styles.textInput}>
+              <input
+                type="text"
+                value={currentComment}
+                onChange={(event) => setCurrentComment(event.target.value)}
+              />
+              <RiSendPlaneFill
+                className={styles.sendIcon}
+                onClick={submitComment}
+              />
+            </div>
+          </div>
         </div>
       )}
       {rescuer}

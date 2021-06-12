@@ -1,3 +1,40 @@
-.addWrapper {
+.commentWrapper {
+  margin-top: 16px;
   display: flex;
+}
+
+.textWrapper {
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 15px;
+  font-size: var(--xxs-font-size);
+}
+
+.content {
+  margin-top: 0px;
+  margin-left: 15px;
+  font-size: var(--xs-font-size);
+}
+
+.comments {
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  margin-top: 20px;
+  margin-left: 10px;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ and Edge */
+  scrollbar-width: none;  /* Firefox */
+  overflow-x: hidden;
+}
+
+.comments::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
