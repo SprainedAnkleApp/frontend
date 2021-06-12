@@ -8,6 +8,8 @@ import {
   postProfilePhoto,
   postBackgroundPhoto,
 } from '../../API/profile/methods';
+import backgroundPhotoPlaceholder from '../../../images/profile_bg.png';
+import profilePhotoPlaceholder from '../../../images/profile_pic.png';
 
 export type ProfileUserCardProps = {
   profileUser: User | Record<string, never> | undefined;
@@ -37,7 +39,11 @@ const ProfileUserCard = ({ profileUser, fetchUser }: ProfileUserCardProps) => {
               }
             />
             <img
-              src={profileUser?.backgroundPhoto}
+              src={
+                profileUser?.backgroundPhoto
+                  ? profileUser?.backgroundPhoto
+                  : backgroundPhotoPlaceholder
+              }
               className={cx(styles.backgroundImg, {
                 [styles.backgroundImgMe]: user.id == profileUser?.id,
               })}
@@ -56,7 +62,11 @@ const ProfileUserCard = ({ profileUser, fetchUser }: ProfileUserCardProps) => {
               }
             />
             <img
-              src={profileUser?.profilePhoto}
+              src={
+                profileUser?.profilePhoto
+                  ? profileUser?.profilePhoto
+                  : profilePhotoPlaceholder
+              }
               className={cx(styles.profileImg, {
                 [styles.profileImgMe]: user.id == profileUser?.id,
               })}
