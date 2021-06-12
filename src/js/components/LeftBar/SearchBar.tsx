@@ -1,5 +1,5 @@
 import styles from './SearchBar.module.css';
-import { RiUserSearchLine } from 'react-icons/ri';
+import { RiUserSearchFill } from 'react-icons/ri';
 import React from 'react';
 
 import cx from 'classnames';
@@ -14,7 +14,7 @@ const SearchBar = ({ value, onChange, className }: SearchBarProps) => {
   return (
     <div className={cx(styles.searchBar, className)}>
       <div className={styles.icon}>
-        <RiUserSearchLine />
+        <RiUserSearchFill className={styles.iconUsersSearch} />
       </div>
       <input
         type="text"

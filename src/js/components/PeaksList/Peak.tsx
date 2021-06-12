@@ -52,7 +52,7 @@ const Peak = ({
   };
 
   return (
-    <div className={cx(styles.card, className)}>
+    <Card.Card className={cx(styles.card, className)}>
       <Link className={styles.redirectLink} to={redirectTo}>
         <img className={styles.photo} src={peak.photo} alt="mountain" />
       </Link>
@@ -147,7 +147,7 @@ const Peak = ({
           }}
         </Popup>
       </div>
-    </div>
+    </Card.Card>
   );
 };
 

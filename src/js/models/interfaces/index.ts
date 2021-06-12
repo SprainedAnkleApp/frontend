@@ -34,6 +34,7 @@ export type User = {
   email: string;
   profilePhoto: string;
   friend?: boolean;
+  backgroundPhoto: string;
 };
 
 export type Comment = {

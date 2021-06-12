@@ -5,8 +5,6 @@
   
 .card {
   grid-template-rows: 50vh auto;
-  width: 80%;
-  margin: auto;
 }
 
 .detailsSection {
@@ -27,22 +25,14 @@
   border-radius:20px;
   margin: auto;
 }
+
+.cardMap {
+  padding: 0;
+  margin: 0 6%;
+}
   
 .title {
   margin-bottom: 30px;
-}
-
-.peakInformation {
-  width: 70%;
-  box-shadow: 8px 4px 16px -2px rgba(90,70,69,0.2);
-  background-color:white;
-  border-radius: 20px;
-  margin: 20px auto;
-}
-
-.posts {
-  width: 80%;
-  margin: 20px auto;
 }
 
 .buttonBox {
@@ -55,10 +45,6 @@
   width: 300px;
   height: 60px;
   font-size: var(--s-font-size);
-}
-
-.navBar {
-  margin: 20px auto;
 }
 
 @media (max-width: 980px) {

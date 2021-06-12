@@ -34,7 +34,7 @@ const Central = ({
       <div className={styles.central}>
         <Switch>
           <Route path="/profile/:userId">
-            <Profile className={styles.central} />
+            <Profile />
           </Route>
           <Route path="/users">
             <Users className={styles.fixed} />

@@ -2,7 +2,7 @@
   height: 50vh;
   max-height: 50vh;
   position: sticky;
-  bottom: 10px;
+  bottom: 30px;
   margin-top: auto;
 }
 
@@ -14,6 +14,10 @@
   color: var(--gray);
   padding: 0;
   cursor: pointer;
+}
+
+.close:hover {
+  color: var(--darkest-gray);
 }
 
 .close:focus {
@@ -47,6 +51,10 @@
   max-height: 21px;
   margin-left: auto;
   cursor: pointer;
+}
+
+.sendIcon:hover {
+  color: var(--darkest-gray);
 }
 
 .omit {

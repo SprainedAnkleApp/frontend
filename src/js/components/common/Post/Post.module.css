@@ -4,14 +4,15 @@
 }
 
 .content {
-  padding: 18px 0;
+  padding: 15px 0;
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid var(--border-gray);
 }
 
 .content-text {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .peak-text {
@@ -40,9 +41,13 @@
 .buttons {
   display: flex;
   flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 10px;
 }
 
 .button-container {
+  margin: auto;
   padding: 0 12px;
 }
 

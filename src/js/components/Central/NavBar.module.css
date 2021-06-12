@@ -21,7 +21,7 @@
   font-size: 24px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 720px) {
   .icon {
   position: relative;
   z-index: 10;
@@ -44,7 +44,7 @@
 }
 }
 
-.selected {
+.selected, .icon:hover {
   color: var(--darkest-gray);
   background-color: var(--light-green);
   border-radius: var(--l-border-radius);

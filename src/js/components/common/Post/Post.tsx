@@ -133,7 +133,7 @@ const Post = ({
       <div className={styles.buttons}>
         <PostButton
           active={liked}
-          className={cx(styles['button-icon'], { [styles.heart]: liked })}
+          className={cx(styles['button-container'], { [styles.heart]: liked })}
           onClick={likePost}
           icon={<BsFillHeartFill />}
           count={likesCount}

@@ -10,11 +10,26 @@
 }
 
 .central {
-  margin-left: 2.5%;
-  margin-right: 2%;
+  padding-left: 12%;
+  padding-right: 12%;
   height: calc(100% - 102px);
+  overflow: auto;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
+
+.central::-webkit-scrollbar {
+  display: none;
+}  
 
 .fixed {
   height: calc(100% - 50px);
+}
+
+
+@media (max-width: 720px) {
+  .central {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
 }

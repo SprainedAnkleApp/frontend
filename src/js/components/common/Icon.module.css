@@ -34,7 +34,7 @@
   min-height: 55px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 720px) {
   .xsSize {
     width: 20px;
     height: 20px;

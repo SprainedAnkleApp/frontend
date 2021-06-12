@@ -22,7 +22,7 @@ a:active {
   padding: 6.77px;
 }
 
-.selected {
+.selected, .selectionWrapper:hover {
   background-color: var(--light-green);
 }
 
