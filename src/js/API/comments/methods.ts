@@ -6,13 +6,13 @@ import { getUserById } from '../user/methods';
 
 export const getComments = async (wallItemId: number): Promise<Comment[]> => {
   try {
-    const response = await axios.get<any>(getCommentUrl(wallItemId), {
+    const response = await axios.get(getCommentUrl(wallItemId), {
       headers: authHeader(),
     });
     const userId = response.data.content[0].userId;
     const user = await getUserById(userId);
 
-    return response.data.content.map((content: { content: any }) => {
+    return response.data.content.map((content: { content: string }) => {
       return {
         user: user,
         text: content.content,

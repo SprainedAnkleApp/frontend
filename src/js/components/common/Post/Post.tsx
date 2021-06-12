@@ -81,10 +81,6 @@ const Post = ({
       setCurrentComments([comment, ...currentComments]);
       setCurrentComment('');
     }
-
-    try {
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
   };
 
   const redirectToPeak = (peakId: string) => {
