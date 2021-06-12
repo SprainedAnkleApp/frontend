@@ -9,7 +9,8 @@
 
 .navBar {
   height: 30px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .tabText {
@@ -22,6 +23,10 @@
   align-items: center;
   display: flex;
   margin: auto;
+  width: 100%;
+  width: -moz-available;          /* For Mozzila */
+  width: -webkit-fill-available;  /* For Chrome */
+  width: stretch;                 /* Unprefixed */
 }
 
 .selected, .tabText:hover {
