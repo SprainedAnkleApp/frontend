@@ -12,6 +12,11 @@ import { RightBar } from '../../components/RightBar';
 import { Central } from '../../components/Central';
 import useWebsocket from '../../hooks/useWebsocket';
 import { ChatContext } from '../../contexts/ChatContext';
+import {
+  subscribeWebsocketUrl,
+  chatFeedWebsocketUrl,
+  sendMessageWebsocketUrl,
+} from '../../API/chat/urls';
 
 const Home = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -26,7 +31,7 @@ const Home = () => {
     isWebsocketActive,
     sendMessage,
   } = useWebsocket<{ message: string; senderId: number; sendTo: number }>(
-    'websocket_chat'
+    subscribeWebsocketUrl()
   );
 
   useEffect(() => {
@@ -53,9 +58,9 @@ const Home = () => {
 
   useEffect(() => {
     if (user && isWebsocketActive) {
-      connectToChatFeed(`/messages/${user.id}`, handleChatMessage);
+      connectToChatFeed(chatFeedWebsocketUrl(user.id), handleChatMessage);
       registerBroker((sendTo: number, content: string) => {
-        sendMessage('/api/chat/', {
+        sendMessage(sendMessageWebsocketUrl(), {
           message: content,
           senderId: user.id,
           sendTo: sendTo,
