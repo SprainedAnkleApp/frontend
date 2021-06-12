@@ -37,7 +37,7 @@ const CardHeader = ({
   className,
 }: CardHeaderProps) => {
   const history = useHistory();
-  const redirectToUser = (userId: string) => {
+  const redirectToUser = (userId: number) => {
     history.push({
       pathname: `/profile/${userId}`,
     });
@@ -47,7 +47,7 @@ const CardHeader = ({
     <div className={cx(styles.header, className)}>
       <div
         className={styles.headerUser}
-        onClick={() => redirectToUser(user.id.toString())}
+        onClick={() => redirectToUser(user.id)}
       >
         <Icon url={user?.profilePhoto} variant="s" />
         <div className={styles.nameWithTime}>

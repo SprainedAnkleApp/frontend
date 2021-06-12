@@ -13,11 +13,11 @@ export const getProfilePostsPaginated = (
 };
 
 export const postProfilePhoto = async (
-  file: File | null,
+  file: File,
   callback: () => void
 ): Promise<void> => {
   const body = new FormData();
-  if (file) body.append('profilePhoto', file);
+  body.append('profilePhoto', file);
 
   await axios.post(getCurrentUserUrl(), body, {
     headers: authHeader(),
@@ -26,11 +26,11 @@ export const postProfilePhoto = async (
 };
 
 export const postBackgroundPhoto = async (
-  file: File | null,
+  file: File,
   callback: () => void
 ): Promise<void> => {
   const body = new FormData();
-  if (file) body.append('backgroundPhoto', file);
+  body.append('backgroundPhoto', file);
 
   await axios.post(getCurrentUserUrl(), body, {
     headers: authHeader(),

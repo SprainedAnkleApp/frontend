@@ -28,15 +28,17 @@ const ProfileUserCard = ({ profileUser, fetchUser }: ProfileUserCardProps) => {
               type="file"
               id="backgroundUpload"
               className={styles.inputHidden}
-              onChange={(e) =>
-                postBackgroundPhoto(
-                  e?.target?.files && e.target.files[0],
-                  () => {
-                    refetchUser();
-                    fetchUser();
-                  }
-                )
-              }
+              onChange={(e) => {
+                if (e?.target?.files) {
+                  postBackgroundPhoto(
+                    e?.target?.files && e.target.files[0],
+                    () => {
+                      refetchUser();
+                      fetchUser();
+                    }
+                  );
+                }
+              }}
             />
             <img
               src={
@@ -54,12 +56,17 @@ const ProfileUserCard = ({ profileUser, fetchUser }: ProfileUserCardProps) => {
               type="file"
               id="profileUpload"
               className={styles.inputHidden}
-              onChange={(e) =>
-                postProfilePhoto(e?.target?.files && e.target.files[0], () => {
-                  refetchUser();
-                  fetchUser();
-                })
-              }
+              onChange={(e) => {
+                if (e?.target?.files) {
+                  postProfilePhoto(
+                    e?.target?.files && e.target.files[0],
+                    () => {
+                      refetchUser();
+                      fetchUser();
+                    }
+                  );
+                }
+              }}
             />
             <img
               src={
