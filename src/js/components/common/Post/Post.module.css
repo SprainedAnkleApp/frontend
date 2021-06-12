@@ -87,4 +87,5 @@
 .addCommentWrapper {
   margin-top: 12px;
   display: flex;
+  margin-left: 10px;
 }

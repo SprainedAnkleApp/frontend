@@ -13,7 +13,7 @@ const Comments = ({ comments }: CommentsProps) => {
     <div className={styles.comments}>
       {comments.map((comment, index) => (
         <div className={styles.commentWrapper} key={'Comment_' + index}>
-          <Icon url={comment.user.profilePhoto} />
+          <Icon url={comment.user.profilePhoto} variant={'s'} />
           <div className={styles.textWrapper}>
             <p className={styles.userName}>
               {comment.user.firstName + ' ' + comment.user.lastName}
