@@ -13,9 +13,17 @@
 
 .backgroundImg {
     width: 100%;
-    padding: 0 0 30px 0;
+    margin: 0 0 30px 0;
     max-height: 20vw;
     object-fit: cover;
+}
+
+.backgroundImgMe:hover {
+    cursor: pointer;
+    -webkit-filter:brightness(60%);
+    -moz-filter:brightness(60%);
+    filter: url(#brightness); /* required for FF */
+    filter:brightness(60%);
 }
 
 .profileImg {
@@ -29,11 +37,20 @@
     border-radius: var(--xl-border-radius);
 }
 
+.profileImgMe:hover {
+    cursor: pointer;
+    -webkit-filter:brightness(60%);
+    -moz-filter:brightness(60%);
+    filter: url(#brightness); /* required for FF */
+    filter:brightness(60%);
+}
+
 .bottomContainer {
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .userNameWrapper {
@@ -57,4 +74,25 @@
     color: var(--gray);
     font-weight: var(--medium-font-weight);
     font-size: var(--xs-font-size);
+}
+
+.messageButton {
+    right: 0;
+    margin-right: 20px;
+    margin-top: 10px;
+    position: absolute;
+    background-color: var(--lighter-gray);
+    padding: 10px 15px;
+    border-radius: var(--xl-border-radius);
+    cursor: pointer;
+
+    border: 0;
+    font-family: 'Roboto';
+    font-weight: var(--normal-font-weight);
+    color: var(--gray);
+    font-size: var(--xs-font-size);
+}
+
+.messageButton:hover {
+    color: var(--darkest-gray);
 }

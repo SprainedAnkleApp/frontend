@@ -36,11 +36,7 @@ const Profile = () => {
 
   return (
     <div id="postsScroll">
-      <ProfileUserCard
-        profileUserName={profileUser?.firstName + ' ' + profileUser?.lastName}
-        profilePhoto={profileUser?.profilePhoto}
-        backgroundPhoto={profileUser?.backgroundPhoto}
-      />
+      <ProfileUserCard profileUser={profileUser} />
       <ProfileNavBar state={state} setState={setState} />
       <div>
         {state === 'posts' && (
