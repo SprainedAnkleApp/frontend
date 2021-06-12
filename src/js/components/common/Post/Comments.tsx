@@ -40,7 +40,6 @@ const Comments = ({ comments }: CommentsProps) => {
           </div>
         </div>
       ))}
-      {/* <AddComment /> */}
     </div>
   );
 };
