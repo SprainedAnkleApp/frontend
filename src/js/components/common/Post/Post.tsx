@@ -3,10 +3,11 @@ import { BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
 import cx from 'classnames';
 
 import styles from './Post.module.css';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Post as PostType, User } from '../../../models/interfaces';
 import { Comments, PostButton } from '.';
 import { createReaction, deleteReaction } from '../../../API/reactions/methods';
+import { getComments, postComment } from '../../../API/comments/methods';
 import { userContext } from '../../../contexts/CurrentUser';
 import useModalRescuer from '../../../hooks/useModalRescuer';
 import MapWithMarker from '../MapWithMarker';
@@ -38,6 +39,7 @@ const Post = ({
       : false
   );
   const [likesCount, setLikesCount] = useState(reactions.length);
+  const [commentsCount, setCommentsCount] = useState(0);
   const [currentComment, setCurrentComment] = useState('');
   const [showComments, setShowComments] = useState(false);
   const [currentComments, setCurrentComments] = useState(
@@ -45,6 +47,16 @@ const Post = ({
   );
   const { openModal, rescuer } = useModalRescuer();
   const history = useHistory();
+
+  useEffect(() => {
+    getComments(id).then((comments) => {
+      setCurrentComments(comments);
+    });
+  }, []);
+
+  useEffect(() => {
+    setCommentsCount(currentComments.length);
+  }, [currentComments]);
 
   const likePost = async () => {
     try {
@@ -64,10 +76,10 @@ const Post = ({
 
   const submitComment = async () => {
     if (currentUser) {
-      setCurrentComments([
-        ...currentComments,
-        { user: currentUser as User, text: currentComment },
-      ]);
+      const comment = { user: currentUser as User, text: currentComment };
+      postComment(id, comment);
+      setCurrentComments([comment, ...currentComments]);
+      setCurrentComment('');
     }
 
     try {
@@ -137,7 +149,7 @@ const Post = ({
           className={styles['button-container']}
           onClick={() => setShowComments((show) => !show)}
           icon={<BsFillChatFill />}
-          count={comments ? comments.length : 0}
+          count={commentsCount}
         />
       </div>
       {showComments && (
