@@ -25,3 +25,11 @@
 .fixed {
   height: calc(100% - 50px);
 }
+
+
+@media (max-width: 720px) {
+  .central {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
