@@ -1,8 +1,12 @@
 import { SearchBar } from '.';
 
 import styles from './LeftBar.module.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Friends } from './Friends';
+import { RiUserSearchLine } from 'react-icons/ri';
+import { CSSTransition } from 'react-transition-group';
+
+import cx from 'classnames';
 
 export type LeftBarProps = {
   searchTerm: string;
@@ -19,17 +23,43 @@ const LeftBar = ({
   activeChatId,
   headerStyles,
 }: LeftBarProps) => {
+  const [barVisible, setBarVisible] = useState(false);
   return (
-    <div className={styles.pane}>
-      <div className={headerStyles}>
-        <SearchBar value={searchTerm} onChange={onChangeSearchTerm} />
+    <>
+      <div className={styles.toggleIconWrapper}>
+        <div
+          className={cx(styles.toggleIcon, { [styles.iconActive]: barVisible })}
+        >
+          {' '}
+          <RiUserSearchLine
+            onClick={() => setBarVisible((visible) => !visible)}
+          />
+        </div>
       </div>
-      <Friends
-        searchTerm={searchTerm}
-        startChat={startChat}
-        activeChatId={activeChatId}
-      />
-    </div>
+      <CSSTransition
+        in={barVisible}
+        timeout={1500}
+        classNames={{
+          enter: styles['enter'],
+          enterActive: styles['enter-active'],
+          enterDone: styles['enter-done'],
+          exit: styles['exit'],
+          exitActive: styles['exit-active'],
+          exitDone: styles['exit-done'],
+        }}
+      >
+        <div className={styles.pane}>
+          <div className={cx(styles.searchBar, headerStyles)}>
+            <SearchBar value={searchTerm} onChange={onChangeSearchTerm} />
+          </div>
+          <Friends
+            searchTerm={searchTerm}
+            startChat={startChat}
+            activeChatId={activeChatId}
+          />
+        </div>
+      </CSSTransition>
+    </>
   );
 };
 
