@@ -12,13 +12,8 @@ import { Post } from '../../models/interfaces';
 import { makePaginatedRequest } from '../utils';
 
 export const getPosts = async (): Promise<Post[]> => {
-  try {
-    const response = await axios.get(getPostsUrl(), { headers: authHeader() });
-    return response.data ?? [];
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await axios.get(getPostsUrl(), { headers: authHeader() });
+  return response.data ?? [];
 };
 
 export const getPostsPaginated = (pageSize: number) => async (
