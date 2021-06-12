@@ -42,15 +42,13 @@ const Post = ({
   const [commentsCount, setCommentsCount] = useState(0);
   const [currentComment, setCurrentComment] = useState('');
   const [showComments, setShowComments] = useState(false);
-  const [currentComments, setCurrentComments] = useState(
-    comments ? comments : []
-  );
+  const [currentComments, setCurrentComments] = useState(comments ?? []);
   const { openModal, rescuer } = useModalRescuer();
   const history = useHistory();
 
   useEffect(() => {
     getComments(id).then((comments) => {
-      setCurrentComments(comments);
+      setCurrentComments(comments.reverse());
     });
   }, []);
 
@@ -77,8 +75,8 @@ const Post = ({
   const submitComment = async () => {
     if (currentUser) {
       const comment = { user: currentUser as User, text: currentComment };
-      postComment(id, comment);
-      setCurrentComments([comment, ...currentComments]);
+      await postComment(id, comment);
+      setCurrentComments([...currentComments, comment]);
       setCurrentComment('');
     }
   };
