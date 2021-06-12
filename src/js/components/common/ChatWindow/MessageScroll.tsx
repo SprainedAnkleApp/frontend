@@ -29,14 +29,10 @@ const MessageScroll = ({
     );
   };
 
-  const {
-    data,
-    nextPage,
-    hasMore,
-    refetch,
-  } = usePaginatedData<ExtendedMessage>(
-    getMessagesPaginated(activeChatId, 15),
-    filter
+  // prettier-ignore
+  const { data, nextPage, hasMore, refetch } = usePaginatedData<ExtendedMessage>(
+    // prettier-ignore
+    getMessagesPaginated(activeChatId, 15), filter
   );
 
   useEffect(() => {

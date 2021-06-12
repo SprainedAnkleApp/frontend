@@ -22,6 +22,8 @@ const useWebsocket = <T,>(
   useEffect(() => {
     socket.current = new SockJS(`${connectionUrl}`);
     stompClient.current = Stomp.over(socket.current);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    stompClient.current.debug = () => {};
     stompClient.current.connect(
       {},
       () => setWebsocketActive(true),
