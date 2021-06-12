@@ -26,17 +26,18 @@ const Profile = () => {
   >();
   const [state, setState] = useState<profileTabs>('posts');
 
+  const fetchUser = async () => {
+    const user = await getUserById(userId);
+    setProfileUser(user);
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const user = await getUserById(userId);
-      setProfileUser(user);
-    };
     fetchUser();
   }, [userId]);
 
   return (
     <div id="postsScroll">
-      <ProfileUserCard profileUser={profileUser} />
+      <ProfileUserCard profileUser={profileUser} fetchUser={fetchUser} />
       <ProfileNavBar state={state} setState={setState} />
       <div>
         {state === 'posts' && (

@@ -28,6 +28,7 @@ const App = () => {
     <userContext.Provider
       value={{
         user: currentUser,
+        refetchUser: () => fetchCurrentUser(),
         logoutUser: () => setCurrentUser({}),
         loginUser: () => fetchCurrentUser(),
       }}

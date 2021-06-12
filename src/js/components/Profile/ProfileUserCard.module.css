@@ -27,7 +27,8 @@
 }
 
 .profileImg {
-    height: 70%;
+    height: 12vw;
+    width: 12vw;
     margin: 0;
     position: absolute;
     top: 68%;
@@ -95,4 +96,10 @@
 
 .messageButton:hover {
     color: var(--darkest-gray);
+}
+
+.inputHidden {
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
