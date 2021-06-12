@@ -18,7 +18,6 @@
   font-weight: var(--medium-font-weight);
   color: var(--gray);
   height: 100%;
-  float: left;
   justify-content: center;
   align-items: center;
   display: flex;
