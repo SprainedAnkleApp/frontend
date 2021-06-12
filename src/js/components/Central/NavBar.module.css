@@ -21,11 +21,36 @@
   font-size: 24px;
 }
 
+@media (max-width: 520px) {
+  .icon {
+  position: relative;
+  z-index: 10;
+  padding: 10.5px;
+  margin: 6.5px;
+  color: var(--light-gray);
+}
+
+.iconWrapper {
+  max-height: 24px;
+  font-size: 24px;
+}
+
+}
+
+@media (max-width: 370px) {
+  .icon {
+  padding: 7.5px;
+  margin: 6.5px;
+}
+}
+
 .selected, .icon:hover {
   color: var(--darkest-gray);
   background-color: var(--light-green);
   border-radius: var(--l-border-radius);
 }
+
+
 
 /* .slide {
   z-index: 1;

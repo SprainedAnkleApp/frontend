@@ -11,9 +11,16 @@
   position: sticky;
   background-color: var(--lightest-green);
   z-index: 5;
-  height: 102px;
+  height: 77px;
   top: 0;
-  padding-bottom: 34px;
+  padding-bottom: 19px;
+}
+
+@media (max-width: 520px) {
+  .home{
+    padding: 13px 2px 0px 2px;
+    grid-template-columns: 1px 1fr 1px;
+  }
 }
 
 .paneHeaderCentral {

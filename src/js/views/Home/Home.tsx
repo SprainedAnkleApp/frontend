@@ -15,7 +15,6 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
   const [newPeakReached, setNewPeakReached] = useState<number>(0);
-
   useEffect(() => {
     const fetchUser = async () => {
       const userData = await getCurrentUser();
