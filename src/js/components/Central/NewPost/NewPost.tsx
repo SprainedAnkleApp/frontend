@@ -132,7 +132,7 @@ const NewPost = ({
             }
           };
           return (
-            <div style={{ width: width }} className={styles.popupWindow}>
+            <div style={{ width: width + 80 }} className={styles.popupWindow}>
               <Card.Card ref={modalRef}>
                 <div className={styles.modal}>
                   <Icon url={user.profilePhoto} className={styles.icon} />

@@ -3,20 +3,20 @@ import { Redirect, useLocation } from 'react-router-dom';
 
 const OAuthHandler = () => {
   const location = useLocation<Location>();
-  console.log(location.search);
 
   const getUrlParam = (name: string) => {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     const results = regex.exec(location.search);
-    console.log(location.search, results);
     return results === null
       ? ''
       : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
 
   const token = getUrlParam('token');
-  if (token) {
+  if (token && token.length == 2) {
+    localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token[1]));
+  } else {
     localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token));
   }
   const error = getUrlParam('error');

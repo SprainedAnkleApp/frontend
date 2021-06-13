@@ -1,12 +1,13 @@
 import { SearchBar } from '.';
 
 import styles from './LeftBar.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Friends } from './Friends';
 import { RiUserSearchFill } from 'react-icons/ri';
 import { CSSTransition } from 'react-transition-group';
 
 import cx from 'classnames';
+import { useLocation, useHistory } from 'react-router';
 
 export type LeftBarProps = {
   searchTerm: string;
@@ -24,6 +25,13 @@ const LeftBar = ({
   headerStyles,
 }: LeftBarProps) => {
   const [barVisible, setBarVisible] = useState(false);
+  const { search, pathname } = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (search !== '?friends') setBarVisible(false);
+  }, [search]);
+
   return (
     <>
       <div className={styles.toggleIconWrapper}>
@@ -32,7 +40,10 @@ const LeftBar = ({
         >
           {' '}
           <RiUserSearchFill
-            onClick={() => setBarVisible((visible) => !visible)}
+            onClick={() => {
+              setBarVisible((visible) => !visible);
+              history.push(pathname + '?friends');
+            }}
           />
         </div>
       </div>

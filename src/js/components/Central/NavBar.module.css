@@ -27,7 +27,7 @@
   border-radius: var(--l-border-radius);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
   .navigation {
     border-radius: var(--l-border-radius);
   }

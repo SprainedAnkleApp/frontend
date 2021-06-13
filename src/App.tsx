@@ -8,18 +8,6 @@ import { ChatContextProvider } from './js/contexts/ChatContext';
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
 
-  const getUrlParam = (name: string) => {
-    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
-    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    const results = regex.exec(location.search);
-    console.log(location.search, results);
-    return results === null
-      ? ''
-      : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  };
-
-  console.log(getUrlParam('token'));
-
   const fetchCurrentUser = async () => {
     try {
       const fetchedUser = await getCurrentUser();
