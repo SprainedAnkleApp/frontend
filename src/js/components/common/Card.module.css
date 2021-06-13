@@ -1,9 +1,9 @@
 .card {
   border-radius: var(--xl-border-radius);
   background-color: white;
-  font-size: var(--s-font-size);
+  font-size: var(--xs-font-size);
   color: var(--gray);
-  box-shadow: 0px 15px 20px 10px rgba(231, 231, 231, 0.75);
+  box-shadow: 0px 15px 20px 10px rgba(231, 231, 231, 0.55);
   display: flex;
   flex-direction: column;
   padding: 15px 18px;
@@ -13,7 +13,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 10px;
+}
+
+.headerUser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.headerUser:hover {
+  color: var(--darkest-gray);
 }
 
 .nameWithTime {
@@ -24,6 +34,7 @@
 
 .userName {
   font-size: var(--xxs-font-size);
+  font-weight: var(--bold-font-weight);
 }
 
 .time {

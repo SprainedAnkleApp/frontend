@@ -1,38 +1,34 @@
-.navigation {
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: column;
-  text-decoration: none;
-  font-size: var(--s-font-size);
-  background-color: white;
-  border-radius: var(--xl-border-radius);
-  box-shadow: 8px 4px 16px -2px rgba(90,70,69,0.2);
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-  
-.icon {  
-  position: relative;
-  z-index: 2;
-  padding: 15.5px;
-  margin: 6.5px;
-  color: var(--light-gray);
+.stickyCard{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-bottom: 30px;
   cursor: pointer;
 }
-  
-.selected {
+
+.navBar {
+  height: 30px;
+  display: flex;
+}
+
+.tabText {
+  margin: 0;
+  font-size: var(--xs-font-size);
+  font-weight: var(--medium-font-weight);
+  color: var(--gray);
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+  width: 100%;
+  width: -moz-available;          /* For Mozzila */
+  width: -webkit-fill-available;  /* For Chrome */
+  width: stretch;                 /* Unprefixed */
+}
+
+.selected, .tabText:hover {
+  font-weight: var(--bold-font-weight);
   color: var(--darkest-gray);
-}
-
-.navbarItem {
-    text-decoration: none;
-}
-
-@media (max-width: 980px) {
-  .navigation {
-    width: 100%;
-    font-size: var(--xs-font-size);
-  }
 }

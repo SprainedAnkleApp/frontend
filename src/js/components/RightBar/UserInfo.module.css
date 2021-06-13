@@ -20,9 +20,10 @@ a:active {
 .selectionWrapper {
   border-radius: var(--l-border-radius);
   padding: 6.77px;
+  padding-right: 0px;
 }
 
-.selected {
+.selected, .selectionWrapper:hover {
   background-color: var(--light-green);
 }
 

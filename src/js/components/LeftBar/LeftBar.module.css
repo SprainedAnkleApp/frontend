@@ -4,6 +4,105 @@
   scrollbar-width: none;  /* Firefox */
 }
 
+.toggleIcon {
+  display: none;
+}
+
+.toggleIconWrapper {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .searchBar {
+    display: none;
+  }
+  .toggleIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: var(--lighter-gray);
+    border-radius: var(--l-border-radius);
+    top: 13.5px;
+    left: 10px;
+    z-index: 20;
+  }
+  .toggleIcon {
+    height: 45px;
+    width: 45px;
+    font-size: 24px;
+    margin: 6.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--m-border-radius);
+    cursor: pointer;
+    color: var(--light-gray);
+  }
+
+  .iconActive {
+    background-color: var(--light-green);
+    color: var(--darkest-gray);
+  }
+
+  .pane {
+    margin-top: 77px;
+    height: calc(100vh - 90px);
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--lightest-green);
+    width: 100vw;
+    z-index: 200;
+    transform: translateX(-100%);
+  }
+
+  .enter {
+    transform: translateX(-100%);
+  }
+
+  .enter-active {
+    transform: translateX(0);
+    transition: 300ms transform ease-out;
+  }
+
+  .enter-done {
+    transform: translateX(0);
+  }
+
+  .exit {
+    transform: translateX(0);
+  }
+
+  .exit-active {
+    transform: translateX(-100%);
+    transition: 300ms transform ease-out;
+  }
+
+  .exit-done {
+    transform: translateX(-100%);
+  
+  }
+
+}
+
+@media (max-width: 370px) {
+  .icon {
+  padding: 7.5px;
+  margin: 6.5px;
+}
+  .pane {
+    margin-top: 71px;
+    height: calc(100vh - 84px);
+  }
+
+  .toggleIcon {
+    height: 35px;
+    width: 35px;
+    margin: 6.5px;
+  }
+
+}
+
 .pane::-webkit-scrollbar {
   display: none;
 }

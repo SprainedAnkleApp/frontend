@@ -1,7 +1,7 @@
 .home {
   padding: 13px 12px 0px 12px;
   display: grid;
-  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   /* row-gap: 0px; */
   height: 100vh; /* Header height with home padding*/
   background-color: var(--lightest-green);
@@ -11,9 +11,15 @@
   position: sticky;
   background-color: var(--lightest-green);
   z-index: 5;
-  height: 102px;
+  height: 77px;
   top: 0;
-  padding-bottom: 34px;
+  padding-bottom: 19px;
 }
 
 
+@media (max-width: 720px) {
+  .home{
+    padding: 13px 2px 0px 2px;
+    grid-template-columns: 1px 1fr 1px;
+  }
+}

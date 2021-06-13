@@ -78,17 +78,12 @@ export const addFriendship = async (userId: number): Promise<void> => {
 export const getUsersFriends = (userId: string, pageSize: number) => async (
   page: number
 ): Promise<{ pages: number; data: User[] }> => {
-  try {
-    const pageUsersFriendsUrl = getUsersFriendsUrl(userId, page, pageSize);
-    const response = await axios.get(pageUsersFriendsUrl, {
-      headers: authHeader(),
-    });
-    return {
-      pages: response.data.totalPages ?? 0,
-      data: response.data.content ?? [],
-    };
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const pageUsersFriendsUrl = getUsersFriendsUrl(userId, page, pageSize);
+  const response = await axios.get(pageUsersFriendsUrl, {
+    headers: authHeader(),
+  });
+  return {
+    pages: response.data.totalPages ?? 0,
+    data: response.data.content ?? [],
+  };
 };

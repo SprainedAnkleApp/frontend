@@ -1,3 +1,63 @@
-.addWrapper {
+.commentWrapper {
+  margin-top: 10px;
   display: flex;
+}
+
+.textWrapper {
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  background-color: var(--lighter-gray);
+  padding: 10px;
+  border-radius: var(--l-border-radius);
+}
+
+.iconAvatar {
+  cursor: pointer;
+}
+
+.userName {
+  padding-top: 0;
+  margin: 0;
+  font-size: var(--xxxs-font-size);
+  font-weight: var(--bold-font-weight);
+  cursor: pointer;
+}
+
+.userName:hover {
+  color: var(--darkest-gray);
+}
+
+.content {
+  margin: 0;
+  font-size: var(--xxs-font-size);
+  font-weight: var(--light-font-weight);
+}
+
+.comments {
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  margin-top: 10px;
+  overflow-x: hidden;
+  border-top: 1px solid var(--border-gray);
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: var(--gray) var(--light-gray);   /* scroll thumb and track */
+}
+
+/* Works on Chrome, Edge, and Safari */
+.comments::-webkit-scrollbar {
+  width: 12px;
+}
+
+.comments::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: 10px;
+}
+
+.comments::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 10px;
 }

@@ -1,55 +1,25 @@
-import { Message } from '../../models/interfaces';
+import { User, ExtendedMessage } from '../../models/interfaces';
+import { getMessagesPaginatedUrl } from './urls';
+import { makePaginatedRequest } from '../utils';
 
-export const getMessages = async (id: number): Promise<Message[]> => {
-  const messages = [
-    { senderId: id, content: 'Test' },
-    { senderId: 5, content: 'TestTest' },
-    { senderId: id, content: 'TestTestTest' },
-    { senderId: 5, content: 'TestTestTestTest' },
-    { senderId: id, content: 'TestTestTestTestTest' },
-    { senderId: 5, content: 'TestTestTestTestTestTest' },
-    {
-      senderId: id,
-      content:
-        'Atu jakies dluzsze wiadomosci tak tylko zeby sprawdzic czy to sie miesci',
-    },
-    {
-      senderId: 5,
-      content:
-        'Atu jakies dluzsze wiadomosci tak tylko zeby sprawdzic czy to sie miesci',
-    },
-    { senderId: id, content: 'Test' },
-    { senderId: 5, content: 'TestTest' },
-    { senderId: id, content: 'TestTestTest' },
-    { senderId: 5, content: 'TestTestTestTest' },
-    { senderId: id, content: 'TestTestTestTestTest' },
-    { senderId: 5, content: 'TestTestTestTestTestTest' },
-    {
-      senderId: id,
-      content:
-        'Atu jakies dluzsze wiadomosci tak tylko zeby sprawdzic czy to sie miesci',
-    },
-    {
-      senderId: 5,
-      content:
-        'Atu jakies dluzsze wiadomosci tak tylko zeby sprawdzic czy to sie miesci',
-    },
-    { senderId: id, content: 'Test' },
-    { senderId: 5, content: 'TestTest' },
-    { senderId: id, content: 'TestTestTest' },
-    { senderId: 5, content: 'TestTestTestTest' },
-    { senderId: id, content: 'TestTestTestTestTest' },
-    { senderId: 5, content: 'TestTestTestTestTestTest' },
-    {
-      senderId: id,
-      content:
-        'Atu jakies dluzsze wiadomosci tak tylko zeby sprawdzic czy to sie miesci',
-    },
-    {
-      senderId: 5,
-      content:
-        'Atu jakies dluzsze wiadomosci tak tylko zeby sprawdzic czy to sie miesci',
-    },
-  ];
-  return messages;
+export const getMessagesPaginated = (
+  userId: number,
+  pageSize: number
+) => async (
+  page: number
+): Promise<{ pages: number; data: ExtendedMessage[] }> => {
+  const messageUrl = getMessagesPaginatedUrl(page, pageSize, userId);
+  const response = await makePaginatedRequest<{
+    sender: User;
+    message: string;
+    id: number;
+  }>(messageUrl);
+  return {
+    pages: response.pages,
+    data: response.data.map((record) => ({
+      id: record.id,
+      senderId: record.sender.id,
+      content: record.message,
+    })),
+  };
 };

@@ -2,7 +2,7 @@
   --xxxs-font-size: 12px;
   --xxs-font-size: 14px;
   --xs-font-size: 16px;
-  --s-font-size: 20px;
+  --s-font-size: 18px;
   --m-font-size: 25px;
   --l-font-size: 35px;
   --xxl-font-size: 50px;
@@ -11,5 +11,5 @@
   --bold-font-weight: 700;
   --medium-font-weight: 600;
   --normal-font-weight: 500;
-
+  --light-font-weight: 300;
 }

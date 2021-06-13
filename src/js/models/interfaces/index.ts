@@ -34,6 +34,7 @@ export type User = {
   email: string;
   profilePhoto: string;
   friend?: boolean;
+  backgroundPhoto: string;
 };
 
 export type Comment = {
@@ -80,4 +81,8 @@ export type PeakCompletion = {
 export type Message = {
   senderId: number;
   content: string;
+};
+
+export type ExtendedMessage = Message & {
+  id: number;
 };

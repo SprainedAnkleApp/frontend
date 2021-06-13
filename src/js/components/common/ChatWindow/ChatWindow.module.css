@@ -16,38 +16,12 @@
   cursor: pointer;
 }
 
+.close:hover {
+  color: var(--darkest-gray);
+}
+
 .close:focus {
   outline: none;
-}
-
-.messages {
-  padding-top: 14px;
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-  margin-bottom: 10px;
-}
-
-.messages::-webkit-scrollbar {
-  display: none;
-}
-
-.message {
-  max-width: 85%;
-  align-self: flex-start;
-  margin-bottom: 10px;
-  padding: 12px 18px;
-  border-radius: var(--xl-border-radius);
-  background-color: var(--lighter-gray);
-  color: var(--gray);
-  font-size: var(--xxxs-font-size);
-}
-
-.myMessage {
-  align-self: flex-end;
-  background-color: var(--light-green);
 }
 
 .textInput {
@@ -57,7 +31,8 @@
   color: var(--gray);
   display: flex;
   flex-direction: row;
-  padding: 10px 23px;
+  padding: 10px 20px;
+  align-items: center;
 }
 
 .textInput input {
@@ -65,7 +40,10 @@
   border: none;
   outline: none;
   width: 100%;
-  font-size: var(--xs-font-size);
+  font-size: var(--xxs-font-size);
+  font-weight: var(--normal-font-weight);
+  font-family: 'Roboto';
+  color: var(--darkest-gray);
 }
 
 .textInput input:focus{
@@ -76,6 +54,16 @@
   font-size: 21px;
   max-height: 21px;
   margin-left: auto;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.sendIcon:hover {
+  color: var(--green);
+}
+
+.omit {
+  display: contents;
 }
 
 .bottomSpace {

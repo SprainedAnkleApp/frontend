@@ -28,7 +28,7 @@ const ProgressBar = ({
   };
 
   const color = {
-    color: percentage < 60 ? 'black' : 'white',
+    color: percentage < 60 ? 'var(--darkest-gray)' : 'white',
   };
 
   return (

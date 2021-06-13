@@ -33,3 +33,33 @@
   min-width: 55px;
   min-height: 55px;
 }
+
+@media (max-width: 720px) {
+  .xsSize {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  .sSize {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+  }
+  
+  .mSize {
+    min-width: 35px;
+    width: 35px;
+    min-height: 35px;
+    height: 35px;
+  }
+  
+  .lSize {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+  }
+}

@@ -1,0 +1,29 @@
+.messages {
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  margin-bottom: 10px;
+}
+
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  max-width: 85%;
+  width: fit-content;
+  margin-bottom: 10px;
+  padding: 12px 18px;
+  border-radius: var(--xl-border-radius);
+  background-color: var(--lighter-gray);
+  color: var(--gray);
+  font-size: var(--xxxs-font-size);
+}
+
+.myMessage {
+  margin-left: auto;
+  background-color: var(--light-green);
+}

@@ -12,13 +12,23 @@
 }
 
 .backgroundImg {
-    content:url('../../../images/profile_bg.png');
     width: 100%;
-    padding: 0 0 30px 0;
+    margin: 0 0 30px 0;
+    max-height: 20vw;
+    object-fit: cover;
+}
+
+.backgroundImgMe:hover {
+    cursor: pointer;
+    -webkit-filter:brightness(60%);
+    -moz-filter:brightness(60%);
+    filter: url(#brightness); /* required for FF */
+    filter:brightness(60%);
 }
 
 .profileImg {
-    height: 70%;
+    height: 12vw;
+    width: 12vw;
     margin: 0;
     position: absolute;
     top: 68%;
@@ -28,11 +38,20 @@
     border-radius: var(--xl-border-radius);
 }
 
+.profileImgMe:hover {
+    cursor: pointer;
+    -webkit-filter:brightness(60%);
+    -moz-filter:brightness(60%);
+    filter: url(#brightness); /* required for FF */
+    filter:brightness(60%);
+}
+
 .bottomContainer {
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .userNameWrapper {
@@ -45,7 +64,7 @@
     text-align: center;
     font-size: var(--m-font-size);
     font-weight: var(--bold-font-weight);
-    margin: 0px;
+    margin: 0;
     color: var(--darkest-gray);
 }
 
@@ -56,4 +75,76 @@
     color: var(--gray);
     font-weight: var(--medium-font-weight);
     font-size: var(--xs-font-size);
+}
+
+.messageButton {
+    right: 0;
+    margin-right: 20px;
+    margin-top: 10px;
+    position: absolute;
+    background-color: var(--lighter-gray);
+    padding: 10px 15px;
+    border-radius: var(--xl-border-radius);
+    cursor: pointer;
+
+    border: 0;
+    font-family: 'Roboto';
+    font-weight: var(--normal-font-weight);
+    color: var(--gray);
+    font-size: var(--xs-font-size);
+}
+
+.messageButton:hover {
+    color: var(--darkest-gray);
+}
+
+.inputHidden {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+@media (max-width: 1200px) {
+    .profileImg {
+        height: 17vw;
+        width: 17vw;
+    }
+
+    .backgroundImg {
+        max-height: 30vw;
+    }
+
+    .bottomContainer {
+        height: 90px;
+    }
+}
+
+@media (max-width: 720px) {
+    .profileImg {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .backgroundImg {
+        max-height: 30vw;
+    }
+
+    .bottomContainer {
+        height: 70px;
+    }
+}
+
+@media (max-width: 520px) {
+    .profileImg {
+        height: 22vw;
+        width: 22vw;
+    }
+
+    .backgroundImg {
+        max-height: 30vw;
+    }
+
+    .bottomContainer {
+        height: 70px;
+    }
 }

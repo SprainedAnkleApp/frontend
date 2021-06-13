@@ -4,9 +4,20 @@ import React from 'react';
 
 const useModalRescuer = () => {
   const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState('');
+
   return {
-    openModal: () => setError(true),
-    rescuer: <ModalRescuer isOpen={error} close={() => setError(false)} />,
+    openModal: (text = 'Wystąpił błąd') => {
+      setError(true);
+      setErrorText(text);
+    },
+    rescuer: (
+      <ModalRescuer
+        isOpen={error}
+        text={errorText}
+        close={() => setError(false)}
+      />
+    ),
   };
 };
 

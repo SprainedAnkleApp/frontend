@@ -23,8 +23,8 @@ const Button = ({
   >
     <button className={styles.icon} onClick={onClick}>
       {icon}
+      <span className={styles.text}>{count}</span>
     </button>
-    <span className={styles.text}>{count}</span>
   </div>
 );
 
