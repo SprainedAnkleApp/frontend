@@ -155,6 +155,7 @@ const Post = ({
               <input
                 type="text"
                 value={currentComment}
+                placeholder={'Napisz komentarz..'}
                 onChange={(event) => setCurrentComment(event.target.value)}
               />
               <RiSendPlaneFill

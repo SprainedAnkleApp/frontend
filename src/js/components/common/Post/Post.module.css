@@ -62,13 +62,13 @@
 .textInput {
   background: var(--lighter-gray);
   border-radius: var(--xl-border-radius);
-  margin-top: auto;
   color: var(--gray);
   display: flex;
   flex-direction: row;
-  margin: 0 10px;
-  padding: 10px 23px;
+  margin-left: 5px;
+  padding: 5px 20px 5px 10px;
   width: 100%;
+  align-items: center;
 }
 
 .textInput input {
@@ -76,7 +76,10 @@
   border: none;
   outline: none;
   width: 100%;
-  font-size: var(--xs-font-size);
+  font-size: var(--xxs-font-size);
+  font-weight: var(--normal-font-weight);
+  font-family: 'Roboto';
+  color: var(--darkest-gray);
 }
 
 .textInput input:focus{
@@ -87,10 +90,14 @@
   font-size: 21px;
   max-height: 21px;
   margin-left: auto;
+  cursor: pointer;
+}
+
+.sendIcon:hover {
+  color: var(--green);
 }
 
 .addCommentWrapper {
-  margin-top: 12px;
+  margin-top: 10px;
   display: flex;
-  margin-left: 10px;
 }
