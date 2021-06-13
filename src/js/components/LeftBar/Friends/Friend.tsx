@@ -47,7 +47,6 @@ const Friend = ({ friend, startChat, activeChatId }: FriendProps) => {
             count={notificationCount}
           />
         )}
-        <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
       </div>
     </UserRow.UserRow>
   );
