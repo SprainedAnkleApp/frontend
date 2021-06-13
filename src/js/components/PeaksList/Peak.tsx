@@ -77,7 +77,7 @@ const Peak = ({
         <Popup
           trigger={
             <p className={styles.reachedText}>
-              {completed ? 'Reached' : 'Reach'}
+              {completed ? 'Zdobyto' : 'Zdobądź'}
             </p>
           }
           modal

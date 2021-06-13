@@ -1,7 +1,6 @@
 .pane {
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
-  padding-left: 20px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
@@ -17,13 +16,11 @@
   flex-direction: row;
   margin-top: 5px; 
   align-items: center;
-
 }
 
 .userInfo {
   padding: 5px 0 5px 6px;
   border-radius: var(--xl-border-radius);
-  width: min-content;
   margin-left: auto;
 }
 
@@ -32,8 +29,6 @@
   display: none
 }
 
-
-
 @media (max-width: 720px) {
 
   .toggleIconWrapper {
@@ -41,15 +36,20 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    background-color: var(--lighter-gray);
     border-radius: var(--l-border-radius);
     top: 13.5px;
     right: 10px;
     padding: 6.5px;
     z-index: 20;
+    width: 58px;
+    height: 58px;
   }
 
-  .iconActive {
+  .toggleIconWrapper:hover {
+    background-color: var(--light-green);
+  }
+
+  .selected {
     background-color: var(--light-green);
   }
 
