@@ -33,7 +33,11 @@ const RightBar = ({
         <Icon url={user.profilePhoto} variant="m" />
       </Link>
       <div className={styles.pane}>
-        <div className={cx(headerStyles, styles.userInfoWrapper)}>
+        <div
+          className={cx([headerStyles, styles.userInfoWrapper], {
+            [styles.selected]: location.pathname.split('/')[1] === 'profile',
+          })}
+        >
           <div className={styles.userInfo}>
             <UserInfo />
           </div>

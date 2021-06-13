@@ -103,3 +103,48 @@
     width: 0;
     height: 0;
 }
+
+@media (max-width: 1200px) {
+    .profileImg {
+        height: 17vw;
+        width: 17vw;
+    }
+
+    .backgroundImg {
+        max-height: 30vw;
+    }
+
+    .bottomContainer {
+        height: 90px;
+    }
+}
+
+@media (max-width: 720px) {
+    .profileImg {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .backgroundImg {
+        max-height: 30vw;
+    }
+
+    .bottomContainer {
+        height: 70px;
+    }
+}
+
+@media (max-width: 520px) {
+    .profileImg {
+        height: 22vw;
+        width: 22vw;
+    }
+
+    .backgroundImg {
+        max-height: 30vw;
+    }
+
+    .bottomContainer {
+        height: 70px;
+    }
+}
