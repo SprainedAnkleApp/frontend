@@ -90,6 +90,7 @@ const ChatWindow = ({
           <input
             type="text"
             value={currentMessage}
+            placeholder={'Napisz wiadomość..'}
             onChange={(event) => setCurrentMessage(event.target.value)}
           />
           <button type="submit" className={style.omit}>

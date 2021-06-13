@@ -14,17 +14,16 @@
   cursor: pointer;
   color: inherit;
   font-weight: var(--extra-bold-font-weight);
+  align-items: center;
+  display: flex;
 }
 
 .text {
+  display: block;
   font-size: var(--xxs-font-size);
   color: var(--gray);
   line-height: 16px;
   margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
   padding-left: 5px;
   font-family: 'Roboto';
 }

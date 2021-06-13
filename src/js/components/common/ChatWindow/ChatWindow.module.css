@@ -2,7 +2,7 @@
   height: 50vh;
   max-height: 50vh;
   position: sticky;
-  bottom: 30px;
+  bottom: 10px;
   margin-top: auto;
 }
 
@@ -31,7 +31,8 @@
   color: var(--gray);
   display: flex;
   flex-direction: row;
-  padding: 10px 23px;
+  padding: 10px 20px;
+  align-items: center;
 }
 
 .textInput input {
@@ -39,7 +40,10 @@
   border: none;
   outline: none;
   width: 100%;
-  font-size: var(--xs-font-size);
+  font-size: var(--xxs-font-size);
+  font-weight: var(--normal-font-weight);
+  font-family: 'Roboto';
+  color: var(--darkest-gray);
 }
 
 .textInput input:focus{
@@ -51,10 +55,11 @@
   max-height: 21px;
   margin-left: auto;
   cursor: pointer;
+  color: var(--gray);
 }
 
 .sendIcon:hover {
-  color: var(--darkest-gray);
+  color: var(--green);
 }
 
 .omit {
