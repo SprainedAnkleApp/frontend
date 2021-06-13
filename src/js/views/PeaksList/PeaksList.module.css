@@ -17,3 +17,9 @@
 .listRight {
   margin-left: 1%;
 }
+
+@media (max-width: 1200px) {
+  .container {
+      flex-direction: column-reverse;
+  }
+}

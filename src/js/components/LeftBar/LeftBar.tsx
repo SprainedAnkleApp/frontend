@@ -37,14 +37,13 @@ const LeftBar = ({
       <div className={styles.toggleIconWrapper}>
         <div
           className={cx(styles.toggleIcon, { [styles.iconActive]: barVisible })}
+          onClick={() => {
+            setBarVisible((visible) => !visible);
+            history.push(pathname + '?friends');
+          }}
         >
           {' '}
-          <RiUserSearchFill
-            onClick={() => {
-              setBarVisible((visible) => !visible);
-              history.push(pathname + '?friends');
-            }}
-          />
+          <RiUserSearchFill />
         </div>
       </div>
       <CSSTransition
@@ -65,7 +64,14 @@ const LeftBar = ({
           </div>
           <Friends
             searchTerm={searchTerm}
-            startChat={startChat}
+            startChat={
+              !barVisible
+                ? startChat
+                : (id: number) => {
+                    startChat(id);
+                    history.push('/chat');
+                  }
+            }
             activeChatId={activeChatId}
           />
         </div>
