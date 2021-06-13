@@ -3,7 +3,7 @@ import { SearchBar } from '.';
 import styles from './LeftBar.module.css';
 import React, { useState } from 'react';
 import { Friends } from './Friends';
-import { RiUserSearchLine } from 'react-icons/ri';
+import { RiUserSearchFill } from 'react-icons/ri';
 import { CSSTransition } from 'react-transition-group';
 
 import cx from 'classnames';
@@ -31,7 +31,7 @@ const LeftBar = ({
           className={cx(styles.toggleIcon, { [styles.iconActive]: barVisible })}
         >
           {' '}
-          <RiUserSearchLine
+          <RiUserSearchFill
             onClick={() => setBarVisible((visible) => !visible)}
           />
         </div>

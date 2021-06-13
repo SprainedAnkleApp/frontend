@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useLayoutEffect } from 'react';
 import { User } from '../../../models/interfaces';
 import { ChatContext } from '../../../contexts/ChatContext';
-import { UserRow, UserStatus, NotificationIndicator } from '../../common';
+import { UserRow, NotificationIndicator } from '../../common';
 
 import styles from './Friend.module.css';
 
@@ -47,7 +47,6 @@ const Friend = ({ friend, startChat, activeChatId }: FriendProps) => {
             count={notificationCount}
           />
         )}
-        <UserStatus status={friend.id % 3 === 0 ? 'online' : 'offline'} />
       </div>
     </UserRow.UserRow>
   );

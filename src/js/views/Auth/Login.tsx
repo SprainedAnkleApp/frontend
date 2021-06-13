@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <GenericAuthView redirect={redirect} title={'Logowanie'}>
       <LoginForm />
-      <SectionSeparator text={'or'} />
+      <SectionSeparator text={'lub'} />
       <ExternalLogin />
     </GenericAuthView>
   );
