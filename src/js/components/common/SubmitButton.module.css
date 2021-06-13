@@ -3,10 +3,10 @@
   border: none;
   background-color: var(--green);
   border-radius: var(--xl-border-radius);
-  font-size: var(--m-font-size);
+  font-size: var(--s-font-size);
   text-align: center;
   color: white;
-  height: 70px;
+  height: 60px;
   font-weight: bold;
   cursor: pointer;
   margin-top: 16px;
