@@ -16,7 +16,7 @@ const useOAUTHChecker = () => {
 
   useEffect(() => {
     const token = getUrlParam('token', window.location.href);
-    if (token && token !== '') {
+    if (token) {
       localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token));
       history.push({
         pathname: `/Home`,
