@@ -79,7 +79,7 @@
   font-size: var(--xxs-font-size);
   font-weight: var(--normal-font-weight);
   font-family: 'Roboto';
-  color: var(--darkest-gray);
+  color: var(--gray);
 }
 
 .textInput input:focus{

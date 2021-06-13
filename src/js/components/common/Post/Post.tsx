@@ -73,7 +73,7 @@ const Post = ({
   };
 
   const submitComment = async () => {
-    if (currentUser) {
+    if (currentUser && currentComment) {
       const comment = { user: currentUser as User, text: currentComment };
       await postComment(id, comment);
       setCurrentComments([...currentComments, comment]);
@@ -157,6 +157,9 @@ const Post = ({
                 value={currentComment}
                 placeholder={'Napisz komentarz..'}
                 onChange={(event) => setCurrentComment(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') submitComment();
+                }}
               />
               <RiSendPlaneFill
                 className={styles.sendIcon}

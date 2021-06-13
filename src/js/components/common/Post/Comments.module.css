@@ -39,14 +39,25 @@
   max-height: 50vh;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: auto;
   margin-top: 10px;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ and Edge */
-  scrollbar-width: none;  /* Firefox */
   overflow-x: hidden;
   border-top: 1px solid var(--border-gray);
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: var(--gray) var(--light-gray);   /* scroll thumb and track */
 }
 
+/* Works on Chrome, Edge, and Safari */
 .comments::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  width: 12px;
+}
+
+.comments::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: 10px;
+}
+
+.comments::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 10px;
 }
