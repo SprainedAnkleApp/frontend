@@ -110,7 +110,7 @@ const SignUpForm = () => {
           pattern: {
             value: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])/,
             message:
-              'Hasło musi zawierać wielką literę, znak specjalny oraz cyfrę',
+              'Hasło musi zawierać małą literę, wielką literę, znak specjalny oraz cyfrę',
           },
         })}
         error={errors.password}

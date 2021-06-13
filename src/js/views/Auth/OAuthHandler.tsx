@@ -3,11 +3,13 @@ import { Redirect, useLocation } from 'react-router-dom';
 
 const OAuthHandler = () => {
   const location = useLocation<Location>();
+  console.log(location.search);
 
   const getUrlParam = (name: string) => {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     const results = regex.exec(location.search);
+    console.log(location.search, results);
     return results === null
       ? ''
       : decodeURIComponent(results[1].replace(/\+/g, ' '));
