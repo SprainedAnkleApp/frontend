@@ -16,7 +16,7 @@ const useOAUTHChecker = (loginUser: () => void) => {
     if (token) {
       localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token));
       loginUser();
-      window.open('/Home', '_self');
+      window.open('/#/Home', '_self');
     }
   }, []);
 };
