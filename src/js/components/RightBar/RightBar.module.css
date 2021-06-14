@@ -30,6 +30,10 @@
   display: none
 }
 
+.iconPhoto {
+  color: var(--gray);
+}
+
 @media (max-width: 800px) {
 
   .toggleIconWrapper {
