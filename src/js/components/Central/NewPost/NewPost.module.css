@@ -124,7 +124,7 @@
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
   padding: 40px;
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 .popupWindow::-webkit-scrollbar {

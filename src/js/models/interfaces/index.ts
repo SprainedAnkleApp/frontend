@@ -39,7 +39,7 @@ export type User = {
 
 export type Comment = {
   user: User;
-  text: string;
+  content: string;
 };
 
 export type Reaction = {

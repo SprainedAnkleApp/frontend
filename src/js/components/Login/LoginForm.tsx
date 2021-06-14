@@ -1,10 +1,11 @@
 import { SubmitButton, InputWithLabel, Error } from '../common';
 import { useLocation, useHistory } from 'react-router';
-import { login, logout } from '../../API/auth/methods';
+import { login, logout, isAuthenticated } from '../../API/auth/methods';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState, useEffect, useContext } from 'react';
 import React from 'react';
 import { userContext } from '../../contexts/CurrentUser';
+import useOAUTHChecker from '../../hooks/useOAUTHChecker';
 
 type FormValues = {
   login: string;
@@ -18,9 +19,16 @@ type Location = {
 const LoginForm = () => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [registered, setRegistered] = useState<string | null>(null);
+  useOAUTHChecker();
+
   const location = useLocation<Location>();
   const history = useHistory();
   const { loginUser } = useContext(userContext);
+
+  if (isAuthenticated()) {
+    loginUser();
+    history.push('/');
+  }
 
   useEffect(() => {
     if (location.state?.from === '/signup')

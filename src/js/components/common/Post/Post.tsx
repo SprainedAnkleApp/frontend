@@ -48,7 +48,7 @@ const Post = ({
 
   useEffect(() => {
     getComments(id).then((comments) => {
-      setCurrentComments(comments.reverse());
+      setCurrentComments(comments);
     });
   }, []);
 
@@ -74,7 +74,7 @@ const Post = ({
 
   const submitComment = async () => {
     if (currentUser && currentComment) {
-      const comment = { user: currentUser as User, text: currentComment };
+      const comment = { user: currentUser as User, content: currentComment };
       await postComment(id, comment);
       setCurrentComments([...currentComments, comment]);
       setCurrentComment('');

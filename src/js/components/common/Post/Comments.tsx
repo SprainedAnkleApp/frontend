@@ -35,7 +35,7 @@ const Comments = ({ comments }: CommentsProps) => {
             >
               {comment.user.firstName + ' ' + comment.user.lastName}
             </p>
-            <p className={styles.content}> {comment.text}</p>
+            <p className={styles.content}> {comment.content}</p>
           </div>
         </div>
       ))}
