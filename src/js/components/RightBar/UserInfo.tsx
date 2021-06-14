@@ -18,7 +18,7 @@ const UserInfo = () => {
           [styles.selected]: location.pathname.split('/')[1] === 'profile',
         })}
       >
-        <Icon url={user.profilePhoto} />
+        <Icon url={user.profilePhoto} className={styles.iconProfile} />
         <div className={styles.userName}>
           {user.firstName + ' ' + user.lastName}
         </div>
