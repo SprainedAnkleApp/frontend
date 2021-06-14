@@ -48,7 +48,7 @@ const Post = ({
 
   useEffect(() => {
     getComments(id).then((comments) => {
-      setCurrentComments(comments.reverse());
+      setCurrentComments(comments);
     });
   }, []);
 

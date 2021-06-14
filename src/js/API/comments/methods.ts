@@ -2,13 +2,12 @@ import { Comment } from '../../models/interfaces';
 import axios from 'axios';
 import authHeader from '../auth/methods';
 import { getCommentUrl } from './urls';
-import { makePaginatedRequest } from '../utils';
 
 export const getComments = async (wallItemId: number): Promise<Comment[]> => {
   try {
-    const response = await makePaginatedRequest<Comment>(
-      getCommentUrl(wallItemId)
-    );
+    const response = await axios.get<Comment[]>(getCommentUrl(wallItemId), {
+      headers: authHeader(),
+    });
     return response.data;
   } catch (error) {
     return [];
