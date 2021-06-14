@@ -8,8 +8,10 @@ import GenericAuthView from './GenericAuthView';
 import { isAuthenticated } from '../../API/auth/methods';
 import { useHistory } from 'react-router-dom';
 import React from 'react';
+import useOAUTHChecker from '../../hooks/useOAUTHChecker';
 
 const Login = () => {
+  useOAUTHChecker();
   const history = useHistory();
   const redirect = (
     <Redirect

@@ -16,10 +16,16 @@
   padding-bottom: 19px;
 }
 
-
-@media (max-width: 720px) {
+@media (max-width: 1080px) {
   .home{
     padding: 13px 2px 0px 2px;
-    grid-template-columns: 1px 1fr 1px;
+    grid-template-columns: 1px 3.5fr 1fr;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .home{
+    grid-template-columns: 1px 1fr 0px;
   }
 }

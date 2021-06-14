@@ -14,7 +14,9 @@ const OAuthHandler = () => {
   };
 
   const token = getUrlParam('token');
-  if (token) {
+  if (token && token.length == 2) {
+    localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token[1]));
+  } else {
     localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token));
   }
   const error = getUrlParam('error');

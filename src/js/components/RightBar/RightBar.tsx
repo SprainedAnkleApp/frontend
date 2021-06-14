@@ -30,7 +30,11 @@ const RightBar = ({
   return (
     <>
       <Link to={'/profile/' + user.id} className={styles.toggleIconWrapper}>
-        <Icon url={user.profilePhoto} variant="m" />
+        <Icon
+          url={user.profilePhoto}
+          variant="m"
+          className={styles.iconPhoto}
+        />
       </Link>
       <div className={styles.pane}>
         <div

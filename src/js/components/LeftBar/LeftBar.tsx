@@ -1,12 +1,13 @@
 import { SearchBar } from '.';
 
 import styles from './LeftBar.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Friends } from './Friends';
 import { RiUserSearchFill } from 'react-icons/ri';
 import { CSSTransition } from 'react-transition-group';
 
 import cx from 'classnames';
+import { useLocation, useHistory } from 'react-router';
 
 export type LeftBarProps = {
   searchTerm: string;
@@ -24,16 +25,25 @@ const LeftBar = ({
   headerStyles,
 }: LeftBarProps) => {
   const [barVisible, setBarVisible] = useState(false);
+  const { search, pathname } = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (search !== '?friends') setBarVisible(false);
+  }, [search]);
+
   return (
     <>
       <div className={styles.toggleIconWrapper}>
         <div
           className={cx(styles.toggleIcon, { [styles.iconActive]: barVisible })}
+          onClick={() => {
+            setBarVisible((visible) => !visible);
+            history.push(pathname + '?friends');
+          }}
         >
           {' '}
-          <RiUserSearchFill
-            onClick={() => setBarVisible((visible) => !visible)}
-          />
+          <RiUserSearchFill />
         </div>
       </div>
       <CSSTransition
@@ -54,7 +64,14 @@ const LeftBar = ({
           </div>
           <Friends
             searchTerm={searchTerm}
-            startChat={startChat}
+            startChat={
+              !barVisible
+                ? startChat
+                : (id: number) => {
+                    startChat(id);
+                    history.push('/chat');
+                  }
+            }
             activeChatId={activeChatId}
           />
         </div>

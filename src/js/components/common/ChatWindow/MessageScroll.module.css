@@ -15,7 +15,7 @@
 .message {
   max-width: 85%;
   width: fit-content;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   padding: 12px 18px;
   border-radius: var(--xl-border-radius);
   background-color: var(--lighter-gray);
