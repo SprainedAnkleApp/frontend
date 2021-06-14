@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useEffect, useLayoutEffect } from 'react';
 
 const getUrlParam = (name: string, url: string) => {
   name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
@@ -11,16 +10,13 @@ const getUrlParam = (name: string, url: string) => {
     : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
-const useOAUTHChecker = () => {
-  const history = useHistory();
-
-  useEffect(() => {
+const useOAUTHChecker = (loginUser: () => void) => {
+  useLayoutEffect(() => {
     const token = getUrlParam('token', window.location.href);
     if (token) {
       localStorage.setItem('userInfo', JSON.stringify('Bearer ' + token));
-      history.push({
-        pathname: `/Home`,
-      });
+      loginUser();
+      window.open('/#/Home', '_self');
     }
   }, []);
 };

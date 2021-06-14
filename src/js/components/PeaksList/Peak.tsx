@@ -7,7 +7,7 @@ import { SubmitButton, Card } from '../common';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { completeThePeak } from '../../API/peaks/methods';
 import Popup from 'reactjs-popup';
-import { TiTick, TiTimes } from 'react-icons/ti';
+import { TiTick } from 'react-icons/ti';
 import Error from '../common/Error';
 import useBlur from '../../hooks/useBlur';
 
@@ -69,11 +69,7 @@ const Peak = ({
         )}
         onClick={completed ? void 0 : setShowForm}
       >
-        {completed ? (
-          <TiTick className={styles.reachedIcon} />
-        ) : (
-          <TiTimes className={styles.reachedIcon} />
-        )}
+        {completed && <TiTick className={styles.reachedIcon} />}
         <Popup
           trigger={
             <p className={styles.reachedText}>

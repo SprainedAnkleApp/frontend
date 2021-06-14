@@ -37,3 +37,7 @@ a:active {
   display: flex;
   justify-content: center;
 }
+
+.iconProfile {
+  color: var(--darkest-gray);
+}

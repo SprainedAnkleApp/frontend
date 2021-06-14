@@ -19,16 +19,11 @@ type Location = {
 const LoginForm = () => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [registered, setRegistered] = useState<string | null>(null);
-  useOAUTHChecker();
-
   const location = useLocation<Location>();
   const history = useHistory();
   const { loginUser } = useContext(userContext);
 
-  if (isAuthenticated()) {
-    loginUser();
-    history.push('/');
-  }
+  useOAUTHChecker(loginUser);
 
   useEffect(() => {
     if (location.state?.from === '/signup')

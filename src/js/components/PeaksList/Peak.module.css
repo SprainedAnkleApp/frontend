@@ -73,6 +73,7 @@
 
 .peakNotReachedInfo {
     cursor: pointer;
+    padding-left: 10px;
 }
 
 .reachPeakCard {
